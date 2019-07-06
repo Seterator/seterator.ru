@@ -1,0 +1,31 @@
+﻿@namespace Rauthor
+@model  ViewModels.RegistrationModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<h1>Регистрация</h1>
+<form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label asp-for="Login">Логин</label><br />
+            <input type="text" asp-for="Login" />
+            <span asp-validation-for="Login" />
+        </div>
+        <div>
+            <label asp-for="Password">Пароль</label><br />
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div>
+            <label asp-for="PasswordConfirmation">Подтверждение пароля</label><br />
+            <input asp-for="PasswordConfirmation" />
+            <span asp-validation-for="PasswordConfirmation" />
+        </div>
+        <div>
+            <input type="submit" value="Регистрация" />
+        </div>
+    </div>
+</form>
+
