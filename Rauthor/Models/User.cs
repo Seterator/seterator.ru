@@ -16,7 +16,7 @@ namespace Rauthor.Models
         [Column("login")]
         public string Login { get; set; }
         [Column("password_hash")]
-        public string PasswordHash { get; set; }
+        public byte[] PasswordHash { get; set; }
         public List<Poem> Poems { get; set; }
 
         public User()

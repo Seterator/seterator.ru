@@ -20,6 +20,11 @@ namespace Rauthor.Controllers
     public class AccountController : Controller
     {
         DatabaseContext database;
+        static readonly byte[] salt = new byte[]
+        {
+            0xad, 0x34, 0xff, 0x45, 0xf2, 0x12, 0x34, 0xfa,
+            0xad, 0x34, 0xff, 0x45, 0xf2, 0x12, 0x34, 0xfa
+        };
         public AccountController(DatabaseContext database)
         {
             this.database = database;
@@ -36,7 +41,7 @@ namespace Rauthor.Controllers
         public async Task<IActionResult> Login(ViewModels.LoginModel data)
         {
             Models.User user = database.Users.FirstOrDefault(u => u.Login == data.Login);
-            if (user == null)
+            if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8).SequenceEqual(user.PasswordHash))
             {
                 ModelState.AddModelError("", "Неверный логин или пароль");
             }
@@ -67,7 +72,7 @@ namespace Rauthor.Controllers
                     var newUser = new Models.User()
                     {
                         Login = data.Login,
-                        PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), new byte[] { 0xad, 0x34, 0xff }, 0)
+                        PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
                     };
                     database.Users.Add(newUser);
                     await database.SaveChangesAsync();

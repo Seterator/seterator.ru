@@ -7,13 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rauthor.Models
 {
-    public enum Approved
-    {
-        True = 1,
-        False = 0
-    }
-
-    [Table("сompetition_participant")]
+    [Table("participant")]
     public class Participant
     {
         [Key]
@@ -32,8 +26,8 @@ namespace Rauthor.Models
         [Column("user_GUID")]
         public Guid UserGuid { get; set; }
 
-        [Column("approved", TypeName = "enum('True','False')")]
-        public Approved Approved { get; set; }
+        [Column("approved", TypeName = "BIT(1)")]
+        public bool Approved { get; set; }
 
 
         [ForeignKey("CompetitionGuid")]

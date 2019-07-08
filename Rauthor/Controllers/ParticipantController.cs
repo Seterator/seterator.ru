@@ -37,9 +37,6 @@ namespace Rauthor.Controllers
                 CompetitionGuid = competition.Guid,
                 UserGuid = database.Users.First(u => u.Login == User.Identity.Name).Guid
             };
-            //HttpContext.Session.SetString("accepting", JsonConvert.SerializeObject(participant,
-            //                                                                       type: typeof(Participant),
-            //                                                                       settings: default));
             HttpContext.Session.Set<Participant>("accepting", participant);
             return View(participant);
         }
@@ -47,9 +44,6 @@ namespace Rauthor.Controllers
         [HttpPost]
         public IActionResult Become()
         {
-            //Participant participant = JsonConvert.DeserializeObject(value: HttpContext.Session.GetString("accepting"),
-            //                                                        type: typeof(Participant)) as Participant;
-
             Participant participant = HttpContext.Session.Get<Participant>("accepting");
             database.Participants.Add(participant);
             database.SaveChangesAsync();
