@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+
 namespace Rauthor
 {
     public class Startup
@@ -47,6 +48,7 @@ namespace Rauthor
                     .AddCookie(options =>
                     {
                         options.LoginPath = new PathString("/Account/Login");
+                        options.Cookie.Name = "ssid";
                     });
             services
                 .AddMvc()
@@ -72,6 +74,7 @@ namespace Rauthor
                .UseCookiePolicy()
                .UseSession()
                .UseAuthentication()
+               .UseMiddleware<Services.SessionMiddleware>()
                .UseMvc(routes =>
                {
                    routes.MapRoute(

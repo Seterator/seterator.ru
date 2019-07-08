@@ -12,7 +12,7 @@ namespace Rauthor.Controllers
 {
     public class PoemController : Controller
     {
-        DatabaseContext database;
+        readonly DatabaseContext database;
         public PoemController(DatabaseContext database)
         {
             this.database = database;
@@ -34,7 +34,7 @@ namespace Rauthor.Controllers
             {
                 database.Poems.Add(new Poem()
                 {
-                    UserGUID = database.GetUser(User.Identity.Name).Guid,
+                    UserGuid = database.GetUser(User.Identity.Name).Guid,
                     Text = poem.Text
                 });
                 await database.SaveChangesAsync();

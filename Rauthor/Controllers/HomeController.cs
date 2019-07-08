@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MySqlX.XDevAPI;
@@ -15,20 +16,24 @@ namespace Rauthor.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        readonly DatabaseContext database;
+        public HomeController(DatabaseContext database)
         {
+            this.database = database;
         }
         public IActionResult Index()
         {
-            return View();
+            database.SaveChanges();
+
+            return View(database.Competitions.Include("Participants"));
         }
         [Authorize]
         public IActionResult Privacy()
         {
-            ViewBag.IN = User.Identity.Name + "\t" +
+            ViewBag.IN = User.Identity.Name;
                 //User.Claims.FirstOrDefault(c => c.Type == "GUID").Value;
                 //new Guid(Request.HttpContext.Session.Get("User GUID")).ToString();
-                Request.HttpContext.Session.GetUserGuid();
+                //Request.HttpContext.Session.GetUserGuid();
             return View();
         }
 

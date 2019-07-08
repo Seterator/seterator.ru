@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Policy;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -10,7 +11,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
+using Org.BouncyCastle.Crypto.Generators;
 using Rauthor.Models;
+using static Rauthor.Services.SessionExtensions;
 
 namespace Rauthor.Controllers
 {
@@ -60,10 +63,11 @@ namespace Rauthor.Controllers
                 var user = database.Users.FirstOrDefault(u => u.Login == data.Login);
                 if (user == null)
                 {
+                    
                     var newUser = new Models.User()
                     {
                         Login = data.Login,
-                        PasswordHash = data.Password
+                        PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), new byte[] { 0xad, 0x34, 0xff }, 0)
                     };
                     database.Users.Add(newUser);
                     await database.SaveChangesAsync();
@@ -96,7 +100,7 @@ namespace Rauthor.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

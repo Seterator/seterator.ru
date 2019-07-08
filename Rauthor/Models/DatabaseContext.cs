@@ -6,6 +6,8 @@ namespace Rauthor.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Poem> Poems { get; set; }
+        public DbSet<Competition> Competitions { get; set; }
+        public DbSet<Participant> Participants { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             Database.EnsureCreated();
