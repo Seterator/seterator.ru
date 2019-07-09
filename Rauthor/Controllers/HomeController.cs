@@ -27,20 +27,9 @@ namespace Rauthor.Controllers
 
             return View(database.Competitions.Include("Participants"));
         }
-        [Authorize]
         public IActionResult Privacy()
         {
-            ViewBag.IN = User.Identity.Name;
-                //User.Claims.FirstOrDefault(c => c.Type == "GUID").Value;
-                //new Guid(Request.HttpContext.Session.Get("User GUID")).ToString();
-                //Request.HttpContext.Session.GetUserGuid();
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

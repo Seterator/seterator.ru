@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Org.BouncyCastle.Crypto.Generators;
 using Rauthor.Models;
 using static Rauthor.Services.SessionExtensions;
@@ -19,8 +20,8 @@ namespace Rauthor.Controllers
 {
     public class AccountController : Controller
     {
-        DatabaseContext database;
-        static readonly byte[] salt = new byte[]
+        private readonly DatabaseContext database;
+        private static readonly byte[] salt = new byte[]
         {
             0xad, 0x34, 0xff, 0x45, 0xf2, 0x12, 0x34, 0xfa,
             0xad, 0x34, 0xff, 0x45, 0xf2, 0x12, 0x34, 0xfa
@@ -40,15 +41,22 @@ namespace Rauthor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(ViewModels.LoginModel data)
         {
-            Models.User user = database.Users.FirstOrDefault(u => u.Login == data.Login);
-            if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8).SequenceEqual(user.PasswordHash))
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Неверный логин или пароль");
+                Models.User user = database.Users.FirstOrDefault(u => u.Login == data.Login);
+                if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8).SequenceEqual(user.PasswordHash))
+                {
+                    ModelState.AddModelError("", "Неверный логин или пароль");
+                }
+                else
+                {
+                    await Authenticate(user);
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
-                await Authenticate(user);
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError("", "Неправильно введены данные");
             }
             return View(data);
         }
@@ -87,18 +95,21 @@ namespace Rauthor.Controllers
             return View(data);
         }
 
+        public IActionResult Main()
+        {
+            return View();
+        }
+
         private async Task Authenticate(User user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                new Claim("GUID", user.Guid.ToString()) // TODO разобраться как хранить этот бред в сессии
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login)
             };
             ClaimsIdentity id = new ClaimsIdentity(claims:             claims,
                                                    authenticationType: "ApplicationCookie",
                                                    nameType:           ClaimsIdentity.DefaultNameClaimType,
                                                    roleType:           ClaimsIdentity.DefaultRoleClaimType);
-            Request.HttpContext.Session.SetUserGuid(user.Guid);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 

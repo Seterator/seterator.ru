@@ -13,12 +13,17 @@ namespace Rauthor.Models
         [Key]
         [Column("GUID")]
         public Guid Guid { get; set; }
+
         [Column("login")]
         public string Login { get; set; }
+
         [Column("password_hash")]
         public byte[] PasswordHash { get; set; }
+
+
         public List<Poem> Poems { get; set; }
 
+        public List<Participant> Participants { get; set; }
         public User()
         {
             Guid = Guid.NewGuid();

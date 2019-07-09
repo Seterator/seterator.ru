@@ -14,7 +14,7 @@
     {
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">@competition.Guid.ToString()</h4>
+                <h4 class="card-title">@competition.Titile</h4>
                 <div class="card-text">
                     Начнётся <b>@competition.StartDate.ToString("dd.MM.yyyy")</b> <br>
                     Закончится <b>@competition.EndDate.ToString("dd.MM.yyyy")</b> <br>
@@ -22,22 +22,10 @@
                 </div>
             </div>
             <div class="card-footer">
-                @if (competition.StartDate < DateTime.Now)
-                {
-                    @*<a class="card-link" asp-action="Become" asp-controller="Participant">Участвовать</a>*@
-                    <a class="btn btn-primary" 
-                       asp-action="Become" 
-                       asp-controller="Participant" 
-                       asp-route-id="@competition.Guid.ToString()">Участвовать</a>
-                }
-                else
-                {
-                    <a class="btn btn-primary" 
-                       asp-action="Become" 
-                       asp-controller="Participant" 
-                       asp-route-id="@competition.Guid.ToString()">Записаться</a>
-                    @*<a class="card-link disabled" asp-action="Become" asp-controller="Participant">Записаться</a>*@
-                }
+                <a class="btn btn-primary" 
+                    asp-action="Become" 
+                    asp-controller="Participant" 
+                    asp-route-id="@competition.Guid.ToString()">Участвовать</a>
             </div>
         </div>
     }
