@@ -34,7 +34,7 @@ namespace Rauthor.Controllers
             {
                 database.Poems.Add(new Poem()
                 {
-                    UserGuid = database.GetUser(User.Identity.Name).Guid,
+                    ParticipantGuid = database.GetUser(User.Identity.Name).Guid,// П
                     Text = poem.Text
                 });
                 await database.SaveChangesAsync();

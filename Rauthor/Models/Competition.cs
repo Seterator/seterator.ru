@@ -12,6 +12,8 @@ namespace Rauthor.Models
     {
         [Key] [Column("GUID")] public Guid Guid { get; set; }
 
+        [Column("title")] public string Titile { get; set; }
+
         [Column("start_date")] public DateTime StartDate { get; set; }
 
         [Column("end_date")] public DateTime EndDate { get; set; }

@@ -15,10 +15,10 @@ namespace Rauthor.Models
         public string Text { get; set; }
 
         [Column("author_GUID")]
-        public Guid UserGuid { get; set; }
+        public Guid ParticipantGuid { get; set; }
 
-        [ForeignKey("UserGuid")]
-        public User Author { get; set; }
+        [ForeignKey("ParticipantGuid")]
+        public Participant Author { get; set; }
 
         public Poem()
         {
