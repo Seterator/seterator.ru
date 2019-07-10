@@ -30,21 +30,21 @@ namespace Rauthor.Services
         /// <summary>
         /// Возвращает GUID авторизованного пользователя
         /// </summary>
-        public static Guid? GetUserGuid(this ISession session)
-        {
-            byte[] guid_bytes = session.Get("User GUID");
-            if (guid_bytes != null)
-            {
-                return new Guid(guid_bytes);
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public static void SetUserGuid(this ISession session, Guid userGuid)
-        {
-            session.Set("User GUID", userGuid.ToByteArray());
-        }
+        //public static Guid? GetUserGuid(this ISession session)
+        //{
+        //    byte[] guid_bytes = session.Get("User GUID");
+        //    if (guid_bytes != null)
+        //    {
+        //        return new Guid(guid_bytes);
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
+        //public static void SetUserGuid(this ISession session, Guid userGuid)
+        //{
+        //    session.Set("User GUID", userGuid.ToByteArray());
+        //}
     }
 }
