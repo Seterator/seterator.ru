@@ -24,7 +24,6 @@ namespace Rauthor.Services
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             
-            //if (authenticate.Accepted)
             if (context.User.Identity.IsAuthenticated)
             {
                 try
@@ -40,6 +39,11 @@ namespace Rauthor.Services
                     Restore(context, database);
                 }
                 
+            }
+            else
+            {
+                context.Session.Set<bool>("sessionSet", false);
+                context.Session.Set<User>("user", null);
             }
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             next(context);
