@@ -9,10 +9,13 @@ using System.Threading.Tasks;
 
 namespace Rauthor.Services
 {
-    public class SessionMiddleware
+    /// <summary>
+    /// Восстанавливает данные сессии авторизованного пользователя.
+    /// </summary>
+    public class SessionRestore
     {
         readonly RequestDelegate next;
-        public SessionMiddleware(RequestDelegate next)
+        public SessionRestore(RequestDelegate next)
         {
             this.next = next;
         }
@@ -38,13 +41,16 @@ namespace Rauthor.Services
                 }
                 
             }
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             next(context);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
         }
         private void Restore(HttpContext context, DatabaseContext database)
         {
             string login = context.User.Identity.Name;
             User user = database.GetUser(login);
             context.Session.Set<User>("user", user);
+            context.Session.Set<bool>("sessionSet", true);
         }
     }
 }
