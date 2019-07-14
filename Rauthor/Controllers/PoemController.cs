@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Rauthor.Models;
+using Rauthor.Services;
+using Rauthor.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Asn1.Ocsp;
-using Rauthor.Models;
 
 namespace Rauthor.Controllers
 {
     public class PoemController : Controller
     {
-        readonly DatabaseContext database;
+        private readonly DatabaseContext database;
         public PoemController(DatabaseContext database)
         {
             this.database = database;
@@ -47,11 +47,17 @@ namespace Rauthor.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            User user = database.Users
-                .Where(u => u.Login == User.Identity.Name)
-                .Include(u => u.Poems)
-                .FirstOrDefault();
-            return View(user.Poems);
+            IEnumerable<UserPoemModel> poems = database.Poems
+                .Include(p => p.Author)
+                .Include(p => p.Author.Competition)
+                .Where(p => p.Author.UserGuid == HttpContext.Session.Get<User>("user").Guid)
+                .Select(p => new UserPoemModel
+                {
+                    AuthorName = User.Identity.Name,
+                    CompetitionTitle = p.Author.Competition.Titile,
+                    PoemText = p.Text
+                });
+            return View(poems);
         }
     }
 }

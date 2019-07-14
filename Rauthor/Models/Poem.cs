@@ -17,6 +17,7 @@ namespace Rauthor.Models
         [Column("author_GUID")]
         public Guid ParticipantGuid { get; set; }
 
+
         [ForeignKey("ParticipantGuid")]
         public Participant Author { get; set; }
 

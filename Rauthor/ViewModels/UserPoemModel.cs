@@ -1,0 +1,16 @@
+﻿using System.ComponentModel;
+
+namespace Rauthor.ViewModels
+{
+    public class UserPoemModel
+    {
+        [DisplayName("Соревнование")]
+        public string CompetitionTitle { get; set; }
+
+        [DisplayName("Текст")]
+        public string PoemText { get; set; }
+
+        [DisplayName("Автор")]
+        public string AuthorName { get; set; }
+    }
+}

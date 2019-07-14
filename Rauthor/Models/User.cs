@@ -21,8 +21,6 @@ namespace Rauthor.Models
         public byte[] PasswordHash { get; set; }
 
 
-        public List<Poem> Poems { get; set; }
-
         public List<Participant> Participants { get; set; }
         public User()
         {
