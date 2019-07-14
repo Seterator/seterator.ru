@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using MySqlX.XDevAPI;
 using Microsoft.AspNetCore.Http;
 using static Rauthor.Services.SessionExtensions;
+using Rauthor.ViewModels;
 
 namespace Rauthor.Controllers
 {
@@ -32,20 +33,30 @@ namespace Rauthor.Controllers
             Competition competition;
             var guid = new Guid(id);
             competition = database.Competitions.First((c) => c.Guid == guid);
-            var participant = new Participant()
-            {
-                CompetitionGuid = competition.Guid,
-                UserGuid = database.Users.First(u => u.Login == User.Identity.Name).Guid
-            };
-            HttpContext.Session.Set<Participant>("accepting", participant);
-            return View(participant);
+            ViewData["Competition title"] = competition.Titile;
+            ViewData["Competition guid"] = id;
+            return View();
         }
+        /// <summary>
+        /// Становясь участником, пользователь отправляет своё произведение.
+        /// </summary>
         [Authorize]
         [HttpPost]
-        public IActionResult Become()
+        public IActionResult Become([FromRoute] string id, [FromForm] PoemModel poem)
         {
-            Participant participant = HttpContext.Session.Get<Participant>("accepting");
+            var participant = new Participant()
+            {
+                CompetitionGuid = new Guid(id),
+                UserGuid = HttpContext.Session.Get<User>("user").Guid
+            };
             database.Participants.Add(participant);
+
+            var poemRecord = new Poem()
+            {
+                ParticipantGuid = participant.Guid,
+                Text = poem.Text
+            };
+            database.Poems.Add(poemRecord);
             database.SaveChangesAsync();
             return RedirectToAction("Index", "Home");
         }
