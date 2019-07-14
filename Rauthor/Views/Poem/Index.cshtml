@@ -1,7 +1,6 @@
-﻿@model IEnumerable<Rauthor.Models.Poem>
-
+﻿@model IEnumerable<UserPoemModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Отправленные";
 }
 
 <h1>Index</h1>
@@ -10,25 +9,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Text)
+                @Html.DisplayNameFor(model => model.PoemText)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author)
+                @Html.DisplayNameFor(model => model.CompetitionTitle)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorName)
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var i in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Text)
+                @Html.DisplayFor(modelItem => i.PoemText)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Author.Guid)
+                @Html.DisplayFor(modelItem => i.CompetitionTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => i.AuthorName)
             </td>
         </tr>
 }
     </tbody>
 </table>
-<a asp-action="Add">Добавить</a>
+@*<a asp-action="Add">Добавить</a>*@
