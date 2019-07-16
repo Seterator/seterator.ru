@@ -12,6 +12,7 @@ using MySqlX.XDevAPI;
 using Microsoft.AspNetCore.Http;
 using static Rauthor.Services.SessionExtensions;
 using Rauthor.ViewModels;
+using System.Diagnostics.Contracts;
 
 namespace Rauthor.Controllers
 {
@@ -44,21 +45,30 @@ namespace Rauthor.Controllers
         [HttpPost]
         public IActionResult Become([FromRoute] string id, [FromForm] PoemModel poem)
         {
-            var participant = new Participant()
+            Contract.Assert(poem != null);
+            if (ModelState.IsValid)
             {
-                CompetitionGuid = new Guid(id),
-                UserGuid = HttpContext.Session.Get<User>("user").Guid
-            };
-            database.Participants.Add(participant);
+                var participant = new Participant()
+                {
+                    CompetitionGuid = new Guid(id),
+                    UserGuid = HttpContext.Session.Get<User>("user").Guid
+                };
+                database.Participants.Add(participant);
 
-            var poemRecord = new Poem()
+                var poemRecord = new Poem()
+                {
+                    ParticipantGuid = participant.Guid,
+                    Text = poem.Text
+                };
+                database.Poems.Add(poemRecord);
+                database.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            else
             {
-                ParticipantGuid = participant.Guid,
-                Text = poem.Text
-            };
-            database.Poems.Add(poemRecord);
-            database.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+                ModelState.AddModelError("", "Неверные данные");
+                return View();
+            }
         }
     }
 }

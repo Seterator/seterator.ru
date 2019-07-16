@@ -5,6 +5,7 @@ using Rauthor.Models;
 using Rauthor.Services;
 using Rauthor.ViewModels;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,6 +31,7 @@ namespace Rauthor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(ViewModels.PoemModel poem)
         {
+            Contract.Assert(poem != null);
             if (ModelState.IsValid)
             {
                 database.Poems.Add(new Poem()
@@ -37,7 +39,7 @@ namespace Rauthor.Controllers
                     ParticipantGuid = database.GetUser(User.Identity.Name).Guid,// П
                     Text = poem.Text
                 });
-                await database.SaveChangesAsync();
+                await database.SaveChangesAsync().ConfigureAwait(false);
                 return RedirectToAction("Index", "Poem");
             }
             return View(poem);

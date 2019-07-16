@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Policy;
@@ -39,18 +40,19 @@ namespace Rauthor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(ViewModels.LoginModel data)
+        public async Task<IActionResult> Login(ViewModels.LoginModel model)
         {
+            Contract.Assert(model != null);
             if (ModelState.IsValid)
             {
-                Models.User user = database.Users.FirstOrDefault(u => u.Login == data.Login);
-                if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8).SequenceEqual(user.PasswordHash))
+                Models.User user = database.Users.FirstOrDefault(u => u.Login == model.Login);
+                if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(model.Password), salt, 8).SequenceEqual(user.PasswordHash))
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль");
                 }
                 else
                 {
-                    await Authenticate(user);
+                    await Authenticate(user).ConfigureAwait(false);
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -58,7 +60,7 @@ namespace Rauthor.Controllers
             {
                 ModelState.AddModelError("", "Неправильно введены данные");
             }
-            return View(data);
+            return View(model);
         }
 
         [HttpGet]
@@ -71,6 +73,7 @@ namespace Rauthor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(ViewModels.RegistrationModel data)
         {
+            Contract.Assert(data != null);
             if (ModelState.IsValid)
             {
                 var user = database.Users.FirstOrDefault(u => u.Login == data.Login);
@@ -83,7 +86,7 @@ namespace Rauthor.Controllers
                         PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
                     };
                     database.Users.Add(newUser);
-                    await database.SaveChangesAsync();
+                    await database.SaveChangesAsync().ConfigureAwait(true);
                     _ = Authenticate(newUser);
                     return RedirectToAction("Index", "Home");
                 }  
@@ -110,13 +113,17 @@ namespace Rauthor.Controllers
                                                    authenticationType: "ApplicationCookie",
                                                    nameType:           ClaimsIdentity.DefaultNameClaimType,
                                                    roleType:           ClaimsIdentity.DefaultRoleClaimType);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+            await HttpContext
+                .SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, 
+                             new ClaimsPrincipal(id))
+                .ConfigureAwait(false);
         }
 
         public async Task<IActionResult> Logout()
         {
-
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext
+                .SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme)
+                .ConfigureAwait(false);
             return RedirectToAction("Index", "Home");
         }
     }
