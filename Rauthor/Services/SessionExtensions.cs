@@ -19,6 +19,7 @@ namespace Rauthor.Services
             string json = session.GetString(key);
             if (json != null)
             {
+                
                 return JsonConvert.DeserializeObject<T>(json);
             }
             else
@@ -26,25 +27,5 @@ namespace Rauthor.Services
                 throw new KeyNotFoundException();
             }
         }
-
-        /// <summary>
-        /// Возвращает GUID авторизованного пользователя
-        /// </summary>
-        //public static Guid? GetUserGuid(this ISession session)
-        //{
-        //    byte[] guid_bytes = session.Get("User GUID");
-        //    if (guid_bytes != null)
-        //    {
-        //        return new Guid(guid_bytes);
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-        //public static void SetUserGuid(this ISession session, Guid userGuid)
-        //{
-        //    session.Set("User GUID", userGuid.ToByteArray());
-        //}
     }
 }
