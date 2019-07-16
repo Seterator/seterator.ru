@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.Contracts;
 using System.Linq;
 namespace Rauthor.Models
 {
@@ -15,6 +18,16 @@ namespace Rauthor.Models
         {
             conectionString = configuration.GetConnectionString("Local MySQL");
             Database.EnsureCreated();
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            Contract.Assert(modelBuilder != null);
+            modelBuilder.Entity<User>()
+                    .Property("PasswordHash")
+                    .HasConversion(new ValueConverter<IReadOnlyCollection<byte>, byte[]>(
+                        m => m.ToArray(),
+                        p => p as IReadOnlyCollection<byte>
+                    ));
         }
 
         public User GetUser(string login)
