@@ -23,7 +23,7 @@ namespace Rauthor.Models
         [JsonConverter(typeof(ReadOnlyCollectionConverter<byte>))]
         public IReadOnlyCollection<byte> PasswordHash { get; set; }
 
-        public List<Participant> Participants { get; set; }
+        public List<Participant> Participants { get; /*set;*/ }
         public User()
         {
             Guid = Guid.NewGuid();

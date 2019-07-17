@@ -30,7 +30,7 @@ namespace Rauthor.Models
         public bool Approved { get; set; }
 
 
-        public List<Poem> Poems { get; set; }
+        public List<Poem> Poems { get; /*set;*/ }
 
         [ForeignKey("CompetitionGuid")]
         public Competition Competition { get; set; }

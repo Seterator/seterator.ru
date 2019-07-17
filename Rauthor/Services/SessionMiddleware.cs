@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.Features.Authentication;
 using Rauthor.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,7 +24,6 @@ namespace Rauthor.Services
         public async Task Invoke(HttpContext context, DatabaseContext database)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            
             if (context.User.Identity.IsAuthenticated)
             {
                 try
@@ -47,9 +47,11 @@ namespace Rauthor.Services
             }
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
             next(context);
-#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+#pragma warning restore CS4014
         }
+#pragma warning disable CA1822 // Member Restore does not access instance data and can be marked as static
         private void Restore(HttpContext context, DatabaseContext database)
+#pragma warning restore CA1822
         {
             string login = context.User.Identity.Name;
             User user = database.GetUser(login);

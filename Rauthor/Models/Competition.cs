@@ -18,7 +18,7 @@ namespace Rauthor.Models
 
         [Column("end_date")] public DateTime EndDate { get; set; }
 
-        public List<Participant> Participants { get; set; }
+        public List<Participant> Participants { get; /*set;*/ }
 
         public Competition()
         {

@@ -65,8 +65,9 @@ namespace Rauthor
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
         }
-
+#pragma warning disable CA1822 // Member Configure does not access instance data and can be marked as static
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+#pragma warning restore CA1922 
         {
             if (env.IsDevelopment())
             {
