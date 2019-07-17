@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Rauthor
 {
-    public class Program
+    public sealed class Program
     {
         public static void Main(string[] args)
         {
