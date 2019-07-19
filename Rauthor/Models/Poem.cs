@@ -14,12 +14,16 @@ namespace Rauthor.Models
         [Column("Text")]
         public string Text { get; set; }
 
+        [Column("title")]
+        public string Title { get; set; }
+
         [Column("author_GUID")]
         public Guid ParticipantGuid { get; set; }
 
+        
 
         [ForeignKey("ParticipantGuid")]
-        public Participant Author { get; set; }
+        public virtual Participant Author { get; set; }
 
         public Poem()
         {
