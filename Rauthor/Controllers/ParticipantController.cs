@@ -95,7 +95,7 @@ namespace Rauthor.Controllers
                 return View(database.Participants
                     .Include(p => p.Competition)
                     .Include(p => p.Poems)
-                    .FirstOrDefault(p => !p.Approved));
+                    .FirstOrDefault(p => p.Status == ParticipantStatus.New || p.Status == ParticipantStatus.Updated));
             }
             else
             {
@@ -108,7 +108,7 @@ namespace Rauthor.Controllers
         {
             if (User.HasClaim(ClaimTypes.Role, "Moderator"))
             {
-                database.Participants.FirstOrDefault(p => p.Guid == guid).Approved = true;
+                database.Participants.FirstOrDefault(p => p.Guid == guid).Status = ParticipantStatus.Approved;
                 database.SaveChangesAsync();
                 return RedirectToAction("Review");
             }
@@ -119,6 +119,8 @@ namespace Rauthor.Controllers
         }
         public IActionResult Reject(Guid guid)
         {
+            database.Participants.FirstOrDefault(p => p.Guid == guid).Status = ParticipantStatus.Rejected;
+            database.SaveChangesAsync();
             return RedirectToAction("Review");
         }
 

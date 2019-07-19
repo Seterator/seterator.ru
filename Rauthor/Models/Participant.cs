@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -29,9 +30,14 @@ namespace Rauthor.Models
         [Column("user_GUID")]
         public Guid UserGuid { get; set; }
 
-        [Column("approved", TypeName = "BIT(1)")]
-        public bool Approved { get; set; }
+        [Column("status", TypeName = "enum('New','Approved','Rejected','Updated')")]
+        [DisplayName("Состояние заявки")]
+        public ParticipantStatus Status { get; set; }
 
+        [NotMapped]
+        public bool Approved {
+            get => Status == ParticipantStatus.Approved;
+        }
 
         public virtual List<Poem> Poems { get; set; }
 
@@ -45,6 +51,12 @@ namespace Rauthor.Models
         {
             Guid = Guid.NewGuid();
         }
-        
+    }
+    public enum ParticipantStatus
+    {
+        New,
+        Approved,
+        Rejected,
+        Updated
     }
 }
