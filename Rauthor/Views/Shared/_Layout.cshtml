@@ -39,7 +39,10 @@
                                 <a class="nav-link text-dark" asp-controller="Profile" asp-action="Index">Профиль</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Poem" asp-action="Index">Произведения</a>
+                                <a class="nav-link text-dark" asp-controller="Poem" asp-action="Index">Произведения</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Participant" >Заявки</a>
                             </li>
                             @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
                             {

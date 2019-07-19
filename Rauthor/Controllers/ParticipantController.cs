@@ -34,7 +34,7 @@ namespace Rauthor.Controllers
                 .Where(p => p.UserGuid == user.Guid)
                 .Include(p => p.Poems)
                 .Include(p => p.Competition);
-            return PartialView(model);
+            return View(model);
         }
 
         [Authorize]

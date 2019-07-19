@@ -7,7 +7,7 @@
                 Конкурс
             </th>
             <th>
-                Участие
+                Статус заявки
             </th>
             <th>
                 Рейтинг
@@ -20,23 +20,29 @@
     <tbody>
         @foreach (var i in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => i.Competition.Titile)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => i.Approved)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => i.UserScore)
-                </td>
-                <td>
-                    @foreach (var poem in i.Poems)
-                    {
-                    <span>@poem.Title</span><br />
-                    }
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @i.Competition.Titile
+            </td>
+            <td>
+                @(i.Status switch
+                {
+                    ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
+                    ParticipantStatus.Rejected => "Отклонена",
+                    ParticipantStatus.New => "Не рассмотрена",
+                    ParticipantStatus.Approved => "Одобрена"
+                })
+            </td>
+            <td>
+                @i.UserScore
+            </td>
+            <td>
+                @foreach (var poem in i.Poems)
+                {
+                <span>@poem.Title</span><br />
+                }
+            </td>
+        </tr>
         }
     </tbody>
 </table>
