@@ -17,6 +17,11 @@
     <div asp-validation-summary="ModelOnly"></div>
     <div>
         <div>
+            <label class="col-form-label" asp-for="Title">Название:</label>
+            <input class="form-control" type="text" asp-for="Title" />
+            <span asp-validation-for="Title" /> 
+        </div>
+        <div>
             <label asp-for="Text">Текст произведения</label><br />
             <textarea class="form-control" 
                       asp-for="Text"
