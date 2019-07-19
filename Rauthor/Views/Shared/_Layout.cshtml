@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,7 +14,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="~/css/site.css" />
@@ -40,6 +41,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Poem" asp-action="Index">Произведения</a>
                             </li>
+                            @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Participant" asp-action="Review">Модерация</a>
+                                </li>
+                            }
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
                             </li>
@@ -49,9 +56,12 @@
                         </li>
                     </ul>
                 </div>
-                @if (User.Identity.IsAuthenticated) { 
-                <span style="padding-right: 0px">@User.Identity.Name</span> } else { 
-                <a asp-action="Main" asp-controller="Account">Регистрация/Вход</a>}
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span style="padding-right: 0px">@User.Identity.Name</span> }
+                else
+                {
+                    <a asp-action="Main" asp-controller="Account">Регистрация/Вход</a>}
             </div>
         </nav>
     </header>

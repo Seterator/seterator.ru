@@ -1,0 +1,26 @@
+﻿@model Participant
+@{
+    ViewData["Title"] = "Модерация";
+}
+<div>
+    Заявка на -
+    <b>@Model.Competition.Titile</b>
+    @foreach (var i in Model.Poems)
+    {
+        <div class="card card-body">
+            @i.Title <br>
+            <textarea rows="9">@i.Text</textarea>
+        </div>
+    }
+</div>
+
+<a class="btn btn-primary" 
+   asp-action="Accept" 
+   asp-route-guid="@Model.Guid">
+    Допустить
+</a>
+<a class="btn btn-light" 
+   asp-action="Reject" 
+   asp-route-guid="@Model.Guid">
+    Отклонить
+</a>

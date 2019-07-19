@@ -14,6 +14,7 @@ using static Rauthor.Services.SessionExtensions;
 using Rauthor.ViewModels;
 using System.Diagnostics.Contracts;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Rauthor.Controllers
 {
@@ -86,5 +87,40 @@ namespace Rauthor.Controllers
                 return View();
             }
         }
+        [Authorize]
+        public IActionResult Review()
+        {
+            if (User.HasClaim(ClaimTypes.Role, "Moderator"))
+            {
+                return View(database.Participants
+                    .Include(p => p.Competition)
+                    .Include(p => p.Poems)
+                    .FirstOrDefault(p => !p.Approved));
+            }
+            else
+            {
+                return StatusCode((int)HttpStatusCode.Forbidden);
+            }
+        }
+
+        [Authorize]
+        public IActionResult Accept(Guid guid)
+        {
+            if (User.HasClaim(ClaimTypes.Role, "Moderator"))
+            {
+                database.Participants.FirstOrDefault(p => p.Guid == guid).Approved = true;
+                database.SaveChangesAsync();
+                return RedirectToAction("Review");
+            }
+            else
+            {
+                return StatusCode((int)HttpStatusCode.Forbidden);
+            }
+        }
+        public IActionResult Reject(Guid guid)
+        {
+            return RedirectToAction("Review");
+        }
+
     }
 }
