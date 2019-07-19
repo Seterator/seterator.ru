@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -59,7 +60,8 @@ namespace Rauthor
                     {
                         options.LoginPath = new PathString("/Account/Login");
                         options.Cookie.Name = "ssid";
-                    });
+                    })
+                    ;
             services
                 .AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -89,6 +91,12 @@ namespace Rauthor
                    routes.MapRoute(
                        name: "default",
                        template: "{controller=Home}/{action=Index}/{id?}");
+                   routes.MapRoute(
+                       name: "guid",
+                       template: "{controller}/{action}/{guid}",
+                       defaults: null,
+                       constraints: new { guid = new GuidRouteConstraint() }
+                       );
                });
         }
     }
