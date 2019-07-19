@@ -1,0 +1,45 @@
+﻿@model ProfileModel
+@{
+    ViewData["Title"] = $"{Model.Name ?? Model.Login}";
+}
+<img src="~/img/Lena.png" alt="Изображение профиля" />
+<div class="border-info">
+    <span>@(Model.Status ?? "Статус не установлен") </span>
+</div>
+@(Model.Name ?? Model.Login)<br />
+@if (Model.Verificated)
+{
+    <span>Аккаунт подтверждён</span>
+}
+else
+{
+    <span>Аккаунт не верифицирован</span>
+} <br />
+<span>Рейтинг: @Model.Rating</span>
+<div class="card bg-light">
+    <div class="card-body">
+        @(Model.About ?? "Информация о себе не указана")
+    </div>
+</div>
+<hr />
+<span class="card-title">Заявки</span>
+<div class="list-group">
+    @foreach (var p in Model.Participants)
+    {
+    <a asp-action="Edit" 
+       asp-controller="Participant" 
+       asp-route-id="@p.Guid"
+       class="list-group-item list-group-item-action">@p.Competition.Titile</a>
+    }
+</div>
+<span class="card-title">Участник</span>
+<div class="list-group">
+    @foreach (var competition in Model.ParticipatedCompetitions)
+    {
+    <a asp-action="Edit" 
+       asp-controller="Participant" 
+       asp-route-id="@competition.Guid"
+       class="list-group-item list-group-item-action">@competition.Titile</a>
+    }
+</div>
+<div class="list-group"></div>
