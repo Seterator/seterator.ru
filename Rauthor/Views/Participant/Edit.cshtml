@@ -1,0 +1,12 @@
+﻿@model Participant
+@foreach(var poem in Model.Poems)
+{
+    <div class="card">
+        <span class="card-header">
+            @poem.Title
+        </span>
+        <div class="card-body">
+           @poem.Text
+        </div>
+    </div>
+}

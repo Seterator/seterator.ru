@@ -1,0 +1,42 @@
+﻿@model System.Collections.Generic.IEnumerable<Participant>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Конкурс
+            </th>
+            <th>
+                Участие
+            </th>
+            <th>
+                Рейтинг
+            </th>
+            <th>
+                Произведения
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Competition.Titile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.Approved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => i.UserScore)
+                </td>
+                <td>
+                    @foreach (var poem in i.Poems)
+                    {
+                    <span>@poem.Title</span><br />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using static Rauthor.Services.SessionExtensions;
 using Rauthor.ViewModels;
 using System.Diagnostics.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Rauthor.Controllers
 {
@@ -23,21 +24,35 @@ namespace Rauthor.Controllers
         {
             this.database = database;
         }
+
+        [Authorize]
         public IActionResult Index()
         {
-            return StatusCode(404);
+            var user = HttpContext.Session.Get<User>("user");
+            var model = database.Participants
+                .Where(p => p.UserGuid == user.Guid)
+                .Include(p => p.Poems)
+                .Include(p => p.Competition);
+            return PartialView(model);
         }
+
         [Authorize]
         [HttpGet]
-        public IActionResult Become(string id)
+        public IActionResult Become(Guid id)
         {
             Competition competition;
-            var guid = new Guid(id);
-            competition = database.Competitions.First((c) => c.Guid == guid);
+            competition = database.Competitions.First((c) => c.Guid == id);
             ViewData["Competition title"] = competition.Titile;
             ViewData["Competition guid"] = id;
             return View();
         }
+        
+        public IActionResult Edit(Guid id)
+        {
+            var guid = id;
+            return View(database.Participants.Include(p => p.Poems).First(p => p.Guid == guid));
+        }
+
         /// <summary>
         /// Становясь участником, пользователь отправляет своё произведение.
         /// </summary>
@@ -58,7 +73,8 @@ namespace Rauthor.Controllers
                 var poemRecord = new Poem()
                 {
                     ParticipantGuid = participant.Guid,
-                    Text = poem.Text
+                    Text = poem.Text,
+                    Title = poem.Title
                 };
                 database.Poems.Add(poemRecord);
                 database.SaveChangesAsync();
