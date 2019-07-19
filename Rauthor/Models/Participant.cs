@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,9 +16,11 @@ namespace Rauthor.Models
         public Guid Guid { get; set; }
 
         [Column("user_score")]
+        [DisplayName("Рейтинг у пользователей")]
         public int UserScore { get; set; }
 
         [Column("jury_score")]
+        [DisplayName("Рейтинг у жюри")]
         public int JuryScore { get; set; }
 
         [Column("competition_GUID")]
@@ -30,13 +33,13 @@ namespace Rauthor.Models
         public bool Approved { get; set; }
 
 
-        public List<Poem> Poems { get; /*set;*/ }
+        public virtual List<Poem> Poems { get; set; }
 
         [ForeignKey("CompetitionGuid")]
-        public Competition Competition { get; set; }
+        public virtual Competition Competition { get; set; }
 
         [ForeignKey("UserGuid")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public Participant()
         {

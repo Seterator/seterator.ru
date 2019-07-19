@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Proxies;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -28,6 +29,11 @@ namespace Rauthor.Models
                         m => m.ToArray(),
                         p => p as IReadOnlyCollection<byte>
                     ));
+            
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
         }
 
         public User GetUser(string login)

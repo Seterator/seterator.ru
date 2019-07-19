@@ -23,7 +23,9 @@ namespace Rauthor.Models
         [JsonConverter(typeof(ReadOnlyCollectionConverter<byte>))]
         public IReadOnlyCollection<byte> PasswordHash { get; set; }
 
-        public List<Participant> Participants { get; /*set;*/ }
+        [Column("Kind",TypeName = "enum('Common','Jury','Moderator')")]
+        public UserKind Kind { get; set; }
+        public virtual List<Participant> Participants { get; set; }
         public User()
         {
             Guid = Guid.NewGuid();
@@ -47,4 +49,10 @@ namespace Rauthor.Models
         }
     }
     
+    public enum UserKind
+    {
+        Common,
+        Jury,
+        Moderator
+    }
 }
