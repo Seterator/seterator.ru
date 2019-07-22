@@ -1,16 +1,24 @@
-﻿@model System.Collections.Generic.IEnumerable<Rauthor.Models.Competition>
-@using Microsoft.EntityFrameworkCore.Extensions
+﻿@*@model System.Collections.Generic.IEnumerable<Rauthor.Models.Competition>*@
+@model RelevantCompetitionsModel
+@*@using Microsoft.EntityFrameworkCore.Extensions*@
 
 @{
     ViewData["Title"] = "Главная";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1><br />
-    Открытые конкурсы:
-</div>
+@if (!User.Identity.IsAuthenticated)
+{
+    <span class="display-2">Добро пожаловать</span><br />
+    <h3 class="text-muted text-center">Ру-Автор</h3>
+    <div class="col-6">
+        <span class="text-wrap">
+            Происхождение Александра Сергеевича Пушкина идёт от разветвлённого нетитулованного дворянского рода Пушкиных, восходившего по генеалогической легенде к «мужу честну» Ратше. Пушкин неоднократно писал о своей родословной в стихах и прозе; он видел в своих предках образец истинной «аристократии», древнего рода, честно служившего отечеству, но не снискавшего благосклонности правителей и «гонимого». Не раз он обращался (в том числе в художественной форме) и к образу своего прадеда по матери — африканца Абрама Петровича Ганнибала, ставшего слугой и воспитанником Петра I, а потом военным инженером и генералом.
+        </span>
+    </div>
+    <hr />
+}
+<h4><span class="text-muted">Приближается</span> конец приёма заявок</h4>
 <div>
-    @foreach (var competition in Model)
+    @foreach (var competition in Model.ClosingApplyCompetitions)
     {
         <div class="card">
             <div class="card-body">
@@ -35,5 +43,25 @@
                    asp-route-id="@competition.Guid.ToString()">Подробнее</a>
             </div>
         </div>
+    }
+</div>
+<hr />
+<h4><span class="text-muted">Приближаются</span> результаты</h4>
+<div>
+    @foreach (var competition in Model.IncomingResultCompetitions)
+    {
+    <div>
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item col"><h4 class="card-title">@competition.Titile</h4></li>
+            <li class="list-group-item col-3">Закончится <b>@competition.EndDate.ToString("dd.MM.yyyy")</b></li>
+            <li class="text-muted list-group-item col-2">Участников: <b>@competition.Participants.Count()</b></li>
+            <li class="list-group-item col-auto">
+                <a class="btn btn-outline-info"
+                    asp-action="Details"
+                    asp-controller="Competition"
+                    asp-route-id="@competition.Guid.ToString()">Подробнее</a>
+            </li>
+        </ul>
+    </div>
     }
 </div>
