@@ -1,0 +1,63 @@
+﻿@model Competition
+<h2>@Model.Titile</h2>
+@if ((bool)ViewData["Personal"])
+{
+@if ((bool)ViewData["TakingPart"])
+{
+<span>Вы принимаете участие</span>
+<a asp-action="Edit"
+   asp-controller="Participant"
+   asp-route-guid="@ViewData["ParticipantGuid"]">Ваша заявка</a>
+}
+else
+{
+<a class="btn border-primary"
+   asp-action="Become"
+   asp-controller="Participant"
+   asp-route-id="@Model.Guid.ToString()">Участвовать</a>
+
+}
+<div class="card card-body">
+    <span>Конец подачи заявок: @Model.StartDate.ToString("dd.MM.yyyy")</span>
+    <span>Результаты конкурса: @Model.EndDate.ToString("dd.MM.yyyy")</span>
+</div>
+}
+@if (Model.Description != null)
+{
+<div class="card">
+    <div class="card-header">
+        Описание
+    </div>
+    <div class="card-body">
+        @Model.Description
+    </div>
+</div>
+}
+<hr />
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <td>Участник</td>
+            <td>Произведения</td>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var p in Model.Participants.Where(p => p.Approved))
+    {
+        <tr 
+        @if (p.User.Login == User.Identity.Name)
+        {
+            Write("class=table-primary");
+        }
+        >
+            <td >@p.User.Login</td>
+            <td >
+                @foreach (var poem in p.Poems)
+                {
+                    <span>@poem.Title</span>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
