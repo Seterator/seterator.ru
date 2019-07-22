@@ -18,6 +18,7 @@ namespace Rauthor.Models
 
         [Column("end_date")] public DateTime EndDate { get; set; }
 
+        [Column("description")] public string Description { get; set; }
         public virtual List<Participant> Participants { get; set; }
 
         public Competition()
