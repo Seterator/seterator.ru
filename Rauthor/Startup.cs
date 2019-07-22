@@ -89,14 +89,14 @@ namespace Rauthor
                .UseMvc(routes =>
                {
                    routes.MapRoute(
-                       name: "default",
-                       template: "{controller=Home}/{action=Index}/{id?}");
-                   routes.MapRoute(
                        name: "guid",
                        template: "{controller}/{action}/{guid}",
-                       defaults: null,
+                       defaults: default,
                        constraints: new { guid = new GuidRouteConstraint() }
                        );
+                   routes.MapRoute(
+                       name: "default",
+                       template: "{controller=Home}/{action=Index}/{id?}");
                });
         }
     }
