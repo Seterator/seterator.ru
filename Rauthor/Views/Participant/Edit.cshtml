@@ -1,12 +1,24 @@
 ﻿@model Participant
-@foreach(var poem in Model.Poems)
+
+Статус заявки: 
+<span class="alert-info">
+    @(Model.Status switch
+    {
+        ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
+        ParticipantStatus.Rejected => "Отклонена",
+        ParticipantStatus.New => "Не рассмотрена",
+        ParticipantStatus.Approved => "Одобрена"
+    })
+</span>
+
+@foreach (var poem in Model.Poems)
 {
     <div class="card">
         <span class="card-header">
             @poem.Title
         </span>
         <div class="card-body">
-           @poem.Text
+            @poem.Text
         </div>
     </div>
 }

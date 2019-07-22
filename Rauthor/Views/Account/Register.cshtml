@@ -7,24 +7,25 @@
 <h1>Регистрация</h1>
 <form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
     <div asp-validation-summary="ModelOnly"></div>
-    <div>
+    <div class="form-group">
         <div>
             <label asp-for="Login">Логин</label><br />
-            <input type="text" asp-for="Login" />
+            <input class="form-control" type="text" asp-for="Login" />
             <span asp-validation-for="Login" />
         </div>
         <div>
             <label asp-for="Password">Пароль</label><br />
-            <input asp-for="Password" />
+            <input class="form-control" asp-for="Password" />
             <span asp-validation-for="Password" />
         </div>
         <div>
             <label asp-for="PasswordConfirmation">Подтверждение пароля</label><br />
-            <input asp-for="PasswordConfirmation" />
+            <input class="form-control" asp-for="PasswordConfirmation" />
             <span asp-validation-for="PasswordConfirmation" />
         </div>
+        <br />
         <div>
-            <input type="submit" value="Регистрация" />
+            <input class="btn btn-outline-primary" type="submit" value="Регистрация" />
         </div>
     </div>
 </form>

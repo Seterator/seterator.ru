@@ -21,15 +21,19 @@
                     Количество участников: <b>@competition.Participants.Count()</b> <br />
                 </div>
             </div>
-            @if (User.Identity.IsAuthenticated)
-            {
             <div class="card-footer">
-                <a class="btn btn-primary" 
-                    asp-action="Become" 
-                    asp-controller="Participant" 
+                @if (User.Identity.IsAuthenticated)
+                {
+                <a class="btn btn-primary"
+                    asp-action="Become"
+                    asp-controller="Participant"
                     asp-route-id="@competition.Guid.ToString()">Участвовать</a>
+                }
+                <a class="btn btn-outline-info"
+                   asp-action="Details"
+                   asp-controller="Competition"
+                   asp-route-id="@competition.Guid.ToString()">Подробнее</a>
             </div>
-            }
         </div>
     }
 </div>
