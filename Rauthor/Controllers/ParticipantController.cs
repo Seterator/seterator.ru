@@ -39,18 +39,18 @@ namespace Rauthor.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult Become(Guid id)
+        public IActionResult Become(Guid guid)
         {
             Competition competition;
-            competition = database.Competitions.First((c) => c.Guid == id);
+            competition = database.Competitions.First((c) => c.Guid == guid);
             ViewData["Competition title"] = competition.Titile;
-            ViewData["Competition guid"] = id;
+            ViewData["Competition guid"] = guid;
             return View();
         }
         
-        public IActionResult Edit(Guid id)
+        public IActionResult Edit(Guid guid)
         {
-            var guid = id;
+            //var guid = id;
             return View(database.Participants.Include(p => p.Poems).First(p => p.Guid == guid));
         }
 
@@ -59,14 +59,14 @@ namespace Rauthor.Controllers
         /// </summary>
         [Authorize]
         [HttpPost]
-        public IActionResult Become([FromRoute] string id, [FromForm] PoemModel poem)
+        public IActionResult Become([FromRoute] Guid guid, [FromForm] PoemModel poem)
         {
             Contract.Assert(poem != null);
             if (ModelState.IsValid)
             {
                 var participant = new Participant()
                 {
-                    CompetitionGuid = new Guid(id),
+                    CompetitionGuid = guid,
                     UserGuid = HttpContext.Session.Get<User>("user").Guid
                 };
                 database.Participants.Add(participant);
