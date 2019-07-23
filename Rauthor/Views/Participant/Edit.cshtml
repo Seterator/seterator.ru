@@ -1,7 +1,11 @@
 ﻿@model Participant
-
-Статус заявки: 
-<span class="alert-info">
+@{ 
+    ViewData["Title"] = $"Заявка на конкурс \"{Model.Competition.Titile}\"";
+}
+<div class="border rounded bg-light">
+    Заявка на участие в конкурсе <b>@Model.Competition.Titile</b>
+</div>
+<span class="badge badge-info">
     @(Model.Status switch
     {
         ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
