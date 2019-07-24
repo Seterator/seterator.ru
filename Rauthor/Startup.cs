@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 
@@ -20,10 +22,13 @@ namespace Rauthor
 {
     public class Startup
     {
+//'IHostingEnvironment' is obsolete: 'This type is obsolete and will be removed in a future version. The recommended alternative is Microsoft.AspNetCore.Hosting.IWebHostEnvironment.'	Rauthor C:\Users\BearPro\source\Workspaces\Rauthor\Rauthor\Startup.cs	74	Active
+
         public IConfiguration Configuration { get; }
 
-        public Startup(IHostingEnvironment env)
+        public Startup(IWebHostEnvironment env)
         {
+            Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json",
@@ -64,11 +69,12 @@ namespace Rauthor
                     ;
             services
                 .AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                    .AddMvcOptions(options => options.EnableEndpointRouting = false);
 
         }
 #pragma warning disable CA1822 // Member Configure does not access instance data and can be marked as static
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 #pragma warning restore CA1922 
         {
             if (env.IsDevelopment())
@@ -98,6 +104,7 @@ namespace Rauthor
                        name: "default",
                        template: "{controller=Home}/{action=Index}/{id?}");
                });
+            
         }
     }
 }
