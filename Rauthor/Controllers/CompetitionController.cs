@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,7 @@ namespace Rauthor.Controllers
     {
         public IActionResult Details([FromRoute] Guid guid, [FromServices] DatabaseContext db)
         {
+            Contract.Assert(db != null);
             var competition = db.Competitions.Include(c => c.Participants).FirstOrDefault(c => c.Guid == guid);
             db.Users.Where(user => competition.Participants.Any(p => p.UserGuid == user.Guid)).Load();
             db.Poems.Where(poem => competition.Participants.Any(p => p.Guid == poem.ParticipantGuid)).Load();

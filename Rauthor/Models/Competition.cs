@@ -14,8 +14,14 @@ namespace Rauthor.Models
 
         [Column("title")] public string Titile { get; set; }
 
+        /// <summary>
+        /// Дата окончания приёма заявок
+        /// </summary>
         [Column("start_date")] public DateTime StartDate { get; set; }
 
+        /// <summary>
+        /// Дата публикации результата
+        /// </summary>
         [Column("end_date")] public DateTime EndDate { get; set; }
 
         [Column("description")] public string Description { get; set; }

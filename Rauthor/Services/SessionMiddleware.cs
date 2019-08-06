@@ -24,6 +24,8 @@ namespace Rauthor.Services
         public async Task Invoke(HttpContext context, DatabaseContext database)
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
+            Contract.Assert(database != null);
+            Contract.Assert(context != null);
             if (context.User.Identity.IsAuthenticated)
             {
                 try
