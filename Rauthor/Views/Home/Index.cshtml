@@ -21,26 +21,45 @@
     @foreach (var competition in Model.ClosingApplyCompetitions)
     {
         <div class="card">
+            <div class="card-header">
+                <span class="h4 card-title">@competition.Titile</span>
+                @if (User.Identity.IsAuthenticated && competition.Participants.Any(p => p.UserGuid == Context.Session.Get<User>("user").Guid))
+                {
+                <span class="badge badge-info">Вы участвуете</span>
+                }
+            </div>
             <div class="card-body">
-                <h4 class="card-title">@competition.Titile</h4>
                 <div class="card-text">
                     Начнётся <b>@competition.StartDate.ToString("dd.MM.yyyy")</b> <br>
                     Закончится <b>@competition.EndDate.ToString("dd.MM.yyyy")</b> <br>
                     Количество участников: <b>@competition.Participants.Count()</b> <br />
                 </div>
+                <a class="card-link"
+                   asp-action="Details"
+                   asp-controller="Competition"
+                   asp-route-id="@competition.Guid.ToString()">Подробнее</a>
             </div>
             <div class="card-footer">
                 @if (User.Identity.IsAuthenticated)
+                {
+                @if(competition.Participants.Any(p => p.UserGuid == Context.Session.Get<User>("user").Guid))
+                {
+                @*<span class="text-info">Вы участвуете</span>*@
+                <a class="btn btn-outline-primary"
+                   asp-action="Edit"
+                   asp-controller="Participant"
+                   asp-route-guid="@competition.Participants.First(p=>p.UserGuid == Context.Session.Get<User>("user").Guid).Guid">
+                    Просмотреть заявку
+                </a>
+                }
+                else
                 {
                 <a class="btn btn-primary"
                     asp-action="Become"
                     asp-controller="Participant"
                     asp-route-id="@competition.Guid.ToString()">Участвовать</a>
                 }
-                <a class="btn btn-outline-info"
-                   asp-action="Details"
-                   asp-controller="Competition"
-                   asp-route-id="@competition.Guid.ToString()">Подробнее</a>
+                }
             </div>
         </div>
     }
