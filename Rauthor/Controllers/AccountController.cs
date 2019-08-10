@@ -40,7 +40,7 @@ namespace Rauthor.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(ViewModels.LoginModel model)
+        public IActionResult Login(ViewModels.LoginModel model)
         {
             Contract.Assert(model != null);
             if (ModelState.IsValid)
@@ -52,7 +52,7 @@ namespace Rauthor.Controllers
                 }
                 else
                 {
-                    await Authenticate(user).ConfigureAwait(false);
+                    Authenticate(user).ConfigureAwait(false);
                     return RedirectToAction("Index", "Home");
                 }
             }
