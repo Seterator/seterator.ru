@@ -1,0 +1,23 @@
+﻿footer .grid-footer {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.2fr;
+    align-items: end;
+    justify-items: normal;
+
+    
+}
+
+footer .grid-footer div {       
+}
+
+footer .footer-logo img {
+    width: 40%;
+}
+
+footer .footer-osm {
+    justify-self: right;
+}
+
+footer .footer-osm img {
+    width: 100%;
+}
