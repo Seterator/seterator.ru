@@ -1,0 +1,74 @@
+﻿.grid-col-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5vw;
+    margin: 0.5vw 0;
+}
+
+.grid-col-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 0.5vw;
+}
+
+.grid-row-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.5vw;
+    margin-top: 0.5vw;
+} 
+
+.event_card {
+    position: relative;
+}
+
+.info-on-card {
+    top: 0;
+    position: absolute;
+    width: 100%;
+    padding: 10px 10px 5px 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.event_card img {
+    width: 100%;
+    height: 100%;
+}
+
+.event_card h3 {
+    color: rgb(255, 57, 0);
+    font-weight: 600;
+    font-size: calc(1.2vh + 1.2vw);
+}
+
+.event_card h4 {
+    color: rgb(239, 239, 239);
+    font-weight: bold;
+    font-size: 1vw;
+}
+
+.continue_button p {
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8vw;
+}
+
+.continue_button:hover {
+    background: rgba(255, 57, 0, 0.7);
+}
+
+.continue_button {
+    display: grid;
+    align-items: center;
+    position: absolute;
+    bottom: 0.5vw;
+    right: 0.5vw;
+    width: 50%;
+    height: 1.5vw;
+    background: rgb(255, 57, 0);
+    background: rgba(255, 57, 0, 1);
+}

@@ -6,9 +6,10 @@
 
     <div class="container">
 
-        @foreach (var competition in Model.IncomingResultCompetitions)
-        {
-            <div class="grid-col-2">
+        <div class="grid-col-2">
+            @foreach (var competition in Model)
+            {
+
                 <div class="event_card">
                     <img src="~/img/event.png" />
                     <div class="info-on-card">
@@ -17,231 +18,203 @@
                     </div>
                     <a asp-action="Details" asp-controller="Competition" asp-route-id="@competition.Guid.ToString()"><div class="continue_button"><p>Посмотреть</p></div></a>
                 </div>
-            </div>
+            
         }
-
-        <div class="grid-col-2">
-            <div class="event_card">
-                <img src="~/img/event.png" />
-                <div class="info-on-card">
-                    <h3>Заголовок</h3>
-                    <h4>до 26.08.2019</h4>
-                </div>
-                <div class="continue_button"><p>Посмотреть</p></div>
-            </div>
-
-            <div class="grid-col-4">
-                <div class="event_card">
-                    <img src="~/img/medium_event2.png">
-                    <div class="info-on-card">
-                        <h3>Заголовок</h3>
-                        <h4>до 26.08.2019</h4>
-                    </div>
-                    <div class="continue_button"><p>Посмотреть</p></div>
-                </div>
-
-                <div class="event_card medium_size">
-                    <img src="~/img/medium_event2.png">
-                    <div class="info-on-card">
-                        <h3>Заголовок</h3>
-                        <h4>до 26.08.2019</h4>
-                    </div>
-                    <div class="continue_button"><p>Посмотреть</p></div>
-                </div>
-
-                <div class="event_card medium_size">
-                    <img src="~/img/medium_event2.png">
-                    <div class="info-on-card">
-                        <h3>Заголовок</h3>
-                        <h4>до 26.08.2019</h4>
-                    </div>
-                    <div class="continue_button"><p>Посмотреть</p></div>
-                </div>
-
-                <div class="event_card medium_size">
-                    <img src="~/img/medium_event2.png">
-                    <div class="info-on-card">
-                        <h3>Заголовок</h3>
-                        <h4>до 26.08.2019</h4>
-                    </div>
-                    <div class="continue_button"><p>Посмотреть</p></div>
-                </div>
-            </div>
-
-            <div class="event_card">
-                <img src="~/img/event.png" />
-                <div class="info-on-card">
-                    <h3>Заголовок</h3>
-                    <h4>до 26.08.2019</h4>
-                </div>
-                <div class="continue_button"><p>Посмотреть</p></div>
-            </div>
-
-            <div class="event_card">
-                <img src="~/img/event.png" />
-                <div class="info-on-card">
-                    <h3>Заголовок</h3>
-                    <h4>до 26.08.2019</h4>
-                </div>
-                <div class="continue_button"><p>Посмотреть</p></div>
-            </div>
-
         </div>
+            @*<div class="grid-col-2">
+                        <div class="event_card">
+                            <img src="~/img/event.png" />
+                            <div class="info-on-card">
+                                <h3>Заголовок</h3>
+                                <h4>до 26.08.2019</h4>
+                            </div>
+                            <div class="continue_button"><p>Посмотреть</p></div>
+                        </div>
 
-        <div class="grid-row-4">
-            <div class="event_card medium_size">
-                <img src="~/img/medium_event2.png">
-                <div class="info-on-card">
-                    <h3>Заголовок</h3>
-                    <h4>до 26.08.2019</h4>
-                </div>
-                <div class="continue_button"><p>Посмотреть</p></div>
-            </div>
+                        <div class="grid-col-4">
+                            <div class="event_card">
+                                <img src="~/img/medium_event2.png">
+                                <div class="info-on-card">
+                                    <h3>Заголовок</h3>
+                                    <h4>до 26.08.2019</h4>
+                                </div>
+                                <div class="continue_button"><p>Посмотреть</p></div>
+                            </div>
 
-            <div class="event_card medium_size">
-                <img src="~/img/medium_event2.png">
-                <div class="info-on-card">
-                    <h3>Заголовок</h3>
-                    <h4>до 26.08.2019</h4>
-                </div>
-                <div class="continue_button"><p>Посмотреть</p></div>
-            </div>
+                            <div class="event_card medium_size">
+                                <img src="~/img/medium_event2.png">
+                                <div class="info-on-card">
+                                    <h3>Заголовок</h3>
+                                    <h4>до 26.08.2019</h4>
+                                </div>
+                                <div class="continue_button"><p>Посмотреть</p></div>
+                            </div>
 
-            <div class="event_card medium_size">
-                <img src="~/img/medium_event2.png">
-                <div class="info-on-card">
-                    <h3>Заголовок</h3>
-                    <h4>до 26.08.2019</h4>
-                </div>
-                <div class="continue_button"><p>Посмотреть</p></div>
-            </div>
+                            <div class="event_card medium_size">
+                                <img src="~/img/medium_event2.png">
+                                <div class="info-on-card">
+                                    <h3>Заголовок</h3>
+                                    <h4>до 26.08.2019</h4>
+                                </div>
+                                <div class="continue_button"><p>Посмотреть</p></div>
+                            </div>
 
-            <div class="event_card medium_size">
-                <img src="~/img/medium_event2.png">
-                <div class="info-on-card">
-                    <h3>Заголовок</h3>
-                    <h4>до 26.08.2019</h4>
-                </div>
-                <div class="continue_button"><p>Посмотреть</p></div>
-@if (!User.Identity.IsAuthenticated)
-{
-    <span class="display-2">Добро пожаловать</span><br />
-    <h3 class="text-muted text-center">Ру-Автор</h3>
-    <div class="col-6">
-        <span class="text-wrap">
-            Происхождение Александра Сергеевича Пушкина идёт от разветвлённого нетитулованного дворянского рода Пушкиных, восходившего по генеалогической легенде к «мужу честну» Ратше. Пушкин неоднократно писал о своей родословной в стихах и прозе; он видел в своих предках образец истинной «аристократии», древнего рода, честно служившего отечеству, но не снискавшего благосклонности правителей и «гонимого». Не раз он обращался (в том числе в художественной форме) и к образу своего прадеда по матери — африканца Абрама Петровича Ганнибала, ставшего слугой и воспитанником Петра I, а потом военным инженером и генералом.
-        </span>
-    </div>
-    <hr />
-}
-<h4><span class="text-muted">Приближается</span> конец приёма заявок</h4>
-<div>
-    @foreach (var competition in Model)
-    {
-        <div class="card">
-            <div class="card-header">
-                <span class="h4 card-title">@competition.Titile</span>
-                @if (User.Identity.IsAuthenticated && competition.Participants.Any(p => p.UserGuid == Context.Session.Get<User>("user").Guid))
+                            <div class="event_card medium_size">
+                                <img src="~/img/medium_event2.png">
+                                <div class="info-on-card">
+                                    <h3>Заголовок</h3>
+                                    <h4>до 26.08.2019</h4>
+                                </div>
+                                <div class="continue_button"><p>Посмотреть</p></div>
+                            </div>
+                        </div>
+
+                        <div class="event_card">
+                            <img src="~/img/event.png" />
+                            <div class="info-on-card">
+                                <h3>Заголовок</h3>
+                                <h4>до 26.08.2019</h4>
+                            </div>
+                            <div class="continue_button"><p>Посмотреть</p></div>
+                        </div>
+
+                        <div class="event_card">
+                            <img src="~/img/event.png" />
+                            <div class="info-on-card">
+                                <h3>Заголовок</h3>
+                                <h4>до 26.08.2019</h4>
+                            </div>
+                            <div class="continue_button"><p>Посмотреть</p></div>
+                        </div>
+
+                    </div>
+
+                    <div class="grid-row-4">
+                        <div class="event_card medium_size">
+                            <img src="~/img/medium_event2.png">
+                            <div class="info-on-card">
+                                <h3>Заголовок</h3>
+                                <h4>до 26.08.2019</h4>
+                            </div>
+                            <div class="continue_button"><p>Посмотреть</p></div>
+                        </div>
+
+                        <div class="event_card medium_size">
+                            <img src="~/img/medium_event2.png">
+                            <div class="info-on-card">
+                                <h3>Заголовок</h3>
+                                <h4>до 26.08.2019</h4>
+                            </div>
+                            <div class="continue_button"><p>Посмотреть</p></div>
+                        </div>
+
+                        <div class="event_card medium_size">
+                            <img src="~/img/medium_event2.png">
+                            <div class="info-on-card">
+                                <h3>Заголовок</h3>
+                                <h4>до 26.08.2019</h4>
+                            </div>
+                            <div class="continue_button"><p>Посмотреть</p></div>
+                        </div>
+
+                        <div class="event_card medium_size">
+                            <img src="~/img/medium_event2.png">
+                            <div class="info-on-card">
+                                <h3>Заголовок</h3>
+                                <h4>до 26.08.2019</h4>
+                            </div>
+                            <div class="continue_button"><p>Посмотреть</p></div>
+                        </div>
+            <h4><span class="text-muted">Приближается</span> конец приёма заявок</h4>
+
+            <hr />
+            <h4><span class="text-muted">Приближаются</span> результаты</h4>
+
+                        <div class="social-osm-grid">
+                            <div>
+                                <p>Конкурсы прямо</p>
+                                <img src="~/img/social_icons/facebook_icon.gif" />
+                            </div>
+                            <div>
+                                <p>Новости сервиса</p>
+                                <img src="~/img/social_icons/facebook_icon.gif" />
+                            </div>
+                            <div>
+                                <p>Лучшие стихи</p>
+                                <img src="~/img/social_icons/facebook_icon.gif" />
+                            </div>
+                            <div>
+                                <p>Литературный клуб</p>
+                                <img src="~/img/social_icons/facebook_icon.gif" />
+                            </div>
+                            <div>
+                                <p>Красота поэзии</p>
+                                <img src="~/img/social_icons/facebook_icon.gif" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>*@
+
+
+            @*<div>
+                @foreach (var competition in Model)
                 {
-                <span class="badge badge-info">Вы участвуете</span>
+                    <div>
+                        <ul class="list-group list-group-horizontal">
+                            <li class="list-group-item col"><h4 class="card-title">@competition.Titile</h4></li>
+                            <li class="list-group-item col-3">Закончится <b>@competition.EndDate.ToString("dd.MM.yyyy")</b></li>
+                            <li class="text-muted list-group-item col-2">Участников: <b>@competition.Participants.Count()</b></li>
+                            <li class="list-group-item col-auto">
+                                <a class="btn btn-outline-info"
+                                   asp-action="Details"
+                                   asp-controller="Competition"
+                                   asp-route-id="@competition.Guid.ToString()">Подробнее</a>
+                            </li>
+                        </ul>
+                    </div>
                 }
-            </div>
-        </div>
+            </div>*@
 
-        <h4>Мы здесь</h4>
-        <div class="social_block">
-            <div class="img-wrap">
-                <img src="~/img/1osm.png" />
-            </div>
-            <div class="card-footer">
-                @if (User.Identity.IsAuthenticated)
+            @*<div>
+                @foreach (var competition in Model)
                 {
-                @if(competition.Participants.Any(p => p.UserGuid == Context.Session.Get<User>("user").Guid))
-                {
-                @*<span class="text-info">Вы участвуете</span>*@
-                <a class="btn btn-outline-primary"
-                   asp-action="Edit"
-                   asp-controller="Participant"
-                   asp-route-guid="@competition.Participants.First(p=>p.UserGuid == Context.Session.Get<User>("user").Guid).Guid">
-                    Просмотреть заявку
-                </a>
-                }
-                else
-                {
-                <a class="btn btn-primary"
-                    asp-action="Become"
-                    asp-controller="Participant"
-                    asp-route-id="@competition.Guid.ToString()">Участвовать</a>
-                }
-                }
-            </div>
-        </div>
-    }
-</div>
-<hr />
-<h4><span class="text-muted">Приближаются</span> результаты</h4>
-<div>
-    @foreach (var competition in Model)
-    {
-    <div>
-        <ul class="list-group list-group-horizontal">
-            <li class="list-group-item col"><h4 class="card-title">@competition.Titile</h4></li>
-            <li class="list-group-item col-3">Закончится <b>@competition.EndDate.ToString("dd.MM.yyyy")</b></li>
-            <li class="text-muted list-group-item col-2">Участников: <b>@competition.Participants.Count()</b></li>
-            <li class="list-group-item col-auto">
-                <a class="btn btn-outline-info"
-                    asp-action="Details"
-                    asp-controller="Competition"
-                    asp-route-id="@competition.Guid.ToString()">Подробнее</a>
-            </li>
-        </ul>
-    </div>
-    }
-</div>
-            <div class="social-osm-grid">
-                <div>
-                    <p>Конкурсы прямо</p>
-                    <img src="~/img/social_icons/facebook_icon.gif" />
-                </div>
-                <div>
-                    <p>Новости сервиса</p>
-                    <img src="~/img/social_icons/facebook_icon.gif" />
-                </div>
-                <div>
-                    <p>Лучшие стихи</p>
-                    <img src="~/img/social_icons/facebook_icon.gif" />
-                </div>
-                <div>
-                    <p>Литературный клуб</p>
-                    <img src="~/img/social_icons/facebook_icon.gif" />
-                </div>
-                <div>
-                    <p>Красота поэзии</p>
-                    <img src="~/img/social_icons/facebook_icon.gif" />
-                </div>
-            </div>
-            @*<ul class="social_grid">
-                <li>
-                    <p>Конкурсы прямо</p>
-                    <div class="img_wrap"><img src="~/img/social_icons/facebook_icon.gif" /></div>
-                </li>
-                <li>
-                    <p>Новости сервиса</p>
-                    <div class="img_wrap"><img src="~/img/social_icons/facebook_icon.gif" /></div>
-                </li>
-                <li>
-                    <p>Лучшие стихи</p>
-                    <div class="img_wrap"><img src="~/img/social_icons/facebook_icon.gif" /></div>
-                </li>
-                <li>
-                    <p>Литературный клуб</p>
-                    <div class="img_wrap"><img src="~/img/social_icons/facebook_icon.gif" /></div>
-                </li>
-                <li>
-                    <p>Красота поэзии</p>
-                    <div class="img_wrap"><img src="~/img/social_icons/facebook_icon.gif" /></div>
-                </li>
-            </ul>*@
-        </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="h4 card-title">@competition.Titile</span>
+                            @if (User.Identity.IsAuthenticated && competition.Participants.Any(p => p.UserGuid == Context.Session.Get<User>("user").Guid))
+                            {
+                                <span class="badge badge-info">Вы участвуете</span>
+                            }
+                        </div>
+                    </div>
 
-    </div>
+                    <h4>Мы здесь</h4>
+                    <div class="social_block">
+                        <div class="img-wrap">
+                            <img src="~/img/1osm.png" />
+                        </div>
+                        <div class="card-footer">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (competition.Participants.Any(p => p.UserGuid == Context.Session.Get<User>("user").Guid))
+                                {
+                                    <a class="btn btn-outline-primary"
+                                       asp-action="Edit"
+                                       asp-controller="Participant"
+                                       asp-route-guid="@competition.Participants.First(p=>p.UserGuid == Context.Session.Get<User>("user").Guid).Guid">
+                                        Просмотреть заявку
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary"
+                                       asp-action="Become"
+                                       asp-controller="Participant"
+                                       asp-route-id="@competition.Guid.ToString()">Участвовать</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>*@
