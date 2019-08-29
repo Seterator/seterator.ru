@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,8 +23,6 @@ namespace Rauthor
 {
     public class Startup
     {
-//'IHostingEnvironment' is obsolete: 'This type is obsolete and will be removed in a future version. The recommended alternative is Microsoft.AspNetCore.Hosting.IWebHostEnvironment.'	Rauthor C:\Users\BearPro\source\Workspaces\Rauthor\Rauthor\Startup.cs	74	Active
-
         public IConfiguration Configuration { get; }
 
         public Startup(IWebHostEnvironment env)
@@ -59,7 +58,12 @@ namespace Rauthor
                 .AddDistributedMemoryCache()
                 .AddSession()
                 .AddLogging()
-                .AddDbContext<Models.DatabaseContext>(options => options.UseMySQL(connection))
+#pragma warning disable CA2000 // Dispose objects before losing scope
+                .AddSingleton<IMemoryCache>(new Services.MemoryCache())
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                .AddDbContext<Models.DatabaseContext>(options => options.UseMySQL(connection)
+                                                                         .EnableDetailedErrors()
+                                                                         .EnableSensitiveDataLogging())
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {

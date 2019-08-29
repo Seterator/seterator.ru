@@ -43,15 +43,16 @@ namespace Rauthor.ViewModels
             Contract.Assert(database != null);
             var user = database.Users.FirstOrDefault(u => u.Guid == userGuid);
             database.Participants.Where(p => p.UserGuid == userGuid).Load();
-            database.Competitions.Where(c => user.Participants.Select(p => p.CompetitionGuid).Contains(c.Guid)).Load();
+            if (user.Participants != null)
+                database.Competitions.Where(c => user.Participants.DefaultIfEmpty().Select(p => p.CompetitionGuid).Contains(c.Guid)).Load();
             return new ProfileModel(
                 user.Login,
-                rating: user.Participants.Sum(p => p.JuryScore + p.UserScore),
+                rating: user.Participants?.Sum(p => p.JuryScore + p.UserScore) ?? 0,
                 verificated: false,
-                participants: user.Participants.Where(p => !p.Approved),
+                participants: user.Participants?.Where(p => !p.Approved) ?? new List<Participant>(),
                 participatedCompetitions: database.Participants
                                               .Where(p => p.Approved && p.UserGuid == userGuid)
-                                              .Select(p => p.Competition));
+                                              .Select(p => p.Competition)); ;
         }
     }
 }
