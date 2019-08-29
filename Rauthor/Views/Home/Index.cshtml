@@ -1,6 +1,4 @@
-﻿@*@model System.Collections.Generic.IEnumerable<Rauthor.Models.Competition>*@
-@model RelevantCompetitionsModel
-@*@using Microsoft.EntityFrameworkCore.Extensions*@
+﻿@model System.Collections.Generic.IEnumerable<Rauthor.Models.Competition>
 
 @{
     ViewData["Title"] = "Главная";
@@ -18,7 +16,7 @@
 }
 <h4><span class="text-muted">Приближается</span> конец приёма заявок</h4>
 <div>
-    @foreach (var competition in Model.ClosingApplyCompetitions)
+    @foreach (var competition in Model)
     {
         <div class="card">
             <div class="card-header">
@@ -67,7 +65,7 @@
 <hr />
 <h4><span class="text-muted">Приближаются</span> результаты</h4>
 <div>
-    @foreach (var competition in Model.IncomingResultCompetitions)
+    @foreach (var competition in Model)
     {
     <div>
         <ul class="list-group list-group-horizontal">
