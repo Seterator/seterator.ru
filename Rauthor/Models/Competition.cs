@@ -10,26 +10,45 @@ namespace Rauthor.Models
     [Table("competition")]
     public class Competition
     {
-        [Key] [Column("GUID")] public Guid Guid { get; set; }
+        [Key]
+        [Column("GUID")]
+        public Guid Guid { get; set; }
 
-        [Column("title")] public string Titile { get; set; }
+        [Column("title")]
+        public string Titile { get; set; }
 
         /// <summary>
         /// Дата окончания приёма заявок
         /// </summary>
-        [Column("start_date")] public DateTime StartDate { get; set; }
+        [Column("start_date")]
+        public DateTime StartDate { get; set; }
 
         /// <summary>
         /// Дата публикации результата
         /// </summary>
-        [Column("end_date")] public DateTime EndDate { get; set; }
+        [Column("end_date")]
+        public DateTime EndDate { get; set; }
 
-        [Column("description")] public string Description { get; set; }
+        /// <summary>
+        /// Описание соревнования
+        /// </summary>
+        [Column("description")]
+        public string Description { get; set; }
+
+        [Column("event_size", TypeName = "enum('normal','large')")]
+        public EventSize EventSize { get; set; }
+
         public virtual List<Participant> Participants { get; set; }
+
 
         public Competition()
         {
             Guid = Guid.NewGuid();
         }
+    }
+    public enum EventSize
+    {
+        Normal,
+        Large
     }
 }
