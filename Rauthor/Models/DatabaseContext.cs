@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-//using Microsoft.EntityFrameworkCore.Proxies;
+﻿#nullable enable
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics.Contracts;
 using System.Linq;
 namespace Rauthor.Models
@@ -18,6 +18,7 @@ namespace Rauthor.Models
         public DatabaseContext(DbContextOptions<DatabaseContext> options, IConfiguration configuration) : base(options)
         {
             conectionString = configuration.GetConnectionString("Local MySQL");
+            Database.SetCommandTimeout(TimeSpan.FromSeconds(60)); // NOTE Большой таймаут для работы с херовым интернетом.
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,10 +30,14 @@ namespace Rauthor.Models
                         m => m.ToArray(),
                         p => p as IReadOnlyCollection<byte>
                     ));
-            
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (optionsBuilder == null) throw new NullReferenceException();
+            optionsBuilder.EnableDetailedErrors()
+                          .EnableSensitiveDataLogging();
+
             base.OnConfiguring(optionsBuilder);
         }
 
