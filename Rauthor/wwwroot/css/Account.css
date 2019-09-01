@@ -1,0 +1,64 @@
+﻿.account-wrap {
+    position: relative;
+    margin: 0;
+}
+
+.form-wrap {
+    display: grid;
+    grid-gap: 1vh;
+
+    position: absolute;
+    top: 10vh;
+    left: 10vw;
+
+    padding: 1vw;
+
+    background: rgb(239, 239, 239);
+}
+
+.form-wrap a {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.back-img img {
+    width: 100%;
+}
+
+.form-wrap form {
+    width: 100%;
+    display: grid;
+    grid-gap: 1vh;
+}
+
+#login-form {
+    width: 100%;
+}
+
+#register-form {
+    width: 100%;
+}
+
+#switch-button {
+    color: white;
+    font-weight: 600;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+#switch-button div {
+    padding: 0.3vw;
+}
+
+#switch-button .register {
+    background: rgb(255, 57, 0);
+}
+
+#switch-button .auth {
+    background: rgb(65, 65, 65);
+}
+

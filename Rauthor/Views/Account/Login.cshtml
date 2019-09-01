@@ -4,25 +4,17 @@
     ViewData["Title"] = "Login";
 }
 
-
-<h1>Вход</h1>
-
 <form asp-action="Login" asp-controller="Account">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
-        <div>
-            <label asp-for="Login">Логин</label><br />
-            <input class="form-control" type="text" asp-for="Login" />
-            <span asp-validation-for="Login" />
-        </div>
-        <div>
-            <label asp-for="Password">Пароль</label><br />
-            <input class="form-control"  asp-for="Password" />
-            <span asp-validation-for="Password" />
-        </div>
-        <br />
-        <div class="input-group-btn">
-            <input class="btn btn-primary" type="submit" value="Войти" />
-        </div>
+        <input class="form-control" type="text" asp-for="Login" placeholder="Логин" />
+        <span asp-validation-for="Login" />
+    </div>
+    <div>
+        <input class="form-control" asp-for="Password" placeholder="Пароль" />
+        <span asp-validation-for="Password" />
+    </div>
+    <div class="input-group-btn">
+        <input class="btn btn-primary" type="submit" value="Войти" />
     </div>
 </form>
