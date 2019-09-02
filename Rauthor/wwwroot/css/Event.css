@@ -23,13 +23,8 @@
     position: relative;
 }
 
-.info-on-card {
-    top: 0;
-    position: absolute;
-    width: 100%;
-    padding: 10px 10px 5px 20px;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.6);
+.event_card:hover {
+    opacity: 0.7;
 }
 
 .event_card img {
@@ -49,26 +44,11 @@
     font-size: 1vw;
 }
 
-.continue_button p {
-    margin: 0;
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: 0.8vw;
-}
-
-.continue_button:hover {
-    background: rgba(255, 57, 0, 0.7);
-}
-
-.continue_button {
-    display: grid;
-    align-items: center;
+.info-on-card {
+    top: 0;
     position: absolute;
-    bottom: 0.5vw;
-    right: 0.5vw;
-    width: 50%;
-    height: 1.5vw;
-    background: rgb(255, 57, 0);
-    background: rgba(255, 57, 0, 1);
+    width: 100%;
+    padding: 10px 10px 5px 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.6);
 }

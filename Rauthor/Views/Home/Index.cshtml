@@ -10,14 +10,15 @@
             @foreach (var competition in Model)
             {
 
+            <a asp-action="Details" asp-controller="Competition" asp-route-id="@competition.Guid.ToString()">
                 <div class="event_card">
                     <img src="~/img/event.png" />
                     <div class="info-on-card">
                         <h3>@competition.Titile</h3>
                         <h4>до @competition.EndDate.ToString("dd.MM.yyyy")</h4>
                     </div>
-                    <a asp-action="Details" asp-controller="Competition" asp-route-id="@competition.Guid.ToString()"><div class="continue_button"><p>Посмотреть</p></div></a>
                 </div>
+            </a>
             
         }
         </div>
