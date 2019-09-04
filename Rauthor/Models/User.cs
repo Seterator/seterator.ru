@@ -54,7 +54,7 @@ namespace Rauthor.Models
         }
 
         [NotMapped]
-        public virtual int TotalRating => this.Participants.Sum(x => x.UserScore);
+        public virtual int TotalRating => this.Participants?.Sum(x => x.UserScore) ?? 0;
     }
     
     public enum UserKind

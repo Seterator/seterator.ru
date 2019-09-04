@@ -18,8 +18,11 @@ namespace Rauthor.Controllers
         {
             Contract.Assert(db != null);
             var competition = db.Competitions.Include(c => c.Participants).FirstOrDefault(c => c.Guid == guid);
+            db.Participants.Include(x => x.Votes);
+            db.VotesOfUsers.Load();
             db.Users.Where(user => competition.Participants.Any(p => p.UserGuid == user.Guid)).Load();
             db.Poems.Where(poem => competition.Participants.Any(p => p.Guid == poem.ParticipantGuid)).Load();
+            db.VotesOfUsers.Where(vote => vote.Participant.Guid == guid).Load();
             ViewData["Title"] = competition.Titile;
             if (User.Identity.IsAuthenticated) {
                 ViewData["Personal"] = true;
