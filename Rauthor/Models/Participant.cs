@@ -16,13 +16,9 @@ namespace Rauthor.Models
         [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [Column("user_score")]
+        [NotMapped]
         [DisplayName("Рейтинг у пользователей")]
-        public int UserScore { get; set; }
-
-        [Column("jury_score")]
-        [DisplayName("Рейтинг у жюри")]
-        public int JuryScore { get; set; }
+        public int UserScore => Votes.Where(v => v.VoteState == VoteState.Up).Count();
 
         [Column("competition_GUID")]
         public Guid CompetitionGuid { get; set; }
@@ -35,9 +31,7 @@ namespace Rauthor.Models
         public ParticipantStatus Status { get; set; }
 
         [NotMapped]
-        public bool Approved {
-            get => Status == ParticipantStatus.Approved;
-        }
+        public bool Approved => Status == ParticipantStatus.Approved;
 
         public virtual List<Poem> Poems { get; set; }
 
@@ -46,6 +40,8 @@ namespace Rauthor.Models
 
         [ForeignKey("UserGuid")]
         public virtual User User { get; set; }
+
+        public List<VoteOfUser> Votes { get; set; }
 
         public Participant()
         {

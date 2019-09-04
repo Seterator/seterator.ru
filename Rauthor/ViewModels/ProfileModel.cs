@@ -47,7 +47,7 @@ namespace Rauthor.ViewModels
                 database.Competitions.Where(c => user.Participants.DefaultIfEmpty().Select(p => p.CompetitionGuid).Contains(c.Guid)).Load();
             return new ProfileModel(
                 user.Login,
-                rating: user.Participants?.Sum(p => p.JuryScore + p.UserScore) ?? 0,
+                rating: user.Participants?.Sum(p => p.UserScore) ?? 0,
                 verificated: false,
                 participants: user.Participants?.Where(p => !p.Approved) ?? new List<Participant>(),
                 participatedCompetitions: database.Participants

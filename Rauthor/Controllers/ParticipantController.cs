@@ -102,6 +102,65 @@ namespace Rauthor.Controllers
             }
         }
 
+        private bool CanVotedFor(User user, Participant participant)
+        {
+            return participant.UserGuid != user.Guid
+                || database.VotesOfUsers
+                    .Any(x => x.UserGuid == user.Guid && x.ParticipantGuid == participant.Guid);
+        }
+
+        /// <remarks>
+        /// Создаёт запись в таблице оценок, если её ещё нет.
+        /// Устанавливает значение VoteState в Up.
+        /// </remarks>
+        [Authorize]
+        public IActionResult Upvote(Guid guid)
+        {
+            var user = HttpContext.Session.Get<User>("user");
+            var participant = database.Participants.FirstOrDefault(p => p.Guid == guid);
+            var vote = participant.Votes.FirstOrDefault(v => v.UserGuid == user.Guid);
+            if (vote == null)
+            {
+                vote = new VoteOfUser()
+                {
+                    UserGuid = user.Guid,
+                    ParticipantGuid = participant.Guid,
+                    VoteState = VoteState.Up
+                };
+                database.VotesOfUsers.Add(vote);
+            }
+            else
+            {
+                vote.VoteState = VoteState.Up;
+            }
+            database.SaveChanges();
+            return StatusCode((int)HttpStatusCode.OK);
+        }
+
+        [Authorize]
+        public IActionResult Downvote(Guid guid)
+        {
+            var user = HttpContext.Session.Get<User>("user");
+            var participant = database.Participants.FirstOrDefault(p => p.Guid == guid);
+            var vote = participant.Votes.FirstOrDefault(v => v.UserGuid == user.Guid);
+            if (vote == null)
+            {
+                vote = new VoteOfUser()
+                {
+                    UserGuid = user.Guid,
+                    ParticipantGuid = participant.Guid,
+                    VoteState = VoteState.None
+                };
+                database.VotesOfUsers.Add(vote);
+            }
+            else
+            {
+                vote.VoteState = VoteState.None;
+            }
+            database.SaveChanges();
+            return StatusCode((int)HttpStatusCode.OK);
+        }
+
         [Authorize]
         public IActionResult Accept(Guid guid)
         {
@@ -116,6 +175,7 @@ namespace Rauthor.Controllers
                 return StatusCode((int)HttpStatusCode.Forbidden);
             }
         }
+        [Authorize]
         public IActionResult Reject(Guid guid)
         {
             database.Participants.FirstOrDefault(p => p.Guid == guid).Status = ParticipantStatus.Rejected;
