@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Rauthor.Models
@@ -10,6 +11,7 @@ namespace Rauthor.Models
     [Table("competition")]
     public class Competition
     {
+        private string json;
         [Key]
         [Column("GUID")]
         public Guid Guid { get; set; }
@@ -35,20 +37,17 @@ namespace Rauthor.Models
         [Column("description")]
         public string Description { get; set; }
 
-        [Column("event_size", TypeName = "enum('normal','large')")]
-        public EventSize EventSize { get; set; }
-
         public virtual List<Participant> Participants { get; set; }
 
 
+        [NotMapped]
+        public JsonDocument Conditions
+        {
+            get => JsonDocument.Parse(json);
+        }
         public Competition()
         {
             Guid = Guid.NewGuid();
         }
-    }
-    public enum EventSize
-    {
-        Normal,
-        Large
     }
 }
