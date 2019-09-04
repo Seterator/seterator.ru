@@ -33,6 +33,9 @@ namespace Rauthor.Models
                         m => m.ToArray(),
                         p => p as IReadOnlyCollection<byte>
                     ));
+            modelBuilder.Entity<Competition>()
+                .Property<string>("conditions")
+                .HasField("json");
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

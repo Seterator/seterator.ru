@@ -47,6 +47,9 @@ namespace Rauthor.Models
                 serializer.Serialize(writer, (value as IReadOnlyCollection<TItem>).ToArray());
             }
         }
+
+        [NotMapped]
+        public virtual int TotalRating => this.Participants.Sum(x => x.UserScore + x.JuryScore);
     }
     
     public enum UserKind
