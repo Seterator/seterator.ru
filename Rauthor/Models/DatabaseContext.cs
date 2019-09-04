@@ -21,7 +21,7 @@ namespace Rauthor.Models
         {
             conectionString = configuration.GetConnectionString("Local MySQL");
             this.cache = cache;
-            Database.SetCommandTimeout(TimeSpan.FromSeconds(60)); // NOTE Большой таймаут для работы с херовым интернетом.
+            Database.SetCommandTimeout(TimeSpan.FromSeconds(120)); // NOTE Большой таймаут для работы с херовым интернетом.
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

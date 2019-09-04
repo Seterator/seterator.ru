@@ -1,37 +1,130 @@
 ﻿@model Competition
-<h2>@Model.Titile</h2>
+
+<div class="container">
+    <div class="competition-grid">
+        <div class="event_card">
+            <img src="~/img/event.png" />
+            <div class="info-on-card">
+                <h3>@Model.Titile</h3>
+                <h4>до @Model.EndDate.ToString("dd.MM.yyyy")</h4>
+            </div>
+            <a href="#"><div class="continue_button"><p>Принять участие</p></div></a>
+        </div>
+        <div class="judges-block">
+            <h4>Жюри:</h4>
+            <div class="judges">
+                <div class="judge">
+                    <div><img src="~/img/Image 5.png" /></div>
+                    <h5>А. Пушкин</h5>
+                    <p>
+                        Русский поэт, драматург и прозаик, заложивший основы русского реалистического направления,
+                        критик и теоретик литературы, историк, публицист; один из самых авторитетных литературных деятелей
+                        первой трети XIX века.
+                    </p>
+                </div>
+                <div class="judge">
+                    <div><img src="~/img/Image 6.png" /></div>
+                    <h5>Д. Быков</h5>
+                    <p>
+                        Русский писатель, поэт и публицист, литературный критик, радио- и телеведущий, 
+                        журналист, преподаватель литературы, кинокритик.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="prizes-block">
+            <h4>Призы:</h4>
+        </div>
+        <div class="conditions-block">
+            <h4>Условия:</h4>
+        </div>
+        <div class="participant-block">
+            <h4>Участники конкурса</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Название</td>
+                        <td>Автор</td>
+                        <td>Рейтинг</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var participant in Model.Participants)
+                    {
+                    <tr>
+                        <td>Здесь должно быть название</td>
+                        <td>@participant.User.Login</td>
+                        <td>@participant.UserScore</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            @*<div class="participants">
+
+                @foreach (var participant in Model.Participants)
+                {
+                    <div class="participant">
+                        <p>Здесь должно быть название</p>
+                        <p>@participant.User.Login</p>
+                        <p>@participant.UserScore</p>
+                    </div>
+
+                }
+            </div>*@
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>@Model.Titile</h2>
 @if ((bool)ViewData["Personal"])
 {
-@if ((bool)ViewData["TakingPart"])
-{
-<span>Вы принимаете участие</span>
-<a asp-action="Edit"
-   asp-controller="Participant"
-   asp-route-guid="@ViewData["ParticipantGuid"]">Ваша заявка</a>
-}
-else
-{
-<a class="btn border-primary"
-   asp-action="Become"
-   asp-controller="Participant"
-   asp-route-id="@Model.Guid.ToString()">Участвовать</a>
+    @if ((bool)ViewData["TakingPart"])
+    {
+    <span>Вы принимаете участие</span>
+    <a asp-action="Edit"
+       asp-controller="Participant"
+       asp-route-guid="@ViewData["ParticipantGuid"]">Ваша заявка</a>
+    }
+    else
+    {
+    <a class="btn border-primary"
+       asp-action="Become"
+       asp-controller="Participant"
+       asp-route-id="@Model.Guid.ToString()">Участвовать</a>
 
-}
-<div class="card card-body">
-    <span>Конец подачи заявок: @Model.StartDate.ToString("dd.MM.yyyy")</span>
-    <span>Результаты конкурса: @Model.EndDate.ToString("dd.MM.yyyy")</span>
-</div>
+    }
+    <div class="card card-body">
+        <span>Конец подачи заявок: @Model.StartDate.ToString("dd.MM.yyyy")</span>
+        <span>Результаты конкурса: @Model.EndDate.ToString("dd.MM.yyyy")</span>
+    </div>
 }
 @if (Model.Description != null)
 {
-<div class="card">
-    <div class="card-header">
-        Описание
+    <div class="card">
+        <div class="card-header">
+            Описание
+        </div>
+        <div class="card-body">
+            @Model.Description
+        </div>
     </div>
-    <div class="card-body">
-        @Model.Description
-    </div>
-</div>
 }
 <hr />
 <table class="table table-bordered">
@@ -60,4 +153,4 @@ else
         </tr>
     }
     </tbody>
-</table>
+</table>*@

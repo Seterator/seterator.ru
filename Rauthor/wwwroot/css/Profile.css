@@ -1,0 +1,51 @@
+﻿.profile-grid {
+    display: grid;
+    grid-template-areas:
+        "user-image user-image user-name user-name"
+        "user-image user-image user-bank user-rating"
+        "user-counter user-about user-about user-about";
+    grid-gap: 0.5vw;
+}
+
+.profile-grid div {
+    background: rgb(239, 239, 239);
+}
+
+.user-name, .user-bank, 
+.user-rating, .user-counter, .user-about {
+    padding: 1vw;
+
+}
+
+.profile-grid, div h4 {
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.user-image {
+    grid-area: user-image;
+}
+
+.user-image image {
+    width: 100%;
+}
+
+.user-name {
+    grid-area: user-name;
+}
+
+.user-bank {
+    grid-area: user-bank;
+}
+
+.user-rating {
+    grid-area: user-rating;
+}
+
+.user-counter {
+    grid-area: user-counter;
+}
+
+.user-about {
+    grid-area: user-about;
+}

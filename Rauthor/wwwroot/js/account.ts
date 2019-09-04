@@ -1,12 +1,12 @@
 ﻿function switchForm(): void {
     let loginView = document.getElementById("login-form");
     let registerView = document.getElementById("register-form");
-    if (loginView.style.visibility == "visible") {
-        loginView.style.visibility = "hidden";
-        registerView.style.visibility = "visible"
+    if (loginView.style.display == "block") {
+        loginView.style.display = "none";
+        registerView.style.display = "block"
     }
     else {
-        loginView.style.visibility = "visible"
-        registerView.style.visibility = "hidden";
+        loginView.style.display = "block"
+        registerView.style.display = "none";
     }
 }

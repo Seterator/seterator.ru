@@ -2,7 +2,68 @@
 @{
     ViewData["Title"] = $"{Model.Name ?? Model.Login}";
 }
-<img src="~/img/Lena.png" alt="Изображение профиля" />
+
+<div class="container">
+    <div class="profile-grid">
+        <div class="user-image">
+            <img src="~/img/Image 3.png" alt="Изображение профиля" />
+        </div>
+        <div class="user-name">
+            <h4>@(Model.Name ?? Model.Login)</h4>
+            <p>@(Model.Status ?? "Статус не установлен")</p>
+            @if (Model.Verificated)
+            {
+                <p>Аккаунт подтверждён</p>
+            }
+            else
+            {
+                <p>Аккаунт не верифицирован</p>
+            }
+        </div>
+        <div class="user-bank">
+            <h4>Счёт</h4>
+        </div>
+        <div class="user-rating">
+            <h4>Рейтинг</h4>
+            <p>@Model.Rating</p>
+        </div>
+        <div class="user-counter">
+            <h4>Участий: </h4>
+            <h4>Побед: </h4>
+        </div>
+        <div class="user-about">
+            <h4>Об авторе</h4>
+            <p>@(Model.About ?? "Информация о себе не указана")</p>
+        </div>
+    </div>
+
+    <div class="user-requests">
+        <h3>Заявки</h3>
+        <div class="list-group">
+            @foreach (var p in Model.Participants)
+            {
+                <a asp-action="Edit"
+                   asp-controller="Participant"
+                   asp-route-id="@p.Guid"
+                   class="list-group-item list-group-item-action">@p.Competition.Titile</a>
+            }
+        </div>
+        <h3>Участник</h3>
+        <div class="list-group">
+            @foreach (var competition in Model.ParticipatedCompetitions)
+            {
+                <a asp-action="Edit"
+                   asp-controller="Participant"
+                   asp-route-id="@competition.Guid"
+                   class="list-group-item list-group-item-action">@competition.Titile</a>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@*<img src="~/img/Lena.png" alt="Изображение профиля" />
 <div class="border-info">
     <span>@(Model.Status ?? "Статус не установлен") </span>
 </div>
@@ -42,4 +103,4 @@ else
        class="list-group-item list-group-item-action">@competition.Titile</a>
     }
 </div>
-<div class="list-group"></div>
+<div class="list-group"></div>*@

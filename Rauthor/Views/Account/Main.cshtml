@@ -1,14 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Страница входа";
 }
-<button onclick="switchForm()">Регистрация/Вход</button>
-<div class="row">
-    <div id="login-form" class="col-3">
-        <partial name="login" />
+
+<div class="account-wrap">
+    <div class="back-img">
+        <img src="~/img/devka.jpg" />
     </div>
-    <div class="col-4"></div>
-    <div id ="register-form"class="col-3">
-        <partial name="register" />
+    <div class="form-wrap">
+        <div id="switch-button" onclick="switchForm()">
+                <div class="register">Новый участник</div>
+                <div class="auth">Уже сетератор</div>
+        </div>
+            <div id="login-form">
+                <partial name="login" />
+            </div>
+            <div id="register-form">
+                <partial name="register" />
+            </div>
     </div>
 </div>
+
 <script asp-src-include="/js/account.js"></script>

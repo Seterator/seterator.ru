@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] | РуАвтор</title>
+    <title>@ViewData["Title"] | Сетератор</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -18,12 +18,18 @@
     </environment>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Event.css" />
+    <link rel="stylesheet" href="~/css/social_block.css" />
+    <link rel="stylesheet" href="~/css/Account.css" />
+    <link rel="stylesheet" href="~/css/Profile.css" />
+    <link rel="stylesheet" href="~/css/Footer.css" />
+    <link rel="stylesheet" href="~/css/Competition.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Rauthor</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo-4.png" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -68,7 +74,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div @*class="container-fluid"*@>
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
@@ -77,7 +83,18 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - РуАвтор - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="grid-footer">
+                @*&copy; 2019 - РуАвтор - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+                <div class="footer-logo">
+                    <img src="~/img/footer-logo.png" />
+                </div>
+                <div class="social-icons-footer">
+
+                </div>
+                <div class="footer-osm">
+                    <img src="~/img/2osm.png" />
+                </div>
+            </div>
         </div>
     </footer>
 
