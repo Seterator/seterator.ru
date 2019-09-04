@@ -105,4 +105,16 @@
 
 .competition-grid .participant-block {
     grid-area: participant;
+    
+}
+
+.participant-block .participants {
+    /*display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 0.5vw;*/
+}
+
+.participants .participant {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
 }
