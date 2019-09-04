@@ -1,0 +1,85 @@
+﻿.competition-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: 
+        "event_card event_card event_card event_card event_card" 
+        "judges-block judges-block judges-block prizes-block conditions-block"
+        "participant participant participant participant participant";
+    grid-gap: 0.5vw;
+}
+
+.competition-grid .judges-block, 
+.competition-grid .prizes-block, 
+.competition-grid .conditions-block,
+.competition-grid .participant-block {
+    background: rgb(239, 239, 239);
+    padding: 0.5vw;
+}
+
+.competition-grid .event_card {
+    grid-area: event_card;
+    height: 35vh;
+    overflow: hidden;
+}
+
+.competition-grid .event_card img {
+    height: unset;
+    position: absolute;
+    bottom: 0;
+}
+
+.competition-grid .event_card h3 {
+    font-size: 46pt;
+}
+
+.competition-grid div h4 {
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.competition-grid .judges-block {
+    grid-area: judges-block;
+}
+
+.competition-grid .prizes-block {
+    grid-area: prizes-block;
+}
+
+.competition-grid .conditions-block {
+    grid-area: conditions-block;
+}
+
+.judges-block .judges {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0.5vw;
+}
+
+.judges-block .judge {
+    display: grid;
+    grid-template-areas:
+        "avatar name"
+        "avatar description";
+    grid-column-gap: 0.3vw;
+    grid-row-gap: 0.3vw;
+    align-self: start;
+}
+
+.judges-block .judge div {
+    grid-area: avatar;
+}
+
+.judges-block .judge h5 {
+    grid-area: name;
+    margin: 0;
+}
+
+.judges-block .judge p {
+    grid-area: description;
+
+    font-size: 9pt;
+}
+
+.competition-grid .participant-block {
+    grid-area: participant;
+}

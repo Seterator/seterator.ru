@@ -23,7 +23,7 @@
     position: relative;
 }
 
-.event_card:hover {
+a .event_card:hover {
     opacity: 0.7;
 }
 
