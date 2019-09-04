@@ -1,5 +1,4 @@
-﻿#nullable enable
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +16,7 @@ namespace Rauthor.Models
         public DbSet<Poem> Poems { get; set; }
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Participant> Participants { get; set; }
+        public DbSet<VoteOfUser> VotesOfUsers { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options, IConfiguration configuration, IMemoryCache cache) : base(options)
         {
             conectionString = configuration.GetConnectionString("Local MySQL");
@@ -33,9 +33,13 @@ namespace Rauthor.Models
                         m => m.ToArray(),
                         p => p as IReadOnlyCollection<byte>
                     ));
+
             modelBuilder.Entity<Competition>()
                 .Property<string>("conditions")
                 .HasField("json");
+
+            modelBuilder.Entity<VoteOfUser>()
+                .HasKey(v => new { v.UserGuid, v.ParticipantGuid });
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

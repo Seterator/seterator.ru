@@ -23,9 +23,14 @@ namespace Rauthor.Models
         [JsonConverter(typeof(ReadOnlyCollectionConverter<byte>))]
         public IReadOnlyCollection<byte> PasswordHash { get; set; }
 
+        [Column("prize", TypeName = "mediumtext")]
+        public string Prize { get; set; }
+
         [Column("Kind",TypeName = "enum('Common','Jury','Moderator')")]
         public UserKind Kind { get; set; }
+
         public virtual List<Participant> Participants { get; set; }
+
         public User()
         {
             Guid = Guid.NewGuid();
@@ -49,7 +54,7 @@ namespace Rauthor.Models
         }
 
         [NotMapped]
-        public virtual int TotalRating => this.Participants.Sum(x => x.UserScore + x.JuryScore);
+        public virtual int TotalRating => this.Participants.Sum(x => x.UserScore);
     }
     
     public enum UserKind
