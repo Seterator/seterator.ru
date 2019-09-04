@@ -19,7 +19,7 @@
 .competition-grid .event_card {
     grid-area: event_card;
     height: 35vh;
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 .competition-grid .event_card img {
@@ -30,6 +30,29 @@
 
 .competition-grid .event_card h3 {
     font-size: 46pt;
+}
+
+.continue_button {
+    display: grid;
+    align-items: center;
+    position: absolute;
+    background: rgb(255, 57, 0);
+    bottom: 1vw;
+    right: 3vw;
+    color: white;
+    font-weight: 600;
+    font-size: 16pt;
+    padding: 0.3vw 1vw;
+    margin: 0;
+}
+
+.continue_button:hover {
+    opacity: 0.7;
+}
+
+.continue_button p {
+    margin: 0;
+    padding: 0;
 }
 
 .competition-grid div h4 {
