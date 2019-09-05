@@ -102,13 +102,6 @@ namespace Rauthor.Controllers
             }
         }
 
-        private bool CanVotedFor(User user, Participant participant)
-        {
-            return participant.UserGuid != user.Guid
-                || database.VotesOfUsers
-                    .Any(x => x.UserGuid == user.Guid && x.ParticipantGuid == participant.Guid);
-        }
-
         /// <remarks>
         /// Создаёт запись в таблице оценок, если её ещё нет.
         /// Устанавливает значение VoteState в Up.
