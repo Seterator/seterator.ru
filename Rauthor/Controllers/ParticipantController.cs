@@ -118,7 +118,8 @@ namespace Rauthor.Controllers
         {
             var user = HttpContext.Session.Get<User>("user");
             var participant = database.Participants.FirstOrDefault(p => p.Guid == guid);
-            var vote = participant.Votes.FirstOrDefault(v => v.UserGuid == user.Guid);
+            database.Entry(participant).Collection(x => x.Votes).Load();
+            var vote = participant.Votes?.FirstOrDefault(v => v.UserGuid == user.Guid);
             if (vote == null)
             {
                 vote = new VoteOfUser()
@@ -142,7 +143,8 @@ namespace Rauthor.Controllers
         {
             var user = HttpContext.Session.Get<User>("user");
             var participant = database.Participants.FirstOrDefault(p => p.Guid == guid);
-            var vote = participant.Votes.FirstOrDefault(v => v.UserGuid == user.Guid);
+            database.Entry(participant).Collection(x => x.Votes).Load();
+            var vote = participant.Votes?.FirstOrDefault(v => v.UserGuid == user.Guid);
             if (vote == null)
             {
                 vote = new VoteOfUser()
