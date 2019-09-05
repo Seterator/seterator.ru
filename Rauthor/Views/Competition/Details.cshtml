@@ -8,7 +8,9 @@
                 <h3>@Model.Titile</h3>
                 <h4>до @Model.EndDate.ToString("dd.MM.yyyy")</h4>
             </div>
-            <a href="#"><div class="continue_button"><p>Принять участие</p></div></a>
+            <a asp-action="Edit"
+               asp-controller="Participant"
+               asp-route-guid="@ViewData["ParticipantGuid"]"><div class="continue_button"><p>Принять участие</p></div></a>
         </div>
         <div class="judges-block">
             <h4>Жюри:</h4>
@@ -43,9 +45,9 @@
             <table>
                 <thead>
                     <tr>
-                        <td>Название</td>
-                        <td>Автор</td>
-                        <td>Рейтинг</td>
+                        <th>Название</th>
+                        <th>Автор</th>
+                        <th>Рейтинг</th>
                     </tr>
                 </thead>
                 <tbody>
