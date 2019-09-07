@@ -8,9 +8,26 @@
                 <h3>@Model.Titile</h3>
                 <h4>до @Model.EndDate.ToString("dd.MM.yyyy")</h4>
             </div>
-            <a asp-action="Edit"
-               asp-controller="Participant"
-               asp-route-guid="@ViewData["ParticipantGuid"]"><div class="continue_button"><p>Принять участие</p></div></a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @if ((bool)ViewData["TakingPart"])
+                {
+                    <a asp-action="Edit"
+                       asp-controller="Participant"
+                       asp-route-guid="@ViewData["ParticipantGuid"]"><div class="continue_button"><p>Просмотреть заявку</p></div></a>
+                }
+                else
+                {
+                    <a asp-action="Become"
+                       asp-controller="Participant"
+                       asp-route-guid="@Model.Guid"><div class="continue_button"><p>Принять участие</p></div></a>
+                }
+            }
+            else
+            {
+                <a asp-action="Main"
+                   asp-controller="Account"><div class="continue_button"><p>Войти чтобы принять участие</p></div></a>
+            }
         </div>
         <div class="judges-block">
             <h4>Жюри:</h4>
@@ -54,7 +71,7 @@
                     @foreach (var participant in Model.Participants)
                     {
                     <tr>
-                        <td>Здесь должно быть название</td>
+                        <td>@participant.Poems.First().Title</td>
                         <td>@participant.User.Login</td>
                         <td>@participant.UserScore</td>
                     </tr>
