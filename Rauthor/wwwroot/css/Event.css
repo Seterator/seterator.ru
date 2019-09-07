@@ -1,29 +1,21 @@
-﻿.grid-col-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 0.5vw;
-    margin: 0.5vw 0;
-}
-
-.grid-col-4 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 0.5vw;
-}
-
-.grid-row-4 {
+﻿.grid-index {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0.5vw;
-    margin-top: 0.5vw;
-} 
+}
+
+.grid-index a {
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+    background-color: gainsboro;
+}
+
 
 .event_card {
     position: relative;
 }
 
-a .event_card:hover {
+.grid-index a:hover {
     opacity: 0.7;
 }
 
