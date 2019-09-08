@@ -26,7 +26,7 @@
             else
             {
                 <a asp-action="Main"
-                   asp-controller="Account"><div class="continue_button"><p>Войти чтобы принять участие</p></div></a>
+                   asp-controller="Account"><div class="continue_button"><p>Войти, чтобы принять участие</p></div></a>
             }
         </div>
         <div class="judges-block">
@@ -68,7 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var participant in Model.Participants)
+                    @foreach (var participant in Model.Participants.Where(s => s.Approved))
                     {
                     <tr>
                         <td>@participant.Poems.First().Title</td>
@@ -78,18 +78,6 @@
                     }
                 </tbody>
             </table>
-            @*<div class="participants">
-
-                @foreach (var participant in Model.Participants)
-                {
-                    <div class="participant">
-                        <p>Здесь должно быть название</p>
-                        <p>@participant.User.Login</p>
-                        <p>@participant.UserScore</p>
-                    </div>
-
-                }
-            </div>*@
         </div>
     </div>
 </div>
