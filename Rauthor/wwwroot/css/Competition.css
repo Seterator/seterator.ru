@@ -38,7 +38,7 @@
     position: absolute;
     background: rgb(255, 57, 0);
     bottom: 1vw;
-    right: 3vw;
+    right: 2vw;
     color: white;
     font-weight: 600;
     font-size: 16pt;
@@ -108,13 +108,10 @@
     
 }
 
-.participant-block .participants {
-    /*display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-gap: 0.5vw;*/
+.participant-block table {
+    width: 100%;
 }
 
-.participants .participant {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+.participant-block table th {
+    color: darkgray;
 }

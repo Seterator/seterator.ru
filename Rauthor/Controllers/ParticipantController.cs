@@ -36,7 +36,7 @@ namespace Rauthor.Controllers
                 .Include(p => p.Competition);
             return View(model);
         }
-
+        /// <param name="guid">Guid соревнования, в котором предполагается участие</param>
         [Authorize]
         [HttpGet]
         public IActionResult Become(Guid guid)
@@ -56,6 +56,7 @@ namespace Rauthor.Controllers
         /// <summary>
         /// Становясь участником, пользователь отправляет своё произведение.
         /// </summary>
+        /// <param name="guid">Guid соревнования</param>
         [Authorize]
         [HttpPost]
         public IActionResult Become([FromRoute] Guid guid, [FromForm] PoemModel poem)
