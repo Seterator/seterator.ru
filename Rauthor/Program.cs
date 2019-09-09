@@ -20,6 +20,8 @@ namespace Rauthor
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
+                .UseUrls("http://*:80/", "https://*:8080/")
                 .UseStartup<Startup>();
     }
 }
