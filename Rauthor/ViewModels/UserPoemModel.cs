@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Rauthor.ViewModels
 {
@@ -12,5 +13,7 @@ namespace Rauthor.ViewModels
 
         [DisplayName("Автор")]
         public string AuthorName { get; set; }
+
+        public Guid PoemGuid { get; set; }
     }
 }
