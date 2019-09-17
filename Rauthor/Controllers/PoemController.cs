@@ -70,6 +70,12 @@ namespace Rauthor.Controllers
             ViewData["Poem title"] = poem.Title;
             ViewData["Poem text"] = poem.Text;
             ViewData["Poem guid"] = guid;
+
+            Participant participant;
+            participant = database.Participants.First((c) => c.Guid == poem.ParticipantGuid);
+            ViewData["Participant login"] = participant.;
+            ViewData["Participant status"] = participant.Status;
+            //ViewData["Participant rating"] = participant.UserScore;
             return View();
         }
     }

@@ -1,15 +1,21 @@
-﻿@model Rauthor.Models.Poem
+﻿@model ProfileModel
 
 <div class="container">
     <div class="poem-details-grid">
         <div class="last-competitions">
-            Пусто
+            <h4>Участвовало в конкурсах</h4>
         </div>
         <div class="profile-block">
-            Пусто
+            <img src="~/img/Image 3.png" />
+            <div class="description">
+                <h6>@ViewData["Participant login"]</h6>
+                <p>@Model.Status</p>
+                <h4>@*@ViewData["Participant rating"]*@ Миха, рейтинг не работает</h4>
+            </div>
         </div>
         <div class="poem-block">
-            Пусто
+            <h2>@ViewData["Poem title"]</h2>
+            <p>@ViewData["Poem text"]</p>
         </div>
     </div>
 </div>
