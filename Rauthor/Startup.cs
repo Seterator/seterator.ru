@@ -25,7 +25,7 @@ namespace Rauthor
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IWebHostEnvironment env)
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
@@ -73,12 +73,12 @@ namespace Rauthor
                     ;
             services
                 .AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .AddMvcOptions(options => options.EnableEndpointRouting = false);
 
         }
 #pragma warning disable CA1822 // Member Configure does not access instance data and can be marked as static
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
 #pragma warning restore CA1922 
         {
             if (env.IsDevelopment())

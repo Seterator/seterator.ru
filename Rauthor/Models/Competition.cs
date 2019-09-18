@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace Rauthor.Models
@@ -41,9 +41,9 @@ namespace Rauthor.Models
 
 
         [NotMapped]
-        public JsonDocument Conditions
+        public object Conditions
         {
-            get => JsonDocument.Parse(json);
+            get => JsonConvert.DeserializeObject(json);
         }
         public Competition()
         {
