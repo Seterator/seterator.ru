@@ -1,21 +1,23 @@
-﻿@model ProfileModel
+﻿@model Rauthor.ViewModels.PoemModel
 
-<div class="container">
-    <div class="poem-details-grid">
-        <div class="last-competitions">
-            <h4>Участвовало в конкурсах</h4>
-        </div>
-        <div class="profile-block">
-            <img src="~/img/Image 3.png" />
-            <div class="description">
-                <h6>@ViewData["Participant login"]</h6>
-                <p>@Model.Status</p>
-                <h4>@*@ViewData["Participant rating"]*@ Миха, рейтинг не работает</h4>
+<div class="poem-details-back">
+    <div class="container">
+        <div class="poem-details-grid">
+            <div class="last-competitions">
+                <h4>Участвовало в конкурсах</h4>
             </div>
-        </div>
-        <div class="poem-block">
-            <h2>@ViewData["Poem title"]</h2>
-            <p>@ViewData["Poem text"]</p>
+            <div class="profile-block">
+                <img src="~/img/Image 3.png" />
+                <div class="description">
+                    <h6>@ViewData["Participant login"]</h6>
+                    <p>@ViewData["Participant status"]</p>
+                    <h4>@*@ViewData["Participant rating"]*@ Рейтинг</h4>
+                </div>
+            </div>
+            <div class="poem-block">
+                <h2>@ViewData["Poem title"]</h2>
+                <p>@ViewData["Poem text"]</p>
+            </div>
         </div>
     </div>
 </div>

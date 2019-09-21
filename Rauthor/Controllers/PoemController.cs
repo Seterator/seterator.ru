@@ -71,11 +71,12 @@ namespace Rauthor.Controllers
             ViewData["Poem text"] = poem.Text;
             ViewData["Poem guid"] = guid;
 
-            Participant participant;
-            participant = database.Participants.First((c) => c.Guid == poem.ParticipantGuid);
-            ViewData["Participant login"] = participant.;
-            ViewData["Participant status"] = participant.Status;
-            //ViewData["Participant rating"] = participant.UserScore;
+            //Participant participant;
+            //User user;
+            var participant = database.Participants.Include(x => x.User).First((c) => c.Guid == poem.ParticipantGuid);
+            ViewData["Participant login"] = participant.User.Login;
+            ViewData["Participant status"] = "Статус";
+            //ViewData["Participant rating"] = participant.User.TotalRating;
             return View();
         }
     }

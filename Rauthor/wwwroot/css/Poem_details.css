@@ -1,4 +1,11 @@
-﻿.poem-details-grid {
+﻿.poem-details-back {
+
+    background-image: url('/img/Image 9.png');
+    padding: 5vw 0;
+    margin: 0;
+}
+
+.poem-details-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0.5vw;
@@ -24,7 +31,7 @@
 }
 
 .poem-details-grid div {
-    background: rgb(239, 239, 239);
+    background: rgb(255, 255, 255);
 }
 
 .poem-details-grid h2,
