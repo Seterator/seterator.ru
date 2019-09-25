@@ -1,0 +1,60 @@
+﻿@model Participant
+@{
+    ViewData["Title"] = "Оценка";
+}
+
+<div class="container">
+    <div class="review">
+        <h2>Название конкурса</h2>
+        <p>Имя автора</p>
+        <div class="application">
+            @*@foreach (var i in Model.Poems)
+            {
+                <h3>@i.Title</h3>
+                <p>@i.Text</p>
+            }*@<h3>Название произведения</h3>
+            <p>Текст произведения</p>
+        </div>
+        <div class="application-buttons-assessment">
+            <a class="arrow" @*asp-action="Reject"
+                asp-route-guid="@Model.Guid"*@>
+                <img src="~/img/Group 89.png" />
+            </a>
+
+            <a>
+                <div class="score">
+                    <h2>0</h2>
+                    <p>Не подходит</p>
+                </div>
+            </a>
+            <a>
+                <div class="score">
+                    <h2>2</h2>
+                    <p>Плохо</p>
+                </div>
+            </a>
+            <a>
+                <div class="score">
+                    <h2>3</h2>
+                    <p>Средне</p>
+                </div>
+            </a>
+            <a>
+                <div class="score">
+                    <h2>4</h2>
+                    <p>Хорошо</p>
+                </div>
+            </a>
+            <a>
+                <div class="score">
+                    <h2>5</h2>
+                    <p>Отлично</p>
+                </div>
+            </a>
+
+            <a class="arrow" @*asp-action="Accept"
+                asp-route-guid="@Model.Guid"*@>
+                <img src="~/img/Group 83.png" />
+            </a>
+        </div>
+    </div>

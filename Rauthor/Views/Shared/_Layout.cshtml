@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="~/css/Participant_become.css" />
     <link rel="stylesheet" href="~/css/Application.css" />
     <link rel="stylesheet" href="~/css/Poem_details.css" />
+    <link rel="stylesheet" href="~/css/Assessment.css" />
 </head>
 <body>
     <header>
@@ -51,12 +52,15 @@
                                 <a class="nav-link text-dark" asp-controller="Poem" asp-action="Index">Произведения</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Participant" >Заявки</a>
+                                <a class="nav-link text-dark" asp-controller="Participant">Заявки</a>
                             </li>
                             @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-controller="Participant" asp-action="Review">Модерация</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Jury" asp-action="Assessment">Оценка</a>
                                 </li>
                             }
                             <li class="nav-item">

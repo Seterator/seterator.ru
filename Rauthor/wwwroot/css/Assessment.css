@@ -1,0 +1,37 @@
+﻿.review h2 {
+    color: rgb(255, 57, 0);
+}
+
+.review .application-buttons-assessment {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 0.5vw;
+    /*justify-items: center;*/
+}
+
+
+.review .application-buttons-assessment .score {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+
+    background: rgb(239, 239, 239);
+}
+
+.review .application-buttons-assessment a {
+    cursor: pointer;    
+}
+
+.review .application-buttons-assessment .arrow:hover {
+    opacity: 0.7;
+}
+
+.review .application-buttons-assessment div:hover {
+    background: rgb(255, 57, 0);
+}
+
+.review .application-buttons-assessment div:hover h2,
+.review .application-buttons-assessment div:hover p {
+    color: white;
+}
