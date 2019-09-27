@@ -17,6 +17,7 @@ namespace Rauthor.Models
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Participant> Participants { get; set; }
         public DbSet<VoteOfUser> VotesOfUsers { get; set; }
+        public DbSet<ParticipantAssessment> ParticipantAssessments { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options, IConfiguration configuration, IMemoryCache cache) : base(options)
         {
             conectionString = configuration.GetConnectionString("Local MySQL");
