@@ -3,15 +3,13 @@
     grid-template-columns: 0.5fr 1fr 0.2fr;
     align-items: end;
     justify-items: normal;
-
-    
 }
 
 footer .grid-footer div {       
 }
 
 footer .footer-logo img {
-    width: 40%;
+    width: 100%;
 }
 
 footer .footer-osm {

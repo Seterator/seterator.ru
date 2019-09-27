@@ -23,13 +23,16 @@
 @foreach (var i in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => i.PoemText)
+                @*@Html.DisplayFor(modelItem => i.PoemText)*@
+                <a asp-action="Details"
+                   asp-controller="Poem"
+                   asp-route-guid="@i.PoemGuid.ToString()">@Html.DisplayFor(modelItem => i.PoemText)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => i.CompetitionTitle)
+                <a>@Html.DisplayFor(modelItem => i.CompetitionTitle)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => i.AuthorName)
+                <a>@Html.DisplayFor(modelItem => i.AuthorName)</a>
             </td>
         </tr>
 }

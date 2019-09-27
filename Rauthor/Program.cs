@@ -21,7 +21,7 @@ namespace Rauthor
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
-                .UseUrls("http://*:80/", "https://*:8080/", "https://www.seterator.ru")
+                .UseUrls("http://*:80/", "https://*:8080/", "https://*:5001/", "https://www.seterator.ru")
                 .UseStartup<Startup>();
     }
 }

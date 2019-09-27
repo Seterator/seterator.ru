@@ -57,9 +57,27 @@ namespace Rauthor.Controllers
                 {
                     AuthorName = User.Identity.Name,
                     CompetitionTitle = p.Author.Competition.Titile,
-                    PoemText = p.Text
+                    PoemText = p.Text,
+                    PoemGuid = p.Guid
                 });
             return View(poems);
+        }
+
+        public IActionResult Details(System.Guid guid)
+        {
+            Poem poem;
+            poem = database.Poems.First((c) => c.Guid == guid);
+            ViewData["Poem title"] = poem.Title;
+            ViewData["Poem text"] = poem.Text;
+            ViewData["Poem guid"] = guid;
+
+            //Participant participant;
+            //User user;
+            var participant = database.Participants.Include(x => x.User).First((c) => c.Guid == poem.ParticipantGuid);
+            ViewData["Participant login"] = participant.User.Login;
+            ViewData["Participant status"] = "Статус";
+            //ViewData["Participant rating"] = participant.User.TotalRating;
+            return View();
         }
     }
 }

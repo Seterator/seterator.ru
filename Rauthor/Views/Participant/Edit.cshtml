@@ -1,28 +1,48 @@
 ﻿@model Participant
-@{ 
+@{
     ViewData["Title"] = $"Заявка на конкурс \"{Model.Competition.Titile}\"";
 }
-<div class="border rounded bg-light">
-    Заявка на участие в конкурсе <b>@Model.Competition.Titile</b>
-</div>
-<span class="badge badge-info">
-    @(Model.Status switch
-    {
-        ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
-        ParticipantStatus.Rejected => "Отклонена",
-        ParticipantStatus.New => "Не рассмотрена",
-        ParticipantStatus.Approved => "Одобрена"
-    })
-</span>
 
-@foreach (var poem in Model.Poems)
-{
-    <div class="card">
-        <span class="card-header">
-            @poem.Title
-        </span>
-        <div class="card-body">
-            @poem.Text
+<div class="container">
+    <div class="review">
+        <h2>@Model.Competition.Titile</h2>
+        <p> Статус: 
+            @(Model.Status switch
+             {
+                 ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
+                 ParticipantStatus.Rejected => "Отклонена",
+                 ParticipantStatus.New => "Не рассмотрена",
+                 ParticipantStatus.Approved => "Одобрена"
+             })
+        </p>
+        @foreach (var poem in Model.Poems)
+        {
+            <div class="application">
+                <h3>@poem.Title</h3>
+                <p>@poem.Text</p>
+            </div>
+        }
         </div>
+
+
+
+
+
+
+
+
+
+
+
+    @*<div class="border rounded bg-light">
+        Заявка на участие в конкурсе <b>@Model.Competition.Titile</b>
     </div>
-}
+    <span class="badge badge-info">
+        @(Model.Status switch
+        {
+            ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
+            ParticipantStatus.Rejected => "Отклонена",
+            ParticipantStatus.New => "Не рассмотрена",
+            ParticipantStatus.Approved => "Одобрена"
+        })
+    </span>*@
