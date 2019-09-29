@@ -42,7 +42,7 @@ namespace Rauthor.ViewModels
         {
             Contract.Assert(database != null);
             var user = database.Users.FirstOrDefault(u => u.Guid == userGuid);
-            database.Participants.Where(p => p.UserGuid == userGuid).Load();
+            database.Participants.Include(x => x.Votes).Where(p => p.UserGuid == userGuid).Load();
             if (user.Participants != null)
                 database.Competitions.Where(c => user.Participants.DefaultIfEmpty().Select(p => p.CompetitionGuid).Contains(c.Guid)).Load();
             return new ProfileModel(

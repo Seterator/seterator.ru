@@ -5,16 +5,38 @@
 
 <div class="container">
     <div class="review">
-        <h2>Название конкурса</h2>
-        <p>Имя автора</p>
+        <h2>@Model.CompetitionTitle</h2>
+        <p>@Model.AuthorName</p>
         <div class="application">
-            @*@foreach (var i in Model.Poems)
+            @foreach (var i in Model.Participant.Poems)
             {
                 <h3>@i.Title</h3>
                 <p>@i.Text</p>
-            }*@<h3>Название произведения</h3>
-            <p>Текст произведения</p>
+            }
         </div>
+        <br />
+        <div style="border: solid">
+            <form asp-action="Assessment" asp-controller="Jury" asp-route-id="@Model.Participant.Guid">
+                @* @Url.Action("Assessment", "Jury", new { guid = Model.Participant.Guid }) *@
+                @*@Html.RadioButton("Assessment", Assessment.Zero, isChecked: Model.Assessment?.Assessment == Assessment.Zero)*@
+                <input type="radio" asp-for="Assessment" />
+                <span>0</span>
+                @*@Html.RadioButton("Assessment", Assessment.Two, isChecked: Model.Assessment?.Assessment == Assessment.Two)*@
+                <input type="radio" asp-for="Assessment" />
+                <span>2</span>
+                @*@Html.RadioButton("Assessment", Assessment.Three, isChecked: Model.Assessment?.Assessment == Assessment.Three)*@
+                <input type="radio" asp-for="Assessment" />
+                <span>3</span>
+                @*@Html.RadioButton("Assessment", Assessment.Four, isChecked: Model.Assessment?.Assessment == Assessment.Four)*@
+                <input type="radio" asp-for="Assessment" />
+                <span>4</span>
+                @*@Html.RadioButton("Assessment", Assessment.Five, isChecked: Model.Assessment?.Assessment == Assessment.Five)*@
+                <input type="radio" asp-for="Assessment" />
+                <span>5</span>
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+        <br />
         <div class="application-buttons-assessment">
             <a class="arrow" @*asp-action="Reject"
                 asp-route-guid="@Model.Guid"*@>

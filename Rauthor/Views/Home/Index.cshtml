@@ -10,7 +10,7 @@
             @foreach (var competition in Model)
             {
 
-                <a asp-action="Details" asp-controller="Competition" asp-route-id="@competition.Guid.ToString()">
+                <a href="Competition/Details/@competition.Guid.ToString()">
                     <div class="event_card">
                         <img src="~/img/event.png" />
                         <div class="info-on-card">

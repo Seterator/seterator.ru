@@ -14,7 +14,7 @@ namespace Rauthor.ViewModels
         [DisplayName("Текст")]
         public string Text { get; set; }
 
-        [Required(ErrorMessage = "Укажите название")]
+        [Required(ErrorMessage = "Не указано название")]
         [DataType(DataType.Text)]
         [DisplayName("Название")]
         public string Title { get; set; }

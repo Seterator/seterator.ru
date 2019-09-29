@@ -99,16 +99,13 @@ namespace Rauthor
                .UseMvc(routes =>
                {
                    routes.MapRoute(
-                       name: "parameterless",
-                       template: "{controller}/{action}");
-                   routes.MapRoute(
-                       name: "guid",
+                       name: "parameter_guid",
                        template: "{controller}/{action}/{guid}",
-                       defaults: default,
+                       defaults: new { controller="Home", action="Index" },
                        constraints: new { guid = new GuidRouteConstraint() });
                    routes.MapRoute(
-                       name: "default",
-                       template: "{controller=Home}/{action=Index}/{id?}");
+                       name: "action_only",
+                       template: "{controller=Home}/{action=Index}");
                });
             
         }

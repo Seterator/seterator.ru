@@ -47,7 +47,7 @@ namespace Rauthor.Models
         {
             if (optionsBuilder == null) throw new NullReferenceException();
             optionsBuilder.EnableDetailedErrors()
-                          .UseMemoryCache(cache)
+                          //.UseMemoryCache(cache)
                           .EnableSensitiveDataLogging();
 
             base.OnConfiguring(optionsBuilder);

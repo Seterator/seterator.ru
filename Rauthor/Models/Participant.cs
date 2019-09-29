@@ -18,7 +18,7 @@ namespace Rauthor.Models
 
         [NotMapped]
         [DisplayName("Рейтинг у пользователей")]
-        public int UserScore => Votes.Where(v => v.VoteState == VoteState.Up).Count();
+        public int UserScore => Votes?.Where(v => v.VoteState == VoteState.Up).Count() ?? -1;
 
         [Column("competition_GUID")]
         public Guid CompetitionGuid { get; set; }

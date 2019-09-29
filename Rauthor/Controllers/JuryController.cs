@@ -18,7 +18,9 @@ namespace Rauthor.Controllers
         {
             this.database = database;
         }
+        
         /// <param name="guid">Guid участника</param>
+        [HttpGet]
         [Authorize]
         public IActionResult Assessment([FromRoute] Guid guid)
         {
@@ -27,7 +29,7 @@ namespace Rauthor.Controllers
                 .Include(x => x.Poems)
                 .Include(x => x.Competition)
                 .First(x => x.Guid == guid);
-            var assesment = database.ParticipantAssessments.Where(x => x.ParticipantGuid == guid).FirstOrDefault();
+            var assesment = database.ParticipantAssessments.Where(x => x.ParticipantGuid == participant.Guid).FirstOrDefault();
             var model = new AssessmentModel()
             {
                 CompetitionTitle = participant.Competition.Titile,
@@ -36,6 +38,21 @@ namespace Rauthor.Controllers
                 Assessment = assesment
             };
             return View(model);
+
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Assessment()
+        {
+            var participant = database.Participants
+                .Include(x => x.User)
+                .Include(x => x.Poems)
+                .Include(x => x.Competition)
+                .Where(x => (database.ParticipantAssessments.FirstOrDefault(a => a.ParticipantGuid == x.Guid) == null))
+                .First();
+            return Redirect($"/Jury/Assessment/{participant.Guid}");
+
         }
         /// <summary>
         /// 
@@ -45,7 +62,7 @@ namespace Rauthor.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public IActionResult Assessment([FromRoute] Guid guid, [FromForm] ParticipantAssessment assessment)
+        public IActionResult Assessment([FromRoute] [FromQuery] Guid guid, [FromForm] ParticipantAssessment assessment)
         {
             var participant = database.Participants.First(x => x.Guid == guid);
             database.ParticipantAssessments.Add(new ParticipantAssessment()
@@ -56,27 +73,5 @@ namespace Rauthor.Controllers
             database.SaveChanges();
             return RedirectToAction("Assessment", new { guid = guid });
         }
-        [HttpGet]
-        [Authorize]
-        [Route("Jury/Assessment")]
-        public IActionResult Assessment()
-        {
-            var participant = database.Participants
-                .Include(x => x.User)
-                .Include(x => x.Poems)
-                .Include(x => x.Competition)
-                .Where(x => (database.ParticipantAssessments.FirstOrDefault(a => a.ParticipantGuid == x.Guid) == null))
-                .First();
-            var assesment = database.ParticipantAssessments.Where(x => x.ParticipantGuid == participant.Guid).FirstOrDefault();
-            var model = new AssessmentModel()
-            {
-                CompetitionTitle = participant.Competition.Titile,
-                Participant = participant,
-                AuthorName = participant.User.Login,
-                Assessment = assesment
-            };
-            return View(model);
-        }
-        
     }
 }
