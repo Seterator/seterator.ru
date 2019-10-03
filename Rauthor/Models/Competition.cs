@@ -48,6 +48,7 @@ namespace Rauthor.Models
         public Competition()
         {
             Guid = Guid.NewGuid();
+            Participants = new List<Participant>();
         }
     }
 }
