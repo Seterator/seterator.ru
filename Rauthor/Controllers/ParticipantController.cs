@@ -87,6 +87,7 @@ namespace Rauthor.Controllers
                 return View();
             }
         }
+
         [Authorize]
         public IActionResult Review()
         {

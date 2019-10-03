@@ -6,7 +6,8 @@
 <div class="container">
     <div class="review">
         <h2>@Model.Competition.Titile</h2>
-        <p> Статус: 
+        <p>
+            Статус:
             @(Model.Status switch
              {
                  ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
@@ -15,6 +16,13 @@
                  ParticipantStatus.Approved => "Одобрена"
              })
         </p>
+        @*Тут должна быть проверка того, является ли текущий пользователь жюри.*@
+        @if (true)
+        {
+            <div>
+                <a asp-action="Assessment" asp-controller="Jury" asp-route-guid="@Model.Guid">Оценить</a>
+            </div>
+        }
         @foreach (var poem in Model.Poems)
         {
             <div class="application">
@@ -22,7 +30,7 @@
                 <p>@poem.Text</p>
             </div>
         }
-        </div>
+    </div>
 
 
 

@@ -16,25 +16,25 @@
         </div>
         <br />
         <div style="border: solid">
-            <form asp-action="Assessment" asp-controller="Jury" asp-route-id="@Model.Participant.Guid">
-                @* @Url.Action("Assessment", "Jury", new { guid = Model.Participant.Guid }) *@
-                @*@Html.RadioButton("Assessment", Assessment.Zero, isChecked: Model.Assessment?.Assessment == Assessment.Zero)*@
+            @*<form asp-action="Assessment" asp-controller="Jury" asp-route-id="@Model.Participant.Guid">
+                @Url.Action("Assessment", "Jury", new { guid = Model.Participant.Guid })
+                @Html.RadioButton("Assessment", Assessment.Zero, isChecked: Model.Assessment?.Assessment == Assessment.Zero)
                 <input type="radio" asp-for="Assessment" />
                 <span>0</span>
-                @*@Html.RadioButton("Assessment", Assessment.Two, isChecked: Model.Assessment?.Assessment == Assessment.Two)*@
+                @Html.RadioButton("Assessment", Assessment.Two, isChecked: Model.Assessment?.Assessment == Assessment.Two)
                 <input type="radio" asp-for="Assessment" />
                 <span>2</span>
-                @*@Html.RadioButton("Assessment", Assessment.Three, isChecked: Model.Assessment?.Assessment == Assessment.Three)*@
+                @Html.RadioButton("Assessment", Assessment.Three, isChecked: Model.Assessment?.Assessment == Assessment.Three)
                 <input type="radio" asp-for="Assessment" />
                 <span>3</span>
-                @*@Html.RadioButton("Assessment", Assessment.Four, isChecked: Model.Assessment?.Assessment == Assessment.Four)*@
+                @Html.RadioButton("Assessment", Assessment.Four, isChecked: Model.Assessment?.Assessment == Assessment.Four)
                 <input type="radio" asp-for="Assessment" />
                 <span>4</span>
-                @*@Html.RadioButton("Assessment", Assessment.Five, isChecked: Model.Assessment?.Assessment == Assessment.Five)*@
+                @Html.RadioButton("Assessment", Assessment.Five, isChecked: Model.Assessment?.Assessment == Assessment.Five)
                 <input type="radio" asp-for="Assessment" />
                 <span>5</span>
                 <input type="submit" value="Submit" />
-            </form>
+            </form>*@
         </div>
         <br />
         <div class="application-buttons-assessment">

@@ -22,7 +22,7 @@ namespace Rauthor.Controllers
         /// <param name="guid">Guid участника</param>
         [HttpGet]
         [Authorize]
-        public IActionResult Assessment([FromRoute] Guid guid)
+        public IActionResult Assessment(Guid guid)
         {
             var participant = database.Participants
                 .Include(x => x.User)
@@ -41,19 +41,19 @@ namespace Rauthor.Controllers
 
         }
 
-        [HttpGet]
-        [Authorize]
-        public IActionResult Assessment()
-        {
-            var participant = database.Participants
-                .Include(x => x.User)
-                .Include(x => x.Poems)
-                .Include(x => x.Competition)
-                .Where(x => (database.ParticipantAssessments.FirstOrDefault(a => a.ParticipantGuid == x.Guid) == null))
-                .First();
-            return Redirect($"/Jury/Assessment/{participant.Guid}");
+        //[HttpGet]
+        //[Authorize]
+        //public IActionResult Assessment()
+        //{
+        //    var participant = database.Participants
+        //        .Include(x => x.User)
+        //        .Include(x => x.Poems)
+        //        .Include(x => x.Competition)
+        //        .Where(x => (database.ParticipantAssessments.FirstOrDefault(a => a.ParticipantGuid == x.Guid) == null))
+        //        .First();
+        //    return Redirect($"/Jury/Assessment/{participant.Guid}");
 
-        }
+        //}
         /// <summary>
         /// 
         /// </summary>
