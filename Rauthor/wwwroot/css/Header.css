@@ -1,7 +1,20 @@
-﻿a p, a span{
-    background: rgb(255, 57, 0)
+﻿a {
+    color: rgb(255, 57, 0);
 }
+
+    a:hover {
+        color: rgb(255, 216, 0);
+    }
 
 header nav  {
     background: rgb(239, 239, 239);
+}
+
+header nav li a{
+    display: block;
+    padding: 0.5rem 1rem;
+
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
 }

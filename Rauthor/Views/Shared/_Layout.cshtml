@@ -42,34 +42,34 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Profile" asp-action="Index">Профиль</a>
+                                <a asp-controller="Profile" asp-action="Index">Профиль</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Poem" asp-action="Index">Произведения</a>
+                                <a asp-controller="Poem" asp-action="Index">Произведения</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Participant">Заявки</a>
+                                <a asp-controller="Participant">Заявки</a>
                             </li>
                             @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Participant" asp-action="Review">Модерация</a>
+                                    <a asp-controller="Participant" asp-action="Review">Модерация</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-controller="Jury" asp-action="Assessment">Оценка</a>
+                                    <a asp-controller="Jury" asp-action="Assessment">Оценка</a>
                                 </li>
                             }
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
                             </li>
                         }
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
