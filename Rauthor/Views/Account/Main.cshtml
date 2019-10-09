@@ -2,22 +2,22 @@
     ViewData["Title"] = "Страница входа";
 }
 
-<div class="account-wrap">
-    <div class="back-img">
-        <img src="~/img/devka.jpg" />
-    </div>
-    <div class="form-wrap">
-        <div id="switch-button" onclick="switchForm()">
-                <div class="register">Новый участник</div>
-                <div class="auth">Уже сетератор</div>
-        </div>
+<div class="account-back">
+    <div class="account-wrap container">
+        <div class="form-wrap">
+            <div id="switch-button" onclick="switchForm()">
+                <div id ="account-register-button">Новый участник</div>
+                <div id ="account-auth-button">Уже сетератор</div>
+            </div>
             <div id="login-form">
                 <partial name="login" />
             </div>
             <div id="register-form">
                 <partial name="register" />
             </div>
+        </div>
     </div>
 </div>
+    
 
 <script asp-src-include="/js/account.js"></script>

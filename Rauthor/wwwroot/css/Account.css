@@ -1,4 +1,4 @@
-﻿.account-wrap {
+﻿/*.account-wrap {
     position: relative;
     margin: 0;
 }
@@ -60,5 +60,66 @@
 
 #switch-button .auth {
     background: rgb(65, 65, 65);
+}*/
+
+.account-back {
+    background-image: url('/img/devka.jpg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+    padding-bottom: 30vh;
+    min-height: 1080px;
 }
 
+.account-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.form-wrap {
+    margin-top: 20%;
+    display: grid;
+    grid-gap: 1vh;
+    padding: 1vw;
+    background: rgb(239, 239, 239);
+}
+
+.form-wrap form {
+    
+    width: 100%;
+    display: grid;
+    grid-gap: 1vh;
+}
+
+#login-form {
+    width: 100%;
+    display: none;
+}
+
+#register-form {
+    width: 100%;
+}
+
+#switch-button {
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#switch-button:hover {
+    cursor: pointer;
+
+}
+
+#switch-button div {
+    padding: 0.3vw;
+}
+
+#account-register-button {
+    background: rgb(255, 57, 0);
+}
+
+#account-auth-button {
+    background: rgb(65, 65, 65);
+}
