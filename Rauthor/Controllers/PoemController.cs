@@ -75,8 +75,8 @@ namespace Rauthor.Controllers
             //User user;
             var participant = database.Participants.Include(x => x.User).First((c) => c.Guid == poem.ParticipantGuid);
             ViewData["Participant login"] = participant.User.Login;
-            ViewData["Participant status"] = "Статус";
-            //ViewData["Participant rating"] = participant.User.TotalRating;
+            ViewData["Participant status"] = "Статус не установлен";
+            ViewData["Participant rating"] = participant.User.Participants?.Sum(p => p.UserScore) ?? 0;
             return View();
         }
     }
