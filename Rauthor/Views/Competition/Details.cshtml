@@ -74,6 +74,13 @@
                         <td>@participant.Poems.First().Title</td>
                         <td>@participant.User.Login</td>
                         <td>@participant.UserScore</td>
+                        <td>
+                            <a asp-action="Details"
+                               asp-controller="Poem"
+                               asp-route-guid="@participant.Poems.First().Guid.ToString()">
+                                Перейти
+                            </a>
+                        </td>
                     </tr>
                     }
                 </tbody>
