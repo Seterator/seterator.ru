@@ -16,11 +16,14 @@
     padding: 0.5vw;
 }
 
-.competition-grid .event_card {
-    grid-area: event_card;
-    height: 35vh;
-    overflow: hidden; 
-}
+    .competition-grid .event_card {
+        grid-area: event_card;
+        height: 35vh;
+        overflow: hidden;
+        background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.1)), url("../img/event.png");
+        background-size: cover;
+        background-position: bottom;
+    }
 
 .competition-grid .event_card img {
     height: unset;
