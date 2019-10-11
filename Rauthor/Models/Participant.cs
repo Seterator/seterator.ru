@@ -30,6 +30,9 @@ namespace Rauthor.Models
         [DisplayName("Состояние заявки")]
         public ParticipantStatus Status { get; set; }
 
+        [Column("create_date")]
+        public DateTime CreateDate { get; set; }
+
         [NotMapped]
         public bool Approved => Status == ParticipantStatus.Approved;
 

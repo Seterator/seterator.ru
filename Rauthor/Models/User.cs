@@ -34,6 +34,7 @@ namespace Rauthor.Models
         public User()
         {
             Guid = Guid.NewGuid();
+            Prize = "[ничего]";
         }
         private class ReadOnlyCollectionConverter<TItem> : JsonConverter
         {
