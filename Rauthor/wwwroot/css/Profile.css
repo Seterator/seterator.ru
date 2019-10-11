@@ -49,3 +49,15 @@
 .user-about {
     grid-area: user-about;
 }
+
+.user-requests {
+    width: 100%;
+}
+
+.user-requests table {
+    width: 100%;
+}
+
+.user-requests table th {
+    color: darkgray;
+}

@@ -83,7 +83,7 @@ namespace Rauthor.ViewModels
                     .Include(x => x.Poems)
                     .Include(x => x.Competition)
                     .Where(x => x.UserGuid == user.Guid)
-                    .Where(x => x.Competition.EndDate < DateTime.Now)
+                    .Where(x => x.Competition.EndDate <= DateTime.Now)
                     .OrderBy(x => x.CreateDate),
             }; ;
             profile.WinCount = 0;

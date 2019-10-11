@@ -28,8 +28,8 @@
             <p>@Model.Rating</p>
         </div>
         <div class="user-counter">
-            <h4>Участий: </h4>
-            <h4>Побед: </h4>
+            <h4>Участий: @Model.ParticipantCount</h4>
+            <h4>Побед: @Model.WinCount</h4>
         </div>
         <div class="user-about">
             <h4>Об авторе</h4>
@@ -38,7 +38,90 @@
     </div>
 
     <div class="user-requests">
-        <h3>Заявки</h3>
+
+        <h2>Активное</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Статус</th>
+                    <th>Название конкурса</th>
+                    <th>Дата подачи</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var competition in Model.ActiveParticipants)
+                {
+                    foreach (var poem in competition.Poems)
+                    {
+                <tr>
+                    <td>
+                        @poem.Title
+                    </td>   
+                    <td>
+                        @competition.Status
+                    </td>
+                    <td>
+                        @competition.Competition.Titile
+                    </td>
+                    <td>
+                        @competition.CreateDate.ToString("dd.MM.yyyy")
+                    </td>
+                    <td>
+                        <a asp-action="Details"
+                           asp-controller="Poem"
+                           asp-route-guid="@competition.Guid.ToString()">
+                            Перейти
+                        </a>
+                    </td>
+                </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <h2>История</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Статус</th>
+                    <th>Название конкурса</th>
+                    <th>Дата подачи</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var competition in Model.PastParticipants)
+                {
+                    foreach (var poem in competition.Poems)
+            {
+                <tr>
+                    <td>
+                        @poem.Title
+                    </td>
+                    <td>
+                        @competition.Status
+                    </td>
+                    <td>
+                        @competition.Competition.Titile
+                    </td>
+                    <td>
+                        @competition.CreateDate.ToString("dd.MM.yyyy")
+                    </td>
+                    <td>
+                        <a asp-action="Details"
+                           asp-controller="Poem"
+                           asp-route-guid="@competition.Guid.ToString()">
+                            Перейти
+                        </a>
+                    </td>
+                </tr>
+            }
+                }
+            </tbody>
+        </table>
+
+        @*<h3>Заявки</h3>
         <div class="list-group">
             @foreach (var p in Model.Participants)
             {
@@ -60,50 +143,7 @@
         </div>
 
         <h3>Произведения</h3>
-        <a asp-controller="Poem" asp-action="Index"><p>Произведения</p></a>
+        <a asp-controller="Poem" asp-action="Index"><p>Произведения</p></a>*@
+    
     </div>
 </div>
-
-
-
-@*<img src="~/img/Lena.png" alt="Изображение профиля" />
-<div class="border-info">
-    <span>@(Model.Status ?? "Статус не установлен") </span>
-</div>
-@(Model.Name ?? Model.Login)<br />
-@if (Model.Verificated)
-{
-    <span>Аккаунт подтверждён</span>
-}
-else
-{
-    <span>Аккаунт не верифицирован</span>
-} <br />
-<span>Рейтинг: @Model.Rating</span>
-<div class="card bg-light">
-    <div class="card-body">
-        @(Model.About ?? "Информация о себе не указана")
-    </div>
-</div>
-<hr />
-<span class="card-title">Заявки</span>
-<div class="list-group">
-    @foreach (var p in Model.Participants)
-    {
-    <a asp-action="Edit" 
-       asp-controller="Participant" 
-       asp-route-id="@p.Guid"
-       class="list-group-item list-group-item-action">@p.Competition.Titile</a>
-    }
-</div>
-<span class="card-title">Участник</span>
-<div class="list-group">
-    @foreach (var competition in Model.ParticipatedCompetitions)
-    {
-    <a asp-action="Edit" 
-       asp-controller="Participant" 
-       asp-route-id="@competition.Guid"
-       class="list-group-item list-group-item-action">@competition.Titile</a>
-    }
-</div>
-<div class="list-group"></div>*@
