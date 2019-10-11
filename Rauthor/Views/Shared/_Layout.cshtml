@@ -41,27 +41,15 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a asp-controller="Profile" asp-action="Index">Профиль</a>
                             </li>
-                            <li class="nav-item">
-                                <a asp-controller="Poem" asp-action="Index">Произведения</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Participant">Заявки</a>
-                            </li>
                             @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
                             {
                                 <li class="nav-item">
                                     <a asp-controller="Participant" asp-action="Review">Модерация</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a asp-controller="Jury" asp-action="Assessment">Оценка</a>
                                 </li>
                             }
                             <li class="nav-item">
@@ -96,8 +84,23 @@
                 <div class="footer-logo">
                     <img src="~/img/footer-logo.png" />
                 </div>
-                <div class="social-icons-footer">
-
+                <div class="social-icons">
+                    <p>Мы здесь</p>
+                    <a href="https://twitter.com/seterator_ru" target="_blank">
+                        <img src="~/img/Social icons/twitter.png" />
+                    </a>
+                    <a href="https://vk.com/seterator" target="_blank">
+                        <img src="~/img/Social icons/vkontakte.png" />
+                    </a>
+                    <a href="https://t.me/seterator_updates" target="_blank">
+                        <img src="~/img/Social icons/telegram.png" />
+                    </a>
+                    <a href="https://www.facebook.com/seterator" target="_blank">
+                        <img src="~/img/Social icons/facebook.png" />
+                    </a>
+                    <a href="https://www.instagram.com/seterator.ru/" target="_blank">
+                        <img src="~/img/Social icons/instagram.png" />
+                    </a>
                 </div>
                 <div class="footer-osm">
                     <img src="~/img/2osm.png" />

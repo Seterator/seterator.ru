@@ -1,11 +1,26 @@
 ﻿footer .grid-footer {
     display: grid;
-    grid-template-columns: 0.5fr 1fr 0.2fr;
+    grid-template-columns: 0.3fr 0.6fr 0.1fr;
     align-items: end;
     justify-items: normal;
 }
 
-footer .grid-footer div {       
+footer .social-icons {   
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 0;
+
+    justify-self: end;
+}
+
+footer .social-icons a:hover{
+    opacity:0.7;
+}
+
+footer .social-icons p{
+    margin: 0;
+    padding: 0;
+    align-self: end;
 }
 
 footer .footer-logo img {
