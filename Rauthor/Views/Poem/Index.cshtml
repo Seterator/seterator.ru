@@ -3,39 +3,41 @@
     ViewData["Title"] = "Отправленные";
 }
 
-<h1>Index</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PoemText)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompetitionTitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AuthorName)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var i in Model) {
-        <tr>
-            <td>
-                @*@Html.DisplayFor(modelItem => i.PoemText)*@
-                <a asp-action="Details"
-                   asp-controller="Poem"
-                   asp-route-guid="@i.PoemGuid.ToString()">@Html.DisplayFor(modelItem => i.PoemText)</a>
-            </td>
-            <td>
-                <a>@Html.DisplayFor(modelItem => i.CompetitionTitle)</a>
-            </td>
-            <td>
-                <a>@Html.DisplayFor(modelItem => i.AuthorName)</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="container">
+    <h1>Все произведения</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PoemText)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompetitionTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AuthorName)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => i.PoemText)*@
+                        <a asp-action="Details"
+                            asp-controller="Poem"
+                            asp-route-guid="@i.PoemGuid.ToString()">@Html.DisplayFor(modelItem => i.PoemText)</a>
+                    </td>
+                    <td>
+                        <a>@Html.DisplayFor(modelItem => i.CompetitionTitle)</a>
+                    </td>
+                    <td>
+                        <a>@Html.DisplayFor(modelItem => i.AuthorName)</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 @*<a asp-action="Add">Добавить</a>*@
