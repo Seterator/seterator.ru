@@ -69,6 +69,11 @@
                     <a asp-action="Main" asp-controller="Account">Регистрация/Вход</a>}
             </div>
         </nav>
+        <div class="container">
+            <h1>Демо-версия</h1>
+            <h2>Основная версия сайта в процессе подготовки к Альфа-тестированию</h2>
+            <hr />
+        </div>
     </header>
     <div @*class="container-fluid"*@>
         <partial name="_CookieConsentPartial" />
@@ -84,6 +89,7 @@
                 <div class="footer-logo">
                     <img src="~/img/footer-logo.png" />
                 </div>
+                <a asp-controller="Home" asp-action="Privacy">Privacy</a>
                 <div class="social-icons">
                     <p>Мы здесь</p>
                     <a href="https://twitter.com/seterator_ru" target="_blank">
