@@ -1,0 +1,42 @@
+﻿@using System.Security.Claims
+
+<div class="container">
+    <nav>
+        <a class="header-logo" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo-4.png" /></a>
+        <ul class="header-nav-line">
+            <li>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+            </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <a asp-controller="Profile" asp-action="Index">Профиль</a>
+                </li>
+                @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
+                {
+                    <li>
+                        <a asp-controller="Participant" asp-action="Review">Модерация</a>
+                    </li>
+                }
+                <li>
+                    <a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                </li>
+            }
+            <li>
+                <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+        </ul>
+        <div id="header-auth">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="#">@User.Identity.Name</a> 
+            }
+            else
+            {
+                <a asp-action="Main" asp-controller="Account">Регистрация/Вход</a>
+            }
+        </div>
+    </nav>
+</div>
+
+
