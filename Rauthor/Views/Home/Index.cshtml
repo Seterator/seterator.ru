@@ -4,7 +4,67 @@
     ViewData["Title"] = "Главная";
 }
 
-    <div class="container">
+<div class="container">
+    <div class="home-block">
+        <h1>Поэтические конкурсы каждый день</h1>
+        <div class="home-events-list">
+            @foreach (var competition in Model)
+            {
+                <a href="Competition/Details/@competition.Guid.ToString()">
+                    <div class="home-event">
+                        <h6>Конкурсы</h6>
+                        <h2>@competition.Titile</h2>
+                        <p class="home-event-date">@competition.EndDate</p>
+                        <p class="home-event-description">@competition.Description</p>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+    <div class="home-block">
+        <h1>Новости</h1>
+        <div class="home-events-list">
+            @foreach (var competition in Model)
+            {
+                <a href="Competition/Details/@competition.Guid.ToString()">
+                    <div class="home-event">
+                        <h6>Новости сетературы</h6>
+                        <h2>@competition.Titile</h2>
+                        <p class="home-event-date">@competition.EndDate</p>
+                        <p class="home-event-description">@competition.Description</p>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+    <div class="home-block">
+        <h1>Seterator рекомендует</h1>
+        <div class="home-events-list">
+            @foreach (var competition in Model)
+            {
+                <a href="Competition/Details/@competition.Guid.ToString()">
+                    <div class="home-event">
+                        <h6>Различная хуета</h6>
+                        <h2>@competition.Titile</h2>
+                        <p class="home-event-date">@competition.EndDate</p>
+                        <p class="home-event-description">@competition.Description</p>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+    @*<div class="container">
 
         <div class="grid-index">
             @foreach (var competition in Model)
@@ -20,4 +80,4 @@
                 </a>
             }
         </div>
-</div>
+</div>*@
