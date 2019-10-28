@@ -46,39 +46,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <div class="grid-footer">
-                @*&copy; 2019 - РуАвтор - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
-                <div class="footer-logo">
-                    <img src="~/img/footer-logo.png" />
-                </div>
-                <a asp-controller="Home" asp-action="Privacy">Privacy</a>
-                <div class="social-icons">
-                    <p>Мы здесь</p>
-                    <a href="https://twitter.com/seterator_ru" target="_blank">
-                        <img src="~/img/Social icons/twitter.png" />
-                    </a>
-                    <a href="https://vk.com/seterator" target="_blank">
-                        <img src="~/img/Social icons/vkontakte.png" />
-                    </a>
-                    <a href="https://t.me/seterator_updates" target="_blank">
-                        <img src="~/img/Social icons/telegram.png" />
-                    </a>
-                    <a href="https://www.facebook.com/seterator" target="_blank">
-                        <img src="~/img/Social icons/facebook.png" />
-                    </a>
-                    <a href="https://www.instagram.com/seterator.ru/" target="_blank">
-                        <img src="~/img/Social icons/instagram.png" />
-                    </a>
-                </div>
-                <div class="footer-osm">
-                    <img src="~/img/2osm.png" />
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    <partial name="Footer" />
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>

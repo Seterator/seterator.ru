@@ -1,0 +1,113 @@
+﻿@using System.Security.Claims
+
+<footer>
+    <div class="footer container">
+        <div id="footer-logo">
+            <img class="img-svg" src="~/img/Logo/footer_logo.svg" />
+        </div>
+        <div id="footer-cols">
+            <ul>
+                <li>Навигация</li>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a asp-controller="Profile" asp-action="Index">Профиль</a>
+                    </li>
+                    @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
+                    {
+                        <li>
+                            <a asp-controller="Participant" asp-action="Review">Модерация</a>
+                        </li>
+                    }
+                    <li>
+                        <a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                    </li>
+                }
+                    <li>
+                        <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+            </ul>
+            <ul>
+                <li>Полезная информация</li>
+                <li><a asp-area="" asp-controller="" asp-action="">Оферта</a></li>
+                <li><a asp-area="" asp-controller="" asp-action="">Пользовтальское соглашение</a></li>
+                <li><a asp-area="" asp-controller="" asp-action="">Условия конфиденциальности</a></li>
+            </ul>
+            <ul>
+                <li>Пользователь</li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li>
+                        <a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a asp-action="Main" asp-controller="Account">Авторизация</a>
+                    </li>
+                }
+            </ul>
+            <ul>
+                <li>Социальные сети</li>
+                <li>
+                    <a href="https://vk.com/seterator" target="_blank">
+                        <img class="img-svg" src="~/img/Social icons/Orange/vk.svg" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/seterator" target="_blank">
+                        <img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" />
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/seterator_ru" target="_blank">
+                        <img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>&copy;2019, seterator.ru</p>
+    </div>
+</footer>
+
+
+
+
+
+
+
+@*<footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="grid-footer">
+                <div class="footer-logo">
+                    <img src="~/img/footer-logo.png" />
+                </div>
+                <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <div class="social-icons">
+                    <p>Мы здесь</p>
+                    <a href="https://twitter.com/seterator_ru" target="_blank">
+                        <img src="~/img/Social icons/twitter.png" />
+                    </a>
+                    <a href="https://vk.com/seterator" target="_blank">
+                        <img src="~/img/Social icons/vkontakte.png" />
+                    </a>
+                    <a href="https://t.me/seterator_updates" target="_blank">
+                        <img src="~/img/Social icons/telegram.png" />
+                    </a>
+                    <a href="https://www.facebook.com/seterator" target="_blank">
+                        <img src="~/img/Social icons/facebook.png" />
+                    </a>
+                    <a href="https://www.instagram.com/seterator.ru/" target="_blank">
+                        <img src="~/img/Social icons/instagram.png" />
+                    </a>
+                </div>
+                <div class="footer-osm">
+                    <img src="~/img/2osm.png" />
+                </div>
+            </div>
+        </div>
+    </footer>*@

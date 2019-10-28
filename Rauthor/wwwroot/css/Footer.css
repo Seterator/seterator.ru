@@ -1,6 +1,81 @@
-﻿footer .grid-footer {
+﻿footer {
+    background: rgb(17, 17, 17);
+    margin: 0;
+    padding: 40px 0;
+}
+
+.footer {
     display: grid;
-    /*grid-template-columns: 0.3fr 0.6fr 0.1fr;*/
+    grid-template-columns: 2fr 10fr;
+}
+
+.footer p {
+    margin: 0;
+    padding: 0;
+    color: rgb(255, 255, 255);
+}
+
+#footer-logo .img-svg {
+    width: 100%;
+}
+
+.footer .img-svg {
+    width: 50%;
+    fill: rgb(255, 255, 255);
+}
+
+.footer .img-svg:hover {
+    fill: rgb(255, 82, 25);
+}
+
+#footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#footer-cols ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: start;
+
+    list-style: none;
+    white-space: nowrap;
+}
+
+#footer-cols ul li a {
+    color: rgb(255, 255, 255);
+}
+
+#footer-cols ul li a:hover {
+    color: rgb(255, 82, 25);
+}
+
+#footer-cols ul li:first-child {
+    margin-bottom: 20px;
+    color: rgb(64, 64, 64);
+    font-weight: 600;
+}
+
+#footer-cols ul:last-child {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+
+}
+
+#footer-cols ul:last-child li:first-child {
+    grid-column: span 3;
+}
+
+
+
+
+
+
+
+
+
+/*footer .grid-footer {
+    display: grid;
     grid-template-columns: 1fr 1fr 1fr 0.5fr;
     align-items: end;
     justify-items: normal;
@@ -34,4 +109,4 @@ footer .footer-osm {
 
 footer .footer-osm img {
     width: 100%;
-}
+}*/
