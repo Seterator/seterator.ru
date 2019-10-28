@@ -32,53 +32,14 @@
 </head>
 <body>
     <header>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo-4.png" /></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a asp-controller="Profile" asp-action="Index">Профиль</a>
-                            </li>
-                            @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
-                            {
-                                <li class="nav-item">
-                                    <a asp-controller="Participant" asp-action="Review">Модерация</a>
-                                </li>
-                            }
-                            <li class="nav-item">
-                                <a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
-                            </li>
-                        }
-                        <li class="nav-item">
-                            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <span style="padding-right: 0px">@User.Identity.Name</span> }
-                else
-                {
-                    <a asp-action="Main" asp-controller="Account">Регистрация/Вход</a>}
-            </div>
-        </nav>*@
-
         <partial name="Header" />
-
-        <div class="container">
+        @*<div class="container">
             <h1>Демо-версия</h1>
             <h2>Основная версия сайта в процессе подготовки к Альфа-тестированию</h2>
             <hr />
-        </div>
+        </div>*@
     </header>
-    <div @*class="container-fluid"*@>
+    <div>
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()

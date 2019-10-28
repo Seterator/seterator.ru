@@ -1,24 +1,28 @@
-﻿a {
+﻿/*a {
     color: rgb(255, 57, 0);
 }
 
 a:hover {
     color: rgb(255, 216, 0);
+}*/
+
+header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12pt;
+
 }
 
 header nav  {
-    background: rgb(255, 255, 255);
+    margin-top: 50px;
 
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1.5fr 4fr 1fr;
     align-items: center;
 
-    box-shadow: 0px 5px 0px 0px rgba(239, 239, 239, 0.5);
 }
 
 header nav .header-logo {
-    flex: 0 0 20%;
+    /*flex: 0 0 20%;*/
 
 }
 
@@ -27,50 +31,37 @@ header nav .header-logo img {
 }
 
 header nav ul {
-    flex: 1 10 auto;
-
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: flex-start;
 
     list-style: none; 
     margin: 0;
     padding: 0;
-    align-self: flex-end;
 }
 
 header nav ul li {
-    font-weight: 600;
-    font-size: 16pt;
-    text-transform: lowercase;
-    box-shadow: 0px 5px 0px 0px rgba(239, 239, 239, 1);
-}
-
-header nav ul li:hover {
-
-    box-shadow: 0px 5px 0px 0px rgba(255, 57, 0, 1);
-}
-
-header nav ul li a {
-    padding: 15px;
-}
-
-header nav ul li a :hover {
-    text-decoration: none;
-}
-header nav #header-auth {
-    flex: 0 1 20%;
-    align-self: center;
-
-    text-align: center;
-
+    flex: 0 1 auto;
+    margin-left: 30px;
 }
 
 #header-auth a {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-gap: 10px;
+
+    font-weight: 600;
+}
+
+#header-auth img {
+    width: 100%;
+}
+
+#header-auth a {
+    /*display: block;
 
     background-color: rgb(255, 57, 0);
     border-radius: 100px;
     color: white;
-    padding: 5px;   
+    padding: 5px;*/   
 }

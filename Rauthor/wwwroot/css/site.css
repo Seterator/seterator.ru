@@ -1,6 +1,34 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+
+/*---Сброс стилей*/
+/*html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}*/
+/*---------------*/
+
+/*---Подключение шрифтов---*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+/*-------------------------*/
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -46,6 +74,11 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+}
+
+p {
+    margin: 0;
+    padding: 0;
 }
 
 .footer {
