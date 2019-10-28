@@ -7,14 +7,14 @@
 <form asp-action="Login" asp-controller="Account">
     <div asp-validation-summary="ModelOnly"></div>
     <div>
-        <input class="form-control" type="text" asp-for="Login" placeholder="Логин" />
+        <input type="text" asp-for="Login" placeholder="e-mail или логин" />
         <span asp-validation-for="Login" />
     </div>
     <div>
-        <input class="form-control" asp-for="Password" placeholder="Пароль" />
+        <input asp-for="Password" placeholder="Пароль" />
         <span asp-validation-for="Password" />
     </div>
-    <div class="input-group-btn">
-        <input class="btn btn-primary" type="submit" value="Войти" />
+    <div>
+        <input type="submit" value="Войти" />
     </div>
 </form>

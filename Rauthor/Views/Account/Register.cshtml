@@ -7,22 +7,13 @@
     <form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
         <div asp-validation-summary="ModelOnly"></div>
         <div>
-            <input class="form-control" type="text" asp-for="Login" placeholder="Логин" />
-            <span asp-validation-for="Login" />
+            <input type="text" placeholder="e-mail" />
         </div>
         <div>
-            <input class="form-control" type="text" placeholder="E-mail" />
+            <p>На почту придет автоматически сгенерированные логин и пароль.</p>
         </div>
         <div>
-            <input class="form-control" asp-for="Password" placeholder="Пароль" />
-            <span asp-validation-for="Password" />
-        </div>
-        <div>
-            <input class="form-control" asp-for="PasswordConfirmation" placeholder="Подтверждение пароля" />
-            <span asp-validation-for="PasswordConfirmation" />
-        </div>
-        <div>
-            <input class="btn btn-outline-primary" type="submit" value="Регистрация" />
+            <input type="submit" value="Регистрация" />
         </div>
     </form>
 

@@ -27,6 +27,7 @@ time, mark, audio, video {
 
 /*---Подключение шрифтов---*/
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
 /*-------------------------*/
 
 a.navbar-brand {
@@ -38,6 +39,7 @@ a.navbar-brand {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
 }
 

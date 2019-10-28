@@ -1,110 +1,82 @@
-﻿/*.account-wrap {
-    position: relative;
-    margin: 0;
-}
-
-.form-wrap {
-    display: grid;
-    grid-gap: 1vh;
-
-    position: absolute;
-    top: 10vh;
-    left: 10vw;
-
-    padding: 1vw;
-
-    background: rgb(239, 239, 239);
-}
-
-.form-wrap a {
-    display: block;
-    margin: 0;
+﻿.auth {
     padding: 0;
-}
 
-.back-img img {
-    width: 100%;
-}
-
-.form-wrap form {
-    width: 100%;
-    display: grid;
-    grid-gap: 1vh;
-}
-
-#login-form {
-    width: 100%;
-}
-
-#register-form {
-    width: 100%;
-}
-
-#switch-button {
-    color: white;
-    font-weight: 600;
-    text-align: center;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-}
-
-#switch-button div {
-    padding: 0.3vw;
-}
-
-#switch-button .register {
-    background: rgb(255, 57, 0);
-}
-
-#switch-button .auth {
-    background: rgb(65, 65, 65);
-}*/
-
-.account-back {
-    background-image: url('/img/devka.jpg');
+    background: linear-gradient( 90deg, rgba(255,255,255,0.50196) 0%, rgb(255,255,255) 100%), url('/img/Account/bg_01.png');
     background-repeat: no-repeat;
     background-position-x: center;
-    padding-bottom: 30vh;
-    min-height: 1080px;
-}
-
-.account-wrap {
+    background-size: contain;
+    /*padding-bottom: 30vh;*/
+    min-height: 70vh;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 7fr 4fr 1fr;
+    margin-top: 100px;
 }
 
-.form-wrap {
-    margin-top: 20%;
-    display: grid;
-    grid-gap: 1vh;
-    padding: 1vw;
-    background: rgb(239, 239, 239);
+.auth .auth-form-container {
+    padding-left: 30px;
 }
 
-.form-wrap form {
-    
-    width: 100%;
-    display: grid;
-    grid-gap: 1vh;
+.auth .auth-form {
+    padding: 30px 40px;
+    border-radius: 10px;
+    background: rgb(238, 238, 238);
+    box-shadow: 0px 0px 100px 0px rgba(0, 0, 0, 0.2);
 }
 
-#login-form {
-    width: 100%;
+#reg-cheers {
     display: none;
 }
 
-#register-form {
-    width: 100%;
+#auth-cheers,
+#reg-cheers {
+    margin-top: 60px;
+    justify-self: end;
+    white-space: nowrap;
+}
+
+#auth-cheers h2,
+#reg-cheers h2 {
+    text-align: right;
+
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 40pt;
+}
+
+#auth-cheers h2:last-child {
+    color: rgb(255, 82, 25);
+}
+
+#reg-cheers h2:nth-child(2) {
+    color: rgb(255, 82, 25);
+}
+#reg-cheers h2:last-child {
+    color: rgb(204, 66, 20);
 }
 
 #switch-button {
-    color: white;
-    font-weight: 600;
+    color: rgb(132, 132, 132);
+    font-size: 13pt;
     text-align: center;
+    white-space: nowrap;
     display: grid;
+    grid-gap: 30px;
     grid-template-columns: 1fr 1fr;
+}
+
+#acc-auth-button {
+    color: rgb(255, 82, 25);
+    box-shadow: 0px 2px 0px 0px rgba(255, 82, 25, 1);
+} 
+
+#login-form {
+    width: 100%;
+    display: block;
+}
+
+#register-form {
+    width: 100%;
+    display: none;
 }
 
 #switch-button:hover {
@@ -112,14 +84,60 @@
 
 }
 
-#switch-button div {
-    padding: 0.3vw;
+.auth form {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 20px;
 }
 
-#account-register-button {
-    background: rgb(255, 57, 0);
+.auth form input[type=text],
+.auth form input[type=password] {
+    margin: 0;
+    padding: 10px;
+    width: 100%;
+
+    text-align: center;
+    border: 2px solid rgb(255, 82, 25);
 }
 
-#account-auth-button {
-    background: rgb(65, 65, 65);
+.auth form p {
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+}
+
+.auth form input[type=submit] {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+
+    text-align: center;
+    background-color: rgb(255, 82, 25);
+    border: none;
+    border-radius: 40px;
+    color: rgb(255,255,255);
+}
+
+.auth .auth-soc-icons {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 40px;
+}
+
+.auth .auth-soc-icons img {
+    width: 100%;
+}
+
+.auth .auth-agreement {
+    margin-top: 30px;
+    text-align: center;
+
+    font-size: 10pt;
+}
+
+.auth .auth-agreement a {
+    text-decoration: underline;    
 }

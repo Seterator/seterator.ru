@@ -2,12 +2,21 @@
     ViewData["Title"] = "Регистрация/Вход";
 }
 
-<div class="account-back">
-    <div class="account-wrap container">
-        <div class="form-wrap">
+<div class="auth container">
+    <div id="auth-cheers">
+        <h2>Пиши.</h2>
+        <h2>и зарабатывай!</h2>
+    </div>
+    <div id="reg-cheers">
+        <h2>Пиши.</h2>
+        <h2>Участвуй.</h2>
+        <h2>Зарабатывай!</h2>
+    </div>
+    <div class="auth-form-container">
+        <div class="auth-form">
             <div id="switch-button" onclick="switchForm()">
-                <div id ="account-register-button">Новый участник</div>
-                <div id ="account-auth-button">Уже сетератор</div>
+                <div id="acc-reg-button">Новый участник</div>
+                <div id="acc-auth-button">Уже сетератор</div>
             </div>
             <div id="login-form">
                 <partial name="login" />
@@ -15,9 +24,16 @@
             <div id="register-form">
                 <partial name="register" />
             </div>
+            <div class="auth-soc-icons">
+                <a href="#"><img src="~/img/Social icons/Orange/vk.svg" /></a>
+                <a href="#"><img src="~/img/Social icons/Orange/yandex.svg" /></a>
+                <a href="#"><img src="~/img/Social icons/Orange/google.svg" /></a>
+                <a href="#"><img src="~/img/Social icons/Orange/facebook.svg" /></a>
+                <a href="#"><img src="~/img/Social icons/Orange/twitter.svg" /></a>
+            </div>
         </div>
+        <p class="auth-agreement">Регистрируясь, Вы принимаете условия <a href="#">Пользовательского соглашения</a>.</p>
     </div>
-</div>
-    
+</div>    
 
 <script asp-src-include="/js/account.js"></script>
