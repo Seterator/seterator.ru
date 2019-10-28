@@ -53,8 +53,9 @@ header nav ul li {
     font-weight: 600;
 }
 
-#header-auth img {
+#header-auth .img-svg {
     width: 100%;
+    fill: rgb(255, 82, 25);
 }
 
 #header-auth a {

@@ -127,8 +127,9 @@
     grid-gap: 40px;
 }
 
-.auth .auth-soc-icons img {
+.auth .auth-soc-icons .img-svg {
     width: 100%;
+    fill: rgb(255, 82, 25);
 }
 
 .auth .auth-agreement {
