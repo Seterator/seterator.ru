@@ -9,7 +9,6 @@
     min-height: 70vh;
     display: grid;
     grid-template-columns: 7fr 4fr 1fr;
-    margin-top: 100px;
 }
 
 .auth .auth-form-container {

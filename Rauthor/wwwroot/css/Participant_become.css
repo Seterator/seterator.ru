@@ -1,4 +1,101 @@
-﻿.grid-participant-become {
+﻿.part-become {
+}
+
+.part-become .time-to-end {
+    color: rgb(255, 82, 25);
+}
+
+.part-become .poem-title-cond {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.part-become .poem-title-cond h2 {
+    margin-top: 10px;
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 24pt;
+}
+
+.part-become .poem-title-cond p {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+
+
+}
+
+.part-become .poem-title-cond p .img-svg {
+        width: 5%;
+}
+
+.part-become form {
+    padding: 0;
+    margin: 60px auto;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 20px;
+
+    width: 66%;
+}
+
+.part-become form input[type=text] {
+    background-color: rgb(238, 238, 238);
+    border: 2px solid rgb(238, 238, 238);
+    font-size: 14pt;
+    margin: 0;
+    padding: 20px 30px;
+    width: 100%;
+}
+
+.part-become form input[type=text]:focus,
+.part-become form textarea:focus {
+    border: 2px solid rgb(255, 82, 25);
+}
+
+.part-become form input:nth-child(2) {
+    font-style: italic;
+}
+
+.part-become form textarea {
+    background-color: rgb(238, 238, 238);
+    border: 2px solid rgb(238, 238, 238);
+    font-size: 12pt;
+    padding: 20px 30px;
+}
+
+.part-become form input[type=submit] {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+
+    text-align: center;
+    background-color: rgb(255, 82, 25);
+    border: none;
+    border-radius: 40px;
+    color: rgb(255,255,255);
+}
+
+.part-become form input[type=submit]:hover {
+    background-color: rgb(204, 66, 20);
+}
+
+.part-become form p {
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+
+    text-align: center;
+}
+
+.part-become form p a {
+    text-decoration: underline;
+}
+
+/*.grid-participant-become {
     display: grid;
     background: rgb(239, 239, 239);
     grid-gap: 0.5vw;
@@ -49,4 +146,4 @@
 
 .become-item input[type=submit]:hover {
     opacity: 0.7;
-}
+}*/

@@ -9,7 +9,7 @@ a:hover {
 header {
     font-family: 'Montserrat', sans-serif;
     font-size: 12pt;
-
+    margin-bottom: 100px;
 }
 
 header nav  {
