@@ -85,10 +85,10 @@ html {
     min-height: 100%;
 }
 
-p {
+/*p {
     margin: 0;
     padding: 0;
-}
+}*/
 
 .card, .list-group {
     margin: 4px;
