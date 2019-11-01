@@ -13,10 +13,16 @@ namespace Rauthor.Models
         [Key]
         [Column("GUID")]
         public Guid Guid { get; set; }
-        [Column("participant_GUID")]
+        
+        [Column("participant_guid")]
         public Guid ParticipantGuid { get; set; }
+
+        [Column("jury_guid")]
+        public Guid JuryGuid { get; set; }
+        
         [Column("assessment", TypeName = "enum('0', '2', '3', '4', '5')")]
         public Assessment? Assessment { get; set; }
+        
         [ForeignKey("ParticipantGuid")]
         public Participant Participant { get; set; }
     }

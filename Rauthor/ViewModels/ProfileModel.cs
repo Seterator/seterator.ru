@@ -56,7 +56,7 @@ namespace Rauthor.ViewModels
         {
             Contract.Assert(database != null);
             var user = database.Users.FirstOrDefault(u => u.Guid == userGuid);
-            database.Participants.Include(x => x.Votes).Where(p => p.UserGuid == userGuid).Load();
+            database.Participants.Where(p => p.UserGuid == userGuid).Load();
             
             if (user.Participants != null)
                 database.Competitions.Where(c => user.Participants
@@ -65,7 +65,7 @@ namespace Rauthor.ViewModels
                     .Contains(c.Guid)).Load();
             var profile = new ProfileModel(
                 user.Login,
-                rating: user.Participants?.Sum(p => p.UserScore) ?? 0,
+                rating:  0,
                 verificated: false,
                 participants: user.Participants?.Where(p => !p.Approved) ?? new List<Participant>(),
                 participatedCompetitions: database.Participants

@@ -11,7 +11,6 @@ namespace Rauthor.Models
     [Table("competition")]
     public class Competition
     {
-        private string json;
         [Key]
         [Column("GUID")]
         public Guid Guid { get; set; }
@@ -37,18 +36,22 @@ namespace Rauthor.Models
         [Column("description")]
         public string Description { get; set; }
 
+        [Column("prizes")]
+        public string Prizes { get; set; }
+
         public virtual List<Participant> Participants { get; set; }
 
+        public virtual List<CompetitionRelCategory> Categories { get; set; }
 
-        [NotMapped]
-        public object Conditions
-        {
-            get => JsonConvert.DeserializeObject(json);
-        }
+        public virtual List<CompetitionConstraint> Constraints { get; set; }
+
+        public virtual List<CompetitionRelJury> Jury { get; set; }
+
         public Competition()
         {
             Guid = Guid.NewGuid();
             Participants = new List<Participant>();
+            Categories = new List<CompetitionRelCategory>();
         }
     }
 }

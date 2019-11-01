@@ -16,6 +16,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Participant.cs~RFfbbcf04.TMP\**" />
+    <Content Remove="Models\Participant.cs~RFfbbcf04.TMP\**" />
+    <EmbeddedResource Remove="Models\Participant.cs~RFfbbcf04.TMP\**" />
+    <None Remove="Models\Participant.cs~RFfbbcf04.TMP\**" />
+    <TypeScriptCompile Remove="Models\Participant.cs~RFfbbcf04.TMP\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\js\account.ts" />
     <Content Remove="wwwroot\js\competition.ts" />
   </ItemGroup>

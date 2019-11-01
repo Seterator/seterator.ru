@@ -25,8 +25,6 @@ namespace Rauthor.Controllers
             var competition = database.Competitions.Include(c => c.Participants).FirstOrDefault(c => c.Guid == guid);
             database.Users.Where(user => competition.Participants.Any(p => p.UserGuid == user.Guid)).Load();
             database.Poems.Where(poem => competition.Participants.Any(p => p.Guid == poem.ParticipantGuid)).Load();
-            database.VotesOfUsers.Where(vote => vote.Participant.Guid == guid).Load();
-            competition.Participants.ForEach(p => database.Entry(p).Collection(p => p.Votes).Load());
             ViewData["Title"] = competition.Titile;
             if (User.Identity.IsAuthenticated) {
                 ViewData["Personal"] = true;
