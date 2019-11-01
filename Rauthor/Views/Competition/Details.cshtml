@@ -18,8 +18,11 @@
                     </div>
                 </div>
                 <div class="timer">@Model.EndDate.ToString("dd.MM.yy")</div>
-                <button class="formButton">Участвовать</button>
-            </div>
+                <a asp-action="Edit"
+                   asp-controller="Participant"
+                   asp-route-guid="@ViewData["ParticipantGuid"]"><button class="formButton">Участвовать</button></a>
+
+                </div>
             <div class="share-icons">
                 <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
                 <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>

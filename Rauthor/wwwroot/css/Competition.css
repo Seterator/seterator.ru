@@ -61,10 +61,13 @@
     font-weight: 600;
 }
 
-#compet .banner .formButton {
+#compet .banner a {
     flex: 0 0 20%;
-    height: 50px;
     align-self: center;
+}
+
+#compet .banner .formButton {
+    height: 50px;
 
 }
 
