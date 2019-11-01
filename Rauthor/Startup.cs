@@ -61,7 +61,7 @@ namespace Rauthor
 #pragma warning disable CA2000 // Dispose objects before losing scope
                 .AddSingleton<IMemoryCache>(new Services.MemoryCache())
 #pragma warning restore CA2000 // Dispose objects before losing scope
-                .AddDbContext<Models.DatabaseContext>(options => options.UseMySQL(connection)
+                .AddDbContext<DatabaseContext>(options => options.UseMySQL(connection)
                                                                          .EnableDetailedErrors()
                                                                          .EnableSensitiveDataLogging())
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
