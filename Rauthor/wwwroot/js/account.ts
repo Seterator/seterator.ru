@@ -36,3 +36,13 @@
         authButton.style.color = "rgb(132, 132, 132)";
     }
 }
+
+async function login(username: string, password: string) {
+    let model: string = JSON.stringify({ "Username": username, "Password": password });
+    let response = fetch("api/account",
+        {
+            body: model,
+            method: "post"
+        });
+    console.log(await response);
+}

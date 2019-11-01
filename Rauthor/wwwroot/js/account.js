@@ -1,10 +1,10 @@
 function switchForm() {
-    var loginView = document.getElementById("login-form");
-    var registerView = document.getElementById("register-form");
-    var authButton = document.getElementById("acc-reg-button");
-    var registerButton = document.getElementById("acc-auth-button");
-    var regCheers = document.getElementById("reg-cheers");
-    var authCheers = document.getElementById("auth-cheers");
+    let loginView = document.getElementById("login-form");
+    let registerView = document.getElementById("register-form");
+    let authButton = document.getElementById("acc-reg-button");
+    let registerButton = document.getElementById("acc-auth-button");
+    let regCheers = document.getElementById("reg-cheers");
+    let authCheers = document.getElementById("auth-cheers");
     if (loginView.style.display != "none") {
         registerView.style.display = "block";
         regCheers.style.display = "block";
@@ -25,5 +25,13 @@ function switchForm() {
         authButton.style.boxShadow = "none";
         authButton.style.color = "rgb(132, 132, 132)";
     }
+}
+async function login(username, password) {
+    let model = JSON.stringify({ "Username": username, "Password": password });
+    let response = fetch("api/account", {
+        body: model,
+        method: "post"
+    });
+    console.log(await response);
 }
 //# sourceMappingURL=account.js.map
