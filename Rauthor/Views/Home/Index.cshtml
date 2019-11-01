@@ -5,6 +5,39 @@
 }
 
 <div class="container">
+    <div id="index">
+        <div class="banner">
+            <h2>Поэтические конкурсы каждый день!</h2>
+            <p>Устал от конкурсов с результатами через год?</p>
+            <p>Отправь заявку сегодня и завтра узнай результат!</p>
+        </div>
+
+        <div class="events-list">
+            @foreach (var competition in Model)
+            {
+                <a href="Competition/Details/@competition.Guid.ToString()">
+                    <div class="event">
+                        <span class="timer"><img />@competition.EndDate.ToString("yyyy.MM.dd")</span>
+                        <span class="event-categoty">Ежедневный конкурс</span>
+                        <h4 class="event-title">@competition.Titile</h4>
+                        <p class="event-description">@competition.Description</p>
+                    </div>
+                </a>
+            }
+            <span>Все ежедневные конкурсы</span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+@*<div class="container">
     <div class="home-block">
         <h1>Поэтические конкурсы каждый день</h1>
         <div class="home-events-list">
@@ -53,31 +86,4 @@
             }
         </div>
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-    @*<div class="container">
-
-        <div class="grid-index">
-            @foreach (var competition in Model)
-            {
-
-                <a href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="event_card">
-                        <div class="info-on-card">
-                            <h3>@competition.Titile</h3>
-                            <h4>до @competition.EndDate.ToString("dd.MM.yyyy")</h4>
-                        </div>
-                    </div>
-                </a>
-            }
-        </div>
 </div>*@

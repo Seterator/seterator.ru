@@ -26,4 +26,20 @@ function switchForm() {
         authButton.style.color = "rgb(132, 132, 132)";
     }
 }
+function successReg() {
+    var authContainer = document.getElementById("auth");
+    var sucView = document.getElementById("successReg");
+    var authCheersView = document.getElementById("auth-cheers");
+    var regCheersView = document.getElementById("reg-cheers");
+    var authFormContainerView = document.getElementById("auth-form-container");
+    var regView = document.getElementById("register-form");
+    authContainer.style.gridTemplateColumns = "0.33fr";
+    authContainer.style.alignContent = "center";
+    authContainer.style.justifyContent = "center";
+    regView.style.display = "none";
+    authCheersView.style.display = "none";
+    regCheersView.style.display = "none";
+    authFormContainerView.style.display = "none";
+    sucView.style.display = "flex";
+}
 //# sourceMappingURL=account.js.map
