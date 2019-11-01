@@ -27,9 +27,10 @@ namespace Rauthor.Services
         }
         static string Times(string s, int times)
         {
+            var result = "";
             for (int i = 0; i < times; i++)
             {
-                s += s;
+                result += s;
             }
             return s;
         }
