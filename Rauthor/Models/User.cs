@@ -23,18 +23,13 @@ namespace Rauthor.Models
         [JsonConverter(typeof(ReadOnlyCollectionConverter<byte>))]
         public IReadOnlyCollection<byte> PasswordHash { get; set; }
 
-        [Column("prize", TypeName = "mediumtext")]
-        public string Prize { get; set; }
-
-        [Column("Kind",TypeName = "enum('Common','Jury','Moderator')")]
-        public UserKind Kind { get; set; }
-
         public virtual List<Participant> Participants { get; set; }
+
+        public virtual List<Role> Roles { get; set; }
 
         public User()
         {
             Guid = Guid.NewGuid();
-            Prize = "[ничего]";
         }
         private class ReadOnlyCollectionConverter<TItem> : JsonConverter
         {
@@ -53,9 +48,6 @@ namespace Rauthor.Models
                 serializer.Serialize(writer, (value as IReadOnlyCollection<TItem>).ToArray());
             }
         }
-
-        [NotMapped]
-        public virtual int TotalRating => this.Participants?.Sum(x => x.UserScore) ?? 0;
     }
     
     public enum UserKind

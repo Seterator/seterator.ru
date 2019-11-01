@@ -15,7 +15,7 @@ namespace Rauthor.Models
         [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [Column("Text")]
+        [Column("text")]
         public string Text 
         { 
             get {
@@ -34,10 +34,8 @@ namespace Rauthor.Models
         [Column("title")]
         public string Title { get; set; }
 
-        [Column("author_GUID")]
+        [Column("author_participant_guid")]
         public Guid ParticipantGuid { get; set; }
-
-
 
         [ForeignKey("ParticipantGuid")]
         public virtual Participant Author { get; set; }

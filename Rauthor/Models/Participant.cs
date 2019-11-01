@@ -16,14 +16,10 @@ namespace Rauthor.Models
         [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [NotMapped]
-        [DisplayName("Рейтинг у пользователей")]
-        public int UserScore => Votes?.Where(v => v.VoteState == VoteState.Up).Count() ?? -1;
-
-        [Column("competition_GUID")]
+        [Column("competition_guid")]
         public Guid CompetitionGuid { get; set; }
 
-        [Column("user_GUID")]
+        [Column("user_guid")]
         public Guid UserGuid { get; set; }
 
         [Column("status", TypeName = "enum('New','Approved','Rejected','Updated')")]
@@ -32,6 +28,9 @@ namespace Rauthor.Models
 
         [Column("create_date")]
         public DateTime CreateDate { get; set; }
+
+        [Column("nickname")]
+        public string Nickname { get; set; }
 
         [NotMapped]
         public bool Approved => Status == ParticipantStatus.Approved;
@@ -44,11 +43,10 @@ namespace Rauthor.Models
         [ForeignKey("UserGuid")]
         public virtual User User { get; set; }
 
-        public List<VoteOfUser> Votes { get; set; }
-
         public Participant()
         {
             Guid = Guid.NewGuid();
+            CreateDate = DateTime.Now;
         }
     }
     public enum ParticipantStatus
