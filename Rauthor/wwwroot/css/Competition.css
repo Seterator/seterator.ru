@@ -1,4 +1,246 @@
-﻿.competition-grid {
+﻿#compet .banner {
+    background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
+    background-size: cover;
+    background-position: 10% 85%;
+    position: relative;
+}
+
+#compet .banner * {
+    margin: 0;
+    padding: 0;
+}
+
+#compet .banner h2 {
+    margin-top: 10px;
+    font-size: 24pt;
+}
+
+#compet h3 {
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 24pt;
+
+}
+
+#compet .avatar {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius: 50px;
+}
+
+#compet .banner p {
+    margin-top: 20px;
+    font-size: 12pt;
+}
+
+#compet .banner .down-line {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    /*grid-template-columns: repeat(3, 1fr);*/
+}
+
+#compet .banner .organizer {
+    flex: 0 1 30%;
+    display: grid;
+    grid-template-areas:
+        "avatar name . "
+        "avatar icons icons";
+    grid-gap: 10px;
+}
+
+#compet .banner .organizer .avatar {
+    grid-area: avatar;
+}
+
+#compet .banner .organizer .name {
+    grid-area: name;
+    font-size: 14pt;
+    font-weight: 600;
+}
+
+#compet .banner .formButton {
+    flex: 0 0 20%;
+    height: 50px;
+    align-self: center;
+
+}
+
+#compet .banner .organizer-soc-icons {
+    grid-area: icons;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+}
+
+#compet .banner .organizer-soc-icons .img-svg {
+    width: 100%;
+    fill: rgb(255, 82, 25);
+
+}
+
+#compet .banner .organizer-soc-icons a {
+    width: 50%;   
+}
+
+#compet .banner .organizer-soc-icons a :hover{
+    fill: rgb(204, 66, 20);  
+}
+
+#compet .banner .timer {
+    background: rgb(255, 255, 255);
+    color: rgb(255, 82, 25);
+
+    align-self: center;
+    margin-left: auto;
+    margin-right: 20px;
+    padding: 5px 20px;
+    border-radius: 5px;
+
+    font-weight: 600;
+}
+
+#compet .banner .share-icons {
+    width: 25%;
+    position: absolute;
+    display: grid;
+    justify-content: end;
+    grid-template-columns: repeat(4, 1fr);
+
+    right: 8%;
+    top: 25%;
+
+}
+
+#compet .banner .share-icons a {
+   width: 50%;     
+}
+
+#compet .banner .share-icons a:hover .img-svg {
+    opacity: 1;
+}
+
+#compet .banner .share-icons .img-svg {
+    width: 100%;
+   fill: rgb(255, 255, 255);
+   opacity: 0.3;
+}
+
+#compet .full-description {
+    margin-top: 50px;
+}
+
+#compet .full-description p {
+    margin-top: 10px;
+
+}
+
+
+#compet .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    margin-top: 25px;
+}
+
+#compet .content button {
+    background: rgb(255, 255, 255);
+    color: rgb(255, 82, 25);
+}
+
+#compet .content ul {
+    list-style-type: none;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+}
+
+#compet .content ul li {
+    margin-top: 5px;
+}
+
+#compet .content .conditions {
+    margin-top: 30px;    
+}
+
+#compet .content .conditions ul li::before {
+      content: '';
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      vertical-align: middle;
+      border-radius: 50%;
+      background-color: rgb(255, 82, 25);
+      margin-right: 3%;   
+}
+
+#compet .content .prizes {
+    margin-left: 14%;
+    padding: 30px;
+    background: rgb(238, 238, 238);
+}
+
+
+#compet .content .prizes ul {
+    list-style-type: none;
+}
+
+#compet .content .jury ul li {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#compet .content .prizes ul li:nth-child(1) span {
+    color: rgb(255, 82, 25);
+    font-weight: 600;
+}
+
+#compet .content .prizes ul li:nth-child(2) span {
+    color: rgb(204, 61, 20);
+    font-weight: bold;
+}
+
+#compet .content .prizes ul li:nth-child(3) span {
+    font-weight: bold;
+}
+
+#compet .content .jury h3 span,
+#compet .content .participants h3 span{
+    color: rgb(255, 82, 25);
+}
+
+#compet .content .jury ul li .avatar {
+    background: rgb(0, 0, 0);
+}
+
+#compet .content .jury ul li .name {
+    font-weight: 600;
+}
+
+#compet .content .jury ul li:last-child {
+    grid-column-end: span 3;
+}
+
+#compet .content .participants h4 {
+    font-size: 16pt;
+    font-weight: 600;
+}
+
+#compet .content .participants ul li span {
+    font-style: italic;
+}
+
+
+
+
+
+
+
+
+/*.competition-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-areas: 
@@ -30,7 +272,7 @@
     height: unset;
     position: absolute;
     bottom: 0;
-}*/
+}
 
 .competition-grid .event_card h3 {
     font-size: 46pt;
@@ -118,4 +360,4 @@
 
 .participant-block table th {
     color: darkgray;
-}
+}*/

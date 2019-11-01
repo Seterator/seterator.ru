@@ -1,9 +1,86 @@
 ﻿@model Competition
 
 <div class="container">
+    <div id="compet">
+        <div class="banner">
+            <span class="category">Ежедневный конкурс</span>
+            <h2>@Model.Titile</h2>
+            <p>@Model.Description</p>
+            <div class="down-line">
+                <div class="organizer">
+                    <div class="avatar"></div>
+                    <span class="name">Стихи.ру</span>
+                    <div class="organizer-soc-icons">
+                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
+                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+                    </div>
+                </div>
+                <div class="timer">@Model.EndDate.ToString("dd.MM.yy")</div>
+                <button class="formButton">Участвовать</button>
+            </div>
+            <div class="share-icons">
+                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
+                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+            </div>
+        </div>
+        <div class="full-description">
+            <h3>Описание</h3>
+            <p>@Model.Description</p>
+        </div>
+
+        <div class="content">
+                <div class="conditions">
+                    <h3>Условия конкурса</h3>
+                    <ul>
+                        <li>Вам должно быть от 18 до 19 лет.</li>
+                        <li>Вы должны быть гражданином РФ.</li>
+                        <li>Произведение не должно содержать нецензурную лексику.</li>
+                    </ul>
+                </div>
+                <div class="prizes">
+                    <h3>Призы</h3>
+                    <ul>
+                        <li><span>1 место</span> - 1000 р.</li>
+                        <li><span>2 место</span> - 500 р.</li>
+                        <li><span>3 место</span> - 100 р.</li>
+                        <li>4-10 - скидка где-то.</li>
+                        <li>10-15 - блокнот и ручка</li>
+                    </ul>
+                </div>
+                <div class="jury">
+                    <h3>Жюри <span>(25)</span></h3>
+                    <ul>
+                        <li>
+                            <div class="avatar"></div>
+                            <span class="name">Имя Фамилия</span>
+                            <span class="about">О жюри</span>
+                        </li>
+                    </ul>
+                    <button class="formButton">Смотреть всех</button>
+                </div>
+            <div class="participants">
+                <h3>Участники <span>(1 из 1000)</span></h3>
+                <ul>
+                    <li>
+                        <h4>Название произведения</h4>
+                        <span>Псевдоним</span>
+                    </li>
+                </ul>
+                <button class="formButton">Cмотреть всех</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="container">
     <div class="competition-grid">
         <div class="event_card">
-            @*<img src="~/img/event.png" />*@
             <div class="info-on-card">
                 <h3>@Model.Titile</h3>
                 <h4>до @Model.EndDate.ToString("dd.MM.yyyy")</h4>
@@ -87,84 +164,4 @@
             </table>
         </div>
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*<h2>@Model.Titile</h2>
-@if ((bool)ViewData["Personal"])
-{
-    @if ((bool)ViewData["TakingPart"])
-    {
-    <span>Вы принимаете участие</span>
-    <a asp-action="Edit"
-       asp-controller="Participant"
-       asp-route-guid="@ViewData["ParticipantGuid"]">Ваша заявка</a>
-    }
-    else
-    {
-    <a class="btn border-primary"
-       asp-action="Become"
-       asp-controller="Participant"
-       asp-route-id="@Model.Guid.ToString()">Участвовать</a>
-
-    }
-    <div class="card card-body">
-        <span>Конец подачи заявок: @Model.StartDate.ToString("dd.MM.yyyy")</span>
-        <span>Результаты конкурса: @Model.EndDate.ToString("dd.MM.yyyy")</span>
-    </div>
-}
-@if (Model.Description != null)
-{
-    <div class="card">
-        <div class="card-header">
-            Описание
-        </div>
-        <div class="card-body">
-            @Model.Description
-        </div>
-    </div>
-}
-<hr />
-<table class="table table-bordered">
-    <thead class="thead-light">
-        <tr>
-            <td>Участник</td>
-            <td>Произведения</td>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var p in Model.Participants.Where(p => p.Approved))
-    {
-        <tr 
-        @if (p.User.Login == User.Identity.Name)
-        {
-            Write("class=table-primary");
-        }
-        >
-            <td >@p.User.Login</td>
-            <td >
-                @foreach (var poem in p.Poems)
-                {
-                    <span>@poem.Title</span>
-                }
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>*@
+</div>*@

@@ -1,14 +1,17 @@
-﻿.banner {
-    width: 100%;
+﻿#index .banner {
     background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
-    background-size:cover;
-    background-repeat: no-repeat;
+    background-size: cover;
     background-position: 10% 85%;
-    overflow: hidden;
+}
 
+.banner {
+    width: 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
     padding: 5% 8%;
     color: rgb(255, 255, 255);
 }
+
 
 .banner h2 {
     margin: 0;
@@ -47,6 +50,8 @@
 .events-list .event {
     display: flex;
     flex-direction: column;
+
+
 }
 
 .events-list .event *{
