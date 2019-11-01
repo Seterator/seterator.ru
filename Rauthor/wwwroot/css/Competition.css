@@ -142,13 +142,22 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    grid-gap: 40px;
 
     margin-top: 25px;
+    margin-bottom: 90px;
 }
 
 #compet .content button {
     background: rgb(255, 255, 255);
     color: rgb(255, 82, 25);
+    border: 2px solid rgb(255, 82, 25);
+    margin-top: 30px;
+}
+
+#compet .content button:hover {
+    background: rgb(255, 82, 25);
+    color: rgb(255, 255, 255);
 }
 
 #compet .content ul {
@@ -188,10 +197,6 @@
     list-style-type: none;
 }
 
-#compet .content .jury ul li {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
 
 #compet .content .prizes ul li:nth-child(1) span {
     color: rgb(255, 82, 25);
@@ -212,16 +217,37 @@
     color: rgb(255, 82, 25);
 }
 
+#compet .content .jury,
+#compet .content .participants {
+    display: grid;
+}
+
+
+#compet .content .jury,
+#compet .content .participants button {
+    align-self: end;
+}
+
+#compet .content .jury ul li div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
 #compet .content .jury ul li .avatar {
     background: rgb(0, 0, 0);
 }
 
 #compet .content .jury ul li .name {
     font-weight: 600;
+    margin-left: 20px;
 }
 
-#compet .content .jury ul li:last-child {
-    grid-column-end: span 3;
+#compet .content .jury ul li .about {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
 }
 
 #compet .content .participants h4 {
