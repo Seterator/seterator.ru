@@ -42,17 +42,11 @@ namespace Rauthor.Controllers
             }
             return View(competition);
         }
+        
         [HttpGet]
         public IActionResult Create()
         {
             return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Competition competition)
-        {
-            database.Add(competition);
-            database.SaveChanges();
-            return RedirectToAction("Details", new { guid = competition.Guid });
         }
         public IActionResult Delete([FromRoute] Guid guid)
         {

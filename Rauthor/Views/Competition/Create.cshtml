@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<form id="main-form">
+    <ul>
+        <li><label>Title</label></li>
+        <li><input name="title" type="text" placeholder="title" /></li>
+        <li><label>Start date</label></li>
+        <li><input name="startDate" type="date" /></li>
+        <li><label>End date</label></li>
+        <li><input name="endDate" type="date" /></li>
+        <li><label>Description</label></li>
+        <li><textarea name="description"></textarea></li>
+        <li><label>Description</label></li>
+        <li><textarea name="prizes"></textarea></li>
+        <li><button>Create</button></li>
+    </ul>
+</form>
+
+<script asp-src-include="/js/competition.js"></script>
+

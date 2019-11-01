@@ -88,7 +88,7 @@ namespace Rauthor.Controllers.Api
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                new Claim(ClaimTypes.Role, user.Kind.ToString())
+                //new Claim(ClaimTypes.Role, user.Kind.ToString())
             };
             ClaimsIdentity id = new ClaimsIdentity(claims: claims,
                                                    authenticationType: "ApplicationCookie",

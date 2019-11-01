@@ -59,7 +59,7 @@ function successReg(): void {
 
     sucView.style.display = "flex";
 }
-}
+
 
 async function login(username: string, password: string) {
     let model: string = JSON.stringify({ "Username": username, "Password": password });

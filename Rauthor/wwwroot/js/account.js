@@ -26,21 +26,13 @@ function switchForm() {
         authButton.style.color = "rgb(132, 132, 132)";
     }
 }
-async function login(username, password) {
-    let model = JSON.stringify({ "Username": username, "Password": password });
-    let response = fetch("api/account", {
-        body: model,
-        method: "post"
-    });
-    console.log(await response);
-}
 function successReg() {
-    var authContainer = document.getElementById("auth");
-    var sucView = document.getElementById("successReg");
-    var authCheersView = document.getElementById("auth-cheers");
-    var regCheersView = document.getElementById("reg-cheers");
-    var authFormContainerView = document.getElementById("auth-form-container");
-    var regView = document.getElementById("register-form");
+    let authContainer = document.getElementById("auth");
+    let sucView = document.getElementById("successReg");
+    let authCheersView = document.getElementById("auth-cheers");
+    let regCheersView = document.getElementById("reg-cheers");
+    let authFormContainerView = document.getElementById("auth-form-container");
+    let regView = document.getElementById("register-form");
     authContainer.style.gridTemplateColumns = "0.33fr";
     authContainer.style.alignContent = "center";
     authContainer.style.justifyContent = "center";
@@ -49,5 +41,13 @@ function successReg() {
     regCheersView.style.display = "none";
     authFormContainerView.style.display = "none";
     sucView.style.display = "flex";
+}
+async function login(username, password) {
+    let model = JSON.stringify({ "Username": username, "Password": password });
+    let response = fetch("api/account", {
+        body: model,
+        method: "post"
+    });
+    console.log(await response);
 }
 //# sourceMappingURL=account.js.map
