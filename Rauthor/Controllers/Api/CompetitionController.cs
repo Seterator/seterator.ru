@@ -45,7 +45,9 @@ namespace Rauthor.Controllers.Api
         [HttpPut("{guid}")]
         public void Put(Guid guid, [FromBody] Competition value)
         {
-
+            var oldValue = database.Competitions.Where(x => x.Guid == guid).Single();
+            database.Entry(oldValue).CurrentValues.SetValues(value);
+            database.SaveChanges();
         }
 
         // DELETE: api/ApiWithActions/5

@@ -21,11 +21,15 @@ class Competition {
 
 
 async function removeButtonClick(sender: any): Promise<void> {
-    let guid: string = window.location.pathname.split(new RegExp("/|\\?"))[3];
+    let guid = getCurrentGuid();
     await fetch(`/api/competition/${guid}`,
         {
             method: "delete"
         });
+}
+
+function getCurrentGuid(): string {
+    return window.location.pathname.split(new RegExp("/|\\?"))[3];
 }
 
 async function create(event: Event) {

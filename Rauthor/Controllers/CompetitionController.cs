@@ -25,7 +25,7 @@ namespace Rauthor.Controllers
             var competition = database.Competitions.Include(c => c.Participants).FirstOrDefault(c => c.Guid == guid);
             database.Users.Where(user => competition.Participants.Any(p => p.UserGuid == user.Guid)).Load();
             database.Poems.Where(poem => competition.Participants.Any(p => p.Guid == poem.ParticipantGuid)).Load();
-            ViewData["Title"] = competition.Titile;
+            ViewData["Title"] = competition.Title;
             if (User.Identity.IsAuthenticated) {
                 ViewData["Personal"] = true;
                 var user = HttpContext.Session.Get<User>("user");
@@ -48,6 +48,14 @@ namespace Rauthor.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Update(Guid guid)
+        {
+            var competition = database.Competitions.Where(x => x.Guid == guid).Single();
+            return View(competition);
+        }
+
         public IActionResult Delete([FromRoute] Guid guid)
         {
             var competition = database.Competitions.Where(x => x.Guid == guid).Single();

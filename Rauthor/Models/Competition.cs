@@ -16,7 +16,7 @@ namespace Rauthor.Models
         public Guid Guid { get; set; }
 
         [Column("title")]
-        public string Titile { get; set; }
+        public string Title { get; set; }
 
         /// <summary>
         /// Дата окончания приёма заявок

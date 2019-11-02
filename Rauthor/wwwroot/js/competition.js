@@ -12,10 +12,13 @@ class Competition {
     }
 }
 async function removeButtonClick(sender) {
-    let guid = window.location.pathname.split(new RegExp("/|\\?"))[3];
+    let guid = getCurrentGuid();
     await fetch(`/api/competition/${guid}`, {
         method: "delete"
     });
+}
+function getCurrentGuid() {
+    return window.location.pathname.split(new RegExp("/|\\?"))[3];
 }
 async function create(event) {
     //let form = document.getElementById("main-form") as any;

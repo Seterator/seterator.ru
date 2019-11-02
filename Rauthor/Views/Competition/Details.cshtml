@@ -5,7 +5,7 @@
         <div class="event_card">
             @*<img src="~/img/event.png" />*@
             <div class="info-on-card">
-                <h3>@Model.Titile</h3>
+                <h3>@Model.Title</h3>
                 <h4>до @Model.EndDate.ToString("dd.MM.yyyy")</h4>
             </div>
             @if (User.Identity.IsAuthenticated)
@@ -87,6 +87,11 @@
         </div>
     </div>
     <button onclick="removeButtonClick(this)">Удалить</button>
+    <a asp-action="Update"
+       asp-controller="Competition"
+       asp-route-guid="@Model.Guid">
+        Редактировать
+    </a>
 </div>
 <script asp-src-include="/js/competition.js"></script>
 

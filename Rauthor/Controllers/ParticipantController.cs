@@ -43,7 +43,7 @@ namespace Rauthor.Controllers
         {
             Competition competition;
             competition = database.Competitions.First((c) => c.Guid == guid);
-            ViewData["Competition title"] = competition.Titile;
+            ViewData["Competition title"] = competition.Title;
             ViewData["Competition guid"] = guid;
             return View();
         }

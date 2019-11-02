@@ -1,11 +1,11 @@
 ﻿@model Participant
 @{
-    ViewData["Title"] = $"Заявка на конкурс \"{Model.Competition.Titile}\"";
+    ViewData["Title"] = $"Заявка на конкурс \"{Model.Competition.Title}\"";
 }
 
 <div class="container">
     <div class="review">
-        <h2>@Model.Competition.Titile</h2>
+        <h2>@Model.Competition.Title</h2>
         <p>
             Статус:
             @(Model.Status switch
