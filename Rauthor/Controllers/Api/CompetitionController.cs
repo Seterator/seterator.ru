@@ -46,6 +46,7 @@ namespace Rauthor.Controllers.Api
         public void Put(Guid guid, [FromBody] Competition value)
         {
             var oldValue = database.Competitions.Where(x => x.Guid == guid).Single();
+            value.Guid = guid;
             database.Entry(oldValue).CurrentValues.SetValues(value);
             database.SaveChanges();
         }
