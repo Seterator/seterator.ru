@@ -1,0 +1,6 @@
+﻿language: csharp
+solution: Rauthor.sln
+mono: none
+dotnet: 2.2.7
+script:
+ - dotnet restore
