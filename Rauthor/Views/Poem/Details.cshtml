@@ -1,6 +1,16 @@
 ﻿@model Rauthor.ViewModels.PoemModel
 
-<div class="poem-details-back">
+
+<div class="container">
+    <div id="poem">
+        <h2>@ViewData["Poem title"]</h2>
+        <span>Псевдоним</span>
+        <p>@ViewData["Poem text"]</p>
+    </div>
+</div>
+
+
+@*<div class="poem-details-back">
     <div class="container">
         <div class="poem-details-grid">
             <div class="last-competitions">
@@ -21,4 +31,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@

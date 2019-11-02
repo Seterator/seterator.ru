@@ -18,9 +18,9 @@
                     </div>
                 </div>
                 <div class="timer">@Model.EndDate.ToString("dd.MM.yy")</div>
-                <a asp-action="Edit"
+                <a asp-action="Become"
                    asp-controller="Participant"
-                   asp-route-guid="@ViewData["ParticipantGuid"]"><button class="formButton">Участвовать</button></a>
+                   asp-route-guid="@Model.Guid"><button class="formButton">Участвовать</button></a>
 
                 </div>
             <div class="share-icons">
