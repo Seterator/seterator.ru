@@ -32,7 +32,7 @@ namespace Rauthor.Controllers
             var assesment = database.ParticipantAssessments.Where(x => x.ParticipantGuid == participant.Guid).FirstOrDefault();
             var model = new AssessmentModel()
             {
-                CompetitionTitle = participant.Competition.Titile,
+                CompetitionTitle = participant.Competition.Title,
                 Participant = participant,
                 AuthorName = participant.User.Login,
                 Assessment = assesment

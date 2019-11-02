@@ -7,7 +7,7 @@
     <form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
         <div asp-validation-summary="ModelOnly"></div>
         <div>
-            <input type="text" placeholder="e-mail" onclick="successReg()" />
+            <input asp-for="Login" type="text" placeholder="e-mail" />
         </div>
         <div>
             <p>На почту придут автоматически сгенерированные логин и пароль.</p>

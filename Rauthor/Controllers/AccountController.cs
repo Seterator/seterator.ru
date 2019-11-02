@@ -73,29 +73,26 @@ namespace Rauthor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(ViewModels.RegistrationModel data)
         {
-            Contract.Assert(data != null);
-            if (ModelState.IsValid)
+            var user = database.Users.FirstOrDefault(u => u.Login == data.Login);
+            if (data.Password == null)
+                data.Password = "password";
+            if (user == null)
             {
-                var user = database.Users.FirstOrDefault(u => u.Login == data.Login);
-                if (user == null)
+                var newUser = new Models.User()
                 {
-                    
-                    var newUser = new Models.User()
-                    {
-                        Login = data.Login,
-                        PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
-                    };
-                    database.Users.Add(newUser);
-                    await database.SaveChangesAsync().ConfigureAwait(true);
-                    _ = Authenticate(newUser);
-                    return RedirectToAction("Index", "Home");
-                }  
-                else
-                {
-                    ModelState.AddModelError("", "Некорректные данные");
-                }
+                    Login = data.Login,
+                    PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
+                };
+                database.Users.Add(newUser);
+                await database.SaveChangesAsync().ConfigureAwait(true);
+                _ = Authenticate(newUser);
+                return RedirectToAction("Index", "Home");
+            }  
+            else
+            {
+                ModelState.AddModelError("", "Некорректные данные");
+                return View(data);
             }
-            return View(data);
         }
 
         public IActionResult Main()

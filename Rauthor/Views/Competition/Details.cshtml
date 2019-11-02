@@ -87,12 +87,12 @@
     <div class="competition-grid">
         <div class="event_card">
             <div class="info-on-card">
-                <h3>@Model.Titile</h3>
+                <h3>@Model.Title</h3>
                 <h4>до @Model.EndDate.ToString("dd.MM.yyyy")</h4>
             </div>
             @if (User.Identity.IsAuthenticated)
             {
-                @if ((bool)ViewData["TakingPart"])
+                @if ((bool) ViewData["TakingPart"])
                 {
                     <a asp-action="Edit"
                        asp-controller="Participant"
@@ -127,7 +127,7 @@
                     <div><img src="~/img/Image 6.png" /></div>
                     <h5>Д. Быков</h5>
                     <p>
-                        Русский писатель, поэт и публицист, литературный критик, радио- и телеведущий, 
+                        Русский писатель, поэт и публицист, литературный критик, радио- и телеведущий,
                         журналист, преподаватель литературы, кинокритик.
                     </p>
                 </div>
@@ -152,20 +152,23 @@
                 <tbody>
                     @foreach (var participant in Model.Participants.Where(s => s.Approved))
                     {
-                    <tr>
-                        <td>@participant.Poems.First().Title</td>
-                        <td>@participant.User.Login</td>
-                        <td>
-                            <a asp-action="Details"
-                               asp-controller="Poem"
-                               asp-route-guid="@participant.Poems.First().Guid.ToString()">
-                                Перейти
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@participant.Poems.First().Title</td>
+                            <td>@participant.User.Login</td>
+                            <td>
+                                <a asp-action="Details"
+                                   asp-controller="Poem"
+                                   asp-route-guid="@participant.Poems.First().Guid.ToString()">
+                                    Перейти
+                                </a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-</div>*@
+</div>
+<script asp-src-include="/js/Competition/all.js"></script>
+<script asp-src-include="/js/Core/utils.js"></script>
+<script asp-src-include="/js/Core/models.js"></script>

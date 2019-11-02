@@ -25,6 +25,11 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\account.ts" />
+    <Content Remove="wwwroot\js\Competition\all.ts" />
+    <Content Remove="wwwroot\js\Competition\update.ts" />
+    <Content Remove="wwwroot\js\Core\Models.ts" />
+    <Content Remove="wwwroot\js\Core\utils.ts" />
+    <Content Remove="wwwroot\js\create_competition.ts" />
   </ItemGroup>
 
 
@@ -45,5 +50,22 @@
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\js\account.ts" />
   </ItemGroup>
+
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES2018</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
 
 </Project>
