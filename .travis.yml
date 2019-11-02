@@ -4,3 +4,8 @@ mono: none
 dotnet: 2.2
 script:
  - dotnet restore
+deploy:
+  provider: script
+  script: bash deploy.sh
+  on:
+    branch: master
