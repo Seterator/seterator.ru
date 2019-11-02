@@ -1,4 +1,5 @@
 echo "Deployment started."
+apt-get -y install sshpass
 sshpass -e -v ssh -o StrictHostKeyChecking=no root@5.63.154.249 '
     echo "SSH session started.";
     cd seterator;
