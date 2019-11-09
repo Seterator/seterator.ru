@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Rauthor.Services;
 
 
 namespace Rauthor
@@ -58,9 +59,8 @@ namespace Rauthor
                 .AddDistributedMemoryCache()
                 .AddSession()
                 .AddLogging()
-#pragma warning disable CA2000 // Dispose objects before losing scope
-                .AddSingleton<IMemoryCache>(new Services.MemoryCache())
-#pragma warning restore CA2000 // Dispose objects before losing scope
+                .AddPrimitiveMemoryCache()
+                .AddFoulLanguageFilter("*")
                 .AddDbContext<DatabaseContext>(options => options.UseMySQL(connection)
                                                                          .EnableDetailedErrors()
                                                                          .EnableSensitiveDataLogging())
