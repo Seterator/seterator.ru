@@ -58,16 +58,16 @@ namespace Rauthor.Controllers
         /// 
         /// </summary>
         /// <param name="guid">Guid участника</param>
-        /// <param name="assessment">Оценка</param>
+        /// <param name="model">Оценка</param>
         /// <returns></returns>
         [HttpPost]
         [Authorize]
-        public IActionResult Assessment([FromRoute] [FromQuery] Guid guid, [FromForm] ParticipantAssessment assessment)
+        public IActionResult Assessment([FromRoute] [FromQuery] Guid guid, [FromForm] ParticipantAssessment model)
         {
             var participant = database.Participants.First(x => x.Guid == guid);
             database.ParticipantAssessments.Add(new ParticipantAssessment()
             {
-                Assessment = assessment.Assessment,
+                Assessment = model.Assessment,
                 ParticipantGuid = guid
             });
             database.SaveChanges();

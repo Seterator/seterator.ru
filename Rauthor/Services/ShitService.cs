@@ -21,7 +21,7 @@ namespace Rauthor.Services
             var result = input;
             FilteredWords.ToList().ForEach(filtered =>
             {
-                result = result.Replace(filtered, Times("*", filtered.Length));
+                result = result.Replace(filtered, Times("*", filtered.Length), StringComparison.OrdinalIgnoreCase);
             });
             return result;
         }
