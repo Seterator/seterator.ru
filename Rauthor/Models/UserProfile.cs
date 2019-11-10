@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace Rauthor.Models
 {
-    public class Profile
+    /// <summary>
+    /// Представляет профиль пользователя для конкретной роли.
+    /// </summary>
+    public class UserProfile
     {
         [Key]
         public Guid RoleGuid { get; set; }

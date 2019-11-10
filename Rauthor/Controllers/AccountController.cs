@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Org.BouncyCastle.Crypto.Generators;
 using Rauthor.Models;
@@ -45,7 +46,7 @@ namespace Rauthor.Controllers
             Contract.Assert(model != null);
             if (ModelState.IsValid)
             {
-                Models.User user = database.Users.FirstOrDefault(u => u.Login == model.Login);
+                Models.User user = database.Users.Include(x => x.Roles).FirstOrDefault(u => u.Login == model.Login);
                 if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(model.Password), salt, 8).SequenceEqual(user.PasswordHash))
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль");
@@ -102,11 +103,12 @@ namespace Rauthor.Controllers
 
         private async Task Authenticate(User user)
         {
-            var claims = new List<Claim>
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login));
+            foreach (var role in user.Roles)
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                //new Claim(ClaimTypes.Role, user.Kind.ToString())
-            };
+                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role.UserRole.ToString()));
+            }
             ClaimsIdentity id = new ClaimsIdentity(claims:             claims,
                                                    authenticationType: "ApplicationCookie",
                                                    nameType:           ClaimsIdentity.DefaultNameClaimType,

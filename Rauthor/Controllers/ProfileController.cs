@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Rauthor.Controllers
 {
+    [Authorize(Roles = "User")]
     public class ProfileController : Controller
     {
         DatabaseContext database;
