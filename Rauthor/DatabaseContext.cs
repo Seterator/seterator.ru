@@ -23,7 +23,7 @@ namespace Rauthor
         public DbSet<CompetitionConstraint> CompetitionConstraints { get; set; }
         public DbSet<CompetitionRelCategory> CompetitionRelCategories { get; set; }
         public DbSet<CompetitionRelJury> CompetitionRelJuries { get; set; }
-        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<UserProfile> Profiles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options, IConfiguration configuration, IMemoryCache cache) : base(options)
         {

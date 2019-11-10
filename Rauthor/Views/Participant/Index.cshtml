@@ -30,7 +30,8 @@
                     ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
                     ParticipantStatus.Rejected => "Отклонена",
                     ParticipantStatus.New => "Не рассмотрена",
-                    ParticipantStatus.Approved => "Одобрена"
+                    ParticipantStatus.Approved => "Одобрена",
+                    _ => throw new ArgumentException($"'{nameof(i.Status)}' имеет неподдерживаемое значение {i.Status}")
                 })
             </td>
             <td>

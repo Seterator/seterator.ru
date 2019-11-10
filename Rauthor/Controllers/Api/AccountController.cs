@@ -32,7 +32,7 @@ namespace Rauthor.Controllers.Api
         }
         // POST: api/Account
         [HttpPost]
-        public Models.Api.LoginResult Post([FromBody] Login data)
+        public LoginResult Post([FromBody] Login data)
         {
             switch (data.Method)
             {
@@ -50,7 +50,7 @@ namespace Rauthor.Controllers.Api
             }
         }
     
-        private LoginResult Login(Models.Api.Login data)
+        private LoginResult Login(Login data)
         {
             Models.User user = database.Users.FirstOrDefault(u => u.Login == data.Username);
             if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8).SequenceEqual(user.PasswordHash))

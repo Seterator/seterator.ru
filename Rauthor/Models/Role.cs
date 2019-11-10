@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace Rauthor.Models
 {
+    [Table("roles")]
     public class Role
     {
         [Key]
+        [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [Column("role", TypeName = "Enum( 'moderator', 'jury', 'user', 'manager' )")]
+        [Column("role", TypeName = "Enum( 'moderator', 'jury', 'user', 'manager', 'admin' )")]
         public UserRole UserRole { get; set; }
 
+        [Column("user_guid")]
         public Guid UserGuid { get; set; }
 
         [ForeignKey("UserGuid")]
@@ -26,6 +29,7 @@ namespace Rauthor.Models
         Moderator,
         Jury,
         User,
-        Manager
+        Manager,
+        Admin
     }
 }

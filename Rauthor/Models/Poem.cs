@@ -8,28 +8,12 @@ namespace Rauthor.Models
     [Table("poem")]
     public class Poem
     {
-        bool filter = true;
-        private string text;
-
         [Key]
         [Column("GUID")]
         public Guid Guid { get; set; }
 
         [Column("text")]
-        public string Text 
-        { 
-            get {
-                if (filter)
-                {
-                    return ShitService.Mask(text);
-                }
-                else
-                {
-                    return text;
-                }
-            }
-            set => text = value; 
-        }
+        public string Text { get; set; }
 
         [Column("title")]
         public string Title { get; set; }
