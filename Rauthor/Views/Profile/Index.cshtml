@@ -3,50 +3,106 @@
     ViewData["Title"] = $"{Model.Name ?? Model.Login}";
 }
 
-<div class="container">
-    <div class="profile-grid">
-        <div class="user-image">
-            <img src="~/img/Image 3.png" alt="Изображение профиля" />
+<div class="profile_grid container">
+    <div class="left-side">
+        <div class="avatar">
+            <img src="~/img/Profile/ava.png" />
         </div>
-        <div class="user-name">
-            <h4>@(Model.Name ?? Model.Login)</h4>
-            <p>@(Model.Status ?? "Статус не установлен")</p>
-            @if (Model.Verificated)
-            {
-                <p>Аккаунт подтверждён</p>
-            }
-            else
-            {
-                <p>Аккаунт не верифицирован</p>
-            }
+        <div class="social-icons_grid">
+            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/yandex.svg" /></a>
+            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
+            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
+            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
+            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
         </div>
-        <div class="user-bank">
-            <h4>Счёт</h4>
+        <div class="rating _bg-gray">
+            <h3 rating__title>Рейтинг</h3>
+            <div class="nameValue_col2">
+                <div>Автор:</div>
+                <div>Значение</div>
+            </div>
+            <div class="nameValue_col2">
+                <div>Жюри:</div>
+                <div>Значение</div>
+            </div>
+            <div class="nameValue_col2">
+                <div>Организатор:</div>
+                <div>Значение</div>
+            </div>
         </div>
-        <div class="user-rating">
-            <h4>Рейтинг</h4>
-            <p>@Model.Rating</p>
-        </div>
-        <div class="user-counter">
-            <h4>Участий: @Model.ParticipantCount</h4>
-            <h4>Побед: @Model.WinCount</h4>
-        </div>
-        <div class="user-about">
-            <h4>Об авторе</h4>
-            <p>@(Model.About ?? "Информация о себе не указана")</p>
+        <div class="balance _bg-gray">
+            <div class="nameValue_col2">
+                <div>Баланс:</div>
+                <div>Значение</div>
+            </div>
+            <button value="#" class="main-button _outline">
+                Пополнить
+            </button>
+            <button value="#" class="main-button _fill-orange">
+                Вывести
+            </button>
         </div>
     </div>
+    <div class="right-side">
+        <div class="user-info _bg-gray">
+            <div class="user-info__status">@(Model.Status ?? "Статус не установлен")</div>
+            <div class="user-info__name">@(Model.Name ?? Model.Login)</div>
+            <div class="user-info__membership">Членство не указано</div>
+            <h3>О себе</h3>
+            <p class="user-info__about">
+                @(Model.About ?? "Информация о себе не указана")
+            </p>
+        </div>
+        <div class="user-achievments _bg-gray">
+            <h3>Достижения</h3>
+            <div class="user-achievment">
+                <span class="user-achievment__num">01.</span>
+                <span class="user-achievment__title">Пока тут пусто</span>
+            </div>
+            <div class="user-achievment">
+                <span class="user-achievment__num">02.</span>
+                <span class="user-achievment__title">Пока тут пусто</span>
+            </div>
+            <div class="user-achievment">
+                <span class="user-achievment__num">03.</span>
+                <span class="user-achievment__title">Пока тут пусто</span>
+            </div>
+        </div>
+        <div class="user-account-info _bg-gray">
+            <h3>Личные данные</h3>
+            <div class="nameValue_row2">
+                <div>Имя Фамилия</div>
+                <div>Не указано</div>
+            </div>
+            <div class="nameValue_row2">
+                <div>Телефон</div>
+                <div>Не указано</div>
+            </div>
+            <div class="nameValue_row2">
+                <div>e-mail</div>
+                <div>Не указано</div>
+            </div>
+            <div class="nameValue_row2">
+                <div>Страна</div>
+                <div>Не указано</div>
+            </div>
+            <div class="nameValue_row2">
+                <div>Город</div>
+                <div>Не указано</div>
+            </div>
+        </div>
+    </div>   
 
-    <div class="user-requests">
-
-        <h2>Активное</h2>
+    <div class="profile-poems">
+        <h2>Заявки на участие в конкурсах</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Название</th>
-                    <th>Статус</th>
+                    <th>День</th>
                     <th>Название конкурса</th>
-                    <th>Дата подачи</th>
+                    <th>Название произведения</th>
+                    <th>Статус заявки</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,96 +110,147 @@
                 {
                     foreach (var poem in competition.Poems)
                     {
-                <tr>
-                    <td>
-                        @poem.Title
-                    </td>   
-                    <td>
-                        @competition.Status
-                    </td>
-                    <td>
-                        @competition.Competition.Title
-                    </td>
-                    <td>
-                        @competition.CreateDate.ToString("dd.MM.yyyy")
-                    </td>
-                    <td>
-                        <a asp-action="Details"
-                           asp-controller="Poem"
-                           asp-route-guid="@poem.Guid.ToString()">
-                            Перейти
-                        </a>
-                    </td>
-                </tr>
+                        <tr>
+                            <td>
+                                @poem.Title
+                            </td>
+                            <td>
+                                @competition.Status
+                            </td>
+                            <td>
+                                @competition.Competition.Title
+                            </td>
+                            <td>
+                                @competition.CreateDate.ToString("dd.MM.yyyy")
+                            </td>
+                            <td>
+                                <a asp-action="Details"
+                                   asp-controller="Poem"
+                                   asp-route-guid="@poem.Guid.ToString()">
+                                    Перейти
+                                </a>
+                            </td>
+                        </tr>
                     }
                 }
             </tbody>
         </table>
-
-        <h2>История</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Статус</th>
-                    <th>Название конкурса</th>
-                    <th>Дата подачи</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var competition in Model.PastParticipants)
-                {
-                    foreach (var poem in competition.Poems)
+        <h2>Портфолио</h2>
+        @foreach (var competition in Model.PastParticipants)
+        {
+            foreach (var poem in competition.Poems)
             {
-                <tr>
-                    <td>
-                        @poem.Title
-                    </td>
-                    <td>
-                        @competition.Status
-                    </td>
-                    <td>
-                        @competition.Competition.Title
-                    </td>
-                    <td>
-                        @competition.CreateDate.ToString("dd.MM.yyyy")
-                    </td>
-                    <td>
-                        <a asp-action="Details"
-                           asp-controller="Poem"
-                           asp-route-guid="@competition.Guid.ToString()">
-                            Перейти
-                        </a>
-                    </td>
-                </tr>
-            }
-                }
-            </tbody>
-        </table>
+                        <div class="profile-poem">
+                            <div class="profile-poem__avatar">
+                            </div>
+                            <a asp-action="Details"
+                               asp-controller="Poem"
+                               asp-route-guid="@competition.Guid.ToString()">
+                                <div class="profile-poem__title">
+                                    @poem.Title
+                                </div>
+                                <div class="profile-poem__competition-title">
+                                    <span>Конкурс: </span>
+                                    <span>@competition.Competition.Title</span>
+                                </div>
+                            </a>
+                            <div class="profile-poem__social-icons">
+                                <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+                                <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/yandex.svg" /></a>
+                                <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
+                                <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                                <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                            </div>
+                        </div>
+                    }
+                    }
+            </div>
 
-        @*<h3>Заявки</h3>
-        <div class="list-group">
-            @foreach (var p in Model.Participants)
-            {
-                <a asp-action="Edit"
-                   asp-controller="Participant"
-                   asp-route-guid="@p.Guid"
-                   class="list-group-item list-group-item-action">@p.Competition.Titile</a>
-            }
-        </div>
-        <h3>Участник</h3>
-        <div class="list-group">
-            @foreach (var competition in Model.ParticipatedCompetitions)
-            {
-                <a asp-action="Edit"
-                   asp-controller="Participant"
-                   asp-route-id="@competition.Guid"
-                   class="list-group-item list-group-item-action">@competition.Titile</a>
-            }
-        </div>
-
-        <h3>Произведения</h3>
-        <a asp-controller="Poem" asp-action="Index"><p>Произведения</p></a>*@
-    
-    </div>
 </div>
+
+
+@*<div class="user-requests">
+
+    <h2>Активное</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Статус</th>
+                <th>Название конкурса</th>
+                <th>Дата подачи</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var competition in Model.ActiveParticipants)
+            {
+                foreach (var poem in competition.Poems)
+                {
+                    <tr>
+                        <td>
+                            @poem.Title
+                        </td>
+                        <td>
+                            @competition.Status
+                        </td>
+                        <td>
+                            @competition.Competition.Title
+                        </td>
+                        <td>
+                            @competition.CreateDate.ToString("dd.MM.yyyy")
+                        </td>
+                        <td>
+                            <a asp-action="Details"
+                               asp-controller="Poem"
+                               asp-route-guid="@poem.Guid.ToString()">
+                                Перейти
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <h2>История</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Статус</th>
+                <th>Название конкурса</th>
+                <th>Дата подачи</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var competition in Model.PastParticipants)
+            {
+                foreach (var poem in competition.Poems)
+                {
+                    <tr>
+                        <td>
+                            @poem.Title
+                        </td>
+                        <td>
+                            @competition.Status
+                        </td>
+                        <td>
+                            @competition.Competition.Title
+                        </td>
+                        <td>
+                            @competition.CreateDate.ToString("dd.MM.yyyy")
+                        </td>
+                        <td>
+                            <a asp-action="Details"
+                               asp-controller="Poem"
+                               asp-route-guid="@competition.Guid.ToString()">
+                                Перейти
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</div>*@
