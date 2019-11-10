@@ -1,11 +1,12 @@
 ﻿@model Competition
 
+
 <div class="container">
     <div id="compet">
         <div class="banner">
             <span class="category">Ежедневный конкурс</span>
-            <h2>@Model.Title</h2>
-            <p>@Model.Description</p>
+            <h2></h2>
+            <p></p>
             <div class="down-line">
                 <div class="organizer">
                     <div class="avatar"></div>
@@ -17,7 +18,7 @@
                         <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
                     </div>
                 </div>
-                <div class="timer">@Model.EndDate.ToString("dd.MM.yy")</div>
+                <div class="timer"></div>
                 <a asp-action="Become"
                    asp-controller="Participant"
                    asp-route-guid="@Model.Guid"><button class="formButton">Участвовать</button></a>
@@ -32,7 +33,7 @@
         </div>
         <div class="full-description">
             <h3>Описание</h3>
-            <p>@Model.Description</p>
+            <p></p>
         </div>
 
         <div class="content">
@@ -57,13 +58,13 @@
                 <div class="jury">
                     <h3>Жюри <span>(25)</span></h3>
                     <ul>
-                        <li>
+                        @*<li>
                             <div>
                                 <div class="avatar"></div>
                                 <span class="name">Имя Фамилия</span>
                             </div>
                             <p class="about">О жюри</p>
-                        </li>
+                        </li>*@
                     </ul>
                     <button class="formButton">Смотреть всех</button>
                 </div>
@@ -169,6 +170,8 @@
         </div>
     </div>
 </div>*@
+
+
 <script asp-src-include="/js/Competition/all.js"></script>
 <script asp-src-include="/js/Core/utils.js"></script>
 <script asp-src-include="/js/Core/models.js"></script>
