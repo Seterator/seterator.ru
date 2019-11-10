@@ -15,8 +15,8 @@
     color: rgb(255, 255, 255);
 }
 
-#footer-logo .img-svg {
-    width: 100%;
+#footer-logo img {
+    max-width: 100%;
 }
 
 .footer .img-svg {
