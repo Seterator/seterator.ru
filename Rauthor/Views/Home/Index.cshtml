@@ -16,11 +16,11 @@
             @foreach (var competition in Model)
             {
                 <a href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="event">
-                        <span class="event__timer">@competition.EndDate.ToString("yyyy.MM.dd")</span>
-                        <span class="event__category">Ежедневный конкурс</span>
-                        <h4 class="event__title">@competition.Title</h4>
-                        <p class="event_shortDescription">@competition.Description</p>
+                    <div class="eventItem">
+                        <span class="eventItem__timer">@competition.EndDate.ToString("yyyy.MM.dd")</span>
+                        <span class="eventItem__category">Ежедневный конкурс</span>
+                        <h4 class="eventItem__title">@competition.Title</h4>
+                        <p class="eventItem_shortDescription">@competition.Description</p>
                     </div>
                 </a>
             }

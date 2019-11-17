@@ -1,21 +1,21 @@
-﻿.event {
+﻿.eventItem {
     display: flex;
     flex-direction: column;
 }
 
-.event__timer {
+.eventItem__timer {
     text-align: center;
     color: rgb(255, 82, 25);
     border-bottom: solid 1px rgb(255, 82, 25);
     margin-bottom: 10px;
 }
 
-.event__category {
+.eventItem__category {
     color: rgb(100, 100, 100); 
     margin-bottom: 10px;
 }
 
-.event__title {
+.eventItem__title {
     font-size: 18pt;
     font-weight: 600;
     margin-bottom: 10px;
