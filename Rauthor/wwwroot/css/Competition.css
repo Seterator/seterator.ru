@@ -1,11 +1,4 @@
-﻿#compet .banner {
-    background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
-    background-size: cover;
-    background-position: 10% 85%;
-    position: relative;
-}
-
-#compet .banner * {
+﻿#compet .banner * {
     margin: 0;
     padding: 0;
 }

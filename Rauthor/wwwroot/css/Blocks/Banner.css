@@ -1,0 +1,28 @@
+.banner {
+    background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
+    background-size: cover;
+    background-position: 10% 85%;
+    background-repeat: no-repeat;
+    width: 100%;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+
+    padding: 5% 8%;
+    position: relative;
+}
+
+.banner__title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px; 
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 24pt;
+}
+
+.banner__description {
+    margin: 0;
+    padding: 0;
+
+    font-size: 14pt;
+}
