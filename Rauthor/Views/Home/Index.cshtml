@@ -17,10 +17,10 @@
             {
                 <a href="Competition/Details/@competition.Guid.ToString()">
                     <div class="event">
-                        <span class="timer"><img />@competition.EndDate.ToString("yyyy.MM.dd")</span>
-                        <span class="event-categoty">Ежедневный конкурс</span>
-                        <h4 class="event-title">@competition.Title</h4>
-                        <p class="event-description">@competition.Description</p>
+                        <span class="event__timer">@competition.EndDate.ToString("yyyy.MM.dd")</span>
+                        <span class="event__category">Ежедневный конкурс</span>
+                        <h4 class="event__title">@competition.Title</h4>
+                        <p class="event_shortDescription">@competition.Description</p>
                     </div>
                 </a>
             }
@@ -28,62 +28,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-@*<div class="container">
-    <div class="home-block">
-        <h1>Поэтические конкурсы каждый день</h1>
-        <div class="home-events-list">
-            @foreach (var competition in Model)
-            {
-                <a href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="home-event">
-                        <h6>Конкурсы</h6>
-                        <h2>@competition.Titile</h2>
-                        <p class="home-event-date">@competition.EndDate</p>
-                        <p class="home-event-description">@competition.Description</p>
-                    </div>
-                </a>
-            }
-        </div>
-    </div>
-    <div class="home-block">
-        <h1>Новости</h1>
-        <div class="home-events-list">
-            @foreach (var competition in Model)
-            {
-                <a href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="home-event">
-                        <h6>Новости сетературы</h6>
-                        <h2>@competition.Titile</h2>
-                        <p class="home-event-date">@competition.EndDate</p>
-                        <p class="home-event-description">@competition.Description</p>
-                    </div>
-                </a>
-            }
-        </div>
-    </div>
-    <div class="home-block">
-        <h1>Seterator рекомендует</h1>
-        <div class="home-events-list">
-            @foreach (var competition in Model)
-            {
-                <a href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="home-event">
-                        <h6>Различная хуета</h6>
-                        <h2>@competition.Titile</h2>
-                        <p class="home-event-date">@competition.EndDate</p>
-                        <p class="home-event-description">@competition.Description</p>
-                    </div>
-                </a>
-            }
-        </div>
-    </div>
-</div>*@

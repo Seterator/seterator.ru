@@ -46,32 +46,3 @@
 
     cursor: pointer;
 }
-
-.events-list .event {
-    display: flex;
-    flex-direction: column;
-
-
-}
-
-.events-list .event *{
-    padding: 0;
-    margin: 0;
-    margin-bottom: 10px;
-}
-
-.events-list .event *:first-child {
-    text-align: center;
-    color: rgb(255, 82, 25);
-    border-bottom: solid 1px rgb(255, 82, 25);
-}
-
-.events-list .event *:nth-child(2) {
-    color: rgb(100, 100, 100);    
-    /*margin: 10px 0;*/
-}
-
-.events-list .event *:nth-child(3) {
-    font-size: 18pt;
-    font-weight: 600;
-}
