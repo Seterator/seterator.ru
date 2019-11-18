@@ -1,9 +1,45 @@
 ﻿@model Competition
 
-
 <div class="container">
     <div id="compet">
         <div class="banner">
+            <!-- <div class="bannerEvent">
+                <div class="bannerEvent_gridCol2">
+                    <div class="organizerCard">
+                        <div class="flexRow">
+                            <div class="avatar avatar_round">
+                                
+                            </div>
+                        </div>
+                        <div class="organizerCard__name">
+                            Организатор
+                        </div>
+                        <div class="flexRow">
+                            <div class="imgWrap">
+                                <img class="organizerCard__img imgWrap_100" src="#">
+                            </div>
+                            <div class="organizerCard__phone">
+                                +7(964)456-21-98
+                            </div>
+                        </div>
+                        <div class="flexRow">
+                            <div class="imgWrap">
+                                <img class="organizerCard__img imgWrap_100" src="#">
+                            </div>
+                            <div class="organizerCard__email">
+                                mainmail#seterator.ru
+                            </div>
+                        </div>
+                        <div class="flexRow">
+                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
+                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
             <span class="category">Ежедневный конкурс</span>
             <h2></h2>
             <p></p>
@@ -20,8 +56,8 @@
                 </div>
                 <div class="timer"></div>
                 <a asp-action="Become"
-                   asp-controller="Participant"
-                   asp-route-guid="@Model.Guid"><button class="formButton">Участвовать</button></a>
+                    asp-controller="Participant"
+                    asp-route-guid="@Model.Guid"><button class="formButton">Участвовать</button></a>
 
                 </div>
             <div class="share-icons">
@@ -30,44 +66,44 @@
                 <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
                 <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
             </div>
-        </div>
-        <div class="full-description">
-            <h3>Описание</h3>
-            <p></p>
+            <div class="full-description">
+                <h3>Описание</h3>
+                <p></p>
+            </div>
         </div>
 
         <div class="content">
-                <div class="conditions">
-                    <h3>Условия конкурса</h3>
-                    <ul>
-                        <li>Вам должно быть от 18 до 19 лет.</li>
-                        <li>Вы должны быть гражданином РФ.</li>
-                        <li>Произведение не должно содержать нецензурную лексику.</li>
-                    </ul>
-                </div>
-                <div class="prizes">
-                    <h3>Призы</h3>
-                    <ul>
-                        <li><span>1 место</span> - 1000 р.</li>
-                        <li><span>2 место</span> - 500 р.</li>
-                        <li><span>3 место</span> - 100 р.</li>
-                        <li>4-10 - скидка где-то.</li>
-                        <li>10-15 - блокнот и ручка</li>
-                    </ul>
-                </div>
-                <div class="jury">
-                    <h3>Жюри <span>(25)</span></h3>
-                    <ul>
-                        @*<li>
-                            <div>
-                                <div class="avatar"></div>
-                                <span class="name">Имя Фамилия</span>
-                            </div>
-                            <p class="about">О жюри</p>
-                        </li>*@
-                    </ul>
-                    <button class="formButton">Смотреть всех</button>
-                </div>
+            <div class="conditions">
+                <h3>Условия конкурса</h3>
+                <ul>
+                    <li>Вам должно быть от 18 до 19 лет.</li>
+                    <li>Вы должны быть гражданином РФ.</li>
+                    <li>Произведение не должно содержать нецензурную лексику.</li>
+                </ul>
+            </div>
+            <div class="prizes">
+                <h3>Призы</h3>
+                <ul>
+                    <li><span>1 место</span> - 1000 р.</li>
+                    <li><span>2 место</span> - 500 р.</li>
+                    <li><span>3 место</span> - 100 р.</li>
+                    <li>4-10 - скидка где-то.</li>
+                    <li>10-15 - блокнот и ручка</li>
+                </ul>
+            </div>
+            <div class="jury">
+                <h3>Жюри <span>(25)</span></h3>
+                <ul>
+                    @*<li>
+                        <div>
+                            <div class="avatar"></div>
+                            <span class="name">Имя Фамилия</span>
+                        </div>
+                        <p class="about">О жюри</p>
+                    </li>*@
+                </ul>
+                <button class="formButton">Смотреть всех</button>
+            </div>
             <div class="participants">
                 <h3>Участники <span>(1 из 1000)</span></h3>
                 <ul>
