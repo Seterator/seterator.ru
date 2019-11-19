@@ -63,9 +63,8 @@ function SetDate(comp) {
         comp.Prizes
     );
 
-    document.querySelector(".banner h2").textContent = competition.Title;
-    document.querySelector(".banner p").textContent = competition.Description;
-    document.querySelector(".timer").textContent = competition.EndDate;
+    document.querySelector(".eventItem__title").textContent = competition.Title;
+    document.querySelector(".eventItem_shortDescription").textContent = competition.Description;
     document.querySelector(".full-description").textContent = competition.Description;
     document.querySelector(".prizes ul").textContent = competition.Prizes;
 

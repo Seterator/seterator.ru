@@ -6,7 +6,7 @@
 
 <div class="container">
     <div id="index">
-        <div class="banner">
+        <div class="banner banner_normalPadding">
             <h2 class="banner__title">Поэтические конкурсы каждый день!</h2>
             <p class="banner__description">Устал от конкурсов с результатами через год?</p>
             <p class="banner__description">Отправь заявку сегодня и завтра узнай результат!</p>
@@ -16,8 +16,8 @@
             @foreach (var competition in Model)
             {
                 <a href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="eventItem">
-                        <span class="eventItem__timer">@competition.EndDate.ToString("yyyy.MM.dd")</span>
+                    <div class="eventItem eventItem_column">
+                        <span class="eventItem__timer_column">@competition.EndDate.ToString("yyyy.MM.dd")</span>
                         <span class="eventItem__category">Ежедневный конкурс</span>
                         <h4 class="eventItem__title">@competition.Title</h4>
                         <p class="eventItem_shortDescription">@competition.Description</p>

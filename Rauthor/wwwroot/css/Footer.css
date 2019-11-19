@@ -19,14 +19,14 @@
     max-width: 100%;
 }
 
-.footer .img-svg {
-    width: 50%;
+/* .footer .img-svg {
+    max-width: 50%;
     fill: rgb(255, 255, 255);
 }
 
 .footer .img-svg:hover {
     fill: rgb(255, 82, 25);
-}
+} */
 
 #footer-cols {
     display: grid;

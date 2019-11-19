@@ -2,69 +2,48 @@
 
 <div class="container">
     <div id="compet">
-        <div class="banner">
-            <!-- <div class="bannerEvent">
-                <div class="bannerEvent_gridCol2">
-                    <div class="organizerCard">
-                        <div class="flexRow">
-                            <div class="avatar avatar_round">
-                                
-                            </div>
+        <div class="banner banner_littlePadding">
+            <div class="flexRow flexRow_banner">
+                <div class="organizerCard flexRow__item_grow1">
+                    <div class="flexRow flexRow_imgAndText">
+                        <div class="avatar avatar_round">
+                            
                         </div>
                         <div class="organizerCard__name">
                             Организатор
                         </div>
-                        <div class="flexRow">
-                            <div class="imgWrap">
-                                <img class="organizerCard__img imgWrap_100" src="#">
-                            </div>
-                            <div class="organizerCard__phone">
-                                +7(964)456-21-98
-                            </div>
-                        </div>
-                        <div class="flexRow">
-                            <div class="imgWrap">
-                                <img class="organizerCard__img imgWrap_100" src="#">
-                            </div>
-                            <div class="organizerCard__email">
-                                mainmail#seterator.ru
-                            </div>
-                        </div>
-                        <div class="flexRow">
-                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
-                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
-                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
-                            <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+                    </div>
+                    <div class="flexRow flexRow_imgAndText">
+                        <img class="imgSvg imgSvg_white imgSvg_20px organizerCard__img" src="~/img/Competition/telephone.svg">
+                        <div class="organizerCard__phone">
+                            +7(964)456-21-98
                         </div>
                     </div>
-                </div>
-            </div> -->
-
-            <span class="category">Ежедневный конкурс</span>
-            <h2></h2>
-            <p></p>
-            <div class="down-line">
-                <div class="organizer">
-                    <div class="avatar"></div>
-                    <span class="name">Организатор</span>
-                    <div class="organizer-soc-icons">
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+                    <div class="flexRow flexRow_imgAndText">
+                        <img class="imgSvg imgSvg_white imgSvg_20px organizerCard__img" src="~/img/Competition/email.svg">
+                        <div class="organizerCard__email">
+                            mainmail#seterator.ru
+                        </div>
+                    </div>
+                    <div class="flexRow flexRow_socialIcons">
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/google.svg" /></a>
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/vk.svg" /></a>
                     </div>
                 </div>
-                <div class="timer"></div>
-                <a asp-action="Become"
-                    asp-controller="Participant"
-                    asp-route-guid="@Model.Guid"><button class="formButton">Участвовать</button></a>
-
+                <div class="eventItem eventItem_rows flexRow__item_grow3">
+                        <span class="eventItem__category eventItem__category_row">Ежедневный конкурс</span>
+                        <h4 class="eventItem__title eventItem__title_row">Название</h4>
+                        <div class="flexRow flexRow_imgAndText">
+                            <img class="imgSvg imgSvg_orange imgSvg_20px" src="~/img/Competition/time.svg" />
+                            <span class="eventItem__timer eventItem__timer_row">Дата</span>
+                        </div>
+                        <a class="formButton eventItem_button" asp-action="Become"
+                            asp-controller="Participant"
+                            asp-route-guid="@Model.Guid">Участвовать</a>
+                        <p class="eventItem_shortDescription eventItem__shortDescription_row">Короткое описание</p>
                 </div>
-            <div class="share-icons">
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
             </div>
         </div>
 
@@ -120,6 +99,7 @@
 </div>
 
 <script src="~/js/Competition/GetDate.js"></script>
+<script src="~/js/Competition/Timer.js"></script>
 <script asp-src-include="/js/Competition/all.js"></script>
 <script asp-src-include="/js/Core/utils.js"></script>
 <script asp-src-include="/js/Core/models.js"></script>

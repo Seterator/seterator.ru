@@ -7,7 +7,6 @@
     overflow: hidden;
     color: rgb(255, 255, 255);
 
-    padding: 5% 8%;
     position: relative;
 }
 
@@ -23,6 +22,14 @@
 .banner__description {
     margin: 0;
     padding: 0;
-
+    
     font-size: 14pt;
+}
+
+.banner_littlePadding {
+    padding: 3%;
+}
+
+.banner_normalPadding {
+    padding: 5% 8%;
 }
