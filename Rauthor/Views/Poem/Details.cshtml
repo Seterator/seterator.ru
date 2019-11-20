@@ -7,8 +7,12 @@
         <span>Псевдоним</span>
         <p>@ViewData["Poem text"]</p>
     </div>
+    <div id="vk_comments"></div>
 </div>
 
+<script type="text/javascript">
+VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});
+</script>
 
 @*<div class="poem-details-back">
     <div class="container">
