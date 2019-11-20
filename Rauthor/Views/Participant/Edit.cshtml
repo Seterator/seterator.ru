@@ -1,20 +1,21 @@
 ﻿@model Participant
 @{
-    ViewData["Title"] = $"Заявка на конкурс \"{Model.Competition.Titile}\"";
+    ViewData["Title"] = $"Заявка на конкурс \"{Model.Competition.Title}\"";
 }
 
 <div class="container">
     <div class="review">
-        <h2>@Model.Competition.Titile</h2>
+        <h2>@Model.Competition.Title</h2>
         <p>
             Статус:
             @(Model.Status switch
-             {
-                 ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
-                 ParticipantStatus.Rejected => "Отклонена",
-                 ParticipantStatus.New => "Не рассмотрена",
-                 ParticipantStatus.Approved => "Одобрена"
-             })
+            {
+                ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
+                ParticipantStatus.Rejected => "Отклонена",
+                ParticipantStatus.New => "Не рассмотрена",
+                ParticipantStatus.Approved => "Одобрена",
+                _ => throw new ArgumentException($"'{nameof(Model.Status)}' имеет неподдерживаемое значение {Model.Status}")
+            })
         </p>
         @*Тут должна быть проверка того, является ли текущий пользователь жюри.*@
         @if (true)
@@ -31,26 +32,4 @@
             </div>
         }
     </div>
-
-
-
-
-
-
-
-
-
-
-
-    @*<div class="border rounded bg-light">
-        Заявка на участие в конкурсе <b>@Model.Competition.Titile</b>
-    </div>
-    <span class="badge badge-info">
-        @(Model.Status switch
-        {
-            ParticipantStatus.Updated => "Ожидает повторно рассмотрения",
-            ParticipantStatus.Rejected => "Отклонена",
-            ParticipantStatus.New => "Не рассмотрена",
-            ParticipantStatus.Approved => "Одобрена"
-        })
-    </span>*@
+</div>

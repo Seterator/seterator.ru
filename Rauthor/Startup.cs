@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Rauthor.Services;
 
 
 namespace Rauthor
@@ -24,6 +25,7 @@ namespace Rauthor
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        string Connection => Configuration.GetConnectionString("Local MySQL");
 
         public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
@@ -45,29 +47,24 @@ namespace Rauthor
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("Local MySQL");
-
             services
                 .Configure<CookiePolicyOptions>(options =>
                 {
                     options.CheckConsentNeeded = context => true;
                     options.MinimumSameSitePolicy = SameSiteMode.None;
-                });
-
-            services
+                })
                 .AddDistributedMemoryCache()
                 .AddSession()
                 .AddLogging()
-#pragma warning disable CA2000 // Dispose objects before losing scope
-                .AddSingleton<IMemoryCache>(new Services.MemoryCache())
-#pragma warning restore CA2000 // Dispose objects before losing scope
-                .AddDbContext<DatabaseContext>(options => options.UseMySQL(connection)
+                .AddPrimitiveMemoryCache()
+                .AddFoulLanguageFilter("*")
+                .AddDbContext<DatabaseContext>(options => options.UseMySQL(Connection)
                                                                          .EnableDetailedErrors()
                                                                          .EnableSensitiveDataLogging())
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
-                        options.LoginPath = new PathString("/Account/Login");
+                        options.LoginPath = new PathString("/Account/Main");
                         options.Cookie.Name = "ssid";
                     })
                     ;

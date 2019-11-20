@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Org.BouncyCastle.Crypto.Generators;
 using Rauthor.Models;
@@ -45,7 +46,7 @@ namespace Rauthor.Controllers
             Contract.Assert(model != null);
             if (ModelState.IsValid)
             {
-                Models.User user = database.Users.FirstOrDefault(u => u.Login == model.Login);
+                Models.User user = database.Users.Include(x => x.Roles).FirstOrDefault(u => u.Login == model.Login);
                 if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(model.Password), salt, 8).SequenceEqual(user.PasswordHash))
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль");
@@ -73,29 +74,26 @@ namespace Rauthor.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(ViewModels.RegistrationModel data)
         {
-            Contract.Assert(data != null);
-            if (ModelState.IsValid)
+            var user = database.Users.FirstOrDefault(u => u.Login == data.Login);
+            if (data.Password == null)
+                data.Password = "password";
+            if (user == null)
             {
-                var user = database.Users.FirstOrDefault(u => u.Login == data.Login);
-                if (user == null)
+                var newUser = new Models.User()
                 {
-                    
-                    var newUser = new Models.User()
-                    {
-                        Login = data.Login,
-                        PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
-                    };
-                    database.Users.Add(newUser);
-                    await database.SaveChangesAsync().ConfigureAwait(true);
-                    _ = Authenticate(newUser);
-                    return RedirectToAction("Index", "Home");
-                }  
-                else
-                {
-                    ModelState.AddModelError("", "Некорректные данные");
-                }
+                    Login = data.Login,
+                    PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
+                };
+                database.Users.Add(newUser);
+                await database.SaveChangesAsync().ConfigureAwait(true);
+                _ = Authenticate(newUser);
+                return RedirectToAction("Index", "Home");
+            }  
+            else
+            {
+                ModelState.AddModelError("", "Некорректные данные");
+                return View(data);
             }
-            return View(data);
         }
 
         public IActionResult Main()
@@ -105,11 +103,12 @@ namespace Rauthor.Controllers
 
         private async Task Authenticate(User user)
         {
-            var claims = new List<Claim>
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login));
+            foreach (var role in user.Roles)
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                //new Claim(ClaimTypes.Role, user.Kind.ToString())
-            };
+                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role.UserRole.ToString()));
+            }
             ClaimsIdentity id = new ClaimsIdentity(claims:             claims,
                                                    authenticationType: "ApplicationCookie",
                                                    nameType:           ClaimsIdentity.DefaultNameClaimType,

@@ -56,7 +56,7 @@ namespace Rauthor.Controllers
                 .Select(p => new UserPoemModel
                 {
                     AuthorName = User.Identity.Name,
-                    CompetitionTitle = p.Author.Competition.Titile,
+                    CompetitionTitle = p.Author.Competition.Title,
                     PoemText = p.Text,
                     PoemGuid = p.Guid
                 });
