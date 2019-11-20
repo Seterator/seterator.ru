@@ -10,7 +10,11 @@
             <input asp-for="Login" type="text" placeholder="e-mail" />
         </div>
         <div>
-            <p>На почту придут автоматически сгенерированные логин и пароль.</p>
+            <div>
+                <input asp-for="Password" placeholder="Пароль" />
+                <span asp-validation-for="Password" />
+            </div>
+            <!-- <p>На почту придут автоматически сгенерированные логин и пароль.</p> -->
         </div>
         <div>
             <input class="formButton" type="submit" value="Регистрация" />
