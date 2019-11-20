@@ -1,63 +1,217 @@
-﻿.profile-grid {
+﻿.profile_grid {
     display: grid;
-    grid-template-areas:
-        "user-image user-image user-name user-name"
-        "user-image user-image user-bank user-rating"
-        "user-counter user-about user-about user-about";
-    grid-gap: 0.5vw;
+    grid-template-columns: 3fr 9fr;
+    grid-gap: 20px;
+    align-items: start;
 }
 
-.profile-grid div {
-    background: rgb(239, 239, 239);
+.left-side {
+    display: grid;
+    grid-gap: 25px;
 }
 
-.user-name, .user-bank, 
-.user-rating, .user-counter, .user-about {
-    padding: 1vw;
-
+.social-icons_grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 15px;
 }
 
-.profile-grid div h4 {
+._flex-img {
+    max-width: 100%;
+}
+
+.social-icons_grid ._flex-img {
+    max-width: 60%;
+}
+
+.profile_grid .img-svg {
+    fill: rgb(255, 82, 25);
+}
+
+._bg-gray {
+    background: rgb(238, 238, 238);
+}
+
+.rating,
+.balance {
+    padding: 10%;
+}
+
+.right-side {
+    display: grid;
+    grid-gap: 25px;
+}
+
+.right-side .user-info,
+.right-side .user-achievments,
+.right-side .user-account-info {
+    padding: 5%;
+}
+
+.rating h3 {
+    font-size: 16pt;
+    font-weight: 900;
+}
+
+.nameValue_col2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 10px;
+    align-items: baseline;
+}
+
+.balance .nameValue_col2 div:first-child {
+    font-size: 16pt;
     font-weight: 600;
-    font-size: 1.7rem;
 }
 
-.user-image {
-    grid-area: user-image;
+.main-button {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    border-radius: 40px;
 }
 
-.user-image image {
+.balance .main-button {
+    margin-top: 20px;
+}
+
+._outline {
+    background: none;
+    border: 2px solid rgb(0, 0, 0);
+
+    font-weight: 600;
+}
+
+._fill-orange {
+    border: none;
+    color: rgb(255,255,255);
+    background-color: rgb(255, 82, 25);
+}
+
+.user-info__status {
+    font-size: 12pt;
+    font-weight: 600;
+}
+
+.user-info__name {
+    font-size: 24pt;
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+}
+
+.user-info__membership {
+    font-size: 12pt;
+    color: rgb(255, 82, 25);
+    text-decoration: underline;
+}
+
+.user-info__about {
+    font-size: 12pt;
+}
+
+.right-side h3 {
+    font-family: 'Merriweather', serif;
+}
+
+.user-info h3 {
+    margin-top: 30px;
+}
+
+.user-achievments {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.user-achievments h3 {
+    grid-column-end: span 3;
+}
+
+.user-achievment span:first-child {
+    display: block;
+    font-size: 24pt;
+    font-weight: 600;
+}
+
+.user-achievment span:last-child {
+    font-weight: 600;
+    color: rgb(255, 82, 25);
+}
+
+.user-account-info {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.user-account-info h3 {
+    grid-column-end: span 3;
+}
+
+.nameValue_row2 div:first-child {
+    font-size: 10pt;
+    font-weight: 600;
+    color: rgb(167, 167, 167);
+}
+
+.nameValue_row2 div:last-child {
+    margin-top: 10px;
+    font-weight: 600;
+    color: rgb(255, 82, 25);
+}
+
+.profile-poems {
+    grid-column-end: span 2;
+}
+
+.profile-poems table {
     width: 100%;
 }
 
-.user-name {
-    grid-area: user-name;
+.profile-poems table th {
+    color: rgb(167, 167, 167);
 }
 
-.user-bank {
-    grid-area: user-bank;
+.profile-poems h2 {
+    font-family: 'Merriweather', serif;
+    margin-top: 40px;
 }
 
-.user-rating {
-    grid-area: user-rating;
+.profile-poem {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 9fr 2fr;
+    grid-gap: 10px;
 }
 
-.user-counter {
-    grid-area: user-counter;
+.profile-poem__avatar {
+    width: 70px;
+    height: 70px;
+    background-color: black;
+    border-radius: 50px;
 }
 
-.user-about {
-    grid-area: user-about;
+.profile-poem__title {
+    color: rgb(255, 82, 25);
+    font-weight: 600;
 }
 
-.user-requests {
-    width: 100%;
+.profile-poem__competition-title span:first-child {
+    color: rgb(167, 167, 167);
 }
 
-.user-requests table {
-    width: 100%;
+.profile-poem__competition-title span:last-child {
+    font-weight: 600;
 }
 
-.user-requests table th {
-    color: darkgray;
+.profile-poem__social-icons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+
+.profile-poem__social-icons ._flex-img{
+    width: 80%;
 }

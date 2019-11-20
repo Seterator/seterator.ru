@@ -1,0 +1,28 @@
+.imgSvg{
+    width: 100%;
+}
+
+.imgSvg_socialIcons {
+    
+    max-width: 50%;
+}
+
+.imgSvg_socialIcons100 {    
+    max-width: 100%;
+}
+
+.imgSvg_20px {
+    width: 100%;
+    max-width: 20px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.imgSvg_white {
+    fill: rgb(255, 255, 255);
+}
+
+.imgSvg_orange,
+.imgSvg_white:hover {
+    fill: rgb(255, 82, 25);
+}

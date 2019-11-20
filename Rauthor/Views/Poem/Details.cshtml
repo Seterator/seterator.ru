@@ -7,28 +7,9 @@
         <span>Псевдоним</span>
         <p>@ViewData["Poem text"]</p>
     </div>
+    <div id="vk_comments"></div>
 </div>
 
-
-@*<div class="poem-details-back">
-    <div class="container">
-        <div class="poem-details-grid">
-            <div class="last-competitions">
-                <h4>Участвовало в конкурсах</h4>
-                <p>В разработке</p>
-            </div>
-            <div class="profile-block">
-                <img src="~/img/Image 3.png" />
-                <div class="description">
-                    <h6>@ViewData["Participant login"]</h6>
-                    <p>@ViewData["Participant status"]</p>
-                    <h4>@ViewData["Participant rating"]</h4>
-                </div>
-            </div>
-            <div class="poem-block">
-                <h2>@ViewData["Poem title"]</h2>
-                <p>@ViewData["Poem text"]</p>
-            </div>
-        </div>
-    </div>
-</div>*@
+<script type="text/javascript">
+VK.Widgets.Comments("vk_comments", {limit: 10, attach: "*"});
+</script>

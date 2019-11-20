@@ -2,71 +2,88 @@
 
 <div class="container">
     <div id="compet">
-        <div class="banner">
-            <span class="category">Ежедневный конкурс</span>
-            <h2>@Model.Title</h2>
-            <p>@Model.Description</p>
-            <div class="down-line">
-                <div class="organizer">
-                    <div class="avatar"></div>
-                    <span class="name">Стихи.ру</span>
-                    <div class="organizer-soc-icons">
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
-                        <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+        <div class="banner banner_littlePadding">
+            <div class="flexRow flexRow_banner">
+                <div class="organizerCard flexRow__item_grow1">
+                    <div class="flexRow flexRow_imgAndText">
+                        <div class="avatar avatar_round">
+                            
+                        </div>
+                        <div class="organizerCard__name">
+                            Организатор
+                        </div>
+                    </div>
+                    <div class="flexRow flexRow_imgAndText">
+                        <img class="imgSvg imgSvg_white imgSvg_20px organizerCard__img" src="~/img/Competition/telephone.svg">
+                        <div class="organizerCard__phone">
+                            +7(964)456-21-98
+                        </div>
+                    </div>
+                    <div class="flexRow flexRow_imgAndText">
+                        <img class="imgSvg imgSvg_white imgSvg_20px organizerCard__img" src="~/img/Competition/email.svg">
+                        <div class="organizerCard__email">
+                            mainmail#seterator.ru
+                        </div>
+                    </div>
+                    <div class="flexRow flexRow_socialIcons">
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/google.svg" /></a>
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/vk.svg" /></a>
                     </div>
                 </div>
-                <div class="timer">@Model.EndDate.ToString("dd.MM.yy")</div>
-                <a asp-action="Become"
-                   asp-controller="Participant"
-                   asp-route-guid="@Model.Guid"><button class="formButton">Участвовать</button></a>
-
+                <div class="eventItem eventItem_rows flexRow__item_grow3">
+                        <span class="eventItem__category eventItem__category_row">Ежедневный конкурс</span>
+                        <h4 class="eventItem__title eventItem__title_row">Название</h4>
+                        <div class="flexRow flexRow_imgAndText">
+                            <img class="imgSvg imgSvg_orange imgSvg_20px" src="~/img/Competition/time.svg" />
+                            <span class="eventItem__timer eventItem__timer_row">Дата</span>
+                        </div>
+                        <a class="formButton eventItem_button" asp-action="Become"
+                            asp-controller="Participant"
+                            asp-route-guid="@Model.Guid">Участвовать</a>
+                        <p class="eventItem_shortDescription eventItem__shortDescription_row">Короткое описание</p>
                 </div>
-            <div class="share-icons">
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
-                <a href="#"><img class="img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
             </div>
         </div>
+
         <div class="full-description">
             <h3>Описание</h3>
-            <p>@Model.Description</p>
+            <p></p>
         </div>
 
         <div class="content">
-                <div class="conditions">
-                    <h3>Условия конкурса</h3>
-                    <ul>
-                        <li>Вам должно быть от 18 до 19 лет.</li>
-                        <li>Вы должны быть гражданином РФ.</li>
-                        <li>Произведение не должно содержать нецензурную лексику.</li>
-                    </ul>
-                </div>
-                <div class="prizes">
-                    <h3>Призы</h3>
-                    <ul>
-                        <li><span>1 место</span> - 1000 р.</li>
-                        <li><span>2 место</span> - 500 р.</li>
-                        <li><span>3 место</span> - 100 р.</li>
-                        <li>4-10 - скидка где-то.</li>
-                        <li>10-15 - блокнот и ручка</li>
-                    </ul>
-                </div>
-                <div class="jury">
-                    <h3>Жюри <span>(25)</span></h3>
-                    <ul>
-                        <li>
-                            <div>
-                                <div class="avatar"></div>
-                                <span class="name">Имя Фамилия</span>
-                            </div>
-                            <p class="about">О жюри</p>
-                        </li>
-                    </ul>
-                    <button class="formButton">Смотреть всех</button>
-                </div>
+            <div class="conditions">
+                <h3>Условия конкурса</h3>
+                <ul>
+                    <li>Вам должно быть от 18 до 19 лет.</li>
+                    <li>Вы должны быть гражданином РФ.</li>
+                    <li>Произведение не должно содержать нецензурную лексику.</li>
+                </ul>
+            </div>
+            <div class="prizes">
+                <h3>Призы</h3>
+                <ul>
+                    <li><span>1 место</span> - 1000 р.</li>
+                    <li><span>2 место</span> - 500 р.</li>
+                    <li><span>3 место</span> - 100 р.</li>
+                    <li>4-10 - скидка где-то.</li>
+                    <li>10-15 - блокнот и ручка</li>
+                </ul>
+            </div>
+            <div class="jury">
+                <h3>Жюри <span>(25)</span></h3>
+                <ul>
+                    @*<li>
+                        <div>
+                            <div class="avatar"></div>
+                            <span class="name">Имя Фамилия</span>
+                        </div>
+                        <p class="about">О жюри</p>
+                    </li>*@
+                </ul>
+                <button class="formButton">Смотреть всех</button>
+            </div>
             <div class="participants">
                 <h3>Участники <span>(1 из 1000)</span></h3>
                 <ul>
@@ -81,96 +98,8 @@
     </div>
 </div>
 
-
-
-@*<div class="container">
-    <div class="competition-grid">
-        <div class="event_card">
-            <div class="info-on-card">
-                <h3>@Model.Title</h3>
-                <h4>до @Model.EndDate.ToString("dd.MM.yyyy")</h4>
-            </div>
-            @if (User.Identity.IsAuthenticated)
-            {
-                @if ((bool) ViewData["TakingPart"])
-                {
-                    <a asp-action="Edit"
-                       asp-controller="Participant"
-                       asp-route-guid="@ViewData["ParticipantGuid"]"><div class="continue_button"><p>Просмотреть заявку</p></div></a>
-                }
-                else
-                {
-                    <a asp-action="Become"
-                       asp-controller="Participant"
-                       asp-route-guid="@Model.Guid"><div class="continue_button"><p>Принять участие</p></div></a>
-                }
-            }
-            else
-            {
-                <a asp-action="Main"
-                   asp-controller="Account"><div class="continue_button"><p>Войти, чтобы принять участие</p></div></a>
-            }
-        </div>
-        <div class="judges-block">
-            <h4>Жюри:</h4>
-            <div class="judges">
-                <div class="judge">
-                    <div><img src="~/img/Image 5.png" /></div>
-                    <h5>А. Пушкин</h5>
-                    <p>
-                        Русский поэт, драматург и прозаик, заложивший основы русского реалистического направления,
-                        критик и теоретик литературы, историк, публицист; один из самых авторитетных литературных деятелей
-                        первой трети XIX века.
-                    </p>
-                </div>
-                <div class="judge">
-                    <div><img src="~/img/Image 6.png" /></div>
-                    <h5>Д. Быков</h5>
-                    <p>
-                        Русский писатель, поэт и публицист, литературный критик, радио- и телеведущий,
-                        журналист, преподаватель литературы, кинокритик.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="prizes-block">
-            <h4>Призы:</h4>
-        </div>
-        <div class="conditions-block">
-            <h4>Условия:</h4>
-        </div>
-        <div class="participant-block">
-            <h4>Участники конкурса</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Название</th>
-                        <th>Автор</th>
-                        <th>Рейтинг</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var participant in Model.Participants.Where(s => s.Approved))
-                    {
-                        <tr>
-                            <td>@participant.Poems.First().Title</td>
-                            <td>@participant.User.Login</td>
-                            <td>
-                                <a asp-action="Details"
-                                   asp-controller="Poem"
-                                   asp-route-guid="@participant.Poems.First().Guid.ToString()">
-                                    Перейти
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>*@
-
-
+<script src="~/js/Competition/GetDate.js"></script>
+<script src="~/js/Competition/Timer.js"></script>
 <script asp-src-include="/js/Competition/all.js"></script>
 <script asp-src-include="/js/Core/utils.js"></script>
 <script asp-src-include="/js/Core/models.js"></script>

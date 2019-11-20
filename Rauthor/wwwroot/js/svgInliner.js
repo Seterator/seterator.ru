@@ -1,4 +1,4 @@
-﻿$('img.img-svg').each(function () {
+﻿$('img.imgSvg').each(function () {
     var $img = $(this);
     var imgClass = $img.attr('class');
     var imgURL = $img.attr('src');

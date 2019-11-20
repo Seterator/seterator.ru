@@ -1,13 +1,12 @@
-﻿#compet .banner {
-    background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
-    background-size: cover;
-    background-position: 10% 85%;
-    position: relative;
+﻿.organizerCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-#compet .banner * {
-    margin: 0;
-    padding: 0;
+.organizerCard * {
+    margin-top: 5px;
 }
 
 #compet .banner h2 {
@@ -23,112 +22,10 @@
 }
 
 #compet .avatar {
-    width: 70px;
-    height: 70px;
+    width: 30px;
+    height: 30px;
     background-color: white;
     border-radius: 50px;
-}
-
-#compet .banner p {
-    margin-top: 20px;
-    font-size: 12pt;
-}
-
-#compet .banner .down-line {
-    margin-top: 20px;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    /*grid-template-columns: repeat(3, 1fr);*/
-}
-
-#compet .banner .organizer {
-    flex: 0 1 30%;
-    display: grid;
-    grid-template-areas:
-        "avatar name . "
-        "avatar icons icons";
-    grid-gap: 10px;
-}
-
-#compet .banner .organizer .avatar {
-    grid-area: avatar;
-}
-
-#compet .banner .organizer .name {
-    grid-area: name;
-    font-size: 14pt;
-    font-weight: 600;
-}
-
-#compet .banner a {
-    flex: 0 0 20%;
-    align-self: center;
-}
-
-#compet .banner .formButton {
-    height: 50px;
-
-}
-
-#compet .banner .organizer-soc-icons {
-    grid-area: icons;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-content: center;
-}
-
-#compet .banner .organizer-soc-icons .img-svg {
-    width: 100%;
-    fill: rgb(255, 82, 25);
-
-}
-
-#compet .banner .organizer-soc-icons a {
-    width: 50%;   
-}
-
-#compet .banner .organizer-soc-icons a :hover{
-    fill: rgb(204, 66, 20);  
-}
-
-#compet .banner .timer {
-    background: rgb(255, 255, 255);
-    color: rgb(255, 82, 25);
-
-    align-self: center;
-    margin-left: auto;
-    margin-right: 20px;
-    padding: 5px 20px;
-    border-radius: 5px;
-
-    font-weight: 600;
-}
-
-#compet .banner .share-icons {
-    width: 25%;
-    position: absolute;
-    display: grid;
-    justify-content: end;
-    grid-template-columns: repeat(4, 1fr);
-
-    right: 8%;
-    top: 25%;
-
-}
-
-#compet .banner .share-icons a {
-   width: 50%;     
-}
-
-#compet .banner .share-icons a:hover .img-svg {
-    opacity: 1;
-}
-
-#compet .banner .share-icons .img-svg {
-    width: 100%;
-   fill: rgb(255, 255, 255);
-   opacity: 0.3;
 }
 
 #compet .full-description {
@@ -261,132 +158,3 @@
 #compet .content .participants ul li span {
     font-style: italic;
 }
-
-
-
-
-
-
-
-
-/*.competition-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-areas: 
-        "event_card event_card event_card event_card event_card" 
-        "judges-block judges-block judges-block prizes-block conditions-block"
-        "participant participant participant participant participant";
-    grid-gap: 0.5vw;
-}
-
-.competition-grid .judges-block, 
-.competition-grid .prizes-block, 
-.competition-grid .conditions-block,
-.competition-grid .participant-block {
-    background: rgb(239, 239, 239);
-    padding: 0.5vw;
-}
-
-.competition-grid .event_card {
-    grid-area: event_card;
-    height: 35vh;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.1)), url("../img/event.png");
-    background-size: cover;
-    background-position: bottom;
-}
-
-/*.competition-grid .event_card img {
-    height: unset;
-    position: absolute;
-    bottom: 0;
-}
-
-.competition-grid .event_card h3 {
-    font-size: 46pt;
-}
-
-.continue_button {
-    display: grid;
-    align-items: center;
-    position: absolute;
-    background: rgb(255, 57, 0);
-    bottom: 1vw;
-    right: 2vw;
-    color: white;
-    font-weight: 600;
-    font-size: 16pt;
-    padding: 0.3vw 1vw;
-    margin: 0;
-}
-
-.continue_button:hover {
-    opacity: 0.7;
-}
-
-.continue_button p {
-    margin: 0;
-    padding: 0;
-}
-
-.competition-grid div h4 {
-    font-weight: 600;
-    font-size: 1.7rem;
-}
-
-.competition-grid .judges-block {
-    grid-area: judges-block;
-}
-
-.competition-grid .prizes-block {
-    grid-area: prizes-block;
-}
-
-.competition-grid .conditions-block {
-    grid-area: conditions-block;
-}
-
-.judges-block .judges {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 0.5vw;
-}
-
-.judges-block .judge {
-    display: grid;
-    grid-template-areas:
-        "avatar name"
-        "avatar description";
-    grid-column-gap: 0.3vw;
-    grid-row-gap: 0.3vw;
-    align-self: start;
-}
-
-.judges-block .judge div {
-    grid-area: avatar;
-}
-
-.judges-block .judge h5 {
-    grid-area: name;
-    margin: 0;
-}
-
-.judges-block .judge p {
-    grid-area: description;
-
-    font-size: 9pt;
-}
-
-.competition-grid .participant-block {
-    grid-area: participant;
-    
-}
-
-.participant-block table {
-    width: 100%;
-}
-
-.participant-block table th {
-    color: darkgray;
-}*/
