@@ -21,7 +21,7 @@ namespace Rauthor.Controllers
         public IActionResult Index()
         {
             User user = HttpContext.Session.Get<User>("user");
-            ProfileModel profile = ProfileModel.ReadFromDatabase(user.Guid, database);
+            var profile = ProfileModel.ReadFromDatabase(user.Guid, database);
             return View(profile);
         }
     }
