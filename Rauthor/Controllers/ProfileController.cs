@@ -25,7 +25,8 @@ namespace Rauthor.Controllers
             return View(profile);
         }
 
-        [HttpGet("[controller]/{shortLink}")]
+        [HttpGet]
+        [Route("{shortLink}")]
         public IActionResult Profile(string shortLink)
         {
             try
@@ -44,7 +45,8 @@ namespace Rauthor.Controllers
             }
             
         }
-        [HttpGet("[controller]/{guid}")]
+        [HttpGet]
+        [Route("[controller]/{guid}")]
         public IActionResult Profile(Guid guid)
         {
             try
