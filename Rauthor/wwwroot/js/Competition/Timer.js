@@ -1,5 +1,5 @@
 window.fetch(`/api/competition/${guid}`).then(response => response.json()).then(competition => {
-    setInterval(changeTime, 1000)
+    setInterval(changeTime, 1000);
     
     function changeTime() {
         var difference = new Date(competition.EndDate) - Date.now();
@@ -11,4 +11,3 @@ window.fetch(`/api/competition/${guid}`).then(response => response.json()).then(
         var timer = document.querySelector(".eventItem__timer_row").textContent = answ;
     }
 });
-
