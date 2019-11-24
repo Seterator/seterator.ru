@@ -25,7 +25,6 @@ namespace Rauthor
         public DbSet<Role> Roles { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-            Database.SetCommandTimeout(TimeSpan.FromSeconds(120)); // NOTE Большой таймаут для работы с херовым интернетом.
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
