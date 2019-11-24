@@ -12,6 +12,6 @@ namespace Rauthor.UnitTests.Database
         protected DbContextOptions<DatabaseContext> Options => new DbContextOptionsBuilder<DatabaseContext>()
             .UseMySQL(Config.GetConnectionString("Local MySQL")).Options;
         protected IMemoryCache Cache => null;
-        protected DatabaseContext Database => new DatabaseContext(Options, Config, Cache);
+        protected DatabaseContext Database => new DatabaseContext(Options);
     }
 }
