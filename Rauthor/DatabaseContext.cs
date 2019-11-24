@@ -12,8 +12,6 @@ namespace Rauthor
 {
     public class DatabaseContext : DbContext
     {
-        //private string conectionString;
-        private IMemoryCache cache;
         public DbSet<User> Users { get; set; }
         public DbSet<Poem> Poems { get; set; }
         public DbSet<Competition> Competitions { get; set; }
@@ -25,10 +23,8 @@ namespace Rauthor
         public DbSet<CompetitionRelJury> CompetitionRelJuries { get; set; }
         public DbSet<UserProfile> Profiles { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DatabaseContext(DbContextOptions<DatabaseContext> options, IMemoryCache cache) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-            //conectionString = configuration.GetConnectionString("Local MySQL");
-            this.cache = cache;
             Database.SetCommandTimeout(TimeSpan.FromSeconds(120)); // NOTE Большой таймаут для работы с херовым интернетом.
             Database.EnsureCreated();
         }
@@ -69,7 +65,6 @@ namespace Rauthor
         {
             if (optionsBuilder == null) throw new NullReferenceException();
             optionsBuilder.EnableDetailedErrors()
-                          //.UseMemoryCache(cache)
                           .EnableSensitiveDataLogging();
 
             base.OnConfiguring(optionsBuilder);
