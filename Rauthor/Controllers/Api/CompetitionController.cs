@@ -39,10 +39,33 @@ namespace Rauthor.Controllers.Api
 
         [Authorize(Roles = "Admin, Manager")]
         [HttpPost]
-        public IActionResult Post([FromBody] Competition value)
+        public IActionResult Post([FromBody] ViewModels.Api.Competition value)
         {
             value.Guid = Guid.NewGuid();
-            database.Competitions.Add(value);
+            var competition = new Competition()
+            {
+                Guid = value.Guid.Value,
+                Constraints = value.Constraints,
+                StartDate = value.StartDate,
+                EndDate = value.EndDate,
+                Description = value.Description,
+                ShortDesctiption = value.ShortDescription,
+                Prizes = value.Prizes.ToString(),
+                Title = value.Title,
+            };
+            var juryRefernces = value.JuryGuids.Select(juryGuid => new CompetitionRelJury()
+            {
+                CompetitionGuid = competition.Guid,
+                JuryUserGuid = juryGuid
+            });
+            var categoryReferences = value.Categories.Select(categoryGuid => new CompetitionRelCategory()
+            {
+                CompetitionGuid = competition.Guid,
+                CategoryGuid = categoryGuid
+            });
+            database.Competitions.Add(competition);
+            database.CompetitionRelJuries.AddRange(juryRefernces);
+            database.CompetitionRelCategories.AddRange(categoryReferences);
             database.SaveChanges();
             return Ok();
         }
