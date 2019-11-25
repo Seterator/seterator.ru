@@ -1,0 +1,153 @@
+.createCompetition__header {
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 24pt;
+    margin-bottom: 20px;
+}
+
+.createCompetition__personalInfo {
+    margin-bottom: 20px;
+}
+
+.createCompetition__banner {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.createCompetition__label {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.createCompetition__label_theme_dark {
+    color: rgb(255, 82, 25);
+}
+
+.createCompetition__label_theme_light {
+    color: rgb(102, 102, 102);   
+}
+
+.createCompetition__label_font_bold {
+    font-weight: 600;
+}
+
+.createCompetition__textarea {
+    width: 100%;
+    border: none;
+    padding: 2%;
+    font-weight: 500;
+}
+
+.createCompetition__textarea_theme_dark {
+    background: rgb(61, 61, 61);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__textarea_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__uploadBackgroundImg {
+    align-self: center;
+    padding-top: 3%;
+    color: rgb(255, 255, 255);
+}
+
+.createCompetition__textbox {
+    border: none;
+    font-weight: 500;
+}
+
+.createCompetition__textbox_type_range {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.createCompetition__textbox_type_nomralText {
+    width: 100%;
+    padding: 10px;
+}
+
+.createCompetition__textbox_font_header {
+    font-family: 'Merriweather', serif;
+    font-size: 24pt;
+}
+
+.createCompetition__textbox_theme_dark {
+    background: rgb(51, 51, 51);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__textbox_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__conditions {
+
+}
+
+.createCompetition__grid {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.createCompetition__documents {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.createCompetition__upload {
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.createCompetition__upload:hover {
+    cursor: pointer;
+    color: rgb(255, 82, 25);
+}
+
+.createCompetition__uploadDocument_view_disable {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.createCompetition__prizeItem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.createCompetition__buttons {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    background: rgb(230, 230, 230);
+}
+
+.createCompetition__button {
+    width: 20%;
+    margin: 20px;
+}
+
+.createCompetition__select {
+    border: none;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.createCompetition__select_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}

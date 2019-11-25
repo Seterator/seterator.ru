@@ -1,8 +1,4 @@
 .banner {
-    background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
-    background-size: cover;
-    background-position: 10% 85%;
-    background-repeat: no-repeat;
     width: 100%;
     overflow: hidden;
     color: rgb(255, 255, 255);
@@ -26,10 +22,22 @@
     font-size: 14pt;
 }
 
-.banner_littlePadding {
+.banner_padding_small {
     padding: 3%;
 }
 
-.banner_normalPadding {
+
+.banner_padding_medium {
     padding: 5% 8%;
+}
+
+.banner_theme_common {
+    background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
+    background-size: cover;
+    background-position: 10% 85%;
+    background-repeat: no-repeat;
+}
+
+.banner_theme_none {
+    background: rgb(51, 51, 51);
 }
