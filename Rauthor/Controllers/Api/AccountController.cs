@@ -63,6 +63,7 @@ namespace Rauthor.Controllers.Api
                 return new Models.Api.LoginResult() { Result = "accept", Message = "Авторизация завершена успешно." };
             }
         }
+        
         private LoginResult Register(Models.Api.Login data)
         {
             var user = database.Users.FirstOrDefault(u => u.Login == data.Username);
@@ -83,14 +84,16 @@ namespace Rauthor.Controllers.Api
                 return new LoginResult() { Result = "reject", Message = "Ошибка в запросе" };
             }
         }
+        
         private async Task Authenticate(User user)
         {
-            var claims = new List<Claim>
+            var claims = new List<Claim>();
+            claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login));
+            foreach (var role in user.Roles)
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                //new Claim(ClaimTypes.Role, user.Kind.ToString())
-            };
-            ClaimsIdentity id = new ClaimsIdentity(claims: claims,
+                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role.UserRole.ToString()));
+            }
+            var id = new ClaimsIdentity(claims: claims,
                                                    authenticationType: "ApplicationCookie",
                                                    nameType: ClaimsIdentity.DefaultNameClaimType,
                                                    roleType: ClaimsIdentity.DefaultRoleClaimType);

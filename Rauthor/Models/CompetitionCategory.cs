@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Rauthor.Models
 {
+    [Table("competition_categories")]
     public class CompetitionCategory
     {
         [Key]

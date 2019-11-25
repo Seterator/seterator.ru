@@ -48,7 +48,7 @@ namespace Rauthor.Controllers
             return View();
         }
         
-        public IActionResult Edit(Guid guid)
+        public IActionResult Details(Guid guid)
         {
             return View(database.Participants.Include(p => p.Poems).Include(p=>p.Competition).First(p => p.Guid == guid));
         }
