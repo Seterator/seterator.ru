@@ -1,0 +1,19 @@
+.personalInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.personalInfo__socialIcons {
+    flex-basis: 25%;
+    padding: 3%;
+}
+
+.personalInfo__phoneAndEmail {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.personalInfo_theme_light {
+    background: rgb(230, 230, 230);
+}
