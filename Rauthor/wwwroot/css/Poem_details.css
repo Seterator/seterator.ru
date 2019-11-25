@@ -1,4 +1,12 @@
-﻿#poem {
+﻿.wcomments_head {
+    background: rgb(255, 82, 25);
+}
+
+.flat_button {
+    background: rgb(255, 82, 25);
+}
+
+#poem {
     width: 42%;
     margin-left: 8%;
     margin-top: 100px;
