@@ -59,7 +59,7 @@ namespace Rauthor.Controllers.Api
             }
             else
             {
-                Authenticate(user).Wait();
+                Task.Run(async () => await Authenticate(user));
                 return new Models.Api.LoginResult() { Result = "accept", Message = "Авторизация завершена успешно." };
             }
         }
@@ -76,7 +76,7 @@ namespace Rauthor.Controllers.Api
                 };
                 database.Users.Add(newUser);
                 database.SaveChanges();
-                Authenticate(newUser).Wait();
+                Task.Run(async () => await Authenticate(newUser));
                 return new LoginResult() { Result = "accept", Message = "Регистрация завершена успешно" };
             }
             else
@@ -99,8 +99,7 @@ namespace Rauthor.Controllers.Api
                                                    roleType: ClaimsIdentity.DefaultRoleClaimType);
             await HttpContext
                 .SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                             new ClaimsPrincipal(id))
-                .ConfigureAwait(false);
+                             new ClaimsPrincipal(id));
         }
     }
 }
