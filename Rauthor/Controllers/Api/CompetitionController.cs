@@ -41,42 +41,19 @@ namespace Rauthor.Controllers.Api
         [HttpPost]
         public IActionResult Post([FromBody] ViewModels.Api.Competition value)
         {
-            value.Guid = Guid.NewGuid();
-            var competition = new Competition()
-            {
-                Guid = value.Guid.Value,
-                Constraints = value.Constraints,
-                StartDate = value.StartDate,
-                EndDate = value.EndDate,
-                Description = value.Description,
-                ShortDesctiption = value.ShortDescription,
-                Prizes = value.Prizes.ToString(),
-                Title = value.Title,
-            };
-            var juryRefernces = value.JuryGuids.Select(juryGuid => new CompetitionRelJury()
-            {
-                CompetitionGuid = competition.Guid,
-                JuryUserGuid = juryGuid
-            });
-            var categoryReferences = value.Categories.Select(categoryGuid => new CompetitionRelCategory()
-            {
-                CompetitionGuid = competition.Guid,
-                CategoryGuid = categoryGuid
-            });
+            var competition = Competition.FromApiViewModel(value);
             database.Competitions.Add(competition);
-            database.CompetitionRelJuries.AddRange(juryRefernces);
-            database.CompetitionRelCategories.AddRange(categoryReferences);
             database.SaveChanges();
             return Ok();
         }
         
         [Authorize(Roles = "Admin, Manager")]
         [HttpPut("{guid}")]
-        public IActionResult Put(Guid guid, [FromBody] Competition value)
+        public IActionResult Put(Guid guid, [FromBody] ViewModels.Api.Competition value)
         {
             var oldValue = database.Competitions.Where(x => x.Guid == guid).Single();
             value.Guid = guid;
-            database.Entry(oldValue).CurrentValues.SetValues(value);
+            database.Entry<Competition>(oldValue).CurrentValues.SetValues(Competition.FromApiViewModel(value));
             database.SaveChanges();
             return Ok();
         }
