@@ -59,5 +59,38 @@ namespace Rauthor.Models
             Participants = new List<Participant>();
             Categories = new List<CompetitionRelCategory>();
         }
+
+        /// <summary>
+        /// Возвращает экземпляр Competition с заполненными полями и навигационными свойствами, на основе
+        /// модели представления.
+        /// </summary>
+        public static Competition FromApiViewModel(ViewModels.Api.Competition viewModel)
+        {
+            viewModel.Guid = Guid.NewGuid();
+            var competition = new Competition()
+            {
+                Guid = viewModel.Guid.Value,
+                Constraints = viewModel.Constraints,
+                StartDate = viewModel.StartDate,
+                EndDate = viewModel.EndDate,
+                Description = viewModel.Description,
+                ShortDesctiption = viewModel.ShortDescription,
+                Prizes = viewModel.Prizes.ToString(),
+                Title = viewModel.Title,
+            };
+            var juryRefernces = viewModel.JuryGuids.Select(juryGuid => new CompetitionRelJury()
+            {
+                CompetitionGuid = competition.Guid,
+                JuryUserGuid = juryGuid
+            });
+            var categoryReferences = viewModel.Categories.Select(categoryGuid => new CompetitionRelCategory()
+            {
+                CompetitionGuid = competition.Guid,
+                CategoryGuid = categoryGuid
+            });
+            competition.Jury = juryRefernces.ToList();
+            competition.Categories = categoryReferences.ToList();
+            return competition;
+        }
     }
 }
