@@ -36,6 +36,12 @@ namespace Rauthor.Models
         [Column("description")]
         public string Description { get; set; }
 
+        /// <summary>
+        /// Короткое описание соревнования
+        /// </summary>
+        [Column("short_description")]
+        public string ShortDesctiption { get; set; }
+
         [Column("prizes")]
         public string Prizes { get; set; }
 
