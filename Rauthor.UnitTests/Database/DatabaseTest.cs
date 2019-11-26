@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using System;
+using Xunit;
 
 namespace Rauthor.UnitTests.Database
 {
+    [Trait("Category", "DatabaseTest")]
     public class DatabaseTest
     {
         protected IConfiguration Config => new ConfigurationBuilder()
