@@ -80,5 +80,13 @@ namespace Rauthor.ViewModels.Api
         /// Дата окончания приёма заявок
         /// </summary>
         public DateTime EndDate { get; set; }
+
+        public Competition()
+        {
+            JuryGuids = new List<Guid>();
+            Constraints = new List<CompetitionConstraint>();
+            Categories = new List<Guid>();
+            ManagerSocialLinks = new List<string>();
+        }
     }
 }
