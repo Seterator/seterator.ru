@@ -19,13 +19,13 @@
                 </div>
                 <div class="imgText">
                     <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/email.svg">
-                    <input class="createCompetition__textbox createCompetition__textbox_theme_light imgText__text" name="phoneNumber" type="email" placeholder="Введите почту">
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light imgText__text" name="email" type="email" placeholder="Введите почту">
                 </div>
             </div>
         </div>
         <div class="createCompetition__banner banner banner_theme_none banner_padding_small">
             <label class="createCompetition__label createCompetition__label_theme_dark">Ежедневный конкурс</label>
-            <input class="createCompetition__textbox createCompetition__textbox_font_header createCompetition__textbox_theme_dark" name="title" type="text" placeholder="Введите название конкурса">
+            <input class="createCompetition__textbox createCompetition__textbox_font_header createCompetition__textbox_theme_dark" name="title" type="text" placeholder="Введите название конкурса" required>
             <label class="createCompetition__label createCompetition__label_theme_dark">Описание идеи конкурса</label>
             <textarea class="createCompetition__shortDescription createCompetition__textarea createCompetition__textarea_theme_dark" name="shortDescription" rows="5">Начните вводить текст...</textarea>
             <a class="createCompetition__uploadBackgroundImg" href="#">
@@ -44,8 +44,8 @@
             <div class="createCompetition__conditions">
                 <h2 class="createCompetition__header">Задайте условия конкурса</h2>
                     <label class="createCompetition__label">*Выберите возраст учатников</label>
-                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_range" name="ageStart" type="number" placeholder="От">
-                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_range" name="ageEnd" type="number" placeholder=" До">
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_range" name="ageStart" type="number" placeholder="От" required>
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_range" name="ageEnd" type="number" placeholder=" До" required>
                     <label class="createCompetition__label">*Страны учаcтников</label>
                     <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText" name="countries" type="text" placeholder="#Все">
                     <label class="createCompetition__label">*Ссылка на подробные условия</label>
@@ -135,24 +135,18 @@
                 <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText" name="currentURL" type="text" placeholder="В разработке">
             </div>
         </div>
+        <label class="createCompetition__label">Дата публикации</label>
+        <input class="createCompetition__date" name="publicationDate" type="date" required>
+        <label class="createCompetition__label">Дата начала конкурса</label>
+        <input class="createCompetition__date" name="startDate" type="date" required>
+        <label class="createCompetition__label">Дата конца конкурса</label>
+        <input class="createCompetition__date" name="endDate" type="date" required>
     </div>
     <div class="createCompetition__buttons">
         <input class="createCompetition__button createCompetition__saveDraft formButton" type="button" value="Сохранить черновик" />
         <input class="createCompetition__button createCompetition__publish formButton" type="submit" value="Опубликовать" />
     </div>
 </form>
-
-
-<!--<form id="main-form">
-    <ul>
-        <li><label>Title</label><input name="title" type="text" placeholder="title" /></li>
-        <li><label>Start date</label><input name="startDate" type="date" /></li>
-        <li><label>End date</label><input name="endDate" type="date" /></li>
-        <li><label>Description</label><textarea name="description"></textarea></li>
-        <li><label>Prizes</label><textarea name="prizes"></textarea></li>
-        <li><button>Create</button></li>
-    </ul>
-</form> -->
 
 <script asp-src-include="/js/Competition/create.js"></script>
 <script asp-src-include="/js/Competition/all.js"></script>
