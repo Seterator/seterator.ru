@@ -58,6 +58,8 @@ namespace Rauthor.Models
             Guid = Guid.NewGuid();
             Participants = new List<Participant>();
             Categories = new List<CompetitionRelCategory>();
+            Jury = new List<CompetitionRelJury>();
+            Constraints = new List<CompetitionConstraint>();
         }
 
         /// <summary>
