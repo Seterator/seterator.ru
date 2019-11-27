@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace Rauthor.UnitTests
+namespace Rauthor.UnitTests.Database
 {
-    public class DatabaseRelationsTests : DatabaseTest
+    public class RelationsWorking : DatabaseTest
     {
         protected void AssertMany<T>(IEnumerable<T> references)
         {

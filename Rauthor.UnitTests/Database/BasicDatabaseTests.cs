@@ -1,26 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
 using System;
 using Xunit;
 
-namespace Rauthor.UnitTests
+namespace Rauthor.UnitTests.Database
 {
-    public class DatabaseTest
-    {
-        protected IConfiguration Config => new ConfigurationBuilder()
-            .AddUserSecrets<Startup>()
-            .Build();
-        protected DbContextOptions<DatabaseContext> Options => new DbContextOptionsBuilder<DatabaseContext>()
-            .UseMySQL(Config.GetConnectionString("Local MySQL")).Options;
-        protected IMemoryCache Cache => null;
-        protected DatabaseContext Database => new DatabaseContext(Options, Config, Cache);
-    }
-
     /// <summary>
     /// В этом наборе тестов выполняется проверка на возможность загрузить список записей из таблицы.
     /// </summary>
-    public class BasicDatabaseTests : DatabaseTest
+    public class TablesRead : DatabaseTest
     {
         protected void TestForEntity<T>(Func<DatabaseContext, DbSet<T>> entityFunc) where T : class
         {
