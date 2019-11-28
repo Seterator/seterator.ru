@@ -24,9 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\account.ts" />
-    <Content Remove="wwwroot\js\Competition\all.ts" />
-    <Content Remove="wwwroot\js\Competition\update.ts" />
     <Content Remove="wwwroot\js\Core\Models.ts" />
     <Content Remove="wwwroot\js\Core\utils.ts" />
     <Content Remove="wwwroot\js\create_competition.ts" />
@@ -47,11 +44,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.18" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\js\account.ts" />
   </ItemGroup>
 
 
