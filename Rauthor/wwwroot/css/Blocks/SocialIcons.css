@@ -6,7 +6,14 @@
 }
 
 .socialIcons__item {
-    flex-basis: 35px;
     flex-grow: 0;
     padding: 1%;
+}
+
+.socialIcons__item_size_m {
+    flex-basis: 35px;
+}
+
+.socialIcons__item_size_s {
+    flex-basis: 25px;
 }
