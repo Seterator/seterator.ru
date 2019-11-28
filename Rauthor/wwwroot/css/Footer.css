@@ -59,3 +59,8 @@
 #footer-cols ul:last-child li:first-child {
     grid-column: span 3;
 }
+
+.footer__socialIcons {
+    flex-basis: 25%;
+    padding: 3%;
+}
