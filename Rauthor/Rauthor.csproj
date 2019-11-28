@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\Core\utils.ts" />
+    <Content Remove="wwwroot\js\Core\utils.js.map" />
     <Content Remove="wwwroot\js\create_competition.ts" />
   </ItemGroup>
 
