@@ -5,18 +5,18 @@
 }
 
 <div class="container">
-    <div id="index">
+    <div class="index">
         <div class="banner banner_theme_common banner_padding_medium">
             <h2 class="banner__title">Поэтические конкурсы каждый день!</h2>
             <p class="banner__description">Устал от конкурсов с результатами через год?</p>
             <p class="banner__description">Отправь заявку сегодня и завтра узнай результат!</p>
         </div>
 
-        <div class="events-list">
+        <div class="index__eventsList">
             @foreach (var competition in Model)
             {
-                <a href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="eventItem eventItem_column">
+                <a class="index__eventItemHref" href="Competition/Details/@competition.Guid.ToString()">
+                    <div class="index__eventItem eventItem eventItem_column">
                         <span class="eventItem__timer_column">@competition.EndDate.ToString("yyyy.MM.dd")</span>
                         <span class="eventItem__category">Ежедневный конкурс</span>
                         <h4 class="eventItem__title">@competition.Title</h4>
@@ -24,7 +24,10 @@
                     </div>
                 </a>
             }
-            <span>Все ежедневные конкурсы</span>
+            <div class="index__allCompetitionsButton imgText">
+                <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/index/icons/list.svg">
+                <span class="imgText__text">Все ежедневные конкурсы</span>
+            </div>
         </div>
     </div>
 </div>
