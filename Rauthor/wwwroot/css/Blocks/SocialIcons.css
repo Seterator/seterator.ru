@@ -17,3 +17,7 @@
 .socialIcons__item_size_s {
     flex-basis: 25px;
 }
+
+.socialIcons_align_bySides {
+    justify-content: space-between;
+}

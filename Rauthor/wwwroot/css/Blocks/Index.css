@@ -24,7 +24,7 @@
     fill: rgb(204, 66, 20);
 }
 
-.index__eventItemHref:hover {
+.index__competitionItemHref:hover {
     -webkit-box-shadow: 0px 20px 36px -18px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 20px 36px -18px rgba(0,0,0,0.75);
     box-shadow: 0px 20px 36px -18px rgba(0,0,0,0.75);
@@ -32,6 +32,6 @@
     transition: box-shadow 0.3s ease-in-out;
 }
 
-.index__eventItem {
+.index__competitionItem {
     padding: 15px;
 }

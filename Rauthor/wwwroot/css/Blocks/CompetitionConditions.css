@@ -1,0 +1,39 @@
+.competitionConditions {
+    list-style-type: none;
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.competitionConditions__item_marker_orangeDot::before {
+    content: '';
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    vertical-align: middle;
+    border-radius: 50%;
+    background-color: rgb(255, 82, 25);
+    margin-right: 3%;   
+}
+
+.competitionConditions__item {
+    margin-top: 5px;
+}
+
+.competitionConditions__item_type_file {
+    margin-top: 15px;
+    color: rgb(255, 82, 25);
+    cursor: pointer;
+}
+
+.competitionConditions__item_type_file:hover {
+    color: rgb(204, 66, 20);
+}
+
+.competitionConditions__item_type_file:hover svg {
+    fill: rgb(204, 66, 20);
+}
+
+.competitionConditions__name {
+    color: rgb(85, 85, 85);
+}
