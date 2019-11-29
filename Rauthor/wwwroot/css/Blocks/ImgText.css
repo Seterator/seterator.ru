@@ -11,10 +11,18 @@
     margin-right: 5px;
 }
 
+.imgText__img_size_s {
+    max-width: 15px;
+}
+
 .imgText__text {
     white-space: nowrap;
 }
 
 .imgText__text_margin_right {
     margin-right: 10px;
+}
+
+.imgText__text_margin_left {
+    margin-left: 10px;
 }

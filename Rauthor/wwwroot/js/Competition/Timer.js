@@ -8,6 +8,6 @@ window.fetch(`/api/competition/${guid}`).then(response => response.json()).then(
         var hours = Math.trunc(difference / (1000 * 3600)) - days * 24;
         var min = Math.trunc(difference / (1000 * 60)) - days * 24 * 60 - hours * 60;
         var answ = days + " д " + hours + " ч " + min + " м";
-        var timer = document.querySelector(".eventItem__timer_row").textContent = answ;
+        var timer = document.querySelector(".competitionItem__timer").textContent = answ;
     }
 });

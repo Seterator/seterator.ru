@@ -17,3 +17,20 @@
 .personalInfo_theme_light {
     background: rgb(230, 230, 230);
 }
+
+.personalInfo_font_small {
+    font-size: 11pt;
+}
+
+.parsonalInfo__name {
+    font-weight: 600;
+    font-size: 13pt;
+}
+
+.personalInfo__avatar {
+    margin-bottom: 45px;
+}
+
+.personalInfo__item_margin_bottom {
+    margin-bottom: 10px;
+}

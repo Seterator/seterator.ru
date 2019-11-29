@@ -30,6 +30,10 @@
     fill: rgb(255, 82, 25);
 }
 
+.imgSvg_color_gray {
+    fill: rgb(144, 144, 144);
+}
+
 .imgSvg_orange,
 .imgSvg_white:hover {
     fill: rgb(255, 82, 25);
