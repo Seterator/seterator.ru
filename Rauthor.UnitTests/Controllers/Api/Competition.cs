@@ -37,7 +37,7 @@ namespace Rauthor.UnitTests.Controllers.Api
                     ManagerPhoneNumber = "+sample",
                     Prizes = "null",
                     ShortDescription = "Sample short description",
-                    Title = "Sample title"
+                    Title = "Competition {997DD1CD-FC9C-4A2A-AAE2-9EB0AA668CAD}"
                 };
                 controller.Post(competition);
             }
@@ -48,10 +48,12 @@ namespace Rauthor.UnitTests.Controllers.Api
                     .Include(x => x.Categories)
                     .Include(x => x.Constraints)
                     .Include(x => x.Jury)
-                    .Last();
+                    .Where(x => x.Title == "Competition {997DD1CD-FC9C-4A2A-AAE2-9EB0AA668CAD}")
+                    .Single();
+                var constrains = db.CompetitionConstraints.Where(x => x.CompetitionGuid == competition.Guid);
                 Assert.NotEqual(new Guid(), competition.Guid);
-                Assert.Contains("Sample1", competition.Constraints.Select(x => x.CheckedValue));
-                Assert.Contains("Sample2", competition.Constraints.Select(x => x.CheckedValue));
+                Assert.Contains("Sample1", constrains.Select(x => x.CheckedValue));
+                Assert.Contains("Sample2", constrains.Select(x => x.CheckedValue));
                 Assert.True(competition.Jury.Select(x => x.Jury).Count() > 0);
                 Assert.True(competition.Categories.Select(x => x.Category).Count() > 0);
                 
