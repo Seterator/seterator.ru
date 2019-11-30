@@ -9,8 +9,8 @@ namespace Rauthor.UnitTests.Controllers.Api
         [Fact]
         public void RegisterCorrect()
         {
-            Database.ConfigureInstanceAndData();
-            using (var db = Database.Instance)
+            var dataset = Database.Setup();
+            using (var db = Database.Use(dataset))
             {
                 var controller = new Rauthor.Controllers.Api.AccountController(db);
                 var result = controller.Post(new Login() { Method = "register", Password = "password", Username = "sample_user" });
@@ -22,8 +22,8 @@ namespace Rauthor.UnitTests.Controllers.Api
         [Fact]
         public void LoginCorrect()
         {
-            Database.ConfigureInstanceAndData();
-            using (var db = Database.Instance)
+            var dataset = Database.Setup();
+            using (var db = Database.Use(dataset))
             {
                 var controller = new Rauthor.Controllers.Api.AccountController(db);
                 controller.Post(new Login() { Method = "register", Password = "password", Username = "sample_user" });
