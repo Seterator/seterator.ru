@@ -5,7 +5,7 @@
     align-items: flex-start;
 }
 
-.organizerCard * {
+.organizerCard { 
     margin-top: 5px;
 }
 

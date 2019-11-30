@@ -1,0 +1,25 @@
+.avatar {
+}
+
+.avatar_theme_light {
+    background-color: rgb(255, 255, 255);
+}
+
+.avatar_theme_dark {
+    background-color: rgb(0, 0, 0);
+}
+
+.avatar_shape_circle {
+    border-radius: 50px;
+    
+}
+
+.avatar_size_s {
+    width: 45px;
+    height: 45px;
+}
+
+.avatar_size_m {
+    width: 60px;
+    height: 60px;
+}

@@ -1,24 +1,47 @@
-/// <reference path="../Core/models.ts" />
-var Competition;
-(function (Competition) {
-    var Create;
-    (function (Create) {
-        document.addEventListener("readystatechange", () => {
-            let form = document.getElementById("main-form");
-            form.addEventListener("submit", create);
-        });
-        async function create(event) {
-            event.preventDefault();
-            let competition = new Core.Models.Competition(this.title.value, this.startDate.value, this.endDate.value, this.description.value, this.prizes.value);
-            await fetch('/api/competition', {
-                body: JSON.stringify(competition),
-                method: "POST",
-                headers: [
-                    ["Content-Type", "application/json"]
-                ]
-            });
-            return false;
+let competitionForm = document.forms[0];
+competitionForm.addEventListener("submit", CreateCompetition);
+
+function CreateCompetition() {
+    event.preventDefault();
+    let competitionForm = document.forms[0];
+    let competition = {
+        "ManagerPhoneNumber": competitionForm.phoneNumber.value,
+        "ManagerEmail": competitionForm.email.value,
+        "ManagerSocialLinks": [],
+        "Categories": [],
+        "Title": competitionForm.title.value,
+        "ShortDescription": competitionForm.shortDescription.value,
+        "Description": competitionForm.description.value,
+        "Constraints": [
+            {
+                "CheckedValue": "Age",
+                "Min": parseInt(competitionForm.ageStart.value, 10),
+                "Max": parseInt(competitionForm.ageEnd.value, 10)
+            },
+            {
+                "CheckedValue": "Country",
+                "Value": competitionForm.countries.valuet
+            }
+        ],
+        "Prizes": "null",
+        "JuryGuids": [],
+        "PublicationDate": competitionForm.publicationDate.value,
+        "StartDate": competitionForm.startDate.value,
+        "EndDate": competitionForm.endDate.value
+    }    
+
+    fetch("/api/Competition", {
+        method: 'POST', 
+        headers: {
+            "Content-Type": "text/json; charset=utf-8"
+        }, 
+        body: JSON.stringify(competition)
+    }).then(response => {
+        if (response.status == 200) {
+            document.location.href = "/";
         }
-    })(Create = Competition.Create || (Competition.Create = {}));
-})(Competition || (Competition = {}));
-//# sourceMappingURL=create.js.map
+        else {
+            alert(`Ошибка: ${response.status}`);
+        }
+    });
+}

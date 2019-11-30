@@ -1,5 +1,5 @@
 .imgSvg{
-    width: 100%;
+    max-width: 100%;
 }
 
 .imgSvg_socialIcons {
@@ -7,8 +7,8 @@
     max-width: 50%;
 }
 
-.imgSvg_socialIcons100 {    
-    max-width: 100%;
+.imgSvg_socialIcons100 {
+    width: 100%;  
 }
 
 .imgSvg_20px {
@@ -22,7 +22,23 @@
     fill: rgb(255, 255, 255);
 }
 
+.imgSvg_color_white {
+    fill: rgb(255, 255, 255);
+}
+
+.imgSvg_color_orange {
+    fill: rgb(255, 82, 25);
+}
+
+.imgSvg_color_gray {
+    fill: rgb(144, 144, 144);
+}
+
 .imgSvg_orange,
 .imgSvg_white:hover {
+    fill: rgb(255, 82, 25);
+}
+
+.imgSvg_hovered_color_orange:hover {
     fill: rgb(255, 82, 25);
 }

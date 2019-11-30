@@ -1,0 +1,23 @@
+.socialIcons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.socialIcons__item {
+    flex-grow: 0;
+    padding: 1%;
+}
+
+.socialIcons__item_size_m {
+    flex-basis: 35px;
+}
+
+.socialIcons__item_size_s {
+    flex-basis: 25px;
+}
+
+.socialIcons_align_bySides {
+    justify-content: space-between;
+}

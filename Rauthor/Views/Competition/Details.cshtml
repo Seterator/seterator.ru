@@ -1,98 +1,118 @@
 ﻿@model Competition
 
 <div class="container">
-    <div id="compet">
-        <div class="banner banner_littlePadding">
-            <div class="flexRow flexRow_banner">
-                <div class="organizerCard flexRow__item_grow1">
-                    <div class="flexRow flexRow_imgAndText">
-                        <div class="avatar avatar_round">
-                            
-                        </div>
-                        <div class="organizerCard__name">
-                            Организатор
-                        </div>
+    <div class="competitionDetails competitionItem">
+        <div class="banner banner_padding_small banner_theme_common banner_partition_two">
+            <div class="banner__personalInfo personalInfo personalInfo_font_small">
+                <div class="personalInfo__avatar imgText">
+                    <div class="avatar avatar_theme_light avatar_shape_circle avatar_size_s">
+
                     </div>
-                    <div class="flexRow flexRow_imgAndText">
-                        <img class="imgSvg imgSvg_white imgSvg_20px organizerCard__img" src="~/img/Competition/telephone.svg">
-                        <div class="organizerCard__phone">
-                            +7(964)456-21-98
-                        </div>
-                    </div>
-                    <div class="flexRow flexRow_imgAndText">
-                        <img class="imgSvg imgSvg_white imgSvg_20px organizerCard__img" src="~/img/Competition/email.svg">
-                        <div class="organizerCard__email">
-                            mainmail#seterator.ru
-                        </div>
-                    </div>
-                    <div class="flexRow flexRow_socialIcons">
-                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/facebook.svg" /></a>
-                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/google.svg" /></a>
-                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/twitter.svg" /></a>
-                        <a class="flexRow__item_100px" href="#"><img class="imgSvg imgSvg_socialIcons imgSvg_white" src="~/img/Social icons/Orange/vk.svg" /></a>
+                    <div class="parsonalInfo__name imgText__text_margin_left">
+                        Организатор
                     </div>
                 </div>
-                <div class="eventItem eventItem_rows flexRow__item_grow3">
-                        <span class="eventItem__category eventItem__category_row">Ежедневный конкурс</span>
-                        <h4 class="eventItem__title eventItem__title_row">Название</h4>
-                        <div class="flexRow flexRow_imgAndText">
-                            <img class="imgSvg imgSvg_orange imgSvg_20px" src="~/img/Competition/time.svg" />
-                            <span class="eventItem__timer eventItem__timer_row">Дата</span>
-                        </div>
-                        <a class="formButton eventItem_button" asp-action="Become"
+                <div class="personalInfo__item_margin_bottom imgText">
+                    <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/telephone.svg">
+                    <span class="personalInfo__phone imgText__text_margin_left">+7(964)456-21-98</span>
+                </div>
+                <div class="personalInfo__item_margin_bottom imgText">
+                    <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/email.svg">
+                    <span class="personalInfo__email imgText__text_margin_left">mainmail@@seterator.ru</span>
+                </div>
+                <div class="personalInfo__item_margin_bottom socialIcons socialIcons_align_bySides">
+                    <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/google.svg" /></a>
+                    <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                    <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                    <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/vk.svg" /></a>
+                </div>
+            </div>
+            <div class="banner__competitionItem competitionItem_direction_column">
+                <span class="competitionItem__category">Ежедневный конкурс</span>
+                <h4 class="competitionItem__title">Название</h4>
+                <p class="competitionItem__shortDescription competitionItem__shortDescription_width_allLine">Короткое описание</p>
+                <div class="competitionItem__division competitionItem__division_align_bySides">
+                    <div class="imgText">
+                        <img class="imgText__img imgSvg imgSvg_color_gray imgText__img_size_s" src="~/img/Competition/share.svg">
+                        <span class="competitionItem__share">Поделиться</span>
+                    </div>
+                    <a class="competitionItem__button btn btn_decoration_orangeShadow btn_color_orange" asp-action="Become"
                             asp-controller="Participant"
-                            asp-route-guid="@Model.Guid">Участвовать</a>
-                        <p class="eventItem_shortDescription eventItem__shortDescription_row">Короткое описание</p>
+                            asp-route-guid="@Model.Guid">
+                        <div class="imgText">
+                            <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/time.svg">
+                            <span class="imgText__text competitionItem__timer">Дата</span>
+                        </div>
+                        <span class="formButton__item">Участвовать</span>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="full-description">
-            <h3>Описание</h3>
-            <p></p>
+    </div>
+    <h3 class="competitionDetails__header">Описание конкурса</h3>
+    <p class="competitionItem__fullDescription"></p>
+    <div class="competitionDetails__grid">
+        <div class="competitionDetails__competitionConditions">
+            <h3 class="competitionDetails__header">Условия конкурса</h3>
+            <ul class="competitionConditions">
+                <li class="competitionConditions__item competitionConditions__item_marker_orangeDot"> <span class="competitionConditions__name">Возраст участников: </span> <span class="competitionConditions__value"></span></li>
+                <li class="competitionConditions__item competitionConditions__item_marker_orangeDot"> <span class="competitionConditions__name">Страны участников: </span> <span class="competitionConditions__value"></span></li>
+                <li class="competitionConditions__item competitionConditions__item_type_file">
+                    <div class="imgText">
+                        <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/link_1.svg">
+                        <span class="competitionConditions__fileName">Условия конкурса</span>
+                    </div>
+                </li>
+                <li class="competitionConditions__item competitionConditions__item_type_file">
+                    <div class="imgText">
+                        <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/document.svg">
+                        <span class="competitionConditions__fileName">Политика конфиденциальности</span>
+                    </div>
+                </li>
+                <li class="competitionConditions__item competitionConditions__item_type_file">
+                    <div class="imgText">
+                        <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/document.svg">
+                        <span class="competitionConditions__fileName">Соглашение</span>
+                    </div>
+                </li>
+            </ul>
         </div>
-
-        <div class="content">
-            <div class="conditions">
-                <h3>Условия конкурса</h3>
-                <ul>
-                    <li>Вам должно быть от 18 до 19 лет.</li>
-                    <li>Вы должны быть гражданином РФ.</li>
-                    <li>Произведение не должно содержать нецензурную лексику.</li>
-                </ul>
-            </div>
-            <div class="prizes">
-                <h3>Призы</h3>
-                <ul>
-                    <li><span>1 место</span> - 1000 р.</li>
-                    <li><span>2 место</span> - 500 р.</li>
-                    <li><span>3 место</span> - 100 р.</li>
-                    <li>4-10 - скидка где-то.</li>
-                    <li>10-15 - блокнот и ручка</li>
-                </ul>
-            </div>
-            <div class="jury">
-                <h3>Жюри <span>(25)</span></h3>
-                <ul>
-                    @*<li>
-                        <div>
-                            <div class="avatar"></div>
-                            <span class="name">Имя Фамилия</span>
+        <div class="competitionDetails__competitionPrizes">
+            <h3 class="competitionDetails__header">Призы</h3>
+            <ul class="competitionPrizes">
+                <li class="competitionPrizes__item"><span class="competitionPrizes__name">1 место</span> -  <span class="competitionPrizes__value"></span></li>
+                <li class="competitionPrizes__item"><span class="competitionPrizes__name">2 место</span> -  <span class="competitionPrizes__value"></span></li>
+                <li class="competitionPrizes__item"><span class="competitionPrizes__name">3 место</span> -  <span class="competitionPrizes__value"></span></li>
+                <li class="competitionPrizes__item"><span class="competitionPrizes__name">4-10</span> -     <span class="competitionPrizes__value"></span></li>
+                <li class="competitionPrizes__item"><span class="competitionPrizes__name">10-15</span> -    <span class="competitionPrizes__value"></span></li>
+            </ul>
+        </div>
+        <div class="competitionDetails__jury jury">
+            <h3 class="competitionDetails__header">Жюри <span class="jury__count">(50)</span></h3>
+            <ul class="jury__lst">
+                <li class="userItem">
+                    <div class="imgText">
+                        <div class="avatar avatar_shape_circle avatar_theme_dark avatar_size_m">
                         </div>
-                        <p class="about">О жюри</p>
-                    </li>*@
-                </ul>
-                <button class="formButton">Смотреть всех</button>
+                        <span class="userItem__name">Иванов Иван</span>
+                    </div>
+                    <p class="userItem__description">Описание жюри</p>
+                </li>
+            </ul>
+            <div class="btn btn_color_white">
+                Смотреть всех
             </div>
-            <div class="participants">
-                <h3>Участники <span>(1 из 1000)</span></h3>
-                <ul>
-                    <li>
-                        <h4>Название произведения</h4>
-                        <span>Псевдоним</span>
-                    </li>
-                </ul>
-                <button class="formButton">Cмотреть всех</button>
+        </div>
+        <div class="competitionDetails__participants participants">
+            <h3 class="competitionDetails__header">Участники <span class="participants__count">(15 из 30)</span> </h3>
+            <ul class="participants__lst">
+                <li class="participantItem">
+                    <span class="participantItem__poemTitle">Название произведения</span>
+                    <span class="participantItem__nickname">Псевдоним</span>
+                </li>
+            </ul>
+            <div class="btn btn_color_white">
+                Смотреть всех
             </div>
         </div>
     </div>

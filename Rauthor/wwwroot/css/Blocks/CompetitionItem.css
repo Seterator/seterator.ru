@@ -1,0 +1,59 @@
+﻿.competitionItem {
+    display: flex;
+}
+
+.competitionItem_direction_column {
+    flex-direction: column;
+}
+
+.competitionItem_direction_rows {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.competitionItem__timer_column {
+    text-align: center;
+    color: rgb(255, 82, 25);
+    border-bottom: solid 1px rgb(255, 82, 25);
+    margin-bottom: 10px;
+}
+
+.competitionItem__category {
+    color: rgb(142, 142, 142); 
+}
+
+.competitionItem__title {
+    font-family: 'Merriweather', serif;
+    font-size: 18pt;
+    font-weight: 600;
+}
+
+.competitionItem__shortDescription_width_allLine {
+    flex-basis: 100%;
+}
+
+.competitionItem__button {
+    flex-basis: 40%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.competitionItem__division {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.competitionItem__division_align_bySides {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.competitionItem__share {
+    font-size: 11pt;
+    color: rgb(144, 144, 144);
+}
