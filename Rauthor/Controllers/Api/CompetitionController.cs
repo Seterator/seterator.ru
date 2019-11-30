@@ -21,20 +21,18 @@ namespace Rauthor.Controllers.Api
             database = db;
         }
 
-        [Authorize(Roles = "User")]
         [HttpGet]
-        public IEnumerable<Competition> Get()
+        public IActionResult Get()
         {
-            return database.Competitions;
+            return Ok(database.Competitions);
         }
 
-        [Authorize(Roles = "User")]
         [HttpGet("{guid}", Name = "Get")]
-        public string Get(Guid guid)
+        public IActionResult Get(Guid guid)
         {
             var value = database.Competitions.Include(x => x.Participants).Where(x => x.Guid == guid).Single();
             value.Participants = value.Participants.Select(x => { x.Competition = null; return x; }).ToList();
-            return Newtonsoft.Json.JsonConvert.SerializeObject(value);
+            return Ok(value);
         }
 
         [Authorize(Roles = "Admin, Manager")]
@@ -42,6 +40,7 @@ namespace Rauthor.Controllers.Api
         public IActionResult Post([FromBody] ViewModels.Api.Competition value)
         {
             var competition = Competition.FromApiViewModel(value);
+            competition.Guid = Guid.NewGuid();
             database.Competitions.Add(competition);
             database.SaveChanges();
             return Ok();
