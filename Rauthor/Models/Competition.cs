@@ -68,9 +68,10 @@ namespace Rauthor.Models
         /// </summary>
         public static Competition FromApiViewModel(ViewModels.Api.Competition viewModel)
         {
+            viewModel.Guid = Guid.NewGuid();
             var competition = new Competition()
             {
-                Guid = viewModel.Guid ?? default,
+                Guid = viewModel.Guid.Value,
                 Constraints = viewModel.Constraints,
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate,
