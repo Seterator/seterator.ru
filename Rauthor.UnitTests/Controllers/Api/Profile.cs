@@ -14,8 +14,8 @@ namespace Rauthor.UnitTests.Controllers.Api
         [Fact]
         public void ListProfilesWorking()
         {
-            Database.ConfigureInstanceAndData();
-            using (var db = Database.Instance)
+            var dataset = Database.Setup();
+            using (var db = Database.Use(dataset))
             {
                 var controller = new Rauthor.Controllers.Api.ProfileController(db);
                 var userGuid = db.Users.First().Guid;
@@ -38,8 +38,8 @@ namespace Rauthor.UnitTests.Controllers.Api
         [Fact]
         public void ConcreteProfileWorking()
         {
-            Database.ConfigureInstanceAndData();
-            using (var db = Database.Instance)
+            var dataset = Database.Setup();
+            using (var db = Database.Use(dataset))
             {
                 var controller = new Rauthor.Controllers.Api.ProfileController(db);
                 var roleGuid = db.Roles.First().Guid;

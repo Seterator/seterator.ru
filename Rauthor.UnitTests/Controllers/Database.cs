@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Rauthor.Models;
+using System.Linq;
 
 namespace Rauthor.UnitTests.Controllers
 {
@@ -53,50 +56,122 @@ namespace Rauthor.UnitTests.Controllers
             }
             return bytes;
         }
+
+        public static int Int32()
+        {
+            return random.Next(-100_000, +100_000);
+        }
     }
 
-    /// <summary>
-    /// Представляет объект базы данных с предопределёнными значениями (для тестов).
-    /// </summary>
     public static class Database
     {
-        private static DbContextOptions<DatabaseContext> options;
-        public static DatabaseContext Instance => new DatabaseContext(options);
+        /// <summary>
+        /// Настраивает набор данных и возвращает Guid, по которому можно обратиться к нему.
+        /// Можно явно указать Guid, тогда набор данных будет доступен именно по нему.
+        /// </summary>
+        /// <param name="datasetGuid"></param>
+        /// <returns></returns>
+        public static Guid Setup(Guid? datasetGuid = null)
+        {
+            datasetGuid = datasetGuid ?? Guid.NewGuid();
+            var options = new DbContextOptionsBuilder<DatabaseContext>()
+                .UseInMemoryDatabase(databaseName: (datasetGuid).ToString())
+                .Options;
+            using (var db = new DatabaseContext(options))
+            {
+                FillData(db);
+            }
+            return datasetGuid.Value;
+        }
         
         /// <summary>
-        /// Выполняет настройку базы InMemory-данных и вносит в неё рандомизированный тестовый набор данных.
+        /// Возвращает соответствующий экземпляр <see cref="DatabaseContext"/>. 
+        /// Не забудьте вызвать для него Dispose(), после окончания работы.
         /// </summary>
-        public static void ConfigureInstanceAndData()
+        /// <param name="datasetGuid">Guid набора данных.</param>
+        /// <returns></returns>
+        public static DatabaseContext Use(Guid datasetGuid)
         {
             var options = new DbContextOptionsBuilder<DatabaseContext>()
-                .UseInMemoryDatabase(databaseName: "rauthor")
+                .UseInMemoryDatabase(databaseName: (datasetGuid).ToString())
                 .Options;
-            Database.options = options;
-            FillData();
+            return new DatabaseContext(options);
         }
-        private static void FillData()
+
+        private static void FillData(DatabaseContext db)
         {
             var @guid = new Primitive<Guid>(PrimitiveFuncs.Guid);
             var @string = new Primitive<string>(PrimitiveFuncs.String);
             var @byte = new Primitive<IReadOnlyCollection<byte>>(PrimitiveFuncs.Byte);
-            using (var db = Instance)
+            var @int = new Primitive<int>(PrimitiveFuncs.Int32);
+
+            db.Users.Add(new User() { Guid = guid[0], Login = @string[0], PasswordHash = @byte[0] });
+            db.Users.Add(new User() { Guid = guid[1], Login = @string[1], PasswordHash = @byte[1] });
+            db.Users.Add(new User() { Guid = guid[2], Login = @string[2], PasswordHash = @byte[2] });
+
+                
+            db.Roles.Add(new Role() { Guid = guid[3], UserGuid = guid[0], UserRole = Models.UserRole.User });
+            db.Roles.Add(new Role() { Guid = guid[4], UserGuid = guid[1], UserRole = Models.UserRole.User });
+            db.Roles.Add(new Role() { Guid = guid[5], UserGuid = guid[2], UserRole = Models.UserRole.User });
+            db.Roles.Add(new Role() { Guid = guid[6], UserGuid = guid[2], UserRole = Models.UserRole.Admin });
+            db.Roles.Add(new Role() { Guid = guid[7], UserGuid = guid[2], UserRole = Models.UserRole.Jury });
+
+            db.Profiles.Add(new UserProfile() { RoleGuid = guid[3], Data = "null", ShortLink = "" });
+            db.Profiles.Add(new UserProfile() { RoleGuid = guid[4], Data = "null", ShortLink = "" });
+            db.Profiles.Add(new UserProfile() { RoleGuid = guid[5], Data = "null", ShortLink = "" });
+            db.Profiles.Add(new UserProfile() { RoleGuid = guid[6], Data = "null", ShortLink = @string[3] });
+            db.Profiles.Add(new UserProfile() { RoleGuid = guid[7], Data = "null", ShortLink = $"jury_{@string[3]}" });
+
+                
+            db.CompetitionCategories.Add(new CompetitionCategory() 
+            { 
+                Guid = guid[8], 
+                Name = @string[4],
+            });
+
+            db.Competitions.Add(new Competition()
             {
-                db.Users.Add(new Models.User() { Guid = guid[0], Login = @string[0], PasswordHash = @byte[0] });
-                db.Users.Add(new Models.User() { Guid = guid[1], Login = @string[1], PasswordHash = @byte[1] });
-                db.Users.Add(new Models.User() { Guid = guid[2], Login = @string[2], PasswordHash = @byte[2] });
+                Guid = guid[9],
+                Description = "Description sample",
+                EndDate = new DateTime(2020, 5, 15),
+                StartDate = new DateTime(2020, 3, 15),
+                Title = "Title sample",
+                ShortDesctiption = "Short description sample",
+                Prizes = "null",
+            });
 
-                db.Roles.Add(new Models.Role() { Guid = guid[3], UserGuid = guid[0], UserRole = Models.UserRole.User });
-                db.Roles.Add(new Models.Role() { Guid = guid[4], UserGuid = guid[1], UserRole = Models.UserRole.User });
-                db.Roles.Add(new Models.Role() { Guid = guid[5], UserGuid = guid[2], UserRole = Models.UserRole.User });
-                db.Roles.Add(new Models.Role() { Guid = guid[6], UserGuid = guid[2], UserRole = Models.UserRole.Admin });
+            db.CompetitionConstraints.Add(new CompetitionConstraint()
+            {
+                Guid = guid[10],
+                CompetitionGuid = guid[9],
+                CheckedValue = @string[5],
+                Min = @int[0],
+                Max = @int[0] + @int[1]
+            });
 
-                db.Profiles.Add(new Models.UserProfile() { RoleGuid = guid[3], Data = "null", ShortLink = "" });
-                db.Profiles.Add(new Models.UserProfile() { RoleGuid = guid[4], Data = "null", ShortLink = "" });
-                db.Profiles.Add(new Models.UserProfile() { RoleGuid = guid[5], Data = "null", ShortLink = "" });
-                db.Profiles.Add(new Models.UserProfile() { RoleGuid = guid[6], Data = "null", ShortLink = @string[3] });
+            db.CompetitionRelCategories.Add(new CompetitionRelCategory()
+            {
+                CategoryGuid = guid[8],
+                CompetitionGuid = guid[9]
+            });
 
-                db.SaveChanges();
-            }
+            db.SaveChanges();
+        }
+    
+        private static void RemoveAll(DatabaseContext db)
+        {
+            
+            db.Users.RemoveRange(db.Users);
+            db.Roles.RemoveRange(db.Roles);
+            db.Profiles.RemoveRange(db.Profiles);
+            db.CompetitionCategories.RemoveRange(db.CompetitionCategories);
+            db.CompetitionRelCategories.RemoveRange(db.CompetitionRelCategories);
+            db.CompetitionRelJuries.RemoveRange(db.CompetitionRelJuries);
+            db.Participants.RemoveRange(db.Participants);
+            db.Poems.RemoveRange(db.Poems);
+            db.Competitions.RemoveRange(db.Competitions);
+            db.CompetitionConstraints.RemoveRange(db.CompetitionConstraints);
+            db.SaveChanges();
         }
     }
 }
