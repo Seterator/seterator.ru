@@ -42,8 +42,8 @@ namespace Rauthor.Models
         [Column("short_description")]
         public string ShortDesctiption { get; set; }
 
-        [Column("prizes")]
-        public string Prizes { get; set; }
+        [ForeignKey("CompetitionGuid")]
+        public List<Prize> Prizes { get; set; }
 
         public virtual List<Participant> Participants { get; set; }
 
