@@ -75,7 +75,6 @@ namespace Rauthor.Models
                 EndDate = viewModel.EndDate,
                 Description = viewModel.Description,
                 ShortDesctiption = viewModel.ShortDescription,
-                Prizes = viewModel.Prizes.ToString(),
                 Title = viewModel.Title,
             };
             var juryRefernces = viewModel.JuryGuids.Select(juryGuid => new CompetitionRelJury()
