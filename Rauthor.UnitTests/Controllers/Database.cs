@@ -137,7 +137,6 @@ namespace Rauthor.UnitTests.Controllers
                 StartDate = new DateTime(2020, 3, 15),
                 Title = "Title sample",
                 ShortDesctiption = "Short description sample",
-                Prizes = "null",
             });
 
             db.CompetitionConstraints.Add(new CompetitionConstraint()
@@ -154,6 +153,10 @@ namespace Rauthor.UnitTests.Controllers
                 CategoryGuid = guid[8],
                 CompetitionGuid = guid[9]
             });
+
+            db.Prizes.Add(new Prize() { Guid = guid[11], BeginPlace = 1, EndPlace = 1, CompetitionGuid = guid[9], Value = @string[6] });
+            db.Prizes.Add(new Prize() { Guid = guid[11], BeginPlace = @int[2], EndPlace = @int[2]+1, CompetitionGuid = guid[9], Value = @string[7] });
+            db.Prizes.Add(new Prize() { Guid = guid[11], BeginPlace = @int[3], EndPlace = @int[3]+@int[4], CompetitionGuid = guid[9], Value = @string[8] });
 
             db.SaveChanges();
         }
