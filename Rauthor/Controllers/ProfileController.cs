@@ -25,8 +25,18 @@ namespace Rauthor.Controllers
             return View(profile);
         }
 
+        /// <summary>
+        /// Возвращает базовое представление профиля пользователя по короткой ссылке.
+        /// </summary>
+        /// <param name="shortLink">Короткая ссылка на профиль пользователя.</param>
+        /// <remarks>
+        /// Большой Order для маршрута установлен для того, чтобы понизить приоритет сопоставления.
+        /// Если не устанавливать такой Order - будет происходить коллизия между маршрутами, и при запросе
+        /// `/Profile` будет использоваться не маршрут с методом Index по умолчанию, а маршрут с {shortLink},
+        /// `Profile` будет восприниматься как короткая ссылка для профиля.
+        /// </remarks>
         [HttpGet]
-        [Route("{shortLink}")]
+        [Route("{shortLink}", Order = 9000)]
         public IActionResult Profile(string shortLink)
         {
             try
@@ -41,7 +51,7 @@ namespace Rauthor.Controllers
             }
             catch (InvalidOperationException)
             {
-                return NotFound();
+                return NotFound($"Профиль '{shortLink}' не найден");
             }
             
         }
