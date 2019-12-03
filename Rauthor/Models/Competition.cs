@@ -59,6 +59,7 @@ namespace Rauthor.Models
             Categories = new List<CompetitionRelCategory>();
             Jury = new List<CompetitionRelJury>();
             Constraints = new List<CompetitionConstraint>();
+            Prizes = new List<Prize>();
         }
 
         /// <summary>

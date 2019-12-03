@@ -16,8 +16,17 @@ namespace Rauthor.Controllers
         }
         public IActionResult Index()
         {
-            var competition = database.Competitions.Include("Participants");
-            return View(competition);
+            try
+            {
+                var competition = database.Competitions.Include("Participants");
+                return View(competition);
+            }
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception e)
+#pragma warning restore CA1031 // Do not catch general exception types
+            {
+                return StatusCode(500, e);
+            }
         }
         public IActionResult Privacy()
         {
