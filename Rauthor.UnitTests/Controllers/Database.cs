@@ -155,8 +155,8 @@ namespace Rauthor.UnitTests.Controllers
             });
 
             db.Prizes.Add(new Prize() { Guid = guid[11], BeginPlace = 1, EndPlace = 1, CompetitionGuid = guid[9], Value = @string[6] });
-            db.Prizes.Add(new Prize() { Guid = guid[11], BeginPlace = @int[2], EndPlace = @int[2]+1, CompetitionGuid = guid[9], Value = @string[7] });
-            db.Prizes.Add(new Prize() { Guid = guid[11], BeginPlace = @int[3], EndPlace = @int[3]+@int[4], CompetitionGuid = guid[9], Value = @string[8] });
+            db.Prizes.Add(new Prize() { Guid = guid[12], BeginPlace = @int[2], EndPlace = @int[2]+1, CompetitionGuid = guid[9], Value = @string[7] });
+            db.Prizes.Add(new Prize() { Guid = guid[13], BeginPlace = @int[3], EndPlace = @int[3]+@int[4], CompetitionGuid = guid[9], Value = @string[8] });
 
             db.SaveChanges();
         }
