@@ -70,7 +70,6 @@ namespace Rauthor.Models
             var competition = new Competition()
             {
                 Guid = viewModel.Guid ?? default,
-                Constraints = viewModel.Constraints,
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate,
                 Description = viewModel.Description,
@@ -87,8 +86,20 @@ namespace Rauthor.Models
                 CompetitionGuid = competition.Guid,
                 CategoryGuid = categoryGuid
             });
+            var constrains = viewModel.Constraints.Select(x =>
+            {
+                x.CompetitionGuid = competition.Guid;
+                return x;
+            });
+            var prizes = viewModel.Prizes.Select(x =>
+            {
+                x.CompetitionGuid = competition.Guid;
+                return x;
+            });
             competition.Jury = juryRefernces.ToList();
             competition.Categories = categoryReferences.ToList();
+            competition.Constraints = constrains.ToList();
+            competition.Prizes = prizes.ToList();
             return competition;
         }
     }

@@ -50,9 +50,27 @@ namespace Rauthor.Controllers.Api
         [HttpPut("{guid}")]
         public IActionResult Put(Guid guid, [FromBody] ViewModels.Api.Competition value)
         {
-            var oldValue = database.Competitions.Where(x => x.Guid == guid).Single();
+            var current = database.Competitions
+                .Include(x => x.Constraints)
+                .Include(x => x.Categories)
+                .Include(x => x.Jury)
+                .Include(x => x.Prizes)
+                .Where(x => x.Guid == guid)
+                .Single();
             value.Guid = guid;
-            database.Entry<Competition>(oldValue).CurrentValues.SetValues(Competition.FromApiViewModel(value));
+            var competition = Competition.FromApiViewModel(value);
+            database.Entry<Competition>(current).CurrentValues.SetValues(competition);
+            
+            current.Categories.Clear();
+            current.Constraints.Clear();
+            current.Jury.Clear();
+            current.Prizes.Clear();
+            
+            current.Categories.AddRange(competition.Categories);
+            current.Constraints.AddRange(competition.Constraints);
+            current.Jury.AddRange(competition.Jury);
+            current.Prizes.AddRange(competition.Prizes);
+            
             database.SaveChanges();
             return Ok();
         }
