@@ -35,7 +35,11 @@ namespace Rauthor.UnitTests.Controllers.Api
                     StartDate = new DateTime(),
                     ManagerEmail = "sample@email",
                     ManagerPhoneNumber = "+sample",
-                    Prizes = "null",
+                    Prizes = new List<Prize>()
+                    {
+                        new Prize() { BeginPlace = 1, EndPlace = 1, Value = "First place prize"},
+                        new Prize() { BeginPlace = 2, EndPlace = 10, Value = "Top-10 prize"}
+                    },
                     ShortDescription = "Sample short description",
                     Title = "Competition {997DD1CD-FC9C-4A2A-AAE2-9EB0AA668CAD}"
                 };
@@ -48,12 +52,15 @@ namespace Rauthor.UnitTests.Controllers.Api
                     .Include(x => x.Categories)
                     .Include(x => x.Constraints)
                     .Include(x => x.Jury)
+                    .Include(x => x.Prizes)
                     .Where(x => x.Title == "Competition {997DD1CD-FC9C-4A2A-AAE2-9EB0AA668CAD}")
                     .Single();
                 var constrains = db.CompetitionConstraints.Where(x => x.CompetitionGuid == competition.Guid);
                 Assert.NotEqual(new Guid(), competition.Guid);
                 Assert.Contains("Sample1", constrains.Select(x => x.CheckedValue));
                 Assert.Contains("Sample2", constrains.Select(x => x.CheckedValue));
+                Assert.Contains("First place prize", competition.Prizes.Select(x => x.Value));
+                Assert.Contains("Top-10 prize", competition.Prizes.Select(x => x.Value));
                 Assert.True(competition.Jury.Select(x => x.Jury).Count() > 0);
                 Assert.True(competition.Categories.Select(x => x.Category).Count() > 0);
                 
@@ -72,6 +79,7 @@ namespace Rauthor.UnitTests.Controllers.Api
                 var competition = db.Competitions
                     .Include(x => x.Constraints)
                     .Include(x => x.Categories)
+                    .Include(x => x.Prizes)
                     .First();
                 guid = competition.Guid;
                 var controller = new Rauthor.Controllers.Api.CompetitionController(db);
@@ -84,7 +92,7 @@ namespace Rauthor.UnitTests.Controllers.Api
                     EndDate = competition.EndDate,
                     StartDate = competition.StartDate,
                     JuryGuids = competition.Jury.Select(x => x.JuryUserGuid).ToList(),
-                    Prizes = competition.Prizes,
+                    Prizes = competition.Prizes.Append(new Prize() {BeginPlace = 100, EndPlace = 100, Value = "Looser prize" }).ToList(),
                     Title = competition.Title,
                     ShortDescription = competition.ShortDesctiption,
                 };
@@ -94,8 +102,12 @@ namespace Rauthor.UnitTests.Controllers.Api
             Assert.IsType<OkResult>(controllerResult);
             using (var db = Database.Use(dataset))
             {
-                var competition = db.Competitions.Single(x => x.Guid == guid);
+                var competition = db.Competitions
+                    .Include(x => x.Prizes)
+                    .Single(x => x.Guid == guid);
                 Assert.Equal("[Updated]", competition.Description);
+                Assert.Contains("Looser prize", competition.Prizes.Select(x => x.Value));
+                Assert.Contains("Looser prize", db.Prizes.Where(x => x.CompetitionGuid == competition.Guid).Select(x => x.Value));
             }
         }
     }
