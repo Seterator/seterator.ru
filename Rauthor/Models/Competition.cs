@@ -42,8 +42,8 @@ namespace Rauthor.Models
         [Column("short_description")]
         public string ShortDesctiption { get; set; }
 
-        [Column("prizes")]
-        public string Prizes { get; set; }
+        [ForeignKey("CompetitionGuid")]
+        public List<Prize> Prizes { get; set; }
 
         public virtual List<Participant> Participants { get; set; }
 
@@ -70,12 +70,10 @@ namespace Rauthor.Models
             var competition = new Competition()
             {
                 Guid = viewModel.Guid ?? default,
-                Constraints = viewModel.Constraints,
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate,
                 Description = viewModel.Description,
                 ShortDesctiption = viewModel.ShortDescription,
-                Prizes = viewModel.Prizes.ToString(),
                 Title = viewModel.Title,
             };
             var juryRefernces = viewModel.JuryGuids.Select(juryGuid => new CompetitionRelJury()
@@ -88,8 +86,20 @@ namespace Rauthor.Models
                 CompetitionGuid = competition.Guid,
                 CategoryGuid = categoryGuid
             });
+            var constrains = viewModel.Constraints.Select(x =>
+            {
+                x.CompetitionGuid = competition.Guid;
+                return x;
+            });
+            var prizes = viewModel.Prizes.Select(x =>
+            {
+                x.CompetitionGuid = competition.Guid;
+                return x;
+            });
             competition.Jury = juryRefernces.ToList();
             competition.Categories = categoryReferences.ToList();
+            competition.Constraints = constrains.ToList();
+            competition.Prizes = prizes.ToList();
             return competition;
         }
     }

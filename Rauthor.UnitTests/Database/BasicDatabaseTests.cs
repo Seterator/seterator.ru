@@ -68,5 +68,11 @@ namespace Rauthor.UnitTests.Database
         {
             TestForEntity(db => db.Roles);
         }
+
+        [Fact]
+        public void PrizesLoading()
+        {
+            TestForEntity(db => db.Prizes);
+        }
     }
 }

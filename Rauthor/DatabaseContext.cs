@@ -23,6 +23,8 @@ namespace Rauthor
         public DbSet<CompetitionRelJury> CompetitionRelJuries { get; set; }
         public DbSet<UserProfile> Profiles { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Prize> Prizes { get; set; }
+
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             Database.EnsureCreated();

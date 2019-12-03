@@ -59,7 +59,7 @@ namespace Rauthor.ViewModels.Api
         /// <summary>
         /// Призовые места
         /// </summary>
-        public object Prizes { get; set; }
+        public List<Prize> Prizes { get; set; }
 
         /// <summary>
         /// Guid'ы жюри конкурса

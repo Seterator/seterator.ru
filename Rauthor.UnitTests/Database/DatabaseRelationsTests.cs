@@ -22,12 +22,14 @@ namespace Rauthor.UnitTests.Database
             var entity = Database.Competitions
                 .Include(x => x.Categories)
                 .Include(x => x.Constraints)
-                .Include(x => x.Participants);
+                .Include(x => x.Participants)
+                .Include(x => x.Prizes);
             Assert.All(entity, item =>
             {
                 AssertMany(item.Categories);
                 AssertMany(item.Constraints);
                 AssertMany(item.Participants);
+                AssertMany(item.Prizes);
             });
         }
 
