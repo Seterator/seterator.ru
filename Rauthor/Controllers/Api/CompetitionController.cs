@@ -24,13 +24,21 @@ namespace Rauthor.Controllers.Api
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(database.Competitions);
+            return Ok(database.Competitions
+                .Include(x => x.Prizes)
+                .Include(x => x.Categories));
         }
 
         [HttpGet("{guid}", Name = "Get")]
         public IActionResult Get(Guid guid)
         {
-            var value = database.Competitions.Include(x => x.Participants).Where(x => x.Guid == guid).Single();
+            var value = database.Competitions
+                .Include(x => x.Participants)
+                .Include(x => x.Prizes)
+                .Include(x => x.Jury)
+                .Include(x => x.Categories)
+                .Where(x => x.Guid == guid)
+                .Single();
             value.Participants = value.Participants.Select(x => { x.Competition = null; return x; }).ToList();
             return Ok(value);
         }
