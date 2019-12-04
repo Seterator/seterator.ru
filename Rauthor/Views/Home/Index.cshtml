@@ -13,21 +13,26 @@
         </div>
 
         <div class="index__eventsList">
-            @foreach (var competition in Model)
-            {
-                <a class="index__competitionItemHref" href="Competition/Details/@competition.Guid.ToString()">
-                    <div class="index__competitionItem competitionItem competitionItem_direction_column">
-                        <span class="competitionItem__timer_column">@competition.EndDate.ToString("yyyy.MM.dd")</span>
-                        <span class="competitionItem__category">Ежедневный конкурс</span>
-                        <h4 class="competitionItem__title">@competition.Title</h4>
-                        <p class="competitionItem__shortDescription">@competition.Description</p>
-                    </div>
-                </a>
-            }
-            <div class="index__allCompetitionsButton imgText">
+            <!-- <div class="index__allCompetitionsButton imgText">
                 <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/index/icons/list.svg">
                 <span class="imgText__text">Все ежедневные конкурсы</span>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
+
+<script src="~/js/Competition/Timer.js"></script>
+<script src="~/js/Home/Index.js"></script>
+
+<!-- Структура блока с соревнованием -->
+@*<a class="index__competitionItemHref" href="Competition/Details/@competition.Guid.ToString()">
+<div class="index__competitionItem competitionItem competitionItem_direction_column">
+    <div class="imgText">
+        <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/index/Competition/time.svg">
+        <span class="competitionItem__timer_column">@competition.EndDate.ToString("yyyy.MM.dd")</span>
+    </div>
+    <span class="competitionItem__category">Ежедневный конкурс</span>
+    <h4 class="competitionItem__title">@competition.Title</h4>
+    <p class="competitionItem__shortDescription">@competition.Description</p>
+</div>
+</a>*@
