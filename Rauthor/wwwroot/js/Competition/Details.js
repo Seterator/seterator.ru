@@ -9,10 +9,10 @@ function LoadCompetition(competition) {
     UnhideElems();
     LoadCompetitionBanner();
 
-
     function LoadCompetitionBanner() {
         LoadOrganizerInfo();
         LoadCompetitionBannerInfo();
+        LoadCompetitionJury();
         
         function LoadOrganizerInfo(competition) {
             document.querySelector(".parsonalInfo__name").textContent = "Не указано";
@@ -20,7 +20,6 @@ function LoadCompetition(competition) {
             document.querySelector(".personalInfo__email").textContent = "Не указано";
 
         }
-
         function LoadCompetitionBannerInfo() {
             document.querySelector(".competitionItem__category").textContent = "Ежедневный конкурс";
             document.querySelector(".competitionItem__title").textContent = competition.title;
@@ -31,6 +30,53 @@ function LoadCompetition(competition) {
 
         }
     }
+    function LoadCompetitionConditions() {
+        
+    }
+    function LoadCompetitionPrizes() {
+
+    }
+    function LoadCompetitionJury() {
+        LoadJuryCount();
+        CreateJuryList();
+
+        function LoadJuryCount() {
+            document.querySelector(".jury__count").textContent = `(${competition.jury.length})`;
+        }
+        function CreateJuryList() {
+            if (competition.jury != null) {
+                competition.jury.forEach(juryItem => {
+                    document.querySelector(".jury__lst").append(CreateJuryItem(juryItem))
+                });
+            }
+            function CreateJuryItem(juryJSON) {
+                var juryItemLi = document.createElement("li");
+                juryItemLi.classList.add("userItem");
+
+                var imgText = document.createElement("div");
+                imgText.classList.add("imgText");
+
+                var avatar = document.createElement("div");
+                avatar.classList.add("avatar", "avatar_shape_circle", "avatar_theme_dark", "avatar_size_m");
+
+                var juryName = document.createElement("span");
+                juryName.classList.add("userItem__name");
+                juryName.textContent = "Имя жюри"; //juryJSON.nickname
+
+                var juryDescription = document.createElement("p");
+                juryDescription.classList.add("userItem__description");
+                juryDescription.textContent = "Описание жюри"; //juryJSON.description
+
+                imgText.append(avatar, juryName);
+                juryItemLi.append(imgText, juryDescription);
+
+                return juryItemLi;
+            }
+        }
+    }
+    function LoadCompetitionParticipants() {
+        
+    }
 
 }
 
@@ -38,10 +84,7 @@ function HideElems() {
     // Информация об организаторе
     document.querySelector(".personalInfo__avatar").style.display = "none";
     document.querySelector(".personalInfo__phone").parentElement.style.display = "none";
-    document.querySelector(".personalInfo__email").parentElement.style.display = "none";
-
-    // Информация о конкурсе в баннере
-    
+    document.querySelector(".personalInfo__email").parentElement.style.display = "none";    
 }
 
 function UnhideElems() {
