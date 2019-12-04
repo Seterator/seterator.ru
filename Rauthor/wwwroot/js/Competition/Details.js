@@ -1,6 +1,7 @@
 HideElems();
 
-fetch('/api/Competition/143481f8-fb2b-42b5-bd26-21ee985b3dc1', {
+var guid = window.location.pathname.split(new RegExp("/|\\?"))[3];
+fetch(`/api/Competition/${guid}`, {
     method: 'GET'
 }).then(response => response.json()).then(competition => LoadCompetition(competition));
 
