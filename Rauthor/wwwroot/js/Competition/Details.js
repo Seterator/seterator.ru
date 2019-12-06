@@ -9,6 +9,7 @@ function LoadCompetition(competition) {
     UnhideElems();
     LoadCompetitionBanner();
     LoadCompetitionDescription();
+    LoadCompetitionConditions();
     LoadCompetitionPrizes();
     LoadCompetitionJury();
     LoadCompetitionParticipants();
@@ -37,7 +38,7 @@ function LoadCompetition(competition) {
         document.querySelector(".competitionItem__fullDescription").textContent = competition.description;
     }
     function LoadCompetitionConditions() {
-        
+        document.querySelector(".competitionConditions").textContent = "Временно не доступно. В разработке.";
     }
     function LoadCompetitionPrizes() {
         LoadCompetitionPrizesLit();
@@ -141,7 +142,9 @@ function HideElems() {
     document.querySelector(".personalInfo__phone").parentElement.style.display = "none";
     document.querySelector(".personalInfo__email").parentElement.style.display = "none";    
     document.querySelector(".jury__showAllBtn").style.display = "none";    
-    document.querySelector(".participants__showAllBtn").style.display = "none";    
+    document.querySelector(".participants__showAllBtn").style.display = "none";   
+    document.querySelectorAll(".competitionConditions__item").forEach(condition => condition.style.display = "none");
+    
 }
 
 function UnhideElems() {
