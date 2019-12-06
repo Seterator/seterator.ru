@@ -38,7 +38,7 @@ function LoadCompetition(competition) {
         document.querySelector(".competitionItem__fullDescription").textContent = competition.description;
     }
     function LoadCompetitionConditions() {
-        document.querySelector(".competitionConditions").textContent = "Временно не доступно. В разработке.";
+        document.querySelector(".competitionConditions").textContent = "Временно недоступно. В разработке.";
     }
     function LoadCompetitionPrizes() {
         LoadCompetitionPrizesLit();
