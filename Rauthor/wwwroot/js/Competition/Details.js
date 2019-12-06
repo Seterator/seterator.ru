@@ -1,14 +1,3 @@
-participantTest = [
-    {
-        title: "Буря мглою небо кроет",
-        nickname: "Америко Веспуччи",
-    },
-    {
-        title: "Это мой стих",
-        nickname: "Рэпер оксинейрон",
-    },
-]
-
 HideElems();
 
 var guid = window.location.pathname.split(new RegExp("/|\\?"))[3];
