@@ -8,6 +8,7 @@ fetch(`/api/Competition/${guid}`, {
 function LoadCompetition(competition) {
     UnhideElems();
     LoadCompetitionBanner();
+    LoadCompetitionDescription();
     LoadCompetitionPrizes();
     LoadCompetitionJury();
     LoadCompetitionParticipants();
@@ -31,6 +32,9 @@ function LoadCompetition(competition) {
             }, 1000);
 
         }
+    }
+    function LoadCompetitionDescription() {
+        document.querySelector(".competitionItem__fullDescription").textContent = competition.description;
     }
     function LoadCompetitionConditions() {
         
