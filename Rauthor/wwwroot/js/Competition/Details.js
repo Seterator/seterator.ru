@@ -1,3 +1,14 @@
+participantTest = [
+    {
+        title: "Буря мглою небо кроет",
+        nickname: "Америко Веспуччи",
+    },
+    {
+        title: "Это мой стих",
+        nickname: "Рэпер оксинейрон",
+    },
+]
+
 HideElems();
 
 var guid = window.location.pathname.split(new RegExp("/|\\?"))[3];
@@ -10,6 +21,7 @@ function LoadCompetition(competition) {
     LoadCompetitionBanner();
     LoadCompetitionPrizes();
     LoadCompetitionJury();
+    LoadCompetitionParticipants();
 
     function LoadCompetitionBanner() {
         LoadOrganizerInfo();
@@ -96,7 +108,36 @@ function LoadCompetition(competition) {
         }
     }
     function LoadCompetitionParticipants() {
-        
+        LoadCompetitionParticipantsCount();
+        LoadCompetitionParticipantsList();
+
+        function LoadCompetitionParticipantsCount() {
+            document.querySelector(".participants__count").textContent = `(${competition.participants.length})`;
+        }
+        function LoadCompetitionParticipantsList() {
+            competition.participants.forEach(participant => document.querySelector(".participants__lst").append(CreateCompetitionParticipant(participant)));
+
+            function CreateCompetitionParticipant(participant) {
+                var participantItem = document.createElement("li");
+                participantItem.classList.add("participantItem");
+
+                var poemTitle = document.createElement("span");
+                poemTitle.classList.add("participantItem__poemTitle");
+                poemTitle.textContent = participant.title;
+                
+                var nickname = document.createElement("span");
+                nickname.classList.add("participantItem__nickname");
+                nickname.textContent = participant.nickname;
+
+                participantItem.append(poemTitle, nickname);
+                return participantItem;
+            }
+        }
+        function ShowCompetitionParticipantsBtn() {
+            if (competition.participants.length != 0) {
+                document.querySelector(".participants__showAllBtn").style.removeProperty("display");   
+            }
+        }
     }
 
 }
@@ -107,6 +148,7 @@ function HideElems() {
     document.querySelector(".personalInfo__phone").parentElement.style.display = "none";
     document.querySelector(".personalInfo__email").parentElement.style.display = "none";    
     document.querySelector(".jury__showAllBtn").style.display = "none";    
+    document.querySelector(".participants__showAllBtn").style.display = "none";    
 }
 
 function UnhideElems() {
