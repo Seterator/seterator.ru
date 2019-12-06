@@ -8,11 +8,12 @@ fetch(`/api/Competition/${guid}`, {
 function LoadCompetition(competition) {
     UnhideElems();
     LoadCompetitionBanner();
+    LoadCompetitionPrizes();
+    LoadCompetitionJury();
 
     function LoadCompetitionBanner() {
         LoadOrganizerInfo();
         LoadCompetitionBannerInfo();
-        LoadCompetitionJury();
         
         function LoadOrganizerInfo(competition) {
             document.querySelector(".parsonalInfo__name").textContent = "Не указано";
@@ -34,7 +35,26 @@ function LoadCompetition(competition) {
         
     }
     function LoadCompetitionPrizes() {
+        LoadCompetitionPrizesLit();
 
+        function LoadCompetitionPrizesLit() {
+            competition.prizes.forEach(prize => document.querySelector(".competitionPrizes").append(CreateCompetitionPrize(prize)));
+        }
+        function CreateCompetitionPrize(prize) {
+            var prizeItem = document.createElement("li");
+            prizeItem.classList.add("competitionPrizes__item");
+
+            var prizeItemPlace = document.createElement("span");
+            prizeItemPlace.classList.add("competitionPrizes__name");
+            prizeItemPlace.textContent = `${prize.begin_place} - ${prize.end_place} место: `;
+
+            var prizeItemValue = document.createElement("span");
+            prizeItemValue.classList.add("competitionPrizes__value");
+            prizeItemValue.textContent = prize.value;
+
+            prizeItem.append(prizeItemPlace, prizeItemValue);
+            return prizeItem;
+        }
     }
     function LoadCompetitionJury() {
         LoadJuryCount();
@@ -44,7 +64,8 @@ function LoadCompetition(competition) {
             document.querySelector(".jury__count").textContent = `(${competition.jury.length})`;
         }
         function CreateJuryList() {
-            if (competition.jury != null) {
+            if (competition.jury.length != 0) {
+                document.querySelector(".jury__showAllBtn").style.removeProperty("display");
                 competition.jury.forEach(juryItem => {
                     document.querySelector(".jury__lst").append(CreateJuryItem(juryItem))
                 });
@@ -85,6 +106,7 @@ function HideElems() {
     document.querySelector(".personalInfo__avatar").style.display = "none";
     document.querySelector(".personalInfo__phone").parentElement.style.display = "none";
     document.querySelector(".personalInfo__email").parentElement.style.display = "none";    
+    document.querySelector(".jury__showAllBtn").style.display = "none";    
 }
 
 function UnhideElems() {
@@ -92,20 +114,3 @@ function UnhideElems() {
     document.querySelector(".personalInfo__phone").parentElement.style.removeProperty("display");
     document.querySelector(".personalInfo__email").parentElement.style.removeProperty("display");
 }
-
-// function CreateBannerDataDOM {
-//     var personalInfo__avatar = document.createElement("div");
-//     personalInfo__avatar.classList.add("personalInfo__avatar", "imgText");
-
-//     var avatar = document.createElement("div");
-//     avatar.classList.add("avatar", "avatar_theme_light", "avatar_shape_circle", "avatar_size_s");
-
-//     var parsonalInfo__name = document.createElement("div");
-//     parsonalInfo__name.classList.add("parsonalInfo__name", "imgText__text_margin_left");
-//     parsonalInfo__name.textContent("Имя организатора");
-
-//     var organizerEmailDiv = document.createElement("div");
-//     organizerEmailDiv.classList.add("personalInfo__item_margin_bottom", "imgText");
-
-//     var organizerEmailImg = 
-// }
