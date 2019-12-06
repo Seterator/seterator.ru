@@ -23,7 +23,7 @@ function CreateCompetition() {
                 "Value": competitionForm.countries.valuet
             }
         ],
-        "Prizes": "null",
+        "Prizes": [],
         "JuryGuids": [],
         "PublicationDate": competitionForm.publicationDate.value,
         "StartDate": competitionForm.startDate.value,
