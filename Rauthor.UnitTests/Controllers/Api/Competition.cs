@@ -94,7 +94,7 @@ namespace Rauthor.UnitTests.Controllers.Api
                     JuryGuids = competition.Jury.Select(x => x.JuryUserGuid).ToList(),
                     Prizes = competition.Prizes.Append(new Prize() {BeginPlace = 100, EndPlace = 100, Value = "Looser prize" }).ToList(),
                     Title = competition.Title,
-                    ShortDescription = competition.ShortDesctiption,
+                    ShortDescription = competition.ShortDescription,
                 };
                 controllerResult = controller.Put(guid, updated);
             }

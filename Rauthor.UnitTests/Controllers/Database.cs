@@ -136,7 +136,7 @@ namespace Rauthor.UnitTests.Controllers
                 EndDate = new DateTime(2020, 5, 15),
                 StartDate = new DateTime(2020, 3, 15),
                 Title = "Title sample",
-                ShortDesctiption = "Short description sample",
+                ShortDescription = "Short description sample",
             });
 
             db.CompetitionConstraints.Add(new CompetitionConstraint()

@@ -40,7 +40,7 @@ namespace Rauthor.Models
         /// Короткое описание соревнования
         /// </summary>
         [Column("short_description")]
-        public string ShortDesctiption { get; set; }
+        public string ShortDescription { get; set; }
 
         [ForeignKey("CompetitionGuid")]
         public List<Prize> Prizes { get; set; }
@@ -74,7 +74,7 @@ namespace Rauthor.Models
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate,
                 Description = viewModel.Description,
-                ShortDesctiption = viewModel.ShortDescription,
+                ShortDescription = viewModel.ShortDescription,
                 Title = viewModel.Title,
             };
             var juryRefernces = viewModel.JuryGuids.Select(juryGuid => new CompetitionRelJury()
