@@ -14,11 +14,11 @@
                 </div>
                 <div class="personalInfo__item_margin_bottom imgText">
                     <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/telephone.svg">
-                    <span class="personalInfo__phone imgText__text_margin_left">+7(964)456-21-98</span>
+                    <span class="personalInfo__phone imgText__text_margin_left"></span>
                 </div>
                 <div class="personalInfo__item_margin_bottom imgText">
                     <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/email.svg">
-                    <span class="personalInfo__email imgText__text_margin_left">mainmail@@seterator.ru</span>
+                    <span class="personalInfo__email imgText__text_margin_left"></span>
                 </div>
                 <div class="personalInfo__item_margin_bottom socialIcons socialIcons_align_bySides">
                     <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/google.svg" /></a>
@@ -28,9 +28,9 @@
                 </div>
             </div>
             <div class="banner__competitionItem competitionItem_direction_column">
-                <span class="competitionItem__category">Ежедневный конкурс</span>
-                <h4 class="competitionItem__title">Название</h4>
-                <p class="competitionItem__shortDescription competitionItem__shortDescription_width_allLine">Короткое описание</p>
+                <span class="competitionItem__category"></span>
+                <h4 class="competitionItem__title"></h4>
+                <p class="competitionItem__shortDescription competitionItem__shortDescription_width_allLine"></p>
                 <div class="competitionItem__division competitionItem__division_align_bySides">
                     <div class="imgText">
                         <img class="imgText__img imgSvg imgSvg_color_gray imgText__img_size_s" src="~/img/Competition/share.svg">
@@ -41,7 +41,7 @@
                             asp-route-guid="@Model.Guid">
                         <div class="imgText">
                             <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/time.svg">
-                            <span class="imgText__text competitionItem__timer">Дата</span>
+                            <span class="imgText__text competitionItem__timer"></span>
                         </div>
                         <span class="formButton__item">Участвовать</span>
                     </a>
@@ -80,46 +80,29 @@
         <div class="competitionDetails__competitionPrizes">
             <h3 class="competitionDetails__header">Призы</h3>
             <ul class="competitionPrizes">
-                <li class="competitionPrizes__item"><span class="competitionPrizes__name">1 место</span> -  <span class="competitionPrizes__value"></span></li>
-                <li class="competitionPrizes__item"><span class="competitionPrizes__name">2 место</span> -  <span class="competitionPrizes__value"></span></li>
-                <li class="competitionPrizes__item"><span class="competitionPrizes__name">3 место</span> -  <span class="competitionPrizes__value"></span></li>
-                <li class="competitionPrizes__item"><span class="competitionPrizes__name">4-10</span> -     <span class="competitionPrizes__value"></span></li>
-                <li class="competitionPrizes__item"><span class="competitionPrizes__name">10-15</span> -    <span class="competitionPrizes__value"></span></li>
             </ul>
         </div>
         <div class="competitionDetails__jury jury">
-            <h3 class="competitionDetails__header">Жюри <span class="jury__count">(50)</span></h3>
+            <h3 class="competitionDetails__header">Жюри <span class="jury__count"></span></h3>
             <ul class="jury__lst">
-                <li class="userItem">
-                    <div class="imgText">
-                        <div class="avatar avatar_shape_circle avatar_theme_dark avatar_size_m">
-                        </div>
-                        <span class="userItem__name">Иванов Иван</span>
-                    </div>
-                    <p class="userItem__description">Описание жюри</p>
-                </li>
             </ul>
-            <div class="btn btn_color_white">
+            <div class="jury__showAllBtn btn btn_color_white">
                 Смотреть всех
             </div>
         </div>
         <div class="competitionDetails__participants participants">
-            <h3 class="competitionDetails__header">Участники <span class="participants__count">(15 из 30)</span> </h3>
+            <h3 class="competitionDetails__header">Участники <span class="participants__count"></span> </h3>
             <ul class="participants__lst">
-                <li class="participantItem">
-                    <span class="participantItem__poemTitle">Название произведения</span>
-                    <span class="participantItem__nickname">Псевдоним</span>
-                </li>
             </ul>
-            <div class="btn btn_color_white">
+            <div class="participants__showAllBtn btn btn_color_white">
                 Смотреть всех
             </div>
         </div>
     </div>
 </div>
 
-<script src="~/js/Competition/GetDate.js"></script>
 <script src="~/js/Competition/Timer.js"></script>
-<script asp-src-include="/js/Competition/all.js"></script>
 <script asp-src-include="/js/Core/utils.js"></script>
+<script src="~/js/Competition/Details.js"></script>
+<script asp-src-include="/js/Competition/all.js"></script>
 <script asp-src-include="/js/Core/models.js"></script>
