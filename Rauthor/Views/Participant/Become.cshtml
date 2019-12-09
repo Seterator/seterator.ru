@@ -4,70 +4,31 @@
 }
 
 
-<div class="part-become container">
-    <p class="time-to-end">0д 100ч 400мин осталось</p>
-    <div class="poem-title-cond">
-        <h2>@(ViewData["Competition title"])</h2>
-        <p>
-            <span>Условия конкурса</span> <img class="img-svg" src="~/img/icons/arrow.svg" /> 
-        </p> 
+<div class="participantBecome container">
+    <div class="competitionItem competitionItem_direction_column">
+        <span class="participantBecome__timer competitionItem__timer">0д 100ч 400мин осталось</span>
+        <div class="participantBecome__itemsRow">
+            <h3 class="competitionItem__title competitionItem__title_size_xl">@(ViewData["Competition title"])</h3>
+            <div class="imgText">
+                <span class="imgText__text">Условия конкурса</span>
+                <img class="imgText__img imgSvg imgSvg_color_black" src="~/img/icons/arrow.svg">
+            </div>
+        </div>
+        <p class="competitionItem__description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+            sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
     </div>
-    <p class="poem-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-    sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <form asp-action="Become"
-          asp-controller="Participant"
-          asp-route-id="@(ViewData["Competition guid"])"
-          asp-antiforgery="true">
-        <div asp-validation-summary="ModelOnly"></div>
-        <input type="text" asp-for="Title" placeholder="Название произведения" />
-        <input type="text" @*asp-for=""*@ placeholder="Псевдоним" />
-        <textarea asp-for="Text" placeholder="Забил снаряд я в пушку..." rows="10">
-        </textarea>
-        <input class="submit_button" type="submit" value="Подать" />
-        <p class="auth-agreement">Регистрируясь, Вы принимаете условия <a href="#">Пользовательского соглашения</a>.</p>
+
+    <form class="participantBecome__form form">
+        <input class="form__textbox form__textbox_type_nomralText form__textbox_theme_light" type="text" placeholder="Название произведения" />
+        <input class="form__textbox form__textbox_type_nomralText form__textbox_theme_light" type="text" placeholder="Псевдоним" />
+        <textarea class="form__textarea form__textarea_theme_light" placeholder="Забил снаряд я в пушку..." rows="10"></textarea>
+        <input class="btn btn_color_orange" type="submit" value="Отправить" />
+        <p class="form__authAgreement form__authAgreement_size_m">Регистрируясь, Вы принимаете условия <a href="#">Пользовательского соглашения</a>.</p>
     </form>
 </div>
-
-
-
-
-
-
-@*<div class="container">
-    <form class="grid-participant-become" asp-action="Become"
-          asp-controller="Participant"
-          asp-route-id="@(ViewData["Competition guid"])"
-          asp-antiforgery="true">
-        <div asp-validation-summary="ModelOnly"></div>
-        <div class="become-item">
-            <div class="item-header">
-                <h3>1.</h3><h3>Конкурс</h3>
-            </div>
-            <div class="item-content">
-                <h2>@(ViewData["Competition title"])</h2>
-            </div>
-        </div>
-        <div class="become-item">
-            <div class="item-header">
-                <h3>2.</h3><h3>Произведение</h3>
-            </div>
-            <div class="item-content">
-                <input class="form-control" type="text" asp-for="Title" placeholder="Название" />
-                <textarea class="form-control"
-                          asp-for="Text"
-                          placeholder="Забил снаряд я в пушку..." rows="30">
-            </textarea>
-            </div>
-        </div>
-
-        <div class="become-item">
-            <div class="item-header">
-                <h3>3.</h3><input class="submit_button" type="submit" value="Подать" />
-            </div>
-        </div>
-    </form>
-</div>*@
