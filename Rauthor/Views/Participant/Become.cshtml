@@ -6,7 +6,7 @@
 
 <div class="participantBecome container">
     <div class="competitionItem competitionItem_direction_column">
-        <span class="participantBecome__timer competitionItem__timer">0д 100ч 400мин осталось</span>
+        <span class="participantBecome__timer competitionItem__timer"></span>
         <div class="participantBecome__itemsRow">
             <h3 class="competitionItem__title competitionItem__title_size_xl">@(ViewData["Competition title"])</h3>
             <div class="imgText">
@@ -14,14 +14,7 @@
                 <img class="imgText__img imgSvg imgSvg_color_black" src="~/img/icons/arrow.svg">
             </div>
         </div>
-        <p class="competitionItem__description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo 
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <p class="competitionItem__description"></p>
     </div>
 
     <form class="participantBecome__form form">
@@ -32,3 +25,6 @@
         <p class="form__authAgreement form__authAgreement_size_m">Регистрируясь, Вы принимаете условия <a href="#">Пользовательского соглашения</a>.</p>
     </form>
 </div>
+
+<script src="~/js/Competition/Timer.js"></script>
+<script src="~/js/Participant/Become.js"></script>
