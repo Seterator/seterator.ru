@@ -18,6 +18,9 @@ namespace Rauthor.Models
         [Column("title")]
         public string Title { get; set; }
 
+        [Column("creator_user_guid")]
+        public Guid CreatorUserGuid { get; set; }
+
         /// <summary>
         /// Дата окончания приёма заявок
         /// </summary>
@@ -44,6 +47,9 @@ namespace Rauthor.Models
 
         [ForeignKey("CompetitionGuid")]
         public List<Prize> Prizes { get; set; }
+
+        [ForeignKey("CreatorUserGuid")]
+        public virtual User Creator { get; set; }
 
         public virtual List<Participant> Participants { get; set; }
 

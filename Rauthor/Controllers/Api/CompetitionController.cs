@@ -34,13 +34,17 @@ namespace Rauthor.Controllers.Api
         {
             var value = database.Competitions
                 .Include(x => x.Participants)
+                    .ThenInclude(x => x.User)
                 .Include(x => x.Prizes)
                 .Include(x => x.Jury)
                 .Include(x => x.Categories)
                 .Where(x => x.Guid == guid)
                 .Single();
-            value.Participants = value.Participants.Select(x => { x.Competition = null; return x; }).ToList();
-            return Ok(value);
+            var v = ViewModels.Api.Competition.FromEntity(value);
+            v.Participants = v.Participants
+                .Select(x => { x.Competition = null; x.User.Participants = null; return x; })
+                .ToList();
+            return Ok(v);
         }
 
         [Authorize(Roles = "Admin, Manager")]
