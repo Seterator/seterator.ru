@@ -3,8 +3,6 @@ fetch('/api/Competition', {
 }).then(response => response.json()).then(competitions => OutputCompetitions(competitions));
 
 function OutputCompetitions(competitions) {
-    console.log(competitions);
-
     competitions.forEach(competition => {
         if (new Date(competition.endDate) > new Date(Date.now())) {
             document.querySelector(".index__eventsList").prepend(CreateCompetitionItem(competition));
