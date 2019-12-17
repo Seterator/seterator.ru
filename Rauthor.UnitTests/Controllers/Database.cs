@@ -115,6 +115,7 @@ namespace Rauthor.UnitTests.Controllers
             db.Roles.Add(new Role() { Guid = guid[5], UserGuid = guid[2], UserRole = Models.UserRole.User });
             db.Roles.Add(new Role() { Guid = guid[6], UserGuid = guid[2], UserRole = Models.UserRole.Admin });
             db.Roles.Add(new Role() { Guid = guid[7], UserGuid = guid[2], UserRole = Models.UserRole.Jury });
+            db.Roles.Add(new Role() { Guid = guid[14], UserGuid = guid[1], UserRole = Models.UserRole.Manager });
 
             db.Profiles.Add(new UserProfile() { RoleGuid = guid[3], Data = "null", ShortLink = "" });
             db.Profiles.Add(new UserProfile() { RoleGuid = guid[4], Data = "null", ShortLink = "" });
