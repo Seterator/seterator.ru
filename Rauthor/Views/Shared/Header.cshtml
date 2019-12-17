@@ -11,7 +11,7 @@
                     <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                 </li>
                 <li>
-                    <a asp-controller="Profile" asp-action="Index">Профиль</a>
+                    <a asp-controller="Profile" asp-action="Profile" asp-route-shortLink="@User.Identity.Name">Профиль</a>
                 </li>
                 @if (User.HasClaim(ClaimTypes.Role, "Moderator"))
                 {
@@ -20,7 +20,7 @@
                     </li>
                 }
                 <li>
-                    <a asp-area="" asp-controller="Account" asp-action="Logout">Выход</a>
+                    <a asp-controller="Account" asp-action="Logout">Выход</a>
                 </li>
                 <li>
                     <a asp-controller="Home" asp-action="Privacy">Privacy</a>
