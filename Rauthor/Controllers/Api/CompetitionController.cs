@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rauthor.Models;
+using Rauthor.Services;
 
 namespace Rauthor.Controllers.Api
 {
@@ -53,6 +54,7 @@ namespace Rauthor.Controllers.Api
         {
             var competition = Competition.FromApiViewModel(value);
             competition.Guid = Guid.NewGuid();
+            competition.CreatorUserGuid = HttpContext.Session.Get<User>("user").Guid;
             database.Competitions.Add(competition);
             database.SaveChanges();
             return Ok();
