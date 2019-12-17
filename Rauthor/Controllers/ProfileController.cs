@@ -35,8 +35,8 @@ namespace Rauthor.Controllers
         /// `/Profile` будет использоваться не маршрут с методом Index по умолчанию, а маршрут с {shortLink},
         /// `Profile` будет восприниматься как короткая ссылка для профиля.
         /// </remarks>
-        [HttpGet]
-        [Route("{shortLink}", Order = 9000)]
+        //[Route("{shortLink}", Order = 150)]
+        [HttpGet("{shortLink}", Name = "Short profile link", Order = 150)]
         public IActionResult Profile(string shortLink)
         {
             try
@@ -56,7 +56,7 @@ namespace Rauthor.Controllers
             
         }
         [HttpGet]
-        [Route("[controller]/{guid}")]
+        [Route("[controller]/{guid}", Name = "Profile guid link")]
         public IActionResult Profile(Guid guid)
         {
             try

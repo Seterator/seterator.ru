@@ -18,6 +18,9 @@ namespace Rauthor.Models
         [Column("title")]
         public string Title { get; set; }
 
+        [Column("creator_user_guid")]
+        public Guid CreatorUserGuid { get; set; }
+
         /// <summary>
         /// Дата окончания приёма заявок
         /// </summary>
@@ -40,10 +43,19 @@ namespace Rauthor.Models
         /// Короткое описание соревнования
         /// </summary>
         [Column("short_description")]
-        public string ShortDesctiption { get; set; }
+        public string ShortDescription { get; set; }
+
+        /// <summary>
+        /// Дополнительные данные о конкурсе (в базе данных хранится в виде JSON).
+        /// </summary>
+        [Column("extra")]
+        public string Extra { get; set; }
 
         [ForeignKey("CompetitionGuid")]
         public List<Prize> Prizes { get; set; }
+
+        [ForeignKey("CreatorUserGuid")]
+        public virtual User Creator { get; set; }
 
         public virtual List<Participant> Participants { get; set; }
 
@@ -55,6 +67,7 @@ namespace Rauthor.Models
 
         public Competition()
         {
+            Extra = "{}";
             Participants = new List<Participant>();
             Categories = new List<CompetitionRelCategory>();
             Jury = new List<CompetitionRelJury>();
@@ -74,7 +87,7 @@ namespace Rauthor.Models
                 StartDate = viewModel.StartDate,
                 EndDate = viewModel.EndDate,
                 Description = viewModel.Description,
-                ShortDesctiption = viewModel.ShortDescription,
+                ShortDescription = viewModel.ShortDescription,
                 Title = viewModel.Title,
             };
             var juryRefernces = viewModel.JuryGuids.Select(juryGuid => new CompetitionRelJury()
