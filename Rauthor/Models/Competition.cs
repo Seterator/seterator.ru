@@ -45,6 +45,12 @@ namespace Rauthor.Models
         [Column("short_description")]
         public string ShortDescription { get; set; }
 
+        /// <summary>
+        /// Дополнительные данные о конкурсе (в базе данных хранится в виде JSON).
+        /// </summary>
+        [Column("extra")]
+        public string Extra { get; set; }
+
         [ForeignKey("CompetitionGuid")]
         public List<Prize> Prizes { get; set; }
 
@@ -61,6 +67,7 @@ namespace Rauthor.Models
 
         public Competition()
         {
+            Extra = "{}";
             Participants = new List<Participant>();
             Categories = new List<CompetitionRelCategory>();
             Jury = new List<CompetitionRelJury>();
