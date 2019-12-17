@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rauthor.Models;
+using Rauthor.Services;
 
 namespace Rauthor.Controllers.Api
 {
@@ -24,15 +25,27 @@ namespace Rauthor.Controllers.Api
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(database.Competitions);
+            return Ok(database.Competitions
+                .Include(x => x.Prizes)
+                .Include(x => x.Categories));
         }
 
         [HttpGet("{guid}", Name = "Get")]
         public IActionResult Get(Guid guid)
         {
-            var value = database.Competitions.Include(x => x.Participants).Where(x => x.Guid == guid).Single();
-            value.Participants = value.Participants.Select(x => { x.Competition = null; return x; }).ToList();
-            return Ok(value);
+            var value = database.Competitions
+                .Include(x => x.Participants)
+                    .ThenInclude(x => x.User)
+                .Include(x => x.Prizes)
+                .Include(x => x.Jury)
+                .Include(x => x.Categories)
+                .Where(x => x.Guid == guid)
+                .Single();
+            var v = ViewModels.Api.Competition.FromEntity(value);
+            v.Participants = v.Participants
+                .Select(x => { x.Competition = null; x.User.Participants = null; return x; })
+                .ToList();
+            return Ok(v);
         }
 
         [Authorize(Roles = "Admin, Manager")]
@@ -41,6 +54,7 @@ namespace Rauthor.Controllers.Api
         {
             var competition = Competition.FromApiViewModel(value);
             competition.Guid = Guid.NewGuid();
+            competition.CreatorUserGuid = HttpContext.Session.Get<User>("user").Guid;
             database.Competitions.Add(competition);
             database.SaveChanges();
             return Ok();

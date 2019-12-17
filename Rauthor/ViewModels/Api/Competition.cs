@@ -81,12 +81,35 @@ namespace Rauthor.ViewModels.Api
         /// </summary>
         public DateTime EndDate { get; set; }
 
+        public List<Participant>? Participants { get; set; }
+
         public Competition()
         {
             JuryGuids = new List<Guid>();
             Constraints = new List<CompetitionConstraint>();
             Categories = new List<Guid>();
             ManagerSocialLinks = new List<string>();
+            Participants = new List<Participant>();
+        }
+
+        public User Creator { get; set; }
+
+        public static Competition FromEntity(Models.Competition competition)
+        {
+            var @new = new Competition();
+            @new.Categories = competition.Categories.Select(x => x.CategoryGuid).ToList();
+            @new.Constraints = competition.Constraints;
+            @new.Description = competition.Description;
+            @new.EndDate = competition.EndDate;
+            @new.Guid = competition.Guid;
+            @new.JuryGuids = competition.Jury.Select(x => x.JuryUserGuid).ToList();
+            @new.Prizes = competition.Prizes;
+            @new.ShortDescription = competition.ShortDescription;
+            @new.StartDate = competition.StartDate;
+            @new.Title = competition.Title;
+            @new.Participants = competition.Participants;
+            @new.Creator = competition.Creator;
+            return @new;
         }
     }
 }
