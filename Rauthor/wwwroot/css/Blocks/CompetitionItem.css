@@ -30,6 +30,10 @@
     font-weight: 600;
 }
 
+.competitionItem__title_size_xl {
+    font-size: 22pt;
+}
+
 .competitionItem__shortDescription_width_allLine {
     flex-basis: 100%;
 }
