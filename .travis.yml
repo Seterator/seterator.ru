@@ -1,13 +1,10 @@
 ﻿language: csharp
 solution: Rauthor.sln
 mono: none
-dotnet: 3.1
-cache:
-  directories:
-  - $HOME/.nuget/packages
+dotnet: 2.2
 script:
  - dotnet restore
- - dotnet build ./Rauthor.sln -f netcoreapp3.1
+ - dotnet build ./Rauthor.sln -f netcoreapp2.2
  - dotnet test --no-build Rauthor.UnitTests/Rauthor.UnitTests.csproj --filter Category!=DatabaseTest /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 deploy:
   provider: script
