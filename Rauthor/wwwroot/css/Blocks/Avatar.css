@@ -23,3 +23,7 @@
     width: 60px;
     height: 60px;
 }
+
+.avatar__img_width_max {
+    width: 100%;
+}
