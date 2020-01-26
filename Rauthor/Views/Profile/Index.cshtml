@@ -3,96 +3,85 @@
     ViewData["Title"] = $"{Model.Name ?? Model.Login}";
 }
 
-<div class="profile_grid container">
-    <div class="left-side">
-        <div class="avatar">
-            <img src="~/img/Profile/unnamed.png" />
+<div class="profile profile_display_grid container">
+    <div class="profile__leftSide">
+        <div class="avatar avatar_theme_dark">
+            <img class="avatar__img avatar__img_width_max" src="~/img/Profile/unnamed.png">
         </div>
-        <div class="social-icons_grid">
-            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
-            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/yandex.svg" /></a>
-            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/google.svg" /></a>
-            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/facebook.svg" /></a>
-            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/twitter.svg" /></a>
-            <a href="#"><img class="_flex-img img-svg" src="~/img/Social icons/Orange/vk.svg" /></a>
+        <div class="profileItem profileItem_margin_xs socialIcons">
+            <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_orange" src="~/img/Social icons/Orange/vk.svg" /></a>
+            <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_orange" src="~/img/Social icons/Orange/yandex.svg" /></a>
+            <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_orange" src="~/img/Social icons/Orange/google.svg" /></a>
+            <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_orange" src="~/img/Social icons/Orange/facebook.svg" /></a>
+            <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_orange" src="~/img/Social icons/Orange/twitter.svg" /></a>
+            <a class="socialIcons__item socialIcons__item_size_s" href="#"><img class="imgSvg imgSvg_color_orange" src="~/img/Social icons/Orange/vk.svg" /></a>
         </div>
-        <div class="rating _bg-gray">
-            <h3 rating__title>Рейтинг</h3>
-            <div class="nameValue_col2">
-                <div>Автор:</div>
-                <div>Значение</div>
-            </div>
-            <div class="nameValue_col2">
-                <div>Жюри:</div>
-                <div>Значение</div>
-            </div>
-            <div class="nameValue_col2">
-                <div>Организатор:</div>
-                <div>Значение</div>
+        <div class="profile__item profileItem profileItem_theme_light profileItem_padding_s profileItem_margin_xs">
+            <h3 class="profileItem__header profileItem__header_font_sans-serif">Рейтинг</h3>
+            <div class="rowItems rowItems_justify_bySides">
+                <span class="rowItems__item">Автор:</span>
+                <span class="rowItems__item">Значение</span>
             </div>
         </div>
-        <div class="balance _bg-gray">
-            <div class="nameValue_col2">
-                <div>Баланс:</div>
-                <div>Значение</div>
+        <div class="profile__item profileItem profileItem_theme_light profileItem_padding_s profileItem_margin_xs">
+            <div class="rowItems rowItems_justify_bySides">
+                <h3 class="profileItem__header profileItem__header_font_sans-serif">Баланс:</h3>
+                <span>Значение</span>
             </div>
-            <button value="#" class="main-button _outline">
+            <div class="btn btn_border_black profileItem_margin_xs">
                 Пополнить
-            </button>
-            <button value="#" class="main-button _fill-orange">
+            </div>
+            <div class="btn btn_color_orange profileItem_margin_xs">
                 Вывести
-            </button>
+            </div>
         </div>
     </div>
-    <div class="right-side">
-        <div class="user-info _bg-gray">
-            <div class="user-info__status">@(Model.Status ?? "Статус не установлен")</div>
-            <div class="user-info__name">@(Model.Name ?? Model.Login)</div>
-            <div class="user-info__membership">Членство не указано</div>
-            <h3>О себе</h3>
-            <p class="user-info__about">
-                @(Model.About ?? "Информация о себе не указана")
-            </p>
-        </div>
-        <div class="user-achievments _bg-gray">
-            <h3>Достижения</h3>
-            <div class="user-achievment">
-                <span class="user-achievment__num">01.</span>
-                <span class="user-achievment__title">Пока тут пусто</span>
+    <div class="profile__rightSide">
+        <div class="profile__item profileItem profileItem_padding_xs profileItem_theme_light">
+            <div class="profileItem__kind">
+                Сетератор
             </div>
-            <div class="user-achievment">
-                <span class="user-achievment__num">02.</span>
-                <span class="user-achievment__title">Пока тут пусто</span>
+            <div class="profileItem__name">
+                semen1032
             </div>
-            <div class="user-achievment">
-                <span class="user-achievment__num">03.</span>
-                <span class="user-achievment__title">Пока тут пусто</span>
+            <div class="profileItem__header profileItem__header_font_serif profileItem_margin_xs">
+                О себе
+            </div>
+            <div class="profileItem__about">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
         </div>
-        <div class="user-account-info _bg-gray">
-            <h3>Личные данные</h3>
-            <div class="nameValue_row2">
-                <div>Имя Фамилия</div>
-                <div>Не указано</div>
-            </div>
-            <div class="nameValue_row2">
-                <div>Телефон</div>
-                <div>Не указано</div>
-            </div>
-            <div class="nameValue_row2">
-                <div>e-mail</div>
-                <div>Не указано</div>
-            </div>
-            <div class="nameValue_row2">
-                <div>Страна</div>
-                <div>Не указано</div>
-            </div>
-            <div class="nameValue_row2">
-                <div>Город</div>
-                <div>Не указано</div>
+
+        <div class="profile__item profileItem profileItem_padding_xs profileItem_theme_light profileItem_margin_xs">
+            <h3 class="profileItem__header profileItem__header_font_serif">Личные данные</h3>
+            <div class="accountInfo">
+                <div class="rowItems rowItems_location_twoRows">
+                    <span>Имя фамилия</span>
+                    <span>Не указано</span>
+                </div>
+                <div class="rowItems rowItems_location_twoRows">
+                    <span>Телефон</span>
+                    <span>Не указано</span>
+                </div>
+                <div class="rowItems rowItems_location_twoRows">
+                    <span>e-mail</span>
+                    <span>Не указано</span>
+                </div>
+                <div class="rowItems rowItems_location_twoRows">
+                    <span>Страна</span>
+                    <span>Не указано</span>
+                </div>
+                <div class="rowItems rowItems_location_twoRows">
+                    <span>Город</span>
+                    <span>Не указано</span>
+                </div>
             </div>
         </div>
-    </div>   
+    </div>
+</div>
+
+
+<div class="profile_grid container"> 
 
     <div class="profile-poems">
         <h2>Заявки на участие в конкурсах</h2>
@@ -167,90 +156,3 @@
             </div>
 
 </div>
-
-
-@*<div class="user-requests">
-
-    <h2>Активное</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Название</th>
-                <th>Статус</th>
-                <th>Название конкурса</th>
-                <th>Дата подачи</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var competition in Model.ActiveParticipants)
-            {
-                foreach (var poem in competition.Poems)
-                {
-                    <tr>
-                        <td>
-                            @poem.Title
-                        </td>
-                        <td>
-                            @competition.Status
-                        </td>
-                        <td>
-                            @competition.Competition.Title
-                        </td>
-                        <td>
-                            @competition.CreateDate.ToString("dd.MM.yyyy")
-                        </td>
-                        <td>
-                            <a asp-action="Details"
-                               asp-controller="Poem"
-                               asp-route-guid="@poem.Guid.ToString()">
-                                Перейти
-                            </a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-
-    <h2>История</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Название</th>
-                <th>Статус</th>
-                <th>Название конкурса</th>
-                <th>Дата подачи</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var competition in Model.PastParticipants)
-            {
-                foreach (var poem in competition.Poems)
-                {
-                    <tr>
-                        <td>
-                            @poem.Title
-                        </td>
-                        <td>
-                            @competition.Status
-                        </td>
-                        <td>
-                            @competition.Competition.Title
-                        </td>
-                        <td>
-                            @competition.CreateDate.ToString("dd.MM.yyyy")
-                        </td>
-                        <td>
-                            <a asp-action="Details"
-                               asp-controller="Poem"
-                               asp-route-guid="@competition.Guid.ToString()">
-                                Перейти
-                            </a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
-
-</div>*@

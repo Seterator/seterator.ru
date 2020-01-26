@@ -32,6 +32,11 @@
     color: rgb(255,255,255);
 }
 
+.btn_border_black {
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+}
+
 .btn_decoration_orangeShadow {
     -webkit-box-shadow: 0px 36px 68px -13px rgba(255,82,25,1);
 -moz-box-shadow: 0px 36px 68px -13px rgba(255,82,25,1);

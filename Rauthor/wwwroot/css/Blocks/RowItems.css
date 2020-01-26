@@ -1,0 +1,12 @@
+.rowItems {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.rowItems_justify_bySides {
+    justify-content: space-between;
+}
+
+.rowItems_location_twoRows {
+    flex-direction: column;
+}
