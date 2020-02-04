@@ -27,6 +27,7 @@ function SendForm() {
     let participantForm = document.forms[0];
 
     let application = {
+        guid: window.location.href.split("/")[5], 
         title: participantForm.title.value,
         nickname: participantForm.nickname.value,
         poem: participantForm.poem.value
