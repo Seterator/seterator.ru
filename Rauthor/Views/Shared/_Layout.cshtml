@@ -19,7 +19,7 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <!-- ВК комментарии -->
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?162"></script>
-    <script type="text/javascript">VK.init({apiId: 7196510, onlyWidgets: true});</script>
+    <script type="text/javascript">VK.init({ apiId: 7196510, onlyWidgets: true });</script>
     <!-------------------->
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/social_block.css" />
@@ -75,6 +75,8 @@
     </div>
 
     <partial name="Footer" />
+    <!-- Версия vue для разработки -->
+    <script src="~/lib/vue/vue.js"></script>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -94,7 +96,7 @@
         </script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/svgInliner.js" asp-append-version="true"></script> 
+    <script src="~/js/svgInliner.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
