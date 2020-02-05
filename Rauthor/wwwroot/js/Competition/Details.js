@@ -1,3 +1,14 @@
+document.addEventListener('DOMContentLoaded', function(){
+    let vm = new Vue({
+        el: '#vuejsTest',
+        data: {
+            message: 'Привет, это Vue!'
+        }
+    });
+});
+
+
+
 HideElems();
 
 var guid = window.location.pathname.split(new RegExp("/|\\?"))[3];
