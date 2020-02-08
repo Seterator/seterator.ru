@@ -1,4 +1,5 @@
-﻿$('img.imgSvg').each(function () {
+﻿setInterval(()=> {
+$('img.imgSvg').each(function () {
     var $img = $(this);
     var imgClass = $img.attr('class');
     var imgURL = $img.attr('src');
@@ -14,3 +15,4 @@
         $img.replaceWith($svg);
     }, 'xml');
 });
+}, 1000);
