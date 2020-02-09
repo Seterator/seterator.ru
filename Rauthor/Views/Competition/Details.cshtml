@@ -5,33 +5,11 @@
     <div class="competitionDetails competitionItem competitionItem_direction_column">
         <banner-component :competition="competition"></banner-component>
         <h3 class="competitionDetails__header">Описание конкурса</h3>
-        <p class="competitionItem__fullDescription"></p>
+        <p class="competitionItem__fullDescription">
+            {{competition.fullDescription || 'Не указано'}}
+        </p>
         <div class="competitionDetails__grid">
-            <div class="competitionDetails__competitionConditions">
-                <h3 class="competitionDetails__header">Условия конкурса</h3>
-                <ul class="competitionConditions">
-                    <li class="competitionConditions__item competitionConditions__item_marker_orangeDot"> <span class="competitionConditions__name">Возраст участников: </span> <span class="competitionConditions__value"></span></li>
-                    <li class="competitionConditions__item competitionConditions__item_marker_orangeDot"> <span class="competitionConditions__name">Страны участников: </span> <span class="competitionConditions__value"></span></li>
-                    <li class="competitionConditions__item competitionConditions__item_type_file">
-                        <div class="imgText">
-                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/link_1.svg">
-                            <span class="competitionConditions__fileName">Условия конкурса</span>
-                        </div>
-                    </li>
-                    <li class="competitionConditions__item competitionConditions__item_type_file">
-                        <div class="imgText">
-                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/document.svg">
-                            <span class="competitionConditions__fileName">Политика конфиденциальности</span>
-                        </div>
-                    </li>
-                    <li class="competitionConditions__item competitionConditions__item_type_file">
-                        <div class="imgText">
-                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/document.svg">
-                            <span class="competitionConditions__fileName">Соглашение</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            <constraints-component :constraints="competition.constraints"></constraints-component>
             <div class="competitionDetails__competitionPrizes">
                 <h3 class="competitionDetails__header">Призы</h3>
                 <ul class="competitionPrizes">
