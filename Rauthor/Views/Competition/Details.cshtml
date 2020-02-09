@@ -10,11 +10,7 @@
         </p>
         <div class="competitionDetails__grid">
             <constraints-component :constraints="competition.constraints"></constraints-component>
-            <div class="competitionDetails__competitionPrizes">
-                <h3 class="competitionDetails__header">Призы</h3>
-                <ul class="competitionPrizes">
-                </ul>
-            </div>
+            <prizes-component :prizes="competition.prizes"></prizes-component>
             <div class="competitionDetails__jury jury">
                 <h3 class="competitionDetails__header">Жюри <span class="jury__count"></span></h3>
                 <ul class="jury__lst">
