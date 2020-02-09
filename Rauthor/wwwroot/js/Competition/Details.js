@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </h3>
                 <ul class="competitionPrizes">
                     <li class="competitionPrizes__item"
-                        v-for="prize in prizesTest" :key="prize.value">
+                        v-for="prize in prizes" :key="prize.value">
                         <span   class="competitionPrizes__name"
                                 v-for="(range, i) in prize.range"
                         >
@@ -161,26 +161,6 @@ document.addEventListener('DOMContentLoaded', function(){
         data() {
             return {
                 title: 'Призы',
-                prizesTest: [
-                    {
-                        "value": "Футболка",
-                        "range": [
-                            [1]
-                        ]
-                    },
-                    {
-                        "value": "Кружка",
-                        "range": [
-                            [2]
-                        ]
-                    },
-                    {
-                        "value": "10 рублей",
-                        "range": [
-                            [20]
-                        ]
-                    },
-                ]
             };
         },
         methods: {
@@ -202,13 +182,56 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         }
     };
+
+    const JuryComponent = {
+        props: [
+            'juryList'
+        ],
+        template: `
+        <div>
+            <div class="competitionDetails__jury jury">
+                <h3 class="competitionDetails__header">{{title}} <span class="jury__count">({{juryList.length}})</span></h3>
+                <ul class="jury__lst">
+                    <li class="userItem"
+                        v-for="jury in juryList.slice(0, showedItems)"
+                    >
+                        <div class="imgText">
+                            <div class="avatar avatar_shape_circle avatar_theme_dark avatar_size_m">
+                            </div>
+                            <span class="userItem__name">
+                                {{jury.name}}
+                            </span>
+                        </div>
+                        <p class="userItem__description">
+                            {{jury.description}}
+                        </p>
+                    </li>
+                </ul>
+                <div    class="jury__showAllBtn btn btn_color_white"
+                        v-show="isShowButton"
+                        v-on:click="showedItems = juryList.length; isShowButton = false"
+                >
+                    Смотреть всех
+                </div>
+            </div>
+        </div>
+        `,
+        data() {
+            return {
+                title: 'Жюри',
+                showedItems: 3,
+                isShowButton: true,
+            };
+        }
+    };
     
     let vm = new Vue({
         el: '.app',
         components: {
             'banner-component': BannerComponent,
             'constraints-component': ConstraintsComponent,
-            'prizes-component': PrizesComponent
+            'prizes-component': PrizesComponent,
+            'jury-component': JuryComponent
         },
         data: {
             competition: {}

@@ -10,7 +10,6 @@
 .competitionDetails__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     grid-gap: 40px;
 
     margin-top: 30px;
@@ -20,5 +19,5 @@
 .competitionDetails__competitionPrizes {
     background: rgb(238, 238, 238);
     margin-left: 14%;
-    padding: 0 30px 30px 30px;
+    padding: 30px 30px 30px 30px;
 }

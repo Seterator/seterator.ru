@@ -6,19 +6,12 @@
         <banner-component :competition="competition"></banner-component>
         <h3 class="competitionDetails__header">Описание конкурса</h3>
         <p class="competitionItem__fullDescription">
-            {{competition.fullDescription || 'Не указано'}}
+            {{competition.description || 'Не указано'}}
         </p>
         <div class="competitionDetails__grid">
             <constraints-component :constraints="competition.constraints"></constraints-component>
             <prizes-component :prizes="competition.prizes"></prizes-component>
-            <div class="competitionDetails__jury jury">
-                <h3 class="competitionDetails__header">Жюри <span class="jury__count"></span></h3>
-                <ul class="jury__lst">
-                </ul>
-                <div class="jury__showAllBtn btn btn_color_white">
-                    Смотреть всех
-                </div>
-            </div>
+            <jury-component :juryList="competition.jury"></jury-component>
             <div class="competitionDetails__participants participants">
                 <h3 class="competitionDetails__header">Участники <span class="participants__count"></span> </h3>
                 <ul class="participants__lst">
