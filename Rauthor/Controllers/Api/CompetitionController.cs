@@ -40,6 +40,7 @@ namespace Rauthor.Controllers.Api
                 .Include(x => x.Jury)
                 .Include(x => x.Categories)
                 .Where(x => x.Guid == guid)
+                .Include(x => x.Creator)
                 .Single();
             var v = ViewModels.Api.Competition.FromEntity(value);
             v.Participants = v.Participants
