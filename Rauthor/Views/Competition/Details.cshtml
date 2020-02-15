@@ -12,14 +12,7 @@
             <constraints-component :constraints="competition.constraints"></constraints-component>
             <prizes-component :prizes="competition.prizes"></prizes-component>
             <jury-component :juryList="competition.jury"></jury-component>
-            <div class="competitionDetails__participants participants">
-                <h3 class="competitionDetails__header">Участники <span class="participants__count"></span> </h3>
-                <ul class="participants__lst">
-                </ul>
-                <div class="participants__showAllBtn btn btn_color_white">
-                    Смотреть всех
-                </div>
-            </div>
+            <participants-component :participants="competition.participants"></participants-component>
         </div>
     </div>
 </div>

@@ -225,13 +225,63 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     };
     
+    const ParticipantsComponent = {
+        props: [
+            'participants'
+        ],
+        template: `
+        <div>
+            <div class="competitionDetails__participants participants">
+                <h3 class="competitionDetails__header">Участники <span class="participants__count">({{participants.length}})</span> </h3>
+                <ul class="participants__lst">
+                    <li class="participantItem"
+                        v-for="participant in participants.slice(0, showedItems)" :key="participant.guid"
+                    >
+                        <span class="participantItem__nickname">
+                            {{participant.nickname}}
+                        </span>
+                        <ul class="participantsPoems participantsPoems__lst">
+                            <li class="participantsPoems__poemTitle participantItem__poemTitle"
+                                v-for="poem in participant.poems"
+                            >
+                                <a :href="getURLofPoem(poem.guid)">
+                                    {{poem.title}}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div    class="participants__showAllBtn btn btn_color_white"
+                        v-show="isShowButton"
+                        v-on:click="showedItems = participants.length; isShowButton = false">
+                    Смотреть всех
+                </div>
+            </div>
+        </div>
+        `,
+        data() {
+            return {
+                showedItems: 3,
+                isShowButton: true
+            };
+        },
+        methods: {
+            getURLofPoem(poemGuid) {
+                poemURL = window.location.pathname.split("/");
+                poemURL.splice(-3, 3, "Poem/Details", poemGuid);
+                return poemURL.join("/");
+            }
+        }
+    }
+
     let vm = new Vue({
         el: '.app',
         components: {
             'banner-component': BannerComponent,
             'constraints-component': ConstraintsComponent,
             'prizes-component': PrizesComponent,
-            'jury-component': JuryComponent
+            'jury-component': JuryComponent,
+            'participants-component': ParticipantsComponent
         },
         data: {
             competition: {}
@@ -251,3 +301,4 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
 });
+
