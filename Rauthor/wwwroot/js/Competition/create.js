@@ -237,12 +237,134 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    const PrizeItemComponent = {
+        props: [
+            'prize'
+        ],
+        template: `
+        <div>
+            <br>
+            <div class="createCompetition__prizeItem">
+                <select class="createCompetition__select createCompetition__select_theme_light createCompetition__startRange"
+                        v-model="prize.range[0]">
+                    <option v-for="(option, i) in options">{{ option }}</option>
+                </select>
+                <span>-</span>
+                <select class="createCompetition__select createCompetition__select_theme_light createCompetition__endtRange"
+                        v-model="prize.range[1]">
+                    <option v-for="(option, i) in options">{{ option }}</option>
+                </select>
+                <div class="imgText">
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText imgText__text_margin_right" name="prizeItem__value" type="text" placeholder="1000 руб."
+                            v-model="prize.value">
+                    <div v-on:click="close" style="cursor: pointer">
+                        <img class="imgText__img imgSvg imgSvg_color_orange" src="/img/Competition/minus.svg">
+                    </div>
+                </div>
+            </div>
+            <div v-if="prize.range[0] > prize.range[1]">
+                <br>
+                Второе значение должно быть больше первого
+            </div>
+        </div>
+        `,
+        data() {
+            return {
+                options: [
+                    'нет',
+                    1,
+                    2,
+                    3,
+                    4
+                ],
+                prizeItem: {
+                    value: null,
+                    range: []
+                }
+            };
+        },
+        computed: {
+            err() {
+                if (this.prize.range[0] > this.prize.range[1]){
+                    this.prize.range[0] = undefined;
+                }
+            },
+            changeElement() {
+                if (this.prize.range[0] == 'нет') {
+                    this.prize.range[0] = 0;
+                }
+                if (this.prize.range[1] == 'нет') {
+                    this.prize.range[1] = 0;
+                }
+            }
+        },
+        methods: {
+            close() {
+                this.$emit('delItem', this.prize);
+            }
+        }
+    };
+
+    const PrizesComponent = {
+        props: [
+            'competition'
+        ],
+        template: `
+        <div>
+            <div class="createCompetition__prizes">
+                <h2 class="createCompetition__header">Призовые места</h2>
+                <div class="createCompetition__prizeItems">
+                    <prizeItem-component v-for="prize in prizes" :prize="prize" v-on:delItem="delItem"></prizeItem-component>
+                </div>
+                <br>
+                <div class="createCompetition__upload">    
+                    <div class="imgText"
+                        v-on:click="appendPrizeItem()">
+                        <img class="imgText__img imgSvg imgSvg_color_orange" src="/img/Competition/plus.svg">
+                        <span>Добавить призовое место</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `,
+        components: {
+            'prizeItem-component': PrizeItemComponent
+        },
+        data() {
+            return {
+                prizes: []
+            }
+        },
+        methods: {
+            appendPrizeItem() {
+                this.prizes.push({
+                    id: this.prizes.length,
+                    value: null,
+                    range: []
+                });
+            },
+            delItem(prize) {
+                this.prizes.splice(this.prizes.indexOf(prize), 1);
+            }
+        },
+        computed: {
+            deleteItem() {
+                for (let i = 0; i < this.prizes.length; i++) {
+                    if (this.prizes[i].id == -1) {
+                        this.prizes.splice(i, 1);
+                    }
+                }
+            }
+        }
+    };
+
     let vm = new Vue({
         el: '.app',
         components: {
             'prebanner-component': PreBannerComponent,
             'banner-component': BannerComponent,
-            'constraints-component': ConstraintsComponent
+            'constraints-component': ConstraintsComponent,
+            'prizes-component': PrizesComponent
         },
         data: {
             competition: {

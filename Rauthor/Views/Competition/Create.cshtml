@@ -14,39 +14,7 @@
         <div class="createCompetition__grid">
             <constraints-component :competition="competition"></constraints-component>
 
-            <div class="createCompetition__prizes">
-                <h2 class="createCompetition__header">Призовые места</h2>
-                <div class="createCompetition__prizeItems">
-                    <div class="createCompetition__prizeItem">
-                        <select class="createCompetition__select createCompetition__select_theme_light createCompetition__startRange">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                        <span>-</span>
-                        <select class="createCompetition__select createCompetition__select_theme_light createCompetition__endtRange">
-                            <option>нет</option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
-                        <div class="imgText">
-                            <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText imgText__text_margin_right" name="prizeItem__value" type="text" placeholder="1000 руб.">
-                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/minus.svg">
-                        </div>
-                    </div>
-                </div>
-                <div class="createCompetition__upload">    
-                    <div class="imgText">
-                        <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/plus.svg">
-                        <span>Добавить призовое место</span>
-                    </div>
-                </div>
-            </div>
+            <prizes-component :competition="competition"></prizes-component>
 
             <div class="addJury">
                 <h2 class="createCompetition__header">Выбор жюри</h2>
