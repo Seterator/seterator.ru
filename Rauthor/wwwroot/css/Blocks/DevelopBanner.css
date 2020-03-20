@@ -1,0 +1,13 @@
+.developBanner {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+@media (max-width: 770px) {
+    .developBanner {
+        grid-template-columns: 1fr;
+    }
+    .developBanner__link {
+        grid-row-start: 3;
+    }
+}
