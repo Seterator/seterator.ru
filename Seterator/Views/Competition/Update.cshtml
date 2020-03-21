@@ -1,0 +1,22 @@
+﻿@model Seterator.Models.Competition
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update</h1>
+
+<form id="main-form">
+    <ul>
+        <li><label>Title</label><input name="title" type="text" placeholder="title" value="@Model.Title" /></li>
+        <li><label>Start date</label><input name="startDate" type="date" value="@Model.StartDate" /></li>
+        <li><label>End date</label><input name="endDate" type="date" value="@Model.EndDate" /></li>
+        <li><label>Description</label><textarea name="description">@Model.Description</textarea></li>
+        <li><label>Prizes</label><textarea name="prizes">@Model.Prizes</textarea></li>
+        <li><button>Update</button></li>
+    </ul>
+</form>
+
+<script asp-src-include="/js/Competition/all.js"></script>
+<script asp-src-include="/js/Competition/update.js"></script>
+<script asp-src-include="/js/Core/utils.js"></script>
+<script asp-src-include="/js/Core/models.js"></script>
