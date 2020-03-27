@@ -1,0 +1,23 @@
+﻿@model Seterator.ViewModels.PoemModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+<form asp-action="Add" asp-controller="Poem" asp-antiforgery="true">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <div>
+            <label asp-for="Text">Текст произведения</label><br />
+            <textarea asp-for="Text">
+
+            </textarea>
+            @*<input type="text" asp-for="Text" />*@
+            <span asp-validation-for="Text" />
+        </div>
+        <div>
+            <input type="submit" value="Регистрация" />
+        </div>
+    </div>
+</form>
+

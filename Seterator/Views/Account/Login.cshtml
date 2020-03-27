@@ -1,0 +1,20 @@
+﻿@namespace Seterator
+@model  ViewModels.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form asp-action="Login" asp-controller="Account">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div>
+        <input type="text" asp-for="Login" placeholder="e-mail или логин" />
+        <span asp-validation-for="Login" />
+    </div>
+    <div>
+        <input asp-for="Password" placeholder="Пароль" />
+        <span asp-validation-for="Password" />
+    </div>
+    <div>
+        <input class="formButton" type="submit" value="Войти" />
+    </div>
+</form>

@@ -1,11 +1,11 @@
 ﻿language: csharp
-solution: Rauthor.sln
+solution: Seterator.sln
 mono: none
 dotnet: 2.2
 script:
  - dotnet restore
- - dotnet build ./Rauthor.sln -f netcoreapp2.2
- - dotnet test --no-build Rauthor.UnitTests/Rauthor.UnitTests.csproj --filter Category!=DatabaseTest /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+ - dotnet build ./Seterator.sln -f netcoreapp2.2
+ - dotnet test --no-build Seterator.UnitTests/Seterator.UnitTests.csproj --filter Category!=DatabaseTest /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 deploy:
   provider: script
   script: bash deploy.sh
