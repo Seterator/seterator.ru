@@ -5,6 +5,9 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <UserSecretsId>bfdceb32-95b6-49c5-a109-d841b410f47e</UserSecretsId>
     <LangVersion>8.0</LangVersion>
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="pwsh post-build.ps1"/>
+    </Target>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
