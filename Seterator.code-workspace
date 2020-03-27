@@ -1,0 +1,19 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "editor.rulers": [
+            95
+        ]
+    },
+    "extensions": {
+        "recommendations": [
+            "EditorConfig.EditorConfig",
+            "ms-dotnettools.csharp",
+            "streetsidesoftware.code-spell-checker"
+        ]
+    }
+}
