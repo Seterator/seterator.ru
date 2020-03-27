@@ -341,3 +341,7 @@ healthchecksdb
 
 # myFiles
 *SecretController.cs
+
+# Dotnet extensions for VSCode
+.fake
+.ionide
