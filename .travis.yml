@@ -2,6 +2,9 @@
 solution: Seterator.sln
 mono: none
 dotnet: 2.2
+before_install:
+ - sudo apt-get -y install powershell
+ - sudo apt-get -y install sshpass
 script:
  - dotnet restore
  - dotnet build ./Seterator.sln -f netcoreapp2.2
