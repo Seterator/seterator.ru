@@ -16,7 +16,7 @@ namespace Seterator
 {
     public class Startup
     {
-        private static readonly NLog.Logger _httpRqsLogger = _httpRqsLogger = Logger.Default;
+        private static readonly NLog.Logger httpRequestLogger = Logger.Default;
         public IConfiguration Configuration { get; }
         string Connection => Configuration.GetConnectionString("Local MySQL");
 
@@ -78,7 +78,7 @@ namespace Seterator
             app.Use(async (context, next) =>
             {
                 await next.Invoke().ConfigureAwait(false);
-                _httpRqsLogger.Trace("Requesting resource: {0}", context.Request.Path);
+                httpRequestLogger.Trace("Requesting resource: {0}; Response status: {1}", context.Request.Path, context.Response.StatusCode);
             });
 
             if (env.IsDevelopment())
