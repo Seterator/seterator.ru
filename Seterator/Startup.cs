@@ -25,22 +25,23 @@ namespace Seterator
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        string Connection => Configuration.GetConnectionString("Local MySQL");
+        string Connection {
+            get
+            {
+                string connectionStringName = Configuration.GetValue<string>("UseConnectionString");
+                return Configuration.GetConnectionString(connectionStringName);
+            }
+        }
 
         public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json",
-                             optional: false,
-                             reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables()
+                .AddUserSecrets<Startup>();
             Configuration = builder.Build();
         }
 
