@@ -341,7 +341,7 @@ healthchecksdb
 
 # myFiles
 *SecretController.cs
-*seterator.ru/Seterator/wwwroot/dist/main.js
+*Seterator/wwwroot/dist/main.js
 
 # Dotnet extensions for VSCode
 .fake
