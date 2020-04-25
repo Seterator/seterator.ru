@@ -127,7 +127,7 @@ namespace Seterator
                     }
 
                     rsBody.Append("<a href=\"/\">Home</a><br>\r\n")
-                          .Append("</body></html>\r\n")
+                          .Append("</body></html>\r\n");
 
                     await context.Response.WriteAsync(rsBody.ToString()).ConfigureAwait(false);
                 });
