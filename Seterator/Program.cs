@@ -11,7 +11,7 @@ namespace Seterator
     {
         public static void Main(string[] args)
         {
-            Logger logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+            Logger logger = NLogBuilder.ConfigureNLog("NLog.config").GetCurrentClassLogger();
             try
             {
                 logger.Debug("NLogger initialized");
