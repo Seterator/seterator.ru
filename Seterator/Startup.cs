@@ -1,22 +1,29 @@
-﻿using System.Diagnostics.Contracts;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Seterator.Services;
+
 
 namespace Seterator
 {
     public class Startup
     {
-        private static readonly NLog.Logger _httpRqsLogger = _httpRqsLogger = Logger.Default;
         public IConfiguration Configuration { get; }
         string Connection => Configuration.GetConnectionString("Local MySQL");
 
@@ -71,16 +78,6 @@ namespace Seterator
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
 #pragma warning restore CA1922 
         {
-            // Добавляем логирование URL.
-            // Логирование реализовано в пайплайне обработке запросов 
-            // MVC, это позволит логировать все запросы, а не только
-            // те, которые были смаршрутизированы в action(в сравнении c ActionFilter).
-            app.Use(async (context, next) =>
-            {
-                await next.Invoke().ConfigureAwait(false);
-                _httpRqsLogger.Trace("Requesting resource: {0}", context.Request.Path);
-            });
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -107,7 +104,7 @@ namespace Seterator
                        name: "Only action",
                        template: "{controller=Home}/{action=Index}");
                });
-
+            
         }
     }
 }
