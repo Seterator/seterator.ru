@@ -1,11 +1,6 @@
-﻿using System;
-using System.Diagnostics.Contracts;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.Contracts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,19 +10,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using NLog.Extensions.Logging;
 using Seterator.Services;
 
 namespace Seterator
 {
     public class Startup
     {
-        private readonly ILogger<Startup> logger;
+        private static readonly NLog.Logger httpRequestLogger = Logger.Default;
         public IConfiguration Configuration { get; }
         string Connection => Configuration.GetConnectionString("Local MySQL");
 
-        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILogger<Startup> logger)
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
@@ -42,7 +35,6 @@ namespace Seterator
                 builder.AddUserSecrets<Startup>();
             }
             Configuration = builder.Build();
-            this.logger = logger;
         }
 
 
@@ -56,6 +48,7 @@ namespace Seterator
                 })
                 .AddDistributedMemoryCache()
                 .AddSession()
+                .AddLogging()
                 .AddPrimitiveMemoryCache()
                 .AddFoulLanguageFilter("*")
                 .AddDbContext<DatabaseContext>(options => options.UseMySQL(Connection)
@@ -78,8 +71,23 @@ namespace Seterator
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
 #pragma warning restore CA1922 
         {
-            if (!env.IsDevelopment())
+            // Добавляем логирование URL.
+            // Логирование реализовано в пайплайне обработке запросов 
+            // MVC, это позволит логировать все запросы, а не только
+            // те, которые были смаршрутизированы в action(в сравнении c ActionFilter).
+            app.Use(async (context, next) =>
             {
+                await next.Invoke().ConfigureAwait(false);
+                httpRequestLogger.Trace("Requesting resource: {0}; Response status: {1}", context.Request.Path, context.Response.StatusCode);
+            });
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
             app.UseHttpsRedirection()
@@ -99,39 +107,6 @@ namespace Seterator
                        name: "Only action",
                        template: "{controller=Home}/{action=Index}");
                });
-
-            app.UseExceptionHandler(errorApp =>
-            {
-                errorApp.Run(async context =>
-                {
-                    context.Response.StatusCode = 500;
-                    context.Response.ContentType = "text/html";
-
-                    StringBuilder rsBody = new StringBuilder(2048);
-
-                    rsBody.Append("<html lang=\"ru\"><body>\r\n")
-                          .Append("Something unexpected bla-bla-bla happened... Please try refreshing the page.<br><br>\r\n");
-
-                    var exceptionHandlerPathFeature =
-                        context.Features.Get<IExceptionHandlerPathFeature>();
-                    Exception unhandledExc = exceptionHandlerPathFeature.Error;
-                    if (unhandledExc != null)
-                    {
-                        if (env.IsDevelopment())
-                        {
-                            rsBody.Append("</br>")
-                                  .Append("Unhandled exception: " + unhandledExc.ToString());
-                        }
-
-                        logger.LogError(unhandledExc, "Unhandled exception while accessing resource {0}:", context.Request.Path);
-                    }
-
-                    rsBody.Append("<a href=\"/\">Home</a><br>\r\n")
-                          .Append("</body></html>\r\n")
-
-                    await context.Response.WriteAsync(rsBody.ToString()).ConfigureAwait(false);
-                });
-            });
 
         }
     }
