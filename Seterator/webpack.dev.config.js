@@ -2,7 +2,8 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-    mode: 'production',
+    mode: 'development',
+    devtool: 'eval-source-map',
     entry: "./wwwroot/js/index.js",
     output: {
         filename: "main.js",
