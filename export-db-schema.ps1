@@ -47,4 +47,4 @@ $password = $connection.Password
 $database = $connection.Database
 $mysqlRoot = Get-MySqlRoot
 $mysqlDump = [IO.Path]::Combine($mysqlRoot, 'mysqldump')
-iex "& '$mysqlDump' -u $user -p$password --compact --no-data $database" | Out-File db-schema.sql
+iex "& '$mysqlDump' -u $user -p$password --skip-add-drop-table --skip-add-locks --skip-disable-keys --skip-set-charset --skip-comments --no-data $database" | Out-File db-schema.sql
