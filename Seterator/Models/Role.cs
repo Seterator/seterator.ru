@@ -7,20 +7,15 @@ using System.Threading.Tasks;
 
 namespace Seterator.Models
 {
-    [Table("roles")]
     public class Role
     {
         [Key]
-        [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [Column("role", TypeName = "Enum( 'moderator', 'jury', 'user', 'manager', 'admin' )")]
         public UserRole UserRole { get; set; }
 
-        [Column("user_guid")]
         public Guid UserGuid { get; set; }
 
-        [ForeignKey("UserGuid")]
         public User User { get; set; }
     }
 

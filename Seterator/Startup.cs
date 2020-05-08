@@ -1,22 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Seterator.Services;
 
 
@@ -59,16 +53,17 @@ namespace Seterator
                 .AddLogging()
                 .AddPrimitiveMemoryCache()
                 .AddFoulLanguageFilter("*")
-                .AddDbContext<DatabaseContext>(options => options.UseMySQL(Connection)
-                                                                         .EnableDetailedErrors()
-                                                                         .EnableSensitiveDataLogging())
+                .AddDbContext<DatabaseContext>(
+                    options => options
+                        .UseMySql(Connection)
+                        .EnableDetailedErrors()
+                        .EnableSensitiveDataLogging())
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
                         options.LoginPath = new PathString("/Account/Main");
                         options.Cookie.Name = "ssid";
-                    })
-                    ;
+                    });
             services
                 .AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)

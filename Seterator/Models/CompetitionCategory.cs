@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace Seterator.Models
 {
-    [Table("competition_categories")]
     public class CompetitionCategory
     {
         [Key]
-        [Column("GUID")]
         public Guid Guid { get; set; }
 
         /// <summary>
         /// Название категории
         /// </summary>
-        [Column("name")]
         public string Name { get; set; }
 
         public List<CompetitionRelCategory> Competitions { get; set; }

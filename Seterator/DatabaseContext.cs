@@ -61,6 +61,8 @@ namespace Seterator
                 .WithMany(x => x.Jury)
                 .HasForeignKey(x => x.CompetitionGuid);
 
+            
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
