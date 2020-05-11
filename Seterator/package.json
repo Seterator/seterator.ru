@@ -4,13 +4,13 @@
     "main": "index.js",
     "private": true,
     "scripts": {
-        "dev": "webpack-dev-server --hot --open",
+        "dev": "webpack --config webpack.dev.config.js",
         "build": "webpack"
     },
     "dependencies": {
         "bootstrap": "^4.4.1",
         "bootstrap-vue": "^2.10.1",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "vue": "^2.6.11"
     },
     "devDependencies": {

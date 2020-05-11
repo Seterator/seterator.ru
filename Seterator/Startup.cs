@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +15,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
 using Seterator.Services;
-
 
 namespace Seterator
 {
     public class Startup
     {
+        private readonly ILogger<Startup> logger;
         public IConfiguration Configuration { get; }
         string Connection {
             get
@@ -27,7 +33,7 @@ namespace Seterator
             }
         }
 
-        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
+        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILogger<Startup> logger)
         {
             Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
@@ -37,6 +43,7 @@ namespace Seterator
                 .AddEnvironmentVariables()
                 .AddUserSecrets<Startup>();
             Configuration = builder.Build();
+            this.logger = logger;
         }
 
 
@@ -50,7 +57,6 @@ namespace Seterator
                 })
                 .AddDistributedMemoryCache()
                 .AddSession()
-                .AddLogging()
                 .AddPrimitiveMemoryCache()
                 .AddFoulLanguageFilter("*")
                 .AddDbContext<DatabaseContext>(
@@ -74,13 +80,8 @@ namespace Seterator
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
 #pragma warning restore CA1922 
         {
-            if (env.IsDevelopment())
+            if (!env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
             app.UseHttpsRedirection()
@@ -100,7 +101,40 @@ namespace Seterator
                        name: "Only action",
                        template: "{controller=Home}/{action=Index}");
                });
-            
+
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    context.Response.StatusCode = 500;
+                    context.Response.ContentType = "text/html";
+
+                    StringBuilder rsBody = new StringBuilder(2048);
+
+                    rsBody.Append("<html lang=\"ru\"><body>\r\n")
+                          .Append("Something unexpected bla-bla-bla happened... Please try refreshing the page.<br><br>\r\n");
+
+                    var exceptionHandlerPathFeature =
+                        context.Features.Get<IExceptionHandlerPathFeature>();
+                    Exception unhandledExc = exceptionHandlerPathFeature.Error;
+                    if (unhandledExc != null)
+                    {
+                        if (env.IsDevelopment())
+                        {
+                            rsBody.Append("</br>")
+                                  .Append("Unhandled exception: " + unhandledExc.ToString());
+                        }
+
+                        logger.LogError(unhandledExc, "Unhandled exception while accessing resource {0}:", context.Request.Path);
+                    }
+
+                    rsBody.Append("<a href=\"/\">Home</a><br>\r\n")
+                          .Append("</body></html>\r\n");
+
+                    await context.Response.WriteAsync(rsBody.ToString()).ConfigureAwait(false);
+                });
+            });
+
         }
     }
 }
