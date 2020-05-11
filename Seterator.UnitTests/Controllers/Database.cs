@@ -77,7 +77,7 @@ namespace Seterator.UnitTests.Controllers
             var options = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase(databaseName: (datasetGuid).ToString())
                 .Options;
-            using (var db = new DatabaseContext(options))
+            using (var db = new DatabaseContext(options, false))
             {
                 FillData(db);
             }
@@ -95,7 +95,7 @@ namespace Seterator.UnitTests.Controllers
             var options = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseInMemoryDatabase(databaseName: (datasetGuid).ToString())
                 .Options;
-            return new DatabaseContext(options);
+            return new DatabaseContext(options, false);
         }
 
         private static void FillData(DatabaseContext db)

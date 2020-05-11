@@ -13,8 +13,8 @@ namespace Seterator.UnitTests.Database
             .AddUserSecrets<Startup>()
             .Build();
         protected DbContextOptions<DatabaseContext> Options => new DbContextOptionsBuilder<DatabaseContext>()
-            .UseMySQL(Environment.GetEnvironmentVariable("MYSQL_CONN")).Options;
+            .UseMySql(Environment.GetEnvironmentVariable("MYSQL_CONN")).Options;
         protected IMemoryCache Cache => null;
-        protected DatabaseContext Database => new DatabaseContext(Options);
+        protected DatabaseContext Database => new DatabaseContext(Options, false);
     }
 }

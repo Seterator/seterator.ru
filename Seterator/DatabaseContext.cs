@@ -25,9 +25,12 @@ namespace Seterator
         public DbSet<Role> Roles { get; set; }
         public DbSet<Prize> Prizes { get; set; }
 
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options, bool migrate = true) : base(options)
         {
-            Database.Migrate();
+            if (migrate)
+            {
+                Database.Migrate();
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
