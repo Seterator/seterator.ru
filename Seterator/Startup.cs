@@ -25,6 +25,10 @@ namespace Seterator
     {
         private readonly ILogger<Startup> logger;
         public IConfiguration Configuration { get; }
+        /// <summary>
+        /// <para>Возвращает строку подключения к БД.</para>
+        /// <para>Имя используемой строки подключения определяется параметром конфигурации "UseConnectionString".</para>
+        /// </summary>
         string Connection {
             get
             {

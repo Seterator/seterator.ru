@@ -13,3 +13,6 @@ tab_width = 2
 
 [*.yml]
 tab_width = unset
+
+[*.json]
+insert_final_newline = true
