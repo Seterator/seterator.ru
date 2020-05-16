@@ -8,7 +8,7 @@ sshpass -e ssh -o StrictHostKeyChecking=no root@5.63.154.249 '
     echo "[*] Source code updated, building...";
     dotnet build;
     echo "[*] Build completed, applying migration..."
-    dotnet ef database update;
+    dotnet --project ./Seterator/Seterator.csproj ef database update;
     echo "[*] Migration completed, starting seterator.service..."
     systemctl start seterator;
     echo "[*] seterator.service started...";

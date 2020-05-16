@@ -10,7 +10,7 @@ before_install:
 script:
  - dotnet restore
  - dotnet build ./Seterator.sln -f netcoreapp2.2
- - dotnet ef database update
+ - dotnet --project ./Seterator/Seterator.csproj ef database update
  - dotnet test --no-build Seterator.UnitTests/Seterator.UnitTests.csproj --filter Category!=DatabaseTest /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 deploy:
   provider: script
