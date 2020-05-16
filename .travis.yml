@@ -2,7 +2,9 @@
 solution: Seterator.sln
 mono: none
 dotnet: 2.2
-os: linux arch: arm64 dist: xenial
+os: linux 
+arch: arm64 
+dist: xenial
 services:
  - mysql
 before_install:
