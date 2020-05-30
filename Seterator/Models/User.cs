@@ -14,6 +14,7 @@ namespace Seterator.Models
         [Key]
         public Guid Guid { get; set; }
 
+        [Column(TypeName="varchar(128)")]
         public string Login { get; set; }
 
         [JsonConverter(typeof(ReadOnlyCollectionConverter<byte>))]

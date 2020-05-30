@@ -9,7 +9,7 @@ using Seterator;
 namespace Seterator.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200508220333_Initial")]
+    [Migration("20200530174830_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
