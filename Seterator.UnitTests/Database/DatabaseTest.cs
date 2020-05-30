@@ -15,6 +15,6 @@ namespace Seterator.UnitTests.Database
         protected DbContextOptions<DatabaseContext> Options => new DbContextOptionsBuilder<DatabaseContext>()
             .UseMySql(Environment.GetEnvironmentVariable("MYSQL_CONN")).Options;
         protected IMemoryCache Cache => null;
-        protected DatabaseContext Database => new DatabaseContext(Options, false);
+        protected DatabaseContext Database => new DatabaseContext(Options);
     }
 }

@@ -53,7 +53,7 @@ namespace Seterator.Controllers.Api
         private LoginResult Login(Login data)
         {
             Models.User user = database.Users.FirstOrDefault(u => u.Login == data.Username);
-            if (user == null || Utils.PasswordHasher.Default.Hash(data.Password).SequenceEqual(user.PasswordHash))
+            if (user == null || !Utils.PasswordHasher.Default.Hash(data.Password).SequenceEqual(user.PasswordHash))
             {
                 return new LoginResult() { Result = "reject", Message = "Неверный логин или пароль" };
             }
