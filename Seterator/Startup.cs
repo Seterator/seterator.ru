@@ -25,22 +25,27 @@ namespace Seterator
     {
         private readonly ILogger<Startup> logger;
         public IConfiguration Configuration { get; }
-        string Connection => Configuration.GetConnectionString("Local MySQL");
+        /// <summary>
+        /// <para>Возвращает строку подключения к БД.</para>
+        /// <para>Имя используемой строки подключения определяется параметром конфигурации "UseConnectionString".</para>
+        /// </summary>
+        string Connection {
+            get
+            {
+                string connectionStringName = Configuration.GetValue<string>("UseConnectionString");
+                return Configuration.GetConnectionString(connectionStringName);
+            }
+        }
 
         public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILogger<Startup> logger)
         {
             Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json",
-                             optional: false,
-                             reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            if (env.IsDevelopment())
-            {
-                builder.AddUserSecrets<Startup>();
-            }
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables()
+                .AddUserSecrets<Startup>();
             Configuration = builder.Build();
             this.logger = logger;
         }
@@ -58,16 +63,17 @@ namespace Seterator
                 .AddSession()
                 .AddPrimitiveMemoryCache()
                 .AddFoulLanguageFilter("*")
-                .AddDbContext<DatabaseContext>(options => options.UseMySQL(Connection)
-                                                                         .EnableDetailedErrors()
-                                                                         .EnableSensitiveDataLogging())
+                .AddDbContext<DatabaseContext>(
+                    options => options
+                        .UseMySql(Connection)
+                        .EnableDetailedErrors()
+                        .EnableSensitiveDataLogging())
                 .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
                         options.LoginPath = new PathString("/Account/Main");
                         options.Cookie.Name = "ssid";
-                    })
-                    ;
+                    });
             services
                 .AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)

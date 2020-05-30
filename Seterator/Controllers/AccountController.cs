@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Session;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Org.BouncyCastle.Crypto.Generators;
 using Seterator.Models;
 using static Seterator.Services.SessionExtensions;
 
@@ -47,7 +46,7 @@ namespace Seterator.Controllers
             if (ModelState.IsValid)
             {
                 Models.User user = database.Users.Include(x => x.Roles).FirstOrDefault(u => u.Login == model.Login);
-                if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(model.Password), salt, 8).SequenceEqual(user.PasswordHash))
+                if (user == null || !Utils.PasswordHasher.Default.Hash(model.Password).SequenceEqual(user.PasswordHash))
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль");
                 }
@@ -82,7 +81,7 @@ namespace Seterator.Controllers
                 var newUser = new Models.User()
                 {
                     Login = data.Login,
-                    PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
+                    PasswordHash = Utils.PasswordHasher.Default.Hash(data.Password)
                 };
                 database.Users.Add(newUser);
                 await database.SaveChangesAsync().ConfigureAwait(true);

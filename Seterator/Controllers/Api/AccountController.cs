@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Crypto.Generators;
+using System.Security.Cryptography;
 using Seterator.Models;
 using Seterator.Models.Api;
 using Seterator.ViewModels;
@@ -53,7 +53,7 @@ namespace Seterator.Controllers.Api
         private LoginResult Login(Login data)
         {
             Models.User user = database.Users.FirstOrDefault(u => u.Login == data.Username);
-            if (user == null || !BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8).SequenceEqual(user.PasswordHash))
+            if (user == null || !Utils.PasswordHasher.Default.Hash(data.Password).SequenceEqual(user.PasswordHash))
             {
                 return new LoginResult() { Result = "reject", Message = "Неверный логин или пароль" };
             }
@@ -67,13 +67,14 @@ namespace Seterator.Controllers.Api
         private LoginResult Register(Models.Api.Login data)
         {
             var user = database.Users.FirstOrDefault(u => u.Login == data.Username);
+            var passwordHash = Utils.PasswordHasher.Default.Hash(data.Password);
             if (user == null)
             {
                 var newUser = new Models.User()
                 {
                     Login = data.Username,
-                    PasswordHash = BCrypt.Generate(Encoding.Unicode.GetBytes(data.Password), salt, 8)
-                };
+                    PasswordHash = passwordHash
+            };
                 database.Users.Add(newUser);
                 database.SaveChanges();
                 Task.Run(async () => await Authenticate(newUser));

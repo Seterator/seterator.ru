@@ -346,3 +346,6 @@ healthchecksdb
 # Dotnet extensions for VSCode
 .fake
 .ionide
+
+# Database context snapshot should be used only in local developer environment.
+DatabaseContextModelSnapshot.cs
