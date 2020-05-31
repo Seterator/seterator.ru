@@ -1,7 +1,7 @@
 ﻿language: csharp
 solution: Seterator.sln
 mono: none
-dotnet: 2.2
+dotnet: 3.1
 services:
  - mysql
 before_install:
@@ -9,7 +9,7 @@ before_install:
  - sudo apt-get -y install sshpass
 script:
  - dotnet restore
- - dotnet build ./Seterator.sln -f netcoreapp2.2
+ - dotnet build ./Seterator.sln -f netcoreapp3.1
  - dotnet ef database update --project ./Seterator/Seterator.csproj
  - dotnet test --no-build Seterator.UnitTests/Seterator.UnitTests.csproj --filter Category!=DatabaseTest /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 deploy:

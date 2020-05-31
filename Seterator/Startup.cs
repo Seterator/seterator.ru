@@ -37,7 +37,7 @@ namespace Seterator
             }
         }
 
-        public Startup(Microsoft.AspNetCore.Hosting.IHostingEnvironment env, ILogger<Startup> logger)
+        public Startup(Microsoft.AspNetCore.Hosting.IWebHostEnvironment env, ILogger<Startup> logger)
         {
             Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
@@ -76,12 +76,12 @@ namespace Seterator
                     });
             services
                 .AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .AddMvcOptions(options => options.EnableEndpointRouting = false);
 
         }
 #pragma warning disable CA1822 // Member Configure does not access instance data and can be marked as static
-        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IWebHostEnvironment env)
 #pragma warning restore CA1922 
         {
             if (!env.IsDevelopment())
