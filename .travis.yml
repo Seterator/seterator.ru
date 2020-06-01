@@ -7,6 +7,7 @@ services:
 before_install:
  - sudo apt-get -y install powershell
  - sudo apt-get -y install sshpass
+ - dotnet tool install --global dotnet-ef
 script:
  - dotnet restore ./Seterator/Seterator.csproj
  - dotnet restore ./Seterator.UnitTests/Seterator.UnitTests.csproj
