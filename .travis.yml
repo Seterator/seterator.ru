@@ -8,8 +8,10 @@ before_install:
  - sudo apt-get -y install powershell
  - sudo apt-get -y install sshpass
 script:
- - dotnet restore
- - dotnet build ./Seterator.sln -f netcoreapp3.1
+ - dotnet restore ./Seterator/Seterator.csproj
+ - dotnet restore ./Seterator.UnitTests/Seterator.UnitTests.csproj
+ - dotnet build ./Seterator/Seterator.csproj -f netcoreapp3.1 --no-restore
+ - dotnet build ./Seterator.UnitTests/Seterator.UnitTests.csproj -f netcoreapp3.1 --no-restore
  - dotnet ef database update --project ./Seterator/Seterator.csproj
  - dotnet test --no-build Seterator.UnitTests/Seterator.UnitTests.csproj --filter Category!=DatabaseTest /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
 deploy:

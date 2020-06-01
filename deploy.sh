@@ -1,16 +1,16 @@
-echo "Deployment started."
+echo "[*] Deployment started..."
 sshpass -e ssh -o StrictHostKeyChecking=no root@5.63.154.249 '
     echo "[*] SSH session started..." &&
-    cd seterator&&
+    cd seterator &&
     systemctl stop seterator &&
     echo "[*] seterator.service stopped..." &&
     git pull &&
     echo "[*] Source code updated, building..." &&
     dotnet build &&
-    echo "[*] Build completed, applying migration..."
+    echo "[*] Build completed, applying migration..." &&
     dotnet ef database update --project ./Seterator/Seterator.csproj &&
     echo "[*] Migration completed, starting seterator.service..."
     systemctl start seterator &&
-    echo "[*] seterator.service started..."
+    echo "[*] seterator.service started"
 '
 echo "[*] Deployment complited"
