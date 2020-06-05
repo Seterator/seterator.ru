@@ -1,0 +1,156 @@
+<template>
+  <div>
+    <form class="createCompetition">
+        <div class="createCompetition__container container">
+        <h2 class="createCompetition__header">Личная информация</h2>
+        <div class="createCompetition__personalInfo personalInfo personalInfo_theme_light">
+            <div class="personalInfo__socialIcons socialIcons">
+                <a class="socialIcons__item socialIcons__item_size_m" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/google.svg" /></a>
+                <a class="socialIcons__item socialIcons__item_size_m" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/twitter.svg" /></a>
+                <a class="socialIcons__item socialIcons__item_size_m" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/facebook.svg" /></a>
+                <a class="socialIcons__item socialIcons__item_size_m" href="#"><img class="imgSvg imgSvg_color_white imgSvg_hovered_color_orange" src="~/img/Social icons/Orange/vk.svg" /></a>
+            </div>
+            <div class="personalInfo__phoneAndEmail">
+                <div class="imgText">
+                    <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/telephone.svg">
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light imgText__text" name="phoneNumber" type="tel" placeholder="Введите номер">
+                </div>
+                <div class="imgText">
+                    <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/email.svg">
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light imgText__text" name="email" type="email" placeholder="Введите почту">
+                </div>
+            </div>
+        </div>
+        <div class="createCompetition__banner banner banner_theme_none banner_padding_small">
+            <label class="createCompetition__label createCompetition__label_theme_dark">Ежедневный конкурс</label>
+            <input class="createCompetition__textbox createCompetition__textbox_font_header createCompetition__textbox_theme_dark" name="title" type="text" placeholder="Введите название конкурса" required>
+            <label class="createCompetition__label createCompetition__label_theme_dark">Описание идеи конкурса</label>
+            <textarea class="createCompetition__shortDescription createCompetition__textarea createCompetition__textarea_theme_dark" name="shortDescription" rows="5">Начните вводить текст...</textarea>
+            <a class="createCompetition__uploadBackgroundImg" href="#">
+                <div class="imgText">
+                    <img class="imgText__img imgSvg imgSvg_color_white" src="~/img/Competition/picture.svg">
+                    <div class="imgText__text">
+                        Загрузить изображение на фон
+                    </div>
+                </div>
+            </a>
+        </div>
+        <h2 class="createCompetition__header">Подробное описание конкурса</h2>
+        <textarea class="createCompetition__descrition createCompetition__textarea createCompetition__textarea_theme_light" name="description" rows="5">Начните вводить текст...</textarea>
+
+        <div class="createCompetition__grid">
+            <div class="createCompetition__conditions">
+                <h2 class="createCompetition__header">Задайте условия конкурса</h2>
+                    <label class="createCompetition__label">*Выберите возраст учатников</label>
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_range" name="ageStart" type="number" placeholder="От">
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_range" name="ageEnd" type="number" placeholder=" До">
+                    <label class="createCompetition__label">*Страны учаcтников</label>
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText" name="countries" type="text" placeholder="#Все">
+                    <label class="createCompetition__label">*Ссылка на подробные условия</label>
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText" name="detailedConditions" type="URL" placeholder="Вставьте ссылку на подробные условия конкурса">
+                
+                <div class="createCompetition__documents">
+                    <input class="createCompetition__uploadDocument createCompetition__uploadDocument_view_disable" type="file" name="conditionsDocument" id="conditionsDocument">
+                    <label class="createCompetition__upload" for="conditionsDocument">    
+                        <div class="imgText">
+                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/plus.svg">
+                            <span>Загрузить условия</span>
+                        </div>
+                    </label>
+                    <input class="createCompetition__uploadDocument createCompetition__uploadDocument_view_disable" type="file" name="privacyPolicyDocument" id="privacyPolicyDocument">
+                    <label class="createCompetition__upload" for="privacyPolicyDocument">    
+                        <div class="imgText">
+                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/plus.svg">
+                            <span>Загрузить политику конфиденциальности</span>
+                        </div>
+                    </label>
+                    <input class="createCompetition__uploadDocument createCompetition__uploadDocument_view_disable" type="file" name="agreementDocument" id="agreementDocument">
+                    <label class="createCompetition__upload" for="agreementDocument">    
+                        <div class="imgText">
+                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/plus.svg">
+                            <span>Загрузить соглашение</span>
+                        </div>
+                    </label>
+                    <input class="createCompetition__uploadDocument createCompetition__uploadDocument_view_disable" type="file" name="extraDocument" id="extraDocument">
+                    <label class="createCompetition__upload" for="extraDocument">    
+                        <div class="imgText">
+                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/plus.svg">
+                            <span>Загрузить доп. документ</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="createCompetition__prizes">
+                <h2 class="createCompetition__header">Призовые места</h2>
+                <div class="createCompetition__prizeItems">
+                    <div class="createCompetition__prizeItem">
+                        <select class="createCompetition__select createCompetition__select_theme_light createCompetition__startRange">
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                        <span>-</span>
+                        <select class="createCompetition__select createCompetition__select_theme_light createCompetition__endtRange">
+                            <option>нет</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                        <div class="imgText">
+                            <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText imgText__text_margin_right" name="prizeItem__value" type="text" placeholder="1000 руб.">
+                            <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/minus.svg">
+                        </div>
+                    </div>
+                </div>
+                <div class="createCompetition__upload">    
+                    <div class="imgText">
+                        <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/plus.svg">
+                        <span>Добавить призовое место</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="addJury">
+                <h2 class="createCompetition__header">Выбор жюри</h2>
+                <div class="imgText">
+                    <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText imgText__text_margin_right" name="prizeItem__value" type="text" placeholder="Вставьте ссылку на жюри">
+                    <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/minus.svg">
+                </div>
+                <div class="createCompetition__upload">    
+                    <div class="imgText">
+                        <img class="imgText__img imgSvg imgSvg_color_orange" src="~/img/Competition/plus.svg">
+                        <span>Добавить жюри</span>
+                    </div>
+                </div>
+            </div>
+            <div class="createCompetition__inviteJury">
+                <label class="createCompetition__label createCompetition__label_font_bold">Вы можете пригласиить жюри по ссылке:</label>
+                <input class="createCompetition__textbox createCompetition__textbox_theme_light createCompetition__textbox_type_nomralText" name="currentURL" type="text" placeholder="В разработке">
+            </div>
+        </div>
+        <label class="createCompetition__label">Дата публикации</label>
+        <input class="createCompetition__date" name="publicationDate" type="date" required>
+        <label class="createCompetition__label">Дата начала конкурса</label>
+        <input class="createCompetition__date" name="startDate" type="date" required>
+        <label class="createCompetition__label">Дата конца конкурса</label>
+        <input class="createCompetition__date" name="endDate" type="date" required>
+    </div>
+        <createCompetition-buttons></createCompetition-buttons>
+    </form>
+  </div>
+</template>
+
+<script>
+export default {
+name: 'competition-form'
+}
+</script>
+
+<style>
+
+</style>
