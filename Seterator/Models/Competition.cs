@@ -8,47 +8,38 @@ using System.Threading.Tasks;
 
 namespace Seterator.Models
 {
-    [Table("competition")]
     public class Competition
     {
         [Key]
-        [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [Column("title")]
         public string Title { get; set; }
 
-        [Column("creator_user_guid")]
         public Guid CreatorUserGuid { get; set; }
 
         /// <summary>
         /// Дата окончания приёма заявок
         /// </summary>
-        [Column("start_date")]
         public DateTime StartDate { get; set; }
 
         /// <summary>
         /// Дата публикации результата
         /// </summary>
-        [Column("end_date")]
         public DateTime EndDate { get; set; }
 
         /// <summary>
         /// Описание соревнования
         /// </summary>
-        [Column("description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Короткое описание соревнования
         /// </summary>
-        [Column("short_description")]
         public string ShortDescription { get; set; }
 
         /// <summary>
         /// Дополнительные данные о конкурсе (в базе данных хранится в виде JSON).
         /// </summary>
-        [Column("extra")]
         public string Extra { get; set; }
 
         [ForeignKey("CompetitionGuid")]

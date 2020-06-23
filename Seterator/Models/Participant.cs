@@ -9,27 +9,20 @@ using System.Threading.Tasks;
 
 namespace Seterator.Models
 {
-    [Table("participant")]
     public class Participant
     {
         [Key]
-        [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [Column("competition_guid")]
         public Guid CompetitionGuid { get; set; }
 
-        [Column("user_guid")]
         public Guid UserGuid { get; set; }
 
-        [Column("status", TypeName = "enum('New','Approved','Rejected','Updated')")]
         [DisplayName("Состояние заявки")]
         public ParticipantStatus Status { get; set; }
 
-        [Column("create_date")]
         public DateTime CreateDate { get; set; }
 
-        [Column("nickname")]
         public string Nickname { get; set; }
 
         [NotMapped]
@@ -37,10 +30,8 @@ namespace Seterator.Models
 
         public virtual List<Poem> Poems { get; set; }
 
-        [ForeignKey("CompetitionGuid")]
         public virtual Competition Competition { get; set; }
 
-        [ForeignKey("UserGuid")]
         public virtual User User { get; set; }
 
         public Participant()

@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Seterator.Models;
 using Newtonsoft.Json;
-using MySqlX.XDevAPI;
 using Microsoft.AspNetCore.Http;
 using static Seterator.Services.SessionExtensions;
 using Seterator.ViewModels;
