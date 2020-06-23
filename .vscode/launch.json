@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Seterator/bin/Debug/netcoreapp2.2/Seterator.dll",
+            "program": "${workspaceFolder}/Seterator/bin/Debug/netcoreapp3.1/Seterator.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Seterator",
             "stopAtEntry": false,

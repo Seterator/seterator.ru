@@ -9,17 +9,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seterator.Models
 {
-    [Table("user")]
     public class User
     {
         [Key]
-        [Column("GUID")]
         public Guid Guid { get; set; }
 
-        [Column("login")]
+        [Column(TypeName="varchar(128)")]
         public string Login { get; set; }
 
-        [Column("password_hash", TypeName = "BINARY(24)")]
         [JsonConverter(typeof(ReadOnlyCollectionConverter<byte>))]
         public IReadOnlyCollection<byte> PasswordHash { get; set; }
 

@@ -7,23 +7,17 @@ using System.Threading.Tasks;
 
 namespace Seterator.Models
 {
-    [Table("competition_constraints")]
     public class CompetitionConstraint
     {
         [Key]
-        [Column("GUID")]
         public Guid Guid { get; set; }
         
-        [Column("competition_guid")]
         public Guid CompetitionGuid { get; set; }
 
-        [Column("checked_value")]
         public string CheckedValue { get; set; }
 
-        [Column("min")]
         public int Min { get; set; }
 
-        [Column("max")]
         public int Max { get; set; }
     }
 }

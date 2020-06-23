@@ -27,7 +27,7 @@ namespace Seterator
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-            Database.EnsureCreated();
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,6 +60,8 @@ namespace Seterator
                 .HasOne(x => x.Competition)
                 .WithMany(x => x.Jury)
                 .HasForeignKey(x => x.CompetitionGuid);
+
+            
 
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
