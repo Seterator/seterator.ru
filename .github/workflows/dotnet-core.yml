@@ -1,4 +1,4 @@
-name: .NET Core
+name: Server-side
 
 on: [push]
 
@@ -15,5 +15,21 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    - name: Save built project
+      uses: actions/upload-artifact@v1
+      with:
+        name: built-project
+        path: .
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Load built project
+      uses: actions/download-artifact@v1
+      with:
+        name: built-project
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --no-build --verbosity normal built-project/Seterator.sln
