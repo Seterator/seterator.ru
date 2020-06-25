@@ -23,7 +23,7 @@ jobs:
         mysql version: '8.0'
         mysql database: 'seterator' 
         mysql user: 'tester'
-        mysql password: ''
+        mysql password: 'required-_-'
     - name: Install .Net tools
       run: dotnet tool install --global dotnet-ef
     - name: Install project dependencies
