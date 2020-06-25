@@ -1,5 +1,5 @@
 <template>
-  <h1 class="vue">Vue на связи</h1>
+  <h1 class="vue">Vue Testing</h1>
 </template>
 
 <script>
