@@ -33,4 +33,4 @@ jobs:
     - name: Migrate database
       run: dotnet ef database update --project Seterator/Seterator.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-restore --verbosity normal
