@@ -10,7 +10,8 @@ jobs:
     name: Build solution and run tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -43,6 +44,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+    - name: Checkout
+      uses: actions/checkout@v2
     - name: Publish app
       run: dotnet publish --configuration Release
     - name: Save app package
