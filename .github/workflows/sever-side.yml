@@ -34,3 +34,10 @@ jobs:
       run: dotnet ef database update --project Seterator/Seterator.csproj
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Publish app
+      run: dotnet publish --configuration Release
+    - name: Upload app package
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-package
+        path: Seterator/bin/Release/netcoreapp3.1/publish
