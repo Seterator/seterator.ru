@@ -63,6 +63,10 @@ namespace Seterator
                 .AddSession()
                 .AddPrimitiveMemoryCache()
                 .AddFoulLanguageFilter("*")
+                .AddHttpContextAccessor()
+                .AddHashService()
+                .AddAccountService()
+                .AddAuthService()
                 .AddDbContext<DatabaseContext>(
                     options => options
                         .UseMySql(Connection)
