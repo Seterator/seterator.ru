@@ -32,7 +32,7 @@ namespace Seterator
                 })
                 .UseNLog()
                 .UseKestrel()
-                .UseUrls("http://*:80/", "https://*:8080/", "https://*:5001/", "https://www.seterator.ru")
+                .UseUrls("http://*:5000/", "https://*:5001/")
                 .UseStartup<Startup>();
     }
 }
