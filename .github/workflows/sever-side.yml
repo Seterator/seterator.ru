@@ -1,0 +1,55 @@
+name: Server-side
+
+on: [push]
+
+env:
+  ASPNETCORE_ENVIRONMENT: 'Testing'
+
+jobs:
+  build:
+    name: Build solution and run tests
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Setup MySQL
+      uses: mirromutth/mysql-action@v1.1
+      with:
+        character set server: 'utf8'
+        collation server: 'utf8_general_ci'
+        mysql version: '8.0'
+        mysql database: 'seterator' 
+        mysql user: 'tester'
+        mysql password: 'required-_-'
+    - name: Install .Net tools
+      run: dotnet tool install --global dotnet-ef
+    - name: Install project dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Migrate database
+      run: dotnet ef database update --project Seterator/Seterator.csproj
+    - name: Test
+      run: dotnet test --no-restore --verbosity normal
+  publish:
+    name: Save application package
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Publish app
+      run: dotnet publish --configuration Release
+    - name: Save app package
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-package
+        path: Seterator/bin/Release/netcoreapp3.1/publish
