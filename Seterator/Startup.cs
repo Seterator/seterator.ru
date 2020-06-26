@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +27,12 @@ namespace Seterator
     {
         private readonly ILogger<Startup> logger;
         public IConfiguration Configuration { get; }
+        
         /// <summary>
         /// <para>Возвращает строку подключения к БД.</para>
         /// <para>Имя используемой строки подключения определяется параметром конфигурации "UseConnectionString".</para>
         /// </summary>
-        string Connection {
+        string ConnectionString {
             get
             {
                 string connectionStringName = Configuration.GetValue<string>("UseConnectionString");
@@ -54,29 +56,29 @@ namespace Seterator
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .Configure<CookiePolicyOptions>(options =>
-                {
-                    options.CheckConsentNeeded = context => true;
-                    options.MinimumSameSitePolicy = SameSiteMode.None;
-                })
-                .AddDistributedMemoryCache()
-                .AddSession()
-                .AddPrimitiveMemoryCache()
-                .AddFoulLanguageFilter("*")
-                .AddDbContext<DatabaseContext>(
-                    options => options
-                        .UseMySql(Connection)
-                        .EnableDetailedErrors()
-                        .EnableSensitiveDataLogging())
-                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            services.AddPrimitiveMemoryCache();
+            services.AddFoulLanguageFilter("*");
+            services.AddDbContext<DatabaseContext>(dbContext =>
+            {
+                dbContext.UseMySql(ConnectionString);
+                dbContext.EnableDetailedErrors();
+                dbContext.EnableSensitiveDataLogging();
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
                         options.LoginPath = new PathString("/Account/Main");
                         options.Cookie.Name = "ssid";
                     });
-            services
-                .AddMvc()
+            services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .AddMvcOptions(options => options.EnableEndpointRouting = false);
 
