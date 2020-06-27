@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - env/github-actions # На время разработки, для тестов
 
 jobs:
   publish:
