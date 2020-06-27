@@ -1,4 +1,4 @@
-name: Backend part
+name: Build and test
 
 on: [push]
 
