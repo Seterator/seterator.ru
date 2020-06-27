@@ -1,0 +1,55 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    name: Save application package
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Publish app
+      run: dotnet publish --configuration Release
+    - name: Save app package
+      uses: actions/upload-artifact@v1
+      with:
+        name: app-package
+        path: Seterator/bin/Release/netcoreapp3.1/publish
+  sync-files:
+    name: Sync package with server
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+    - name: Load app package
+      uses: actions/download-artifact@v1
+      with:
+        name: app-package
+    - name: rsync deployments
+      uses: oncletom/rsync-deployments@patch-1
+      with:
+        RSYNC_OPTIONS: -avzr --delete
+        USER_AND_HOST: github-deployer@45.151.144.11
+        DEST: /home/github-deployer/actual-package
+        SRC: app-package/
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+  restart-service:
+    name: Restart service
+    runs-on: ubuntu-latest
+    needs: sync-files
+    steps:
+      - name: Run shell commands
+        uses: garygrossgarten/github-action-ssh@v0.5.0
+        with:
+          command: /home/github-deployer/complete-deploy.ps1
+          host: '45.151.144.11'
+          username: github-deployer
+          privateKey: ${{ secrets.DEPLOY_KEY }}

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,11 +27,12 @@ namespace Seterator
     {
         private readonly ILogger<Startup> logger;
         public IConfiguration Configuration { get; }
+        
         /// <summary>
         /// <para>Возвращает строку подключения к БД.</para>
         /// <para>Имя используемой строки подключения определяется параметром конфигурации "UseConnectionString".</para>
         /// </summary>
-        string Connection {
+        string ConnectionString {
             get
             {
                 string connectionStringName = Configuration.GetValue<string>("UseConnectionString");
@@ -37,7 +40,7 @@ namespace Seterator
             }
         }
 
-        public Startup(Microsoft.AspNetCore.Hosting.IWebHostEnvironment env, ILogger<Startup> logger)
+        public Startup(IWebHostEnvironment env, ILogger<Startup> logger)
         {
             Contract.Assert(env != null);
             var builder = new ConfigurationBuilder()
@@ -53,96 +56,83 @@ namespace Seterator
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .Configure<CookiePolicyOptions>(options =>
-                {
-                    options.CheckConsentNeeded = context => true;
-                    options.MinimumSameSitePolicy = SameSiteMode.None;
-                })
-                .AddDistributedMemoryCache()
-                .AddSession()
-                .AddPrimitiveMemoryCache()
-                .AddFoulLanguageFilter("*")
-                .AddHttpContextAccessor()
-                .AddHashService()
-                .AddAccountService()
-                .AddAuthService()
-                .AddDbContext<DatabaseContext>(
-                    options => options
-                        .UseMySql(Connection)
-                        .EnableDetailedErrors()
-                        .EnableSensitiveDataLogging())
-                .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            services.Configure<KestrelServerOptions>(Configuration.GetSection("Kestrel"));
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            services.AddPrimitiveMemoryCache();
+            services.AddFoulLanguageFilter("*");
+            services.AddDbContext<DatabaseContext>(dbContext =>
+            {
+                dbContext.UseMySql(ConnectionString);
+                dbContext.EnableDetailedErrors();
+                dbContext.EnableSensitiveDataLogging();
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
                         options.LoginPath = new PathString("/Account/Main");
                         options.Cookie.Name = "ssid";
                     });
-            services
-                .AddMvc()
+            services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .AddMvcOptions(options => options.EnableEndpointRouting = false);
 
         }
-#pragma warning disable CA1822 // Member Configure does not access instance data and can be marked as static
-        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IWebHostEnvironment env)
-#pragma warning restore CA1922 
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (!env.IsDevelopment())
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection()
-               .UseStaticFiles()
-               .UseCookiePolicy()
-               .UseSession()
-               .UseAuthentication()
-               .UseMiddleware<Services.SessionRestore>()
-               .UseMvc(routes =>
-               {
-                   routes.MapRoute(
-                       name: "Guid parameter",
-                       template: "{controller}/{action}/{guid}",
-                       defaults: new { controller="Home", action="Index" },
-                       constraints: new { guid = new GuidRouteConstraint() });
-                   routes.MapRoute(
-                       name: "Only action",
-                       template: "{controller=Home}/{action=Index}");
-               });
-
-            app.UseExceptionHandler(errorApp =>
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseSession();
+            app.UseAuthentication();
+            app.UseMiddleware<SessionRestore>();
+            app.UseMvc(routes =>
             {
-                errorApp.Run(async context =>
-                {
-                    context.Response.StatusCode = 500;
-                    context.Response.ContentType = "text/html";
-
-                    StringBuilder rsBody = new StringBuilder(2048);
-
-                    rsBody.Append("<html lang=\"ru\"><body>\r\n")
-                          .Append("Something unexpected bla-bla-bla happened... Please try refreshing the page.<br><br>\r\n");
-
-                    var exceptionHandlerPathFeature =
-                        context.Features.Get<IExceptionHandlerPathFeature>();
-                    Exception unhandledExc = exceptionHandlerPathFeature.Error;
-                    if (unhandledExc != null)
-                    {
-                        if (env.IsDevelopment())
-                        {
-                            rsBody.Append("</br>")
-                                  .Append("Unhandled exception: " + unhandledExc.ToString());
-                        }
-
-                        logger.LogError(unhandledExc, "Unhandled exception while accessing resource {0}:", context.Request.Path);
-                    }
-
-                    rsBody.Append("<a href=\"/\">Home</a><br>\r\n")
-                          .Append("</body></html>\r\n");
-
-                    await context.Response.WriteAsync(rsBody.ToString()).ConfigureAwait(false);
-                });
+                routes.MapRoute(
+                    name: "Guid parameter",
+                    template: "{controller}/{action}/{guid}",
+                    defaults: new { controller="Home", action="Index" },
+                    constraints: new { guid = new GuidRouteConstraint() });
+                routes.MapRoute(
+                    name: "Only action",
+                    template: "{controller=Home}/{action=Index}");
             });
 
+            app.UseExceptionHandler(errorApp => errorApp.Run(async context =>
+            {
+                context.Response.StatusCode = 500;
+                context.Response.ContentType = "text/html";
+
+                StringBuilder responseBody = new StringBuilder(2048);
+
+                responseBody.Append("<html lang=\"ru\"><body>\r\n")
+                            .Append("Something unexpected bla-bla-bla happened... Please try refreshing the page.<br><br>\r\n");
+
+                var exceptionHandlerPathFeature =
+                    context.Features.Get<IExceptionHandlerPathFeature>();
+                Exception unhandledException = exceptionHandlerPathFeature.Error;
+                if (unhandledException != null)
+                {
+                    if (env.IsDevelopment())
+                    {
+                        responseBody.Append("</br>")
+                                    .Append("Unhandled exception: " + unhandledException.ToString());
+                    }
+                    logger.LogError(unhandledException, "Unhandled exception while accessing resource {0}:", context.Request.Path);
+                }
+
+                responseBody.Append("<a href=\"/\">Home</a><br>\r\n")
+                            .Append("</body></html>\r\n");
+                await context.Response.WriteAsync(responseBody.ToString()).ConfigureAwait(false);
+            }));
         }
     }
 }

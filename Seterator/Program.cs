@@ -16,23 +16,30 @@ namespace Seterator
             {
                 logger.Debug("NLogger initialized");
                 CreateWebHostBuilder(args).Build().Run();
-            } catch(Exception e) {
+            } 
+            catch(Exception e) 
+            {
                 logger.Error(e, "Unrecoverable exception while running the app");
                 throw;
-            } finally {
+            } 
+            finally 
+            {
                 LogManager.Shutdown();
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .ConfigureLogging((loggerBuilder) => {
-                    loggerBuilder.ClearProviders();
-                    loggerBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
-                })
-                .UseNLog()
-                .UseKestrel()
-                .UseUrls("http://*:80/", "https://*:8080/", "https://*:5001/", "https://www.seterator.ru")
-                .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            var builder = WebHost.CreateDefaultBuilder(args);
+            builder.ConfigureLogging(logger =>
+            {
+                logger.ClearProviders();
+                logger.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+            });
+            builder.UseNLog();
+            builder.UseKestrel();
+            builder.UseStartup<Startup>();
+            return builder;
+        }
     }
 }
