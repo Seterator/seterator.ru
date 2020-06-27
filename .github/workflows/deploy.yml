@@ -36,7 +36,9 @@ jobs:
     - name: rsync deployments
       uses: oncletom/rsync-deployments@patch-1
       with:
+        INPUT_RSYNC_OPTIONS: -avzr --delete
         USER_AND_HOST: github-deployer@45.151.144.11
         DEST: /home/github-deployer/actual-package
+        SRC: app-package/
       env:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
