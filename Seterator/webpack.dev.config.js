@@ -19,8 +19,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'wwwroot/dist/'),
-        publicPath: '/wwwroot/dist/'
+        path: path.resolve(__dirname, 'wwwroot/dist/')
     },
     module: {
         rules: [
