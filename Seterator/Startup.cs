@@ -64,6 +64,7 @@ namespace Seterator
             });
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddSessionService();
             services.AddPrimitiveMemoryCache();
             services.AddFoulLanguageFilter("*");
             services.AddDbContext<DatabaseContext>(dbContext =>

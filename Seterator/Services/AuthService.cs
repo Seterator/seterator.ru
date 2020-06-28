@@ -14,9 +14,11 @@ namespace Seterator.Services
     public class AuthService
     {
         private readonly HttpContext httpContext;
-        public AuthService(IHttpContextAccessor http)
+        private readonly ISessionService session;
+        public AuthService(IHttpContextAccessor http, ISessionService session)
         {
             this.httpContext = http.HttpContext;
+            this.session = session;
         }
 
         public async Task Authenticate(string login, IEnumerable<string> roles)
@@ -35,10 +37,12 @@ namespace Seterator.Services
             await httpContext
                 .SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                              new ClaimsPrincipal(id));
+            await session.MarkAuthenticated(httpContext.Session.Id, login);
         }
 
         public async Task Logout()
         {
+            await session.MarkUnauthenticated(httpContext.Session.Id);
             await httpContext
                 .SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }

@@ -32,5 +32,10 @@ namespace Seterator.Services
         {
             return services.AddScoped<AccountService>();
         }
+        public static IServiceCollection AddSessionService(this IServiceCollection services)
+        {
+            return services.AddScoped<SessionService>();
+        }
+
     }
 }

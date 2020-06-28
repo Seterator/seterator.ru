@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
+using Seterator.Services;
 
 namespace Seterator.Middleware
 {
@@ -21,29 +22,12 @@ namespace Seterator.Middleware
         {
             this.next = next;
         }
-        public Task Invoke(HttpContext context, DatabaseContext database)
+        public Task Invoke(HttpContext context, ISessionService session)
         {
-            // if (context.User.Identity.IsAuthenticated)
-            // {
-            //     try
-            //     {
-            //         bool sessionSet = context.Session.Get<bool>("sessionSet");
-            //         if (!sessionSet)
-            //         {
-            //             Restore(context, database);
-            //         }
-            //     }
-            //     catch (KeyNotFoundException)
-            //     {  
-            //         Restore(context, database);
-            //     }
-                
-            // }
-            // else
-            // {
-            //     context.Session.Set<bool>("sessionSet", false);
-            //     context.Session.Set<User>("user", null);
-            // }
+            if (!session.IsExists(context.Session.Id))
+            {
+                session.RegisterNew(context.Session.Id);
+            }
             return next(context);
         }
     }

@@ -10,6 +10,6 @@ namespace Seterator.Models
         public Guid? UserGuid { get; set; }
         public bool Authenticated { get; set; }
 
-        public User User { get; set; }
+        public User? User { get; set; }
     }
 }

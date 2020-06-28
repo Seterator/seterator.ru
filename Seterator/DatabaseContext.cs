@@ -8,6 +8,8 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using Seterator.Models;
 
+#pragma warning disable CS8618
+
 namespace Seterator
 {
     public class DatabaseContext : DbContext
@@ -24,6 +26,7 @@ namespace Seterator
         public DbSet<UserProfile> Profiles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Prize> Prizes { get; set; }
+        public DbSet<Session> Sessions { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
@@ -60,9 +63,6 @@ namespace Seterator
                 .HasOne(x => x.Competition)
                 .WithMany(x => x.Jury)
                 .HasForeignKey(x => x.CompetitionGuid);
-
-            
-
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
