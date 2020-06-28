@@ -97,7 +97,7 @@ namespace Seterator
                .UseCookiePolicy()
                .UseSession()
                .UseAuthentication()
-               .UseMiddleware<Services.SessionRestore>()
+               .UseMiddleware<Middleware.SessionRestore>()
                .UseMvc(routes =>
                {
                    routes.MapRoute(
