@@ -63,9 +63,10 @@ namespace Seterator
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDistributedMemoryCache();
+            services.AddAccountService();
+            services.AddAuthService();
+            services.AddHashService();
             services.AddSession();
-            services.AddPrimitiveMemoryCache();
-            services.AddFoulLanguageFilter("*");
             services.AddDbContext<DatabaseContext>(dbContext =>
             {
                 dbContext.UseMySql(ConnectionString);
@@ -93,7 +94,7 @@ namespace Seterator
             app.UseCookiePolicy();
             app.UseSession();
             app.UseAuthentication();
-            app.UseMiddleware<SessionRestore>();
+            app.UseAuthorization();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

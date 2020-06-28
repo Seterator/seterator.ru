@@ -5,18 +5,18 @@ namespace Seterator.Services
 {
     public static class ServicesExtensions
     {
-        /// <summary>
-        /// Добавляет сервис фильтрации нецензурной брани.
-        /// </summary>
-        /// <param name="replaceChar">Символ, на который следует заменять символы нецензурных слов.</param>
-        public static IServiceCollection AddFoulLanguageFilter(this IServiceCollection services, string replaceChar)
+        public static IServiceCollection AddHashService(this IServiceCollection services)
         {
-            return services.AddSingleton(x => new FoulLanguageFilter(replaceChar));
+            return services.AddSingleton(new HashService());
         }
 
-        public static IServiceCollection AddPrimitiveMemoryCache(this IServiceCollection services)
+        public static IServiceCollection AddAuthService(this IServiceCollection services)
         {
-            return services.AddSingleton<IMemoryCache>(new MemoryCache());
+            return services.AddScoped<AuthService>();
+        }
+        public static IServiceCollection AddAccountService(this IServiceCollection services)
+        {
+            return services.AddScoped<AccountService>();
         }
 
         public static IServiceCollection AddHashService(this IServiceCollection services)

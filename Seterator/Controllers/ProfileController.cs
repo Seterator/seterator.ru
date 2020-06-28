@@ -20,7 +20,7 @@ namespace Seterator.Controllers
         [Authorize(Roles = "User")]
         public IActionResult Index()
         {
-            User user = HttpContext.Session.Get<User>("user");
+            User user = null;//HttpContext.Session.Id; //.Get<User>("user");
             var profile = ProfileModel.ReadFromDatabase(user.Guid, database);
             return View(profile);
         }
