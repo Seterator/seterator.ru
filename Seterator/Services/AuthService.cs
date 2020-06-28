@@ -13,38 +13,29 @@ namespace Seterator.Services
 {
     public class AuthService
     {
+        const string scheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        const string username = ClaimsIdentity.DefaultNameClaimType;
+        const string role = ClaimsIdentity.DefaultRoleClaimType;
+        const string authType = "ApplicationCookie";
         private readonly HttpContext httpContext;
-        private readonly ISessionService session;
-        public AuthService(IHttpContextAccessor http, ISessionService session)
+        
+        public AuthService(IHttpContextAccessor http)
         {
             this.httpContext = http.HttpContext;
-            this.session = session;
         }
 
         public async Task Authenticate(string login, IEnumerable<string> roles)
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, login));
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role));
-            }
-            ClaimsIdentity id = 
-                new ClaimsIdentity(claims: claims,
-                                   authenticationType: "ApplicationCookie",
-                                   nameType: ClaimsIdentity.DefaultNameClaimType,
-                                   roleType: ClaimsIdentity.DefaultRoleClaimType);
-            await httpContext
-                .SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                             new ClaimsPrincipal(id));
-            await session.MarkAuthenticated(httpContext.Session.Id, login);
+            claims.Add(new Claim(username, login));
+            claims.AddRange(roles.Select(exactRole => new Claim(role, exactRole)));
+            var id = new ClaimsIdentity(claims, authType, username, role);
+            await httpContext.SignInAsync(scheme, new ClaimsPrincipal(id));
         }
 
         public async Task Logout()
         {
-            await session.MarkUnauthenticated(httpContext.Session.Id);
-            await httpContext
-                .SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await httpContext.SignOutAsync(scheme);
         }
     }
 }

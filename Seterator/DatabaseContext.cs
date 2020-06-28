@@ -26,7 +26,6 @@ namespace Seterator
         public DbSet<UserProfile> Profiles { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Prize> Prizes { get; set; }
-        public DbSet<Session> Sessions { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
