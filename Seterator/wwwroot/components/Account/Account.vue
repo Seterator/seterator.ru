@@ -58,6 +58,7 @@ export default {
 }
 
 .cheers h2 {
+    font-family: 'Merriweather', serif;
     font-weight: 600;
     font-size: 40pt;
     text-align: right;
