@@ -37,5 +37,45 @@ namespace Seterator.Services
         {
             await httpContext.SignOutAsync(scheme);
         }
+
+        /// <summary>
+        /// Возвращает истину, если пользователь отправивший запрос уже выполнил авторизацию.
+        /// </summary>
+        public bool IsCurrentUserAuthorized() => httpContext.User.Identity.IsAuthenticated;
+
+        /// <summary>
+        /// Возвращает имя пользователя, отправившего запрос, если он уже авторизован.
+        /// Иначе - выбрасывает исключение.
+        /// </summary>
+        public string CurrentUserLogin()
+        {
+            if(IsCurrentUserAuthorized())
+            {
+                return httpContext.User.Identity.Name!;
+            }
+            else
+            {
+                throw new Exception("Пользователь не авторизован");
+            }
+        }
+
+        /// <summary>
+        /// Возвращает список ролей пользователя, отправившего запрос, если он уже авторизован.
+        /// Иначе - выбрасывает исключение.
+        /// </summary>
+        public List<string> CurrentUserRoles()
+        {
+            if (IsCurrentUserAuthorized())
+            {
+                return httpContext.User.Claims
+                    .Where(x => x.Type == role)
+                    .Select(x => x.Value)
+                    .ToList();
+            }
+            else
+            {
+                throw new Exception("Пользователь не авторизован");
+            }
+        }
     }
 }

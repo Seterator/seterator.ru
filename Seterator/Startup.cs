@@ -63,9 +63,7 @@ namespace Seterator
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDistributedMemoryCache();
-            services.AddAccountService();
-            services.AddAuthService();
-            services.AddHashService();
+            services.AddDomainServices();
             services.AddSession();
             services.AddDbContext<DatabaseContext>(dbContext =>
             {
@@ -82,8 +80,8 @@ namespace Seterator
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .AddMvcOptions(options => options.EnableEndpointRouting = false);
-
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseForwardedHeaders(new ForwardedHeadersOptions

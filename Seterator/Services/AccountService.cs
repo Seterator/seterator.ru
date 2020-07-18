@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Seterator.Models;
@@ -58,7 +57,7 @@ namespace Seterator.Services
         /// </summary>
         /// <param name="username"></param>
         /// <returns></returns>
-        public async Task<List<string>> GetUserClaims(Guid userGuid)
+        public async Task<List<string>> GetUserRoles(Guid userGuid)
         {
             var roles = await database.Roles.AsNoTracking()
                 .Include(x => x.User)
