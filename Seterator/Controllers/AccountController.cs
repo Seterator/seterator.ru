@@ -62,7 +62,8 @@ namespace Seterator.Controllers
             var canLogin = account.TryLogin(model.Login, model.Password);
             if (canLogin)
             {
-                await auth.Authenticate(model.Login, Enumerable.Empty<string>());
+                var roles = await account.GetUserClaims(model.Login);
+                await auth.Authenticate(model.Login, roles);
                 return RedirectToAction("Index", "Home");
             }
             else
