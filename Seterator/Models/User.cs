@@ -46,11 +46,7 @@ namespace Seterator.Models
         public string UserUrlsJson { get; set; }
 
         [NotMapped]
-        public List<string> UserUrls  {
-            get {
-                return JsonConvert.DeserializeObject<List<string>>(UserUrlsJson);
-            }
-        }
+        public List<string> UserUrls => JsonConvert.DeserializeObject<List<string>>(UserUrlsJson);
 
         public virtual List<UserDocument> Documents { get; set; }
 
