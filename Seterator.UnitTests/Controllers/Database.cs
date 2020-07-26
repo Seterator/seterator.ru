@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.InMemory;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Seterator.Models;
 using System.Linq;
+using System.Collections.Immutable;
 
 namespace Seterator.UnitTests.Controllers
 {
@@ -47,14 +47,12 @@ namespace Seterator.UnitTests.Controllers
             return sb.ToString();
         }
 
-        public static IReadOnlyCollection<byte> Byte()
+        public static ImmutableArray<byte> ByteArray()
         {
-            var bytes = new byte[10];
-            for (int i = 0; i < 10; i++)
-            {
-                bytes[i] = (byte) random.Next(0, 128);
-            }
-            return bytes;
+            return ImmutableArray.CreateRange(
+                Enumerable
+                    .Repeat(0, 10)
+                    .Select(_ => (byte)random.Next(0, 128)));
         }
 
         public static int Int32()
@@ -102,7 +100,7 @@ namespace Seterator.UnitTests.Controllers
         {
             var @guid = new Primitive<Guid>(PrimitiveFuncs.Guid);
             var @string = new Primitive<string>(PrimitiveFuncs.String);
-            var @byte = new Primitive<IReadOnlyCollection<byte>>(PrimitiveFuncs.Byte);
+            var @byte = new Primitive<ImmutableArray<byte>>(PrimitiveFuncs.ByteArray);
             var @int = new Primitive<int>(PrimitiveFuncs.Int32);
 
             db.Users.Add(new User() { Guid = guid[0], Login = @string[0], PasswordHash = @byte[0] });
