@@ -1,0 +1,11 @@
+{
+    "editor.rulers": [
+        95
+    ],
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.loggingLevel": "debug",
+    "[csharp]": {
+        "editor.defaultFormatter": "ms-dotnettools.csharp"
+    },
+}
