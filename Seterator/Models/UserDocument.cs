@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 #pragma warning disable CS8618
 
@@ -26,8 +24,6 @@ namespace Seterator.Models
         public string Type { get; set; }
 
         [Column("data")]
-#pragma warning disable CA1819 // Properties should not return arrays
-        public byte[] Data { get; set; }
-#pragma warning restore CA1819 // Properties should not return arrays
+        public ImmutableArray<byte> Data { get; set; }
     }
 }
