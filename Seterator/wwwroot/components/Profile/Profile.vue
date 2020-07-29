@@ -4,11 +4,8 @@
         <div class="profilePersonal__leftSide">
             <profile-avatar class="profile__avatar-wrap" src="/img/Profile/ava.png"></profile-avatar>
             <social-icons class="profile__socialIcons" :socialIcons="socialIcons__data" :color="socialIcons__color"></social-icons>
-            <profile-rating class="profile__rating-wrap profile__block" :rating="rating">
-            </profile-rating>
-            <div class="profile__drafts-wrap">
-                <h5>Черновики</h5>
-            </div>
+            <profile-rating class="profile__rating-wrap profile__block" :rating="rating"></profile-rating>
+            <profile-drafts class="profile__drafts-wrap profile__block"></profile-drafts>
         </div>
         <div class="profilePersonal__rightSide">
             <div class="profile__about-wrap">
@@ -26,12 +23,14 @@
 import ProfileAvatar from './ProfileAvatar.vue';
 import SocialIcons from '../Other/SocialIcons.vue';
 import ProfileRating from './ProfileRating.vue';
+import ProfileDrafts from './ProfileDrafts.vue';
 
 export default {
     components: {
         'profile-avatar': ProfileAvatar,
         'social-icons': SocialIcons,
-        'profile-rating': ProfileRating
+        'profile-rating': ProfileRating,
+        'profile-drafts': ProfileDrafts
     },
     data: function() {
         return {
