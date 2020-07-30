@@ -11,12 +11,10 @@
             <div class="profile__about-wrap profile__block">
                 <profile-roles :prop_roles="roles"></profile-roles>
                 <span class="profile__name">{{name}}</span>
-                <h4 class="profile__header">О себе</h4>
+                <h4 class="profile__header profile__header_topMargin">О себе</h4>
                 <div class="profile__about">{{about}}</div>
             </div>
-            <div class="profile__achievments-wrap">
-                <h5>Достижения</h5>
-            </div>
+            <profile-personal class="profile__block" :personal_data="personal_info"></profile-personal>
         </div>
     </div>
   </div>
@@ -28,6 +26,7 @@ import SocialIcons from '../Other/SocialIcons.vue';
 import ProfileRating from './ProfileRating.vue';
 import ProfileDrafts from './ProfileDrafts.vue';
 import ProfileRoles from './ProfileRoles.vue';
+import ProfilePersonal from './ProfilePersonal.vue';
 
 export default {
     components: {
@@ -35,7 +34,8 @@ export default {
         'social-icons': SocialIcons,
         'profile-rating': ProfileRating,
         'profile-drafts': ProfileDrafts,
-        'profile-roles': ProfileRoles
+        'profile-roles': ProfileRoles,
+        'profile-personal': ProfilePersonal
     },
     data: function() {
         return {
@@ -66,7 +66,15 @@ export default {
             ],
             roles: ['Сетератор', 'Модератор'],
             name: 'Семенов Семён',
-            about: 'Я такой человек, мне нужно быть уверенным, что с людьми у меня взаимные чувства. Если я хочу написать — то и человек хочет написать мне, если я люблю — то и меня. Но если я хоть на капельку почувствую, что мне не рады, я перестаю писать, звонить, и даже думать об этом человеке. Мне начинает казаться, что я себя навязываю, и от этой мысли пропадает любое желание контактировать с таким человеком.'
+            about: 'Я такой человек, мне нужно быть уверенным, что с людьми у меня взаимные чувства. Если я хочу написать — то и человек хочет написать мне, если я люблю — то и меня. Но если я хоть на капельку почувствую, что мне не рады, я перестаю писать, звонить, и даже думать об этом человеке. Мне начинает казаться, что я себя навязываю, и от этой мысли пропадает любое желание контактировать с таким человеком.',
+            personal_info: {
+                name: 'Семенов Семён',
+                phone: '+79253207279',
+                email: 'em@ail.com',
+                country: 'Russia',
+                city: 'Moscow'
+
+            }
         }
     }
 }
@@ -77,7 +85,9 @@ export default {
     font-family: 'Merriweather', serif;
     font-size: 1.3rem;
     font-weight: bold;
+}
 
+.profile__header_topMargin {
     margin-top: 35px;
 }
 
