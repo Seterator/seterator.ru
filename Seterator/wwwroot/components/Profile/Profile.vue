@@ -8,8 +8,11 @@
             <profile-drafts class="profile__drafts-wrap profile__block"></profile-drafts>
         </div>
         <div class="profilePersonal__rightSide">
-            <div class="profile__about-wrap">
-                <h5>Об авторе</h5>
+            <div class="profile__about-wrap profile__block">
+                <profile-roles :prop_roles="roles"></profile-roles>
+                <span class="profile__name">{{name}}</span>
+                <h4 class="profile__header">О себе</h4>
+                <div class="profile__about">{{about}}</div>
             </div>
             <div class="profile__achievments-wrap">
                 <h5>Достижения</h5>
@@ -24,13 +27,15 @@ import ProfileAvatar from './ProfileAvatar.vue';
 import SocialIcons from '../Other/SocialIcons.vue';
 import ProfileRating from './ProfileRating.vue';
 import ProfileDrafts from './ProfileDrafts.vue';
+import ProfileRoles from './ProfileRoles.vue';
 
 export default {
     components: {
         'profile-avatar': ProfileAvatar,
         'social-icons': SocialIcons,
         'profile-rating': ProfileRating,
-        'profile-drafts': ProfileDrafts
+        'profile-drafts': ProfileDrafts,
+        'profile-roles': ProfileRoles
     },
     data: function() {
         return {
@@ -58,13 +63,28 @@ export default {
                     name: 'Жюри',
                     value: '1000'
                 }
-            ]
+            ],
+            roles: ['Сетератор', 'Модератор'],
+            name: 'Семенов Семён',
+            about: 'Я такой человек, мне нужно быть уверенным, что с людьми у меня взаимные чувства. Если я хочу написать — то и человек хочет написать мне, если я люблю — то и меня. Но если я хоть на капельку почувствую, что мне не рады, я перестаю писать, звонить, и даже думать об этом человеке. Мне начинает казаться, что я себя навязываю, и от этой мысли пропадает любое желание контактировать с таким человеком.'
         }
     }
 }
 </script>
 
-<style scoped>
+<style>
+.profile__header {
+    font-family: 'Merriweather', serif;
+    font-size: 1.3rem;
+    font-weight: bold;
+
+    margin-top: 35px;
+}
+
+.profile__about {
+    margin-top: 25px;
+}
+
 .profilePersonal__wrap {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -80,6 +100,14 @@ export default {
 .profile__block {
     margin-top: 15px;
     background: rgb(238, 238, 238);
-    padding: 15px;
+    padding: 30px;
+}
+
+
+.profile__name {
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 15px 0;
 }
 </style>
