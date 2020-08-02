@@ -1,25 +1,28 @@
 // Компонент, описывающий страницу профиля пользователя
 
 <template>
-  <div class="container">
-      <div class="profilePersonal__wrap">
-        <div class="profilePersonal__leftSide">
-            <profile-avatar class="profile__avatar-wrap" src="/img/Profile/ava.png"></profile-avatar>
-            <social-icons class="profile__socialIcons" :socialIcons="socialIcons__data" :color="socialIcons__color"></social-icons>
-            <profile-rating class="profile__rating-wrap profile__block" :rating="rating"></profile-rating>
-            <profile-drafts class="profile__drafts-wrap profile__block"></profile-drafts>
-        </div>
-        <div class="profilePersonal__rightSide">
-            <div class="profile__about-wrap profile__block">
-                <profile-roles :prop_roles="roles"></profile-roles>
-                <span class="profile__name">{{name}}</span>
-                <h4 class="profile__header profile__header_topMargin">О себе</h4>
-                <div class="profile__about">{{about}}</div>
+    <div>
+        <div class="container">
+            <div class="profilePersonal__wrap">
+                <div class="profilePersonal__leftSide">
+                    <profile-avatar class="profile__avatar-wrap" src="/img/Profile/ava.png"></profile-avatar>
+                    <social-icons class="profile__socialIcons" :socialIcons="socialIcons__data" :color="socialIcons__color"></social-icons>
+                    <profile-rating class="profile__rating-wrap profile__block" :rating="rating"></profile-rating>
+                    <profile-drafts class="profile__drafts-wrap profile__block"></profile-drafts>
+                </div>
+                <div class="profilePersonal__rightSide">
+                    <div class="profile__about-wrap profile__block">
+                        <profile-roles :prop_roles="roles"></profile-roles>
+                        <span class="profile__name">{{name}}</span>
+                        <h4 class="profile__header profile__header_topMargin">О себе</h4>
+                        <div class="profile__about">{{about}}</div>
+                    </div>
+                    <profile-personal class="profile__block" :personal_data="personal_info"></profile-personal>
+                </div>
             </div>
-            <profile-personal class="profile__block" :personal_data="personal_info"></profile-personal>
         </div>
+        <profile-statistics :statistics="statistics_example"></profile-statistics>
     </div>
-  </div>
 </template>
 
 <script>
@@ -29,6 +32,7 @@ import ProfileRating from './ProfileRating.vue';
 import ProfileDrafts from './ProfileDrafts.vue';
 import ProfileRoles from './ProfileRoles.vue';
 import ProfilePersonal from './ProfilePersonal.vue';
+import ProfileStatistics from './ProfileStatistics.vue';
 
 export default {
     components: {
@@ -37,7 +41,8 @@ export default {
         'profile-rating': ProfileRating,
         'profile-drafts': ProfileDrafts,
         'profile-roles': ProfileRoles,
-        'profile-personal': ProfilePersonal
+        'profile-personal': ProfilePersonal,
+        'profile-statistics': ProfileStatistics
     },
     data: function() {
         return {
@@ -76,7 +81,25 @@ export default {
                 country: 'Russia',
                 city: 'Moscow'
 
-            }
+            },
+            statistics_example: [
+                {
+                    name: 'Количество участий в конкурсе',
+                    value: '100'
+                },
+                {
+                    name: 'Количество взятых призовых мест в конкурсе',
+                    value: '100'
+                },
+                {
+                    name: 'Количество участий в конкурсе',
+                    value: '100'
+                },
+                {
+                    name: 'Количество взятых призовых мест в конкурсе',
+                    value: '100'
+                }
+            ]
         }
     }
 }
