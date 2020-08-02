@@ -1,3 +1,5 @@
+// Компонент, описывающий страницу профиля пользователя
+
 <template>
   <div class="container">
       <div class="profilePersonal__wrap">
