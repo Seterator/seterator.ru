@@ -115,10 +115,28 @@ export default {
     padding: 30px;
 }
 
+.profile__block_bottom_button {
+    position: relative;
+    border-bottom: 2px solid transparent;
+    border-image:  radial-gradient(ellipse at center, rgba(255,83,25,1) 50%, rgba(255,83,25,0.87) 50%, rgba(255,83,25,0.87) 66%, rgba(255,255,255,0.87) 100%);
+    border-image-slice: 1;
+}
+
 .profile__userName {
     font-family: 'Merriweather', serif;
     font-size: 2rem;
     font-weight: bold;
     padding: 15px 0;
+}
+
+.profile__button {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    width: 200px !important;
+    height: 50px !important;
+    margin-bottom: -25px !important;
+    margin-left: -100px !important;
+    line-height: 16px;
 }
 </style>

@@ -19,9 +19,17 @@
                     />
               </div>
               <div class="profilePersonal__rightSide">
-                  <div class="profile__about-wrap profile__block">
+                  <div class="profile__about-wrap profile__block profile__block_bottom_button">
                     <profile-roles  :prop_roles="propRoles" 
                                     :active_role="propActiveRole"
+                    />
+                    <span class="profile__userName"> {{ name }} </span>
+                    <h4 class="profile__title profile__title_topMargin">О себе</h4>
+                    <div class="profile__about">{{ about }}</div>
+                    <seterator-button   class="profile__button" 
+                                        :propText="'Модерировать'"
+                                        :propHref="'#'"
+                                        :propColor="'orangeShadow'"
                     />
                   </div>
               </div>
@@ -35,6 +43,7 @@ import ProfileAvatar from './ProfileAvatar.vue';
 import SocialIcons from '../Other/SocialIcons.vue';
 import ProfileRating from './ProfileRating.vue';
 import ProfileRoles from './ProfileRoles.vue';
+import SeteratorButton from '../Other/SeteratorButton.vue';
 
 export default {
     components: {
@@ -42,6 +51,7 @@ export default {
         'social-icons': SocialIcons,
         'profile-rating': ProfileRating,
         'profile-roles': ProfileRoles,
+        'seterator-button': SeteratorButton
     },
 
     props: {
@@ -69,6 +79,8 @@ export default {
 
     data: function() {
         return {
+            name: 'Семенов Семён',
+            about: 'Я такой человек, мне нужно быть уверенным, что с людьми у меня взаимные чувства. Если я хочу написать — то и человек хочет написать мне, если я люблю — то и меня. Но если я хоть на капельку почувствую, что мне не рады, я перестаю писать, звонить, и даже думать об этом человеке. Мне начинает казаться, что я себя навязываю, и от этой мысли пропадает любое желание контактировать с таким человеком.',
         };
     }
 
