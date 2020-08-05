@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using Seterator.Models;
+using Seterator.Converters;
 
 #pragma warning disable CS8618
 
@@ -36,11 +37,12 @@ namespace Seterator
             Contract.Assert(modelBuilder != null);
 
             modelBuilder.Entity<User>()
-                .Property("PasswordHash")
-                .HasConversion(new ValueConverter<IReadOnlyCollection<byte>, byte[]>(
-                    m => m.ToArray(),
-                    p => p as IReadOnlyCollection<byte>
-                ));
+                .Property(u => u.PasswordHash)
+                .HasConversion(ImmutableArrayConverter.Instance);
+
+            modelBuilder.Entity<UserDocument>()
+                .Property(x => x.Data)
+                .HasConversion(ImmutableArrayConverter.Instance);
 
             modelBuilder.Entity<CompetitionRelCategory>()
                 .HasKey(x => new { x.CategoryGuid, x.CompetitionGuid });
