@@ -93,7 +93,7 @@ export default {
     margin-top: 35px;
 }
 
-.profile__about {
+.profile__block_margin_top {
     margin-top: 25px;
 }
 
@@ -110,7 +110,7 @@ export default {
 }
 
 .profile__block {
-    margin-top: 15px;
+    margin-top: 30px;
     background: rgb(238, 238, 238);
     padding: 30px;
 }

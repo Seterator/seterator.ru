@@ -25,13 +25,16 @@
                     />
                     <span class="profile__userName"> {{ name }} </span>
                     <h4 class="profile__title profile__title_topMargin">О себе</h4>
-                    <div class="profile__about">{{ about }}</div>
+                    <div class="profile__block_margin_top">{{ about }}</div>
                     <seterator-button   class="profile__button" 
                                         :propText="'Модерировать'"
                                         :propHref="'#'"
                                         :propColor="'orangeShadow'"
                     />
-                  </div>
+                    </div>
+                    <profile-personal   class="profile__block" 
+                                        :personal_data="propPersonalInfo" 
+                    />
               </div>
           </div>
       </div>
@@ -44,6 +47,7 @@ import SocialIcons from '../Other/SocialIcons.vue';
 import ProfileRating from './ProfileRating.vue';
 import ProfileRoles from './ProfileRoles.vue';
 import SeteratorButton from '../Other/SeteratorButton.vue';
+import ProfilePersonal from './ProfilePersonal.vue';
 
 export default {
     components: {
@@ -51,7 +55,8 @@ export default {
         'social-icons': SocialIcons,
         'profile-rating': ProfileRating,
         'profile-roles': ProfileRoles,
-        'seterator-button': SeteratorButton
+        'seterator-button': SeteratorButton,
+        'profile-personal': ProfilePersonal
     },
 
     props: {
@@ -74,6 +79,21 @@ export default {
         },
         propActiveRole: {
             type: String
+        },
+        propPersonalInfo: {
+            type: Object,
+            validator: function(value) {
+                if ('name'      in value &&
+                    'phone'     in value &&
+                    'email'     in value &&
+                    'country'   in value &&
+                    'city') {
+                        return true;
+                }
+                else {
+                    return false;
+                }
+            }
         }
     },
 

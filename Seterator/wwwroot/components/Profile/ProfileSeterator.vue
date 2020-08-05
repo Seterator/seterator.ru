@@ -26,7 +26,7 @@
                         />
                         <span class="profile__userName">{{ name }}</span>
                         <h4 class="profile__title profile__title_topMargin">О себе</h4>
-                        <div class="profile__about">{{ about }}</div>
+                        <div class="profile__block_margin_top">{{ about }}</div>
                     </div>
                     <profile-personal   class="profile__block" 
                                         :personal_data="propPersonalInfo" 
