@@ -32,6 +32,6 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Migrate database
-      run: dotnet ef database update --project Seterator/Seterator.csproj
-    - name: Test
+      run: dotnet ef database update --project Seterator/Seterator.csproj --no-build
+    - name: Run tests
       run: dotnet test --no-restore --verbosity normal
