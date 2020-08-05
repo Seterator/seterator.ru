@@ -17,11 +17,13 @@
 <script>
 import ProfileSeterator from './ProfileSeterator.vue';
 import PrfofileModerator from './ProfileModerator.vue';
+import ProfileJury from './ProfileJury.vue';
 
 export default {
     components: {
         'profile-seterator': ProfileSeterator,
-        'profile-moderator': PrfofileModerator
+        'profile-moderator': PrfofileModerator,
+        'profile-jury': ProfileJury
     },
 
     data: function() {
@@ -54,7 +56,7 @@ export default {
                     value: '1000'
                 }
             ],
-            roles: ['profile-seterator', 'profile-moderator'],
+            roles: ['profile-seterator', 'profile-moderator', 'profile-jury'],
             personalInfo: {
                 name: 'Семенов Семён',
                 phone: '+79253207279',
@@ -71,7 +73,13 @@ export default {
         role = role.searchParams.get('role');
 
         switch (role) {
-            case ('profile-moderator' || 'profile-jury' || 'profile-organization'):
+            case ('profile-moderator'):
+                this.activeRole = role;
+                break;
+            case ('profile-jury'):
+                this.activeRole = role;
+                break;
+            case ('profile-organization'):
                 this.activeRole = role;
                 break;
             default:
