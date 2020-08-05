@@ -4,13 +4,27 @@
 
 <template>
     <ul class="profileRoles">
-        <li class="profileRoles__item" v-for="role of prop_roles" :key="role">{{role}}</li>
+        <li class="profileRoles__item" 
+            v-for="role of prop_roles" 
+            :key="role" 
+        >
+            <span  v-if="isActive(role)"
+                class="profileRoles__item_activeRole"
+            >{{ role }}</span>
+            <a   v-else
+                    class="profileRoles__item_inactive"
+                    :href="'/?role=' + role"
+            >{{ role }}</a>
+        </li>
     </ul>
 </template>
 
 <script>
 export default {
 props: {
+    active_role: {
+        type: String
+    },
     prop_roles: {
         validator: function(roles) {
             if (Array.isArray(roles)) {
@@ -20,6 +34,11 @@ props: {
                 return false;
             }
         }
+    }
+},
+methods: {
+    isActive: function(role) {
+        return (role == this.active_role);
     }
 }
 }
@@ -37,8 +56,6 @@ props: {
 .profileRoles__item {
     padding: 0 5px;
     border-right: 1px solid rgb(255, 82, 25);
-    opacity: 0.5;
-
     font-weight: bold;
 }
 
@@ -49,5 +66,18 @@ props: {
 .profileRoles__item:last-child {
     border: none;
     padding: 0 0 0 5px;
+}
+
+.profileRoles__item_activeRole {
+    color: rgb(204, 66, 20);
+}
+
+.profileRoles__item_inactive {
+    opacity: 0.5;
+}
+
+.profileRoles__item_inactive:hover {
+    color:rgb(255, 82, 25);
+    cursor: pointer;
 }
 </style>
