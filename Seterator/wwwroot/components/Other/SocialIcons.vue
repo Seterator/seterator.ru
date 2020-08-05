@@ -38,7 +38,7 @@ export default {
 
 <style scoped>
 .socialIcons__wrap {
-    margin: 15px 10px 0 10px;
+    margin: 30px 10px 0 10px;
     padding: 0;
     display: flex;
     flex-wrap: nowrap;
