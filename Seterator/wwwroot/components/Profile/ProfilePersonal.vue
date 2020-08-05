@@ -7,7 +7,7 @@
 
 <template>
   <div class="profilePersonal">
-      <div class="profile__header">Личные данные</div>
+      <div class="profile__title">Личные данные</div>
       <div class="profilePersonal__items">
         <div class="profilePersonal__item">
             <span class="profilePersonal__item_header">Имя фамилия</span>
