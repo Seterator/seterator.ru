@@ -41,11 +41,7 @@ namespace Seterator.Models
 
         public string InstProfile { get; set; }
 
-        [Column("UserUrls")]
-        public string UserUrlsJson { get; set; }
-
-        [NotMapped]
-        public List<string> UserUrls => JsonConvert.DeserializeObject<List<string>>(UserUrlsJson);
+        public List<string> UserUrls { get; set; }
 
         public virtual List<UserDocument> Documents { get; set; }
 

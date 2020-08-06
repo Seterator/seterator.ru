@@ -8,6 +8,7 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using Seterator.Models;
 using Seterator.Converters;
+using Newtonsoft.Json;
 
 #pragma warning disable CS8618
 
@@ -39,6 +40,13 @@ namespace Seterator
             modelBuilder.Entity<User>()
                 .Property(u => u.PasswordHash)
                 .HasConversion(ImmutableArrayConverter.Instance);
+            
+            modelBuilder.Entity<User>()
+                .Property(u => u.UserUrls)
+                .HasConversion(
+                    (v) => JsonConvert.SerializeObject(v), 
+                    (v) => JsonConvert.DeserializeObject<List<string>>(v)
+                 );
 
             modelBuilder.Entity<UserDocument>()
                 .Property(x => x.Data)

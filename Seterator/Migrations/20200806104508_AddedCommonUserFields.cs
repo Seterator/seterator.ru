@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Seterator.Migrations
@@ -368,20 +367,19 @@ namespace Seterator.Migrations
                 oldType: "varbinary(16)");
 
             migrationBuilder.CreateTable(
-                name: "Documents",
+                name: "UserDocument",
                 columns: table => new
                 {
-                    id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Guid = table.Column<Guid>(nullable: false),
                     OwnerGuid = table.Column<Guid>(nullable: false),
-                    type = table.Column<string>(nullable: false),
-                    data = table.Column<byte[]>(nullable: false)
+                    Type = table.Column<string>(nullable: false),
+                    Data = table.Column<byte[]>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Documents", x => x.id);
+                    table.PrimaryKey("PK_UserDocument", x => x.Guid);
                     table.ForeignKey(
-                        name: "FK_Documents_Users_OwnerGuid",
+                        name: "FK_UserDocument_Users_OwnerGuid",
                         column: x => x.OwnerGuid,
                         principalTable: "Users",
                         principalColumn: "Guid",
@@ -389,8 +387,8 @@ namespace Seterator.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Documents_OwnerGuid",
-                table: "Documents",
+                name: "IX_UserDocument_OwnerGuid",
+                table: "UserDocument",
                 column: "OwnerGuid");
 
             migrationBuilder.AddForeignKey(
@@ -409,7 +407,7 @@ namespace Seterator.Migrations
                 table: "CompetitionRelJuries");
 
             migrationBuilder.DropTable(
-                name: "Documents");
+                name: "UserDocument");
 
             migrationBuilder.DropColumn(
                 name: "FbProfile",

@@ -9,7 +9,7 @@ using Seterator;
 namespace Seterator.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200719151941_AddedCommonUserFields")]
+    [Migration("20200806104508_AddedCommonUserFields")]
     partial class AddedCommonUserFields
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -319,9 +319,8 @@ namespace Seterator.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("UserUrlsJson")
+                    b.Property<string>("UserUrls")
                         .IsRequired()
-                        .HasColumnName("UserUrls")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("Verified")
@@ -338,30 +337,26 @@ namespace Seterator.Migrations
 
             modelBuilder.Entity("Seterator.Models.UserDocument", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("bigint");
+                        .HasColumnType("char(36)");
 
                     b.Property<byte[]>("Data")
                         .IsRequired()
-                        .HasColumnName("data")
                         .HasColumnType("longblob");
 
                     b.Property<Guid>("OwnerGuid")
-                        .HasColumnName("OwnerGuid")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasColumnName("type")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("OwnerGuid");
 
-                    b.ToTable("Documents");
+                    b.ToTable("UserDocument");
                 });
 
             modelBuilder.Entity("Seterator.Models.UserProfile", b =>
