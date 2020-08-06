@@ -18,12 +18,14 @@
 import ProfileSeterator from './ProfileSeterator.vue';
 import PrfofileModerator from './ProfileModerator.vue';
 import ProfileJury from './ProfileJury.vue';
+import ProfileOrganization from './ProfileOrganization.vue';
 
 export default {
     components: {
         'profile-seterator': ProfileSeterator,
         'profile-moderator': PrfofileModerator,
-        'profile-jury': ProfileJury
+        'profile-jury': ProfileJury,
+        'profile-organization': ProfileOrganization
     },
 
     data: function() {
@@ -56,7 +58,7 @@ export default {
                     value: '1000'
                 }
             ],
-            roles: ['profile-seterator', 'profile-moderator', 'profile-jury'],
+            roles: ['profile-seterator', 'profile-moderator', 'profile-jury', 'profile-organization'],
             personalInfo: {
                 name: 'Семенов Семён',
                 phone: '+79253207279',
