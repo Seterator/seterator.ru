@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Immutable;
+using System.Collections.Generic;
 
 namespace Seterator.Services
 {
@@ -12,7 +13,7 @@ namespace Seterator.Services
         {
             hasher = SHA512.Create();
         }
-        
+
         public ImmutableArray<byte> Hash(string text, Encoding encoding)
         {
             byte[] hashArray = hasher.ComputeHash(encoding.GetBytes(text));
