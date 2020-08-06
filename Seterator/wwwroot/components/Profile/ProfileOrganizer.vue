@@ -1,12 +1,14 @@
+// Компонент описывает отображение профиля пользователя в роли организатора
+
 <template>
-    <div class="profileOrganization container">
-        <div class="profileOrganization__banner">
-            <div class="profileOrganization__socialIcons">
+    <div class="profileOrganizer container">
+        <div class="profileOrganizer__banner">
+            <div class="profileOrganizer__socialIcons">
                 <social-icons   :color="'white'"
                                 :socialIcons="propSocialIcons.data"
                 />
             </div>
-            <profile-avatar class="profileOrganization__avatar"
+            <profile-avatar class="profileOrganizer__avatar"
                             :role="'organization'"
                             src="/img/Profile/ava.png" 
             />
@@ -107,7 +109,7 @@ export default {
 </script>
 
 <style>
-.profileOrganization__banner {
+.profileOrganizer__banner {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -123,12 +125,12 @@ export default {
     margin-bottom: 75px;
 }
 
-.profileOrganization__socialIcons {
+.profileOrganizer__socialIcons {
     min-width: 150px;
     margin-bottom: 10px;
 }
 
-.profileOrganization__avatar {
+.profileOrganizer__avatar {
     position: absolute;
     bottom: 0;
     left: 50px;
