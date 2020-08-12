@@ -6,10 +6,11 @@
         <component  :is="activeRole"
                     v-on:swapRole="activeRole = $event"
                     :propActiveRole="activeRole"
-                    :propSocialIcons="socialIcons"
-                    :propRating="rating"
-                    :propRoles="roles"
-                    :propPersonalInfo="personalInfo"
+                    :propSocialIcons="user.socialIcons"
+                    :propRating="user.rating"
+                    :propRoles="user.roles"
+                    :propPersonalInfo="user.personalInfo"
+                    :propIsEditing="isEditing"
         />
     </div>
 </template>
@@ -30,9 +31,9 @@ export default {
 
     data: function() {
         return {
-            activeRole: '',
-            socialIcons: {
-                data: [
+            user: {
+                avatar: '/img/Profile/ava.png',
+                socialIcons: [
                     {
                     name: 'vk',
                     href: 'https://vk.com/seterator',
@@ -46,27 +47,29 @@ export default {
                         href: 'https://github.com'
                     }
                 ],
-                color: 'red'
-            },
-            rating: [
-                {
-                    name: 'Автор',
-                    value: '100'
-                },
-                {
-                    name: 'Жюри',
-                    value: '1000'
+                rating: [
+                    {
+                        name: 'Автор',
+                        value: '100'
+                    },
+                    {
+                        name: 'Жюри',
+                        value: '1000'
+                    }
+                ],
+                roles: ['profile-seterator', 'profile-moderator', 'profile-jury', 'profile-organizer'],
+                fullName: 'Семен Семенов',
+                about: 'Я такой человек, мне нужно быть уверенным, что с людьми у меня взаимные чувства. Если я хочу написать — то и человек хочет написать мне, если я люблю — то и меня. Но если я хоть на капельку почувствую, что мне не рады, я перестаю писать, звонить, и даже думать об этом человеке. Мне начинает казаться, что я себя навязываю, и от этой мысли пропадает любое желание контактировать с таким человеком.',
+                personalInfo: {
+                    name: 'Семенов Семён',
+                    phone: '+79253207279',
+                    email: 'em@ail.com',
+                    country: 'Russia',
+                    city: 'Moscow'
                 }
-            ],
-            roles: ['profile-seterator', 'profile-moderator', 'profile-jury', 'profile-organizer'],
-            personalInfo: {
-                name: 'Семенов Семён',
-                phone: '+79253207279',
-                email: 'em@ail.com',
-                country: 'Russia',
-                city: 'Moscow'
-
-            }
+            },
+            isEditing: true,
+            activeRole: ''
         }
     },
 

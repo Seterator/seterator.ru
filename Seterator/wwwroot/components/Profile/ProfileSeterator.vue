@@ -8,7 +8,8 @@
             <div class="profilePersonal__wrap">
                 <div class="profilePersonal__leftSide">
                     <profile-avatar class="profile__avatar-wrap" 
-                                    src="/img/Profile/ava.png" 
+                                    :src="'/img/Profile/ava.png'" 
+                                    :propIsEditing="propIsEditing"
                     />
                     <social-icons   class="profile__socialIcons" 
                                     :socialIcons="propSocialIcons.data"   
@@ -93,11 +94,15 @@ export default {
                     return false;
                 }
             }
+        },
+        propIsEditing: {
+            type: Boolean
         }
     },
 
     data: function() {
         return {
+            
             socialIcons__data: [
                 {
                     name: 'vk',

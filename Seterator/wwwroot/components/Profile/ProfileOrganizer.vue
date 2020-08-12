@@ -9,8 +9,9 @@
                 />
             </div>
             <profile-avatar class="profileOrganizer__avatar"
-                            :role="'organization'"
-                            src="/img/Profile/ava.png" 
+                            :role="propActiveRole"
+                            :src="'/img/Profile/ava.png'" 
+                            :propIsEditing="propIsEditing"
             />
         </div>
         <div class="profilePersonal__wrap">
@@ -95,6 +96,10 @@ export default {
                     return false;
                 }
             }
+        },
+
+        propIsEditing: {
+            type: Boolean
         }
     },
 
