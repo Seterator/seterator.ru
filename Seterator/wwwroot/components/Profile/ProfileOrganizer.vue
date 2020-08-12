@@ -4,12 +4,13 @@
     <div class="profileOrganizer container">
         <div class="profileOrganizer__banner">
             <div class="profileOrganizer__socialIcons">
-                <social-icons   :color="'white'"
-                                :socialIcons="propSocialIcons.data"
+                <social-icons   class="profile__socialIcons" 
+                                :socialIcons="propSocialIcons"   
+                                :color="'rgb(255, 255, 255)'" 
                 />
             </div>
             <profile-avatar class="profileOrganizer__avatar"
-                            :role="propActiveRole"
+                            :role="propActiveRole"  
                             :src="'/img/Profile/ava.png'" 
                             :propIsEditing="propIsEditing"
             />
@@ -27,12 +28,48 @@
                     <profile-roles  :prop_roles="propRoles" 
                                     :active_role="propActiveRole"
                     />
-                    <span class="profile__userName"> {{ name }} </span>
+                    
+                    <!-- Имя пользователя -->
+                    <span   v-if="!propIsEditing" 
+                            class="profile__userName"
+                    >
+                        {{ propUser.fullName }}
+                    </span>
+                    <input  v-else
+                            class="profile__userName profile__inputText"
+                            type="text"
+                            :value="propUser.fullName"
+                            @change="$emit('change-fullname', $event.target.value)"
+                    >
+
+                    <!-- О пользователе -->
                     <h4 class="profile__title profile__title_topMargin">О себе</h4>
-                    <div class="profile__block_margin_top">{{ about }}</div>
+                    <div    class="profile__block_margin_top"
+                            v-if="!propIsEditing"
+                    >
+                        {{ propUser.about }}
+                    </div>
+                    <textarea   v-else
+                                class="profile__block_margin_top profile__textarea"
+                                :value="propUser.about"
+                                @change="$emit('change-about', $event.target.value)"
+                    ></textarea>
+
+                    <div    class="profile__editButton" 
+                            @click="$emit('change-mode')"
+                    >
+                        <img-text   :img="'/img/icons/edit.svg'"
+                                    :imgColor="'rgb(255, 82, 25)'"
+                                    :text="propIsEditing ? 'Сохранить' : 'Редактировать'"
+                        />
+                    </div>
                 </div>
+                
+                <!-- Персональные данные -->
                 <profile-personal   class="profile__block" 
-                                    :personal_data="propPersonalInfo" 
+                                    :propPersonalInfo="propPersonalInfo"
+                                    :propIsEditing="propIsEditing"
+                                    @change-personalinfo="changePersonalInfo"
                 />
             </div>
         </div>
@@ -46,6 +83,7 @@ import ProfileRating from './ProfileRating.vue';
 import ProfileRoles from './ProfileRoles.vue';
 import ProfilePersonal from './ProfilePersonal.vue';
 import ProfileDrafts from './ProfileDrafts.vue';
+import ImgText from '../Other/ImgText.vue';
 
 export default {
     components: {
@@ -54,19 +92,20 @@ export default {
         'profile-rating': ProfileRating,
         'profile-drafts': ProfileDrafts,
         'profile-roles': ProfileRoles,
-        'profile-personal': ProfilePersonal
+        'profile-personal': ProfilePersonal,
+        'img-text': ImgText
     },
 
     props: {
-        propSocialIcons: {
+        propUser: {
             type: Object
+        },
+
+        propSocialIcons: {
+            type: Array
         },
 
         propRating: {
-            type: Object
-        },
-
-        propPersonalInfo: {
             type: Object
         },
 
@@ -103,13 +142,11 @@ export default {
         }
     },
 
-    data: function() {
-        return {
-            name: 'Семенов Семён',
-            about: 'Я такой человек, мне нужно быть уверенным, что с людьми у меня взаимные чувства. Если я хочу написать — то и человек хочет написать мне, если я люблю — то и меня. Но если я хоть на капельку почувствую, что мне не рады, я перестаю писать, звонить, и даже думать об этом человеке. Мне начинает казаться, что я себя навязываю, и от этой мысли пропадает любое желание контактировать с таким человеком.',
-        };
+    methods: {
+        changePersonalInfo: function(e) {
+            this.$emit('change-personalinfo', e);
+        }
     }
-
 }
 </script>
 

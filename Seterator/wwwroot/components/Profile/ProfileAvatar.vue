@@ -55,7 +55,9 @@
 
 export default {
     props: {
-        src: String,
+        src: {
+            type: String
+        },
         
         role: {
             type: String
@@ -85,6 +87,8 @@ export default {
             let reader = new FileReader();
             let vm = this;
 
+            // this.$emit('change-avatar', file);
+            
             reader.onload = (e) => {
                 vm.image = e.target.result;
             };

@@ -4,13 +4,20 @@
 <template>
     <div>
         <component  :is="activeRole"
-                    v-on:swapRole="activeRole = $event"
+                    :propUser="user"
                     :propActiveRole="activeRole"
                     :propSocialIcons="user.socialIcons"
                     :propRating="user.rating"
                     :propRoles="user.roles"
                     :propPersonalInfo="user.personalInfo"
                     :propIsEditing="isEditing"
+                    @swapRole="activeRole = $event"
+                    @change-mode="changeMode"
+                    @change-avatar="changeAvatar"
+                    @change-fullname="changeFullName"
+                    @change-about="changeAbout"
+                    @change-personalinfo="changePersonalInfo"
+                    class="profile"
         />
     </div>
 </template>
@@ -33,6 +40,7 @@ export default {
         return {
             user: {
                 avatar: '/img/Profile/ava.png',
+
                 socialIcons: [
                     {
                     name: 'vk',
@@ -68,7 +76,7 @@ export default {
                     city: 'Moscow'
                 }
             },
-            isEditing: true,
+            isEditing: false,
             activeRole: ''
         }
     },
@@ -91,11 +99,37 @@ export default {
                 this.activeRole = 'profile-seterator';
                 break;
         }
+    },
+
+    methods: {
+        changeMode: function(e) {
+            this.isEditing = !this.isEditing;
+        },
+
+        changeAvatar: function(e) {
+            this.user.avatar = e; 
+        },
+
+        changeFullName: function(e) {
+            this.user.fullName = e;
+        },
+
+        changeAbout: function(e) {
+            this.user.about = e;
+        },
+
+        changePersonalInfo: function(e) {
+            this.user.personalInfo = e;
+        }
     }
 }
 </script>
 
 <style>
+.profile {
+    margin-bottom: 800px;
+}
+
 .profile__title {
     font-family: 'Merriweather', serif;
     font-size: 1.3rem;
@@ -126,6 +160,7 @@ export default {
     margin-top: 30px;
     background: rgb(238, 238, 238);
     padding: 30px;
+    position: relative;
 }
 
 .profile__block_bottom_button {
@@ -152,4 +187,38 @@ export default {
     margin-left: -100px !important;
     line-height: 16px;
 }
+
+.profile__editButton {
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    color: rgb(255, 82, 25);
+    font-weight: bold;
+    font-size: .9rem;
+    cursor: pointer;
+}
+
+.profile__editButton:hover {
+    color: red;
+}
+
+.profile__inputText {
+    background: rgb(230, 230, 230);
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    width: 100%;
+    color: rgb(127, 127, 127);
+}
+
+.profile__textarea {
+    width: 100%;
+    height: 200px;
+    background: rgb(230, 230, 230);
+    padding: 10px;
+    border: none;
+
+    color: rgb(127, 127, 127);
+}
+
 </style>

@@ -8,12 +8,13 @@
             <div class="profilePersonal__wrap">
                 <div class="profilePersonal__leftSide">
                     <profile-avatar class="profile__avatar-wrap" 
-                                    :src="'/img/Profile/ava.png'" 
+                                    :src="propUser.avatar" 
                                     :propIsEditing="propIsEditing"
+                                    @change-avatar="$emit('change-avatar', $event)" 
                     />
                     <social-icons   class="profile__socialIcons" 
-                                    :socialIcons="propSocialIcons.data"   
-                                    :color="propSocialIcons.color" 
+                                    :socialIcons="propSocialIcons"   
+                                    :color="'rgb(255, 82, 25)'" 
                     />
                     <profile-rating class="profile__rating-wrap profile__block" 
                                     :rating="propRating" 
@@ -25,12 +26,49 @@
                         <profile-roles  :prop_roles="propRoles" 
                                         :active_role="propActiveRole"
                         />
-                        <span class="profile__userName">{{ name }}</span>
+                        
+                        <!-- Имя пользователя -->
+                        <span   v-if="!propIsEditing" 
+                                class="profile__userName"
+                        >
+                            {{ propUser.fullName }}
+                        </span>
+                        <input  v-else
+                                class="profile__userName profile__inputText"
+                                type="text"
+                                :value="propUser.fullName"
+                                @change="$emit('change-fullname', $event.target.value)"
+                        >
+                        
+                        <!-- О пользователе -->
                         <h4 class="profile__title profile__title_topMargin">О себе</h4>
-                        <div class="profile__block_margin_top">{{ about }}</div>
+                        <div    class="profile__block_margin_top"
+                                v-if="!propIsEditing"
+                        >
+                            {{ propUser.about }}
+                        </div>
+                        <textarea   v-else
+                                    class="profile__block_margin_top profile__textarea"
+                                    :value="propUser.about"
+                                    @change="$emit('change-about', $event.target.value)"
+                        ></textarea>
+                        
+                        
+                        <div    class="profile__editButton" 
+                                @click="$emit('change-mode')"
+                        >
+                            <img-text   :img="'/img/icons/edit.svg'"
+                                        :imgColor="'rgb(255, 82, 25)'"
+                                        :text="propIsEditing ? 'Сохранить' : 'Редактировать'"
+                            />
+                        </div>
                     </div>
+
+                    <!-- Персональные данные -->
                     <profile-personal   class="profile__block" 
-                                        :personal_data="propPersonalInfo" 
+                                        :propPersonalInfo="propPersonalInfo"
+                                        :propIsEditing="propIsEditing"
+                                        @change-personalinfo="changePersonalInfo"
                     />
                 </div>
             </div>
@@ -47,6 +85,8 @@ import ProfileDrafts from './ProfileDrafts.vue';
 import ProfileRoles from './ProfileRoles.vue';
 import ProfilePersonal from './ProfilePersonal.vue';
 import ProfileStatistics from './ProfileStatistic.vue';
+import ImgText from '../Other/ImgText.vue';
+
 
 export default {
     components: {
@@ -56,30 +96,31 @@ export default {
         'profile-drafts': ProfileDrafts,
         'profile-roles': ProfileRoles,
         'profile-personal': ProfilePersonal,
-        'profile-statistics': ProfileStatistics
+        'profile-statistics': ProfileStatistics,
+        'img-text': ImgText
     },
 
     props: {
-        propSocialIcons: {
-            type: Object,
-            validator: function(value) {
-                if ('data' in value && 'color' in value) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
-            }
+        propUser: {
+            type: Object
         },
+
+        propSocialIcons: {
+            type: Array,
+        },
+        
         propRating: {
             type: Array
         },
+
         propRoles: {
             type: Array
         },
+
         propActiveRole: {
             type: String
         },
+
         propPersonalInfo: {
             type: Object,
             validator: function(value) {
@@ -95,6 +136,7 @@ export default {
                 }
             }
         },
+
         propIsEditing: {
             type: Boolean
         }
@@ -129,8 +171,6 @@ export default {
                 }
             ],
             roles: ['profile-seterator', 'profile-moderator'],
-            name: 'Семенов Семён',
-            about: 'Я такой человек, мне нужно быть уверенным, что с людьми у меня взаимные чувства. Если я хочу написать — то и человек хочет написать мне, если я люблю — то и меня. Но если я хоть на капельку почувствую, что мне не рады, я перестаю писать, звонить, и даже думать об этом человеке. Мне начинает казаться, что я себя навязываю, и от этой мысли пропадает любое желание контактировать с таким человеком.',
             personal_info: {
                 name: 'Семенов Семён',
                 phone: '+79253207279',
@@ -149,6 +189,12 @@ export default {
                     value: '100'
                 }
             ]
+        }
+    },
+
+    methods: {
+        changePersonalInfo: function(e) {
+            this.$emit('change-personalinfo', e);
         }
     }
 }
