@@ -32,10 +32,15 @@
                     </template>
                     <template v-else>
                         <b-nav-item link-classes="n_item" href="/Account/Main">
-                            <b-media>
-                                    <b-img src='/img/icons/avatar.svg' width='15'></b-img>
-                                Авторизация
-                            </b-media>
+                            <div class="authorizeButton">
+                                <div class="authorizeIcon">
+                                    <img 
+                                        src='/img/icons/avatar.svg' 
+                                        class="imgSvg"
+                                    />
+                                </div>
+                                    Авторизация
+                            </div>
                         </b-nav-item>
                     </template>
                 </b-navbar-nav>
@@ -47,16 +52,16 @@
 <script>
 import Dropdown from "../../components/Header/Dropdown.vue";
 
-// let s_user = {
-//     isAuthorized: true,
-//     username: 'Семён',
-//     roles: ['moderator', 'jury']
-// };
+let s_user = {
+    isAuthorized: true,
+    username: 'Семён',
+    roles: ['moderator', 'jury']
+};
 
 export default {
   data: function () {
     return {
-      currentUser: this.getCurrentUser(),
+      currentUser: s_user,
     };
   },
   name: "App",
@@ -80,6 +85,11 @@ export default {
 </script>
 
 <style scoped>
+.authorizeIcon {
+    width: 15px;
+    display: inline-block;
+}
+
 .logo_vue {
   max-width: 200px;
 }
@@ -91,6 +101,7 @@ export default {
 .n_item:hover {
   color: rgb(255, 82, 25) !important;
   text-decoration: underline;
+  fill: rgb(255, 82, 25);
 }
 .n_item__user_name {
   color: rgba(0, 0, 0, 1) !important;

@@ -35,6 +35,9 @@ props: {
 
 <style  scoped>
   .dropdown_menu{
+    min-width: 150px;
+    text-align: end;
+
     /*border-style: solid;*/
     /*border-color: #000;*/
     /*border-width: 1px;*/
@@ -58,7 +61,7 @@ props: {
   }
 
   .n_item__user_image, .n_item__user_name, .n_item__user_icon{
-    display: inline-block !important;
+    display: inline-block;
   }
 
   .n_item__user_image{
@@ -123,4 +126,42 @@ props: {
     font-style: normal;
     text-decoration: none;
   }
+
+@media (max-width: 991px) {
+.n_item__user_image {
+    display: none;
+}
+
+.n_item__user_name {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.dropdown_menu{
+    min-width: 100%;
+    text-align: start;
+    background-color: rgb(228, 227, 227);
+
+    transform: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}   
+
+.dropdown_items {
+    visibility: visible; /* shows sub-menu */
+    opacity: 1;
+    z-index: 1;
+    position: relative;
+    transition: none;
+    transform: none;
+}
+
+.dropdown_item {
+    text-align: left;
+    margin-left: 0;
+}
+}
+
 </style>
