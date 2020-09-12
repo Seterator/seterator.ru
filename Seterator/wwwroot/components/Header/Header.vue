@@ -13,15 +13,15 @@
 
           <b-nav-item
             link-classes="n_item"
-            v-if="user.isAuthorized"
-            :href="'/' + user.login"
+            v-if="currentUser.isAuthorized"
+            :href="'/' + currentUser.username"
           >Профиль</b-nav-item>
-          <b-nav-item link-classes="n_item" v-if="user.isAuthorized" href="/">Выход</b-nav-item>
+          <b-nav-item link-classes="n_item" v-if="currentUser.isAuthorized" href="/">Выход</b-nav-item>
           <b-nav-item link-classes="n_item" href="/Home/Privacy">Privacy</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto">
-                    <template v-if="user.isAuthorized">
+                    <template v-if="currentUser.isAuthorized">
                         <b-nav-item v-show="false">
                             <b-icon icon="bell"></b-icon>
                         </b-nav-item>
@@ -42,24 +42,29 @@
 </template>
 
 <script>
-// Здесь будет скрипт запроса на данные пользователя
 import Dropdown from "../../components/Header/Dropdown.vue";
-
-let s_user = {
-  isAuthorized: true,
-  login: "semen1032",
-  roles: ["moderator", "jury"],
-};
 
 export default {
   data: function () {
     return {
-      user: s_user,
+      currentUser: this.getCurrentUser(),
     };
   },
   name: "App",
   components: {
     Dropdown
+  },
+  methods: {
+      getCurrentUser: async function() {
+          try {
+              let response = await fetch('/api/currentuser');
+              response = await response;
+              this.currentUser = await response.json();
+          } catch(e) {
+              this.currentUser = null;
+              alert(e);
+          }
+      }
   }
 };
 
