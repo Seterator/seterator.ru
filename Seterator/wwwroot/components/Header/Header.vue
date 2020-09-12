@@ -25,7 +25,10 @@
                         <b-nav-item v-show="false">
                             <b-icon icon="bell"></b-icon>
                         </b-nav-item>
-                        <Dropdown />
+                        <Dropdown 
+                            :propUsername="currentUser.username"
+                            :propRoles="currentUser.roles"
+                        />
                     </template>
                     <template v-else>
                         <b-nav-item link-classes="n_item" href="/Account/Main">
@@ -43,6 +46,12 @@
 
 <script>
 import Dropdown from "../../components/Header/Dropdown.vue";
+
+// let s_user = {
+//     isAuthorized: true,
+//     username: 'Семён',
+//     roles: ['moderator', 'jury']
+// };
 
 export default {
   data: function () {

@@ -2,7 +2,7 @@
   <b-nav-item>
     <b-media class="n_item_last dropdown_menu">
       <b-img class="mid_margin n_item__user_image" src="/img/icons/avatar.svg" width="15"></b-img>
-      <span class="n_item__user_name">{{ user.login }}</span>
+      <span class="n_item__user_name">{{ propUsername }}</span>
       <b-icon class="mid_margin n_item__user_icon" icon="chevron-down" v-show="true"></b-icon>
       <div class="dropdown_items">
         <a href="/" class="dropdown_item">Редактировать профиль</a>
@@ -10,9 +10,14 @@
         <a href="/" class="dropdown_item">Портфолио</a>
         <hr class="dropdown_menu_line" />
 
-        <a v-if="role == 'moderator'" href="/" class="dropdown_item dropdown_item_special">Страница Модератора</a>
-
-        <a v-else-if="role == 'jury'" href="/" class="dropdown_item dropdown_item_special">Страница Организатора</a>
+        <a 
+            v-for="role in propRoles"
+            :key="role"
+            href="/" 
+            class="dropdown_item dropdown_item_special"
+        >
+            Страница {{role}}
+        </a>
 
       </div>
     </b-media>
@@ -20,19 +25,11 @@
 </template>
 
 <script>
-let s_user = {
-  isAuthorized: true,
-  login: "semen1032",
-  roles: ["moderator", "jury"],
-};
-
 export default {
-  data: function () {
-    return {
-      user: s_user,
-      role: s_user.roles[0],
-    };
-  },
+props: {
+    propUsername: String,
+    propRoles: Array
+},
 };
 </script>
 
