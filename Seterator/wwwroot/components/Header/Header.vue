@@ -1,6 +1,6 @@
 <template>
   <b-container>
-    <b-navbar toggleable="lg">
+    <b-navbar toggleable="lg" class="navbar">
       <b-navbar-brand href="/">
         <b-img src="/img/Logo/logo_1.png" class="logo_vue"></b-img>
       </b-navbar-brand>
@@ -52,16 +52,10 @@
 <script>
 import Dropdown from "../../components/Header/Dropdown.vue";
 
-let s_user = {
-    isAuthorized: true,
-    username: 'Семён',
-    roles: ['moderator', 'jury']
-};
-
 export default {
   data: function () {
     return {
-      currentUser: s_user,
+      currentUser: this.getCurrentUser(),
     };
   },
   name: "App",
@@ -85,6 +79,10 @@ export default {
 </script>
 
 <style scoped>
+.navbar {
+    margin-top: 20px;
+}
+
 .authorizeIcon {
     width: 15px;
     display: inline-block;
@@ -92,6 +90,7 @@ export default {
 
 .logo_vue {
   max-width: 200px;
+  margin-top: -5px;
 }
 
 .n_item {
