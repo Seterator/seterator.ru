@@ -1,5 +1,5 @@
 <template>
-  <div class="avatar" :class="{'avatar_style_rounded': propIsRounded}">
+  <div class="avatar" :class="{'avatar_style_rounded': propIsRounded}" :style="{'background-image': `url(${propSrc})`}">
   </div>
 </template>
 
@@ -15,7 +15,6 @@ props: {
 <style>
 .avatar {
     height: 250px;
-    background: url('/img/devka.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

@@ -4,14 +4,16 @@
     "main": "index.js",
     "private": true,
     "scripts": {
-        "dev": "webpack --config webpack.dev.config.js",
+        "dev": "webpack --config webpack.dev.config.js --watch",
         "build": "webpack"
     },
     "dependencies": {
         "bootstrap": "^4.4.1",
         "bootstrap-vue": "^2.10.1",
         "jquery": "^3.5.0",
-        "vue": "^2.6.11"
+        "swiper": "^5.4.5",
+        "vue": "^2.6.11",
+        "vue-awesome-swiper": "^4.1.1"
     },
     "devDependencies": {
         "css-loader": "^3.4.2",

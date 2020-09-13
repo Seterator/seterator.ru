@@ -7,7 +7,7 @@
           </div>
       </div>
 
-    <about-team>
+    <about-team :propTeam="team">
 
     </about-team>
       
@@ -20,6 +20,98 @@ import AboutTeamComponent from './AboutTeam.vue';
 export default {
 components: {
     'about-team': AboutTeamComponent
+},
+data() {
+    return {
+        team: [
+            {
+                avatarSrc: '/img/About/team_lead.png',
+                username: 'Александр Новожилов',
+                status: 'Team lead',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/prokazin.jpeg',
+                username: 'Михаил Проказин',
+                status: 'CTO',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/designer.jpeg',
+                username: 'Василий Птицын',
+                status: 'Web-designer',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/semenov.jpeg',
+                username: 'Семён Семенов',
+                status: 'Ведущий Frontend-разработчик',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/kseniya.jpeg',
+                username: 'Ксения Платонова',
+                status: 'Иллюстратор',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/belousov.jpeg',
+                username: 'Иван Белоусов',
+                status: 'Мобильный разработчик',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/anastasia.jpeg',
+                username: 'Анастасия Загинайко',
+                status: 'Графический дизайнер',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/bogdan.jpeg',
+                username: 'Богдан Котиков',
+                status: 'Программист',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/max.png',
+                username: 'Максим Добряков',
+                status: 'Юрист',
+                description: '',
+            },
+        ],
+        mentors: [
+            {
+                avatarSrc: '/img/About/',
+                username: '',
+                status: '',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/',
+                username: '',
+                status: '',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/',
+                username: '',
+                status: '',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/',
+                username: '',
+                status: '',
+                description: '',
+            },
+            {
+                avatarSrc: '/img/About/',
+                username: '',
+                status: '',
+                description: '',
+            },
+        ]
+    }
 }
 }
 </script>
