@@ -1,5 +1,5 @@
 <template>
-  <div class="teamItem" :class="{'teamItem_avatarStyle_rounded': propIsRoundedAvatar}"> 
+  <div class="teamItem" :class="{'teamItem_avatarStyle_rounded': propIsRoundedAvatar, 'teamItem_background_color': propIsBackgroundColor}"> 
       <avatar-component
         class="teamItem__avatar"
         :propSrc="propImgSrc" 
@@ -37,7 +37,11 @@ props: {
         type: Boolean,
         default: true
     },
-    propHref: String
+    propHref: String,
+    propIsBackgroundColor: {
+        type: Boolean,
+        default: false
+    }
 }
 }
 </script>
@@ -54,7 +58,13 @@ props: {
     grid-template-columns: 100px 3fr
 }
 
+.teamItem_background_color {
+    background-color: rgb(238, 238, 238);
+}
+
 .teamItem__status {
+    padding-top: 10px;
+
     font-size: 12pt;
     color: rgb(77, 77, 77);
     font-weight: 600;
@@ -82,5 +92,15 @@ props: {
 .teamItem__link:hover {
     color: rgb(204, 66, 20);
     text-decoration: underline;
+}
+
+@media (max-width: 430px) {
+    .teamItem {
+        grid-template-columns: 1fr;
+    }
+
+    .teamItem__right {
+        padding: 15px;
+    }
 }
 </style>

@@ -24,48 +24,17 @@
 
     <h2 class="team__title">Наставники проекта</h2>
     <div class="team__itemsContainer">
-        <team-item :propIsRoundedAvatar="false">
-            <template slot="status">Главарь банды</template>
-            <template slot="title">Александр Новожилов</template>
-            <template slot="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </template>
-            <template slot="link">
-                Ссылка на внешний ресурс
-            </template>
-        </team-item>
-
-        <team-item :propIsRoundedAvatar="false">
-            <template slot="status">Главарь банды</template>
-            <template slot="title">Александр Новожилов</template>
-            <template slot="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </template>
-            <template slot="link">
-                Ссылка на внешний ресурс
-            </template>
-        </team-item>
-
-        <team-item :propIsRoundedAvatar="false">
-            <template slot="status">Главарь банды</template>
-            <template slot="title">Александр Новожилов</template>
-            <template slot="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </template>
-            <template slot="link">
-                Ссылка на внешний ресурс
-            </template>
-        </team-item>
-
-        <team-item :propIsRoundedAvatar="false">
-            <template slot="status">Главарь банды</template>
-            <template slot="title">Александр Новожилов</template>
-            <template slot="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </template>
-            <template slot="link">
-                Ссылка на внешний ресурс
-            </template>
+        <team-item 
+            v-for="mentor in propMentors"
+            :key="mentor.username"
+            :propIsRoundedAvatar="false"
+            :propImgSrc="mentor.avatarSrc"
+            :propIsBackgroundColor="true"
+        >
+            <template slot="status"> {{mentor.status}} </template>
+            <template slot="title"> {{mentor.username}} </template>
+            <template slot="description"> {{mentor.description}} </template>
+            <template slot="link"> {{mentor.link}} </template>
         </team-item>
     </div>
 </div>
@@ -76,7 +45,8 @@ import TeamItemComponent from './TeamItem.vue';
 
 export default {
 props: {
-    propTeam: Array
+    propTeam: Array,
+    propMentors: Array
 },
 components: {
     'team-item': TeamItemComponent
@@ -88,7 +58,7 @@ components: {
             el: '.swiper-pagination',
             type: 'bullets'
             },
-        }
+        },
     }
 },
 computed: {
@@ -96,20 +66,20 @@ computed: {
         return this.$refs.mySwiper.$swiper
     }
 },
-mounted() {
-    console.log('Current Swiper instance object', this.swiper)
-},
 methods: {
     splitArr: function() {
+        let pageWidth = document.documentElement.scrollWidth;
         let arr = this.propTeam;        
         let subarray = [];
         let size = 6;
 
-        for (let i = 0; i <Math.ceil(arr.length/size); i++){
+        if (pageWidth <= 768) {
+            size = 2;
+        } 
+
+        for (let i = 0; i < Math.ceil(arr.length/size); i++){
             subarray[i] = arr.slice((i*size), (i*size) + size);
         }
-
-        console.log(subarray);
         return subarray;
     }
 }
@@ -143,7 +113,7 @@ methods: {
     gap: 40px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
     .team__itemsContainer {
         grid-template-columns: 1fr;
     }

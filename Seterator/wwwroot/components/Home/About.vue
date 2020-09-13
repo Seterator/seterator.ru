@@ -7,10 +7,10 @@
           </div>
       </div>
 
-    <about-team :propTeam="team">
-
-    </about-team>
-      
+    <about-team 
+        :propTeam="team"
+        :propMentors="mentors"
+    />      
   </div>
 </template>
 
@@ -81,34 +81,67 @@ data() {
         ],
         mentors: [
             {
-                avatarSrc: '/img/About/',
-                username: '',
-                status: '',
+                avatarSrc: '/img/About/team_lead.png',
+                username: 'Александр Новожилов',
+                status: 'Team lead',
                 description: '',
+                link: '',
             },
             {
-                avatarSrc: '/img/About/',
-                username: '',
-                status: '',
+                avatarSrc: '/img/About/prokazin.jpeg',
+                username: 'Михаил Проказин',
+                status: 'CTO',
                 description: '',
+                link: '',
             },
             {
-                avatarSrc: '/img/About/',
-                username: '',
-                status: '',
+                avatarSrc: '/img/About/designer.jpeg',
+                username: 'Василий Птицын',
+                status: 'Web-designer',
                 description: '',
+                link: '',
             },
             {
-                avatarSrc: '/img/About/',
-                username: '',
-                status: '',
-                description: '',
+                avatarSrc: '/img/About/semenov.jpeg',
+                username: 'Семён Семенов',
+                status: 'Ведущий Frontend-разработчик',
+                description: 'Лучший в команде',
+                link: 'https://github.com/semen1032',
             },
             {
-                avatarSrc: '/img/About/',
-                username: '',
-                status: '',
+                avatarSrc: '/img/About/kseniya.jpeg',
+                username: 'Ксения Платонова',
+                status: 'Иллюстратор',
                 description: '',
+                link: '',
+            },
+            {
+                avatarSrc: '/img/About/belousov.jpeg',
+                username: 'Иван Белоусов',
+                status: 'Мобильный разработчик',
+                description: '',
+                link: '',
+            },
+            {
+                avatarSrc: '/img/About/anastasia.jpeg',
+                username: 'Анастасия Загинайко',
+                status: 'Графический дизайнер',
+                description: '',
+                link: '',
+            },
+            {
+                avatarSrc: '/img/About/bogdan.jpeg',
+                username: 'Богдан Котиков',
+                status: 'Программист',
+                description: '',
+                link: '',
+            },
+            {
+                avatarSrc: '/img/About/max.png',
+                username: 'Максим Добряков',
+                status: 'Юрист',
+                description: '',
+                link: '',
             },
         ]
     }
