@@ -349,3 +349,6 @@ healthchecksdb
 
 # Database context snapshot should be used only in local developer environment.
 DatabaseContextModelSnapshot.cs
+
+# Mac meta files 
+*.DS_Store

@@ -1,22 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Policy;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Session;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Seterator.Models;
 using Seterator.Services;
-using static Seterator.Services.SessionExtensions;
 
 namespace Seterator.Controllers
 {
@@ -62,7 +47,8 @@ namespace Seterator.Controllers
             var canLogin = account.TryLogin(model.Login, model.Password);
             if (canLogin)
             {
-                await auth.Authenticate(model.Login, Enumerable.Empty<string>());
+                var roles = await account.GetUserClaims(model.Login);
+                await auth.Authenticate(model.Login, roles);
                 return RedirectToAction("Index", "Home");
             }
             else
