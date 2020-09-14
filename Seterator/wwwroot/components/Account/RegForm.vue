@@ -1,16 +1,29 @@
 <template>
     <form class="reg-form">
         <div>
-            <input type="text" placeholder="e-mail">
+            <input 
+                type="text" 
+                placeholder="e-mail или логин" 
+                v-model="login"
+                @input="$emit('login-change', $event.target.value)"
+            />
         </div>
         <div>
             <div>
-                <input type="password" placeholder="Пароль">
+                <input 
+                type="password" 
+                placeholder="Пароль"
+                v-model="password"
+                @input="$emit('password-change', $event.target.value)"
+            />
             </div>
             <!-- <p>На почту придут автоматически сгенерированные логин и пароль.</p> -->
         </div>
         <div>
-            <input class="formButton" type="submit" value="Регистрация">
+            <button 
+                class="formButton"  
+                @click.prevent="$emit('signup-click')"
+            >Регистрация</button>
         </div>
     </form>
 </template>

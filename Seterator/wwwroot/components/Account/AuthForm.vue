@@ -1,20 +1,39 @@
 <template>
     <form class="auth-form">
         <div>
-            <input type="text" asp-for="Login" placeholder="e-mail или логин">
+            <input 
+                type="text" 
+                placeholder="e-mail или логин" 
+                v-model="login"
+                @input="$emit('login-change', $event.target.value)"
+            />
         </div>
         <div>
-            <input type="password" placeholder="Пароль">
+            <input 
+                type="password" 
+                placeholder="Пароль"
+                v-model="password"
+                @input="$emit('password-change', $event.target.value)"
+            />
         </div>
         <div>
-            <input class="formButton" type="submit" value="Войти">
+            <button 
+                class="formButton"  
+                @click.prevent="$emit('signin-click')"
+            >Войти</button>
+
         </div>
     </form>
 </template>
 
 <script>
 export default {
-
+data() {
+    return {
+        login: '',
+        password: ''
+    }
+}
 }
 </script>
 

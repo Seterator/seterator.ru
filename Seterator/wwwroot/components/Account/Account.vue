@@ -14,8 +14,24 @@
               <span :class="{ switchButton_active: !authToggle }">Новый участник</span>
               <span :class="{ switchButton_active: authToggle }">Уже сетератор</span>
           </div>
-          <authForm-component v-if="authToggle"></authForm-component>
-          <regForm-component v-else></regForm-component>
+          <authForm-component 
+            v-if="authToggle"
+            @login-change="login = $event"
+            @password-change="password = $event"
+            @signin-click="signIn"
+          />
+          <regForm-component 
+            v-else
+            @login-change="login = $event"
+            @password-change="password = $event"
+            @signup-click="signUp"
+          />
+          <div 
+            class="alert alert-warning" 
+            v-if="error"
+            >
+              {{ errorText }}
+          </div>
           <p class="auth-agreement">Регистрируясь, Вы соглашаетесь с условиями <a href="/Home/Privacy">Пользовательского соглашения</a>.</p>
       </div>
   </div>
@@ -32,13 +48,66 @@ export default {
     },
     data: function() {
         return {
-            authToggle: true
+            authToggle: true,
+            login: '',
+            password: '',
+            error: false,
+            errorText: ''
+        }
+    },
+    methods: {
+        signIn: async function() {
+            let data = [this.login, this.password];
+            let sign = {
+                Username: data[0],
+                Password: data[1]
+            };
+            let response = await fetch('/api/Login', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "text/json; charset=utf-8"
+                }, 
+                body: JSON.stringify(sign)
+            });
+            let body = await response.json();
+            if (await body.status == 0) {
+                document.location.href = '/';
+            } else {
+                this.error = true;
+                this.errorText = await body.message;
+            }
+        },
+        signUp: async function() {
+            let data = [this.login, this.password];
+            let sign = {
+                Username: data[0],
+                Password: data[1]
+            };
+            let response = await fetch('/api/Register', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "text/json; charset=utf-8"
+                }, 
+                body: JSON.stringify(sign)
+            });
+            let body = await response.json();
+            if (await body.status == 0) {
+                document.location.href = '/';
+            } else {
+                this.error = true;
+                this.errorText = await body.message;
+            }
         }
     }
 }
 </script>
 
 <style scoped>
+.alert {
+    margin: 10px;
+    text-align: center;
+}
+
 .account {
     padding: 0;
     background: linear-gradient( 90deg, rgba(255,255,255,0.50196) 0%, rgb(255,255,255) 100%), url('/img/Account/bg_login.jpg');
