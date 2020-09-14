@@ -16,7 +16,7 @@
             v-if="currentUser.isAuthorized"
             :href="'/' + currentUser.username"
           >Профиль</b-nav-item>
-          <b-nav-item link-classes="n_item" v-if="currentUser.isAuthorized" href="/">Выход</b-nav-item>
+          <b-nav-item link-classes="n_item" v-if="currentUser.isAuthorized" @click="signOut">Выход</b-nav-item>
           <b-nav-item link-classes="n_item" href="/Home/Privacy">Privacy</b-nav-item>
         </b-navbar-nav>
 
@@ -72,6 +72,21 @@ export default {
               this.currentUser = null;
               alert(e);
           }
+      },
+      signOut: async function() {
+            let response = await fetch('/api/Logout', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "text/json; charset=utf-8"
+                }
+            });
+            let body = await response.json();
+            if (await body.status == 0) {
+                document.location.href = '/';
+            } else {
+                this.error = true;
+                this.errorText = await body.message;
+            }
       }
   }
 };
