@@ -1,5 +1,0 @@
-{
-  "ConnectionStrings": {
-    "Local": "server=localhost;UserId=root;database=seterator;password=wanted;"
-  }
-}

@@ -16,4 +16,3 @@ new Vue({
   el: '#footer-component',
   render: h => h(FooterComponent)
 });
-  
