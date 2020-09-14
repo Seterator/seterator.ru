@@ -49,18 +49,15 @@ export default {
     data: function() {
         return {
             authToggle: true,
-            login: '',
-            password: '',
             error: false,
             errorText: ''
         }
     },
     methods: {
-        signIn: async function() {
-            let data = [this.login, this.password];
+        signIn: async function(e) {
             let sign = {
-                Username: data[0],
-                Password: data[1]
+                Username: e.login,
+                Password: e.password
             };
             let response = await fetch('/api/Login', {
                 method: 'POST',
@@ -77,11 +74,10 @@ export default {
                 this.errorText = await body.message;
             }
         },
-        signUp: async function() {
-            let data = [this.login, this.password];
+        signUp: async function(e) {
             let sign = {
-                Username: data[0],
-                Password: data[1]
+                Username: e.login,
+                Password: e.password
             };
             let response = await fetch('/api/Register', {
                 method: 'POST',

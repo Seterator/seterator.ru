@@ -5,7 +5,6 @@
                 type="text" 
                 placeholder="e-mail или логин" 
                 v-model="login"
-                @input="$emit('login-change', $event.target.value)"
             />
         </div>
         <div>
@@ -13,13 +12,12 @@
                 type="password" 
                 placeholder="Пароль"
                 v-model="password"
-                @input="$emit('password-change', $event.target.value)"
             />
         </div>
         <div>
             <button 
                 class="formButton"  
-                @click.prevent="$emit('signin-click')"
+                @click.prevent="$emit('signin-click', {login, password})"
             >Войти</button>
 
         </div>

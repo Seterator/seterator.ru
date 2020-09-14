@@ -5,7 +5,6 @@
                 type="text" 
                 placeholder="e-mail или логин" 
                 v-model="login"
-                @input="$emit('login-change', $event.target.value)"
             />
         </div>
         <div>
@@ -14,7 +13,6 @@
                 type="password" 
                 placeholder="Пароль"
                 v-model="password"
-                @input="$emit('password-change', $event.target.value)"
             />
             </div>
             <!-- <p>На почту придут автоматически сгенерированные логин и пароль.</p> -->
@@ -22,7 +20,7 @@
         <div>
             <button 
                 class="formButton"  
-                @click.prevent="$emit('signup-click')"
+                @click.prevent="$emit('signup-click', {login, password})"
             >Регистрация</button>
         </div>
     </form>
@@ -30,7 +28,12 @@
 
 <script>
 export default {
-
+data() {
+    return {
+        login: '',
+        password: ''
+    }
+}
 }
 </script>
 
