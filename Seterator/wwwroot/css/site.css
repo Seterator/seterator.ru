@@ -1,113 +1,47 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-
-/*---Сброс стилей*/
-/*html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}*/
-/*---------------*/
-
-/*--- Подключение шрифтов ---*/
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+﻿@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
-/*-------------------------*/
 
-/*--- Деволтные ссылки ---*/
-a {
-    color: black;
-    text-decoration: none;
+:root {
+    --main-color: rgb(255, 82, 25);
+    --second-color: rgb(204, 66, 20);
+
+    --seterator-color-black: rgb(17, 17, 17);
+    --seterator-color-gray: rgb(51, 51, 51);
+
+    --font-serif: 'Merriweather', serif;
+    --font-sans-serif: 'Montserrat', sans-serif;
+
+    --main-font-size: 14px;
 }
 
-a:hover {
-    color: rgb(255, 82, 25);
-    text-decoration: none;
-}
-/*------------------------*/
-
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
+/* --- Шрифт --- */
 html {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
+    font-size: var(--main-font-size);
 }
 
 @media (min-width: 768px) {
     html {
-        font-size: 16px;
+        font-size: 1.1rem;
     }
 }
 
-.border-top {
-    border-top: 1px solid #e5e5e5;
+body {
+    font-family: var(--font-sans-serif);
 }
 
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
+/*--- Ссылки по умолчанию ---*/
+a {
+    color: var(--seterator-black);
+    text-decoration: none;
 }
 
-.box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+a:hover {
+    color: var(--main-color);
+    text-decoration: none;
 }
 
+/* --- Рудимент кукисов --- */
 button.accept-policy {
     font-size: 1rem;
     line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-p {
-    /*margin: 0;
-    padding: 0;*/
-    font-family: 'Montserrat', sans-serif;
-}
-
-.card, .list-group {
-    margin: 4px;
-}
-
-pre {
-    white-space: pre-wrap; /* css-3 */
-    white-space: -moz-pre-wrap; /* Mozilla, с 1999 */
-    white-space: -pre-wrap; /* Opera 4-6 */
-    white-space: -o-pre-wrap; /* Opera 7 */
-    word-wrap: break-word; /* Internet Explorer 5.5+ поддерживается в IE, Safari, и Firefox 3.1.*/
-}
-
-nav .h1 {
-    display: block;
-    width: 100%;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
 }
