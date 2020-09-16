@@ -1,0 +1,564 @@
+.banner {
+    width: 100%;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+
+    position: relative;
+}
+
+.banner__title {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 30px; 
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 24pt;
+}
+
+.banner__description {
+    margin: 0;
+    padding: 0;
+    
+    font-size: 14pt;
+}
+
+.banner_padding_small {
+    padding: 3%;
+}
+
+
+.banner_padding_medium {
+    padding: 5% 8%;
+}
+
+.banner_theme_common {
+    background: linear-gradient(to right, rgba(17, 17, 17, 0.7) 0%, rgba(17, 17, 17, 0.7) 100%), url('/img/Index/bg_1.jpg');
+    background-size: cover;
+    background-position: 10% 85%;
+    background-repeat: no-repeat;
+}
+
+.banner_theme_none {
+    background: rgb(51, 51, 51);
+}
+
+.btn {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 40px;
+
+    cursor: pointer;
+}
+
+.btn_color_orange {
+    background-color: rgb(255, 82, 25);
+    color: rgb(255,255,255);
+}
+
+.btn_color_orange:hover {
+    background-color: rgb(204, 66, 20);
+    color: rgb(255,255,255);
+}
+
+.btn_color_white {
+    background-color: rgb(255,255,255);
+    color: rgb(255, 82, 25);
+    border: solid 2px rgb(255, 82, 25);
+}
+
+.btn_color_white:hover {
+    background-color: rgb(255, 82, 25);
+    color: rgb(255,255,255);
+}
+
+.btn_border_black {
+    color: rgb(0, 0, 0);
+    border: solid 2px rgb(0, 0, 0);
+}
+
+.btn_decoration_orangeShadow {
+    -webkit-box-shadow: 0px 36px 68px -13px rgba(255,82,25,1);
+-moz-box-shadow: 0px 36px 68px -13px rgba(255,82,25,1);
+box-shadow: 0px 36px 68px -13px rgba(255,82,25,1);
+
+}
+
+.competitionItem {
+    display: flex;
+}
+
+.competitionItem_direction_column {
+    flex-direction: column;
+}
+
+
+.competitionItem__title {
+    font-family: 'Merriweather', serif;
+    font-size: 18pt;
+    font-weight: 600;
+}
+
+.competitionItem__title_size_xl {
+    font-size: 22pt;
+}
+
+.createCompetition__header {
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 24pt;
+    margin-bottom: 20px;
+}
+
+.createCompetition__personalInfo {
+    margin-bottom: 20px;
+}
+
+.createCompetition__banner {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.createCompetition__label {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.createCompetition__label_theme_dark {
+    color: rgb(255, 82, 25);
+}
+
+.createCompetition__label_font_bold {
+    font-weight: 600;
+}
+
+.createCompetition__textarea {
+    width: 100%;
+    border: none;
+    padding: 2%;
+    font-weight: 500;
+}
+
+.createCompetition__textarea_theme_dark {
+    background: rgb(61, 61, 61);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__textarea_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__uploadBackgroundImg {
+    align-self: center;
+    padding-top: 3%;
+    color: rgb(255, 255, 255);
+}
+
+.createCompetition__textbox {
+    border: none;
+    font-weight: 500;
+}
+
+.createCompetition__textbox_type_range {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.createCompetition__textbox_type_nomralText {
+    width: 100%;
+    padding: 10px;
+}
+
+.createCompetition__textbox_font_header {
+    font-family: 'Merriweather', serif;
+    font-size: 24pt;
+}
+
+.createCompetition__textbox_theme_dark {
+    background: rgb(51, 51, 51);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__textbox_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}
+
+.createCompetition__grid {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.createCompetition__documents {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.createCompetition__upload {
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.createCompetition__upload:hover {
+    cursor: pointer;
+    color: rgb(255, 82, 25);
+}
+
+.createCompetition__uploadDocument_view_disable {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.createCompetition__prizeItem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.createCompetition__buttons {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    background: rgb(230, 230, 230);
+}
+
+.createCompetition__button {
+    width: 20%;
+    margin: 20px;
+}
+
+.createCompetition__select {
+    border: none;
+    font-weight: 500;
+    padding: 10px;
+}
+
+.createCompetition__select_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}
+
+.developBanner {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+
+@media (max-width: 770px) {
+    .developBanner {
+        grid-template-columns: 1fr;
+    }
+    .developBanner__link {
+        grid-row-start: 3;
+    }
+}
+
+.form {
+    margin: 0;
+    padding: 0;
+}
+
+.form__textbox {
+    border: none;
+    font-weight: 500;
+}
+
+.form__textbox_type_nomralText {
+    width: 100%;
+    padding: 10px;
+}
+
+.form__textbox_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}
+
+.form__textarea {
+    width: 100%;
+    border: none;
+    padding: 2%;
+    font-weight: 500;
+}
+
+.form__textarea_theme_light {
+    background: rgb(230, 230, 230);
+    color: rgb(102, 102, 102);
+}
+
+.form__authAgreement {
+    margin-top: 30px;
+    text-align: center;
+    padding-bottom: 70px;
+    font-size: 10pt;
+}
+
+.form__authAgreement_size_m {
+    font-size: 12pt;
+}
+
+.form__authAgreement a {
+    text-decoration: underline;
+}
+
+.imgSvg{
+    max-width: 100%;
+}
+
+.imgSvg_color_white {
+    fill: rgb(255, 255, 255);
+}
+
+.imgSvg_color_orange {
+    fill: rgb(255, 82, 25);
+}
+
+.imgSvg_color_black {
+    fill: rgb(0, 0, 0);
+}
+
+.imgSvg_orange,
+.imgSvg_white:hover {
+    fill: rgb(255, 82, 25);
+}
+
+.imgSvg_hovered_color_orange:hover {
+    fill: rgb(255, 82, 25);
+}
+
+.imgText {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.imgText__img {
+    width: 100%;
+    max-width: 20px;
+    margin-right: 5px;
+}
+
+.imgText__text {
+    white-space: nowrap;
+}
+
+.imgText__text_margin_right {
+    margin-right: 10px;
+}
+
+.participantBecome__timer {
+    color: rgb(255, 82, 25);
+    margin-bottom: 15px;
+}
+
+.participantBecome__itemsRow {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.participantBecome__form {
+    margin: 40px auto;
+    width: 66%;
+}
+
+.participantBecome__form > * {
+    margin-top: 10px;
+}
+
+.participants__count {
+    color: rgb(255, 82, 25);
+}
+
+.participants__lst {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.personalInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.personalInfo__socialIcons {
+    flex-basis: 25%;
+    padding: 3%;
+}
+
+.personalInfo__phoneAndEmail {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+}
+
+.personalInfo_theme_light {
+    background: rgb(230, 230, 230);
+}
+
+.parsonalInfo__name {
+    font-weight: 600;
+    font-size: 13pt;
+}
+
+.personalInfo__avatar {
+    margin-bottom: 45px;
+}
+
+.socialIcons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.socialIcons__item {
+    flex-grow: 0;
+    padding: 1%;
+}
+
+.socialIcons__item_size_m {
+    flex-basis: 35px;
+}
+
+.review {
+    margin: 0 10vw;
+}
+
+.application {
+    background: white;
+    min-height: 70vh;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+} 
+
+.application h4, .application h3, .application p {
+    padding: 0.5vw 1vw;
+}
+
+.application-buttons {
+    margin-top: 1.5vw;
+    margin-bottom: 10vw;
+
+    position: relative;
+    width: 100%;
+}
+
+.application-buttons a {
+    text-decoration: none;
+    color: black;
+}
+
+.application-buttons a:hover {
+    opacity: 0.7;
+}
+
+.application-buttons .reject-block {
+    position: absolute;
+    left: 0;
+} 
+
+.application-buttons .b-text {
+    background: rgb(239, 239, 239);
+    padding: 1vw;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    font-size: 16pt;
+}
+
+.application-buttons .accept-block {
+    position: absolute;
+    right: 0;
+}
+
+.review h2 {
+    color: rgb(255, 57, 0);
+}
+
+.review .application-buttons-assessment {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 0.5vw;
+}
+
+
+.review .application-buttons-assessment .score {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+
+    background: rgb(239, 239, 239);
+}
+
+.review .application-buttons-assessment a {
+    cursor: pointer;    
+}
+
+.review .application-buttons-assessment .arrow:hover {
+    opacity: 0.7;
+}
+
+.review .application-buttons-assessment div:hover {
+    background: rgb(255, 57, 0);
+}
+
+.review .application-buttons-assessment div:hover h2,
+.review .application-buttons-assessment div:hover p {
+    color: white;
+}
+
+.wcomments_head {
+    background: rgb(255, 82, 25);
+}
+
+.flat_button {
+    background: rgb(255, 82, 25);
+}
+
+#poem {
+    width: 42%;
+    margin-left: 8%;
+    margin-top: 100px;
+
+    min-height: 70vh;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: 30px;
+}
+
+#poem h2 {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 24pt;
+}
+
+#poem span {
+    margin: 0;
+    padding: 0;
+
+    font-size: 18pt;
+    font-style: italic;
+}
+
+#poem p {
+    margin: 0;
+    padding: 0;
+}

@@ -17,48 +17,20 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    
     <!-- ВК комментарии -->
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?162"></script>
     <script type="text/javascript">VK.init({ apiId: 7196510, onlyWidgets: true });</script>
     <!-------------------->
+
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/Account.css" />
-    <link rel="stylesheet" href="~/css/Profile.css" />
-    <link rel="stylesheet" href="~/css/Competition.css" />
-    <link rel="stylesheet" href="~/css/Application.css" />
-    <link rel="stylesheet" href="~/css/Poem_details.css" />
-    <link rel="stylesheet" href="~/css/Assessment.css" />
-    <!-- BEM Blocks  -->
-    <link rel="stylesheet" href="~/css/Blocks/AccountInfo.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Index.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionConditions.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionDetails.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionPrizes.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Banner.css" />
-    <link rel="stylesheet" href="~/css/Blocks/FlexRow.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Form.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ImgSvg.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CreateCompetition.css" />
-    <link rel="stylesheet" href="~/css/Blocks/PersonalInfo.css" />
-    <link rel="stylesheet" href="~/css/Blocks/SocialIcons.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ImgText.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Avatar.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Jury.css" />
-    <link rel="stylesheet" href="~/css/Blocks/UserItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Btn.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Profile.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ProfileItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Participants.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ParticipantItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ParticipantBecome.css" />
-    <link rel="stylesheet" href="~/css/Blocks/RowItems.css" />
-    <link rel="stylesheet" href="~/css/Blocks/DevelopBanner.css" />
+    <link rel="stylesheet" href="~/css/old.css" />
 </head>
 <body>
     <div id="el"></div>
     <header>
         <div id="header-component"></div>
+        
         <div class="container">
                 <hr />
             <div class="developBanner">
@@ -69,6 +41,7 @@
                 <hr />
         </div>
     </header>
+
     <div>
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -77,8 +50,7 @@
     </div>
 
     <div id="footer-component"></div>
-    <!-- Версия vue для разработки -->
-    <script src="~/lib/vue/vue.js"></script>
+
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -97,6 +69,7 @@
                 integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
         </script>
     </environment>
+
     <script src="~/dist/Layout.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/svgInliner.js" asp-append-version="true"></script>
