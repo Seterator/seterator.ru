@@ -1,40 +1,44 @@
 <template>
-  <div class="container account">
-      <div v-if="authToggle" class="cheers d-none d-md-block">
-            <h2>Пиши.</h2>
-            <h2>и зарабатывай!</h2>
-      </div>
-      <div v-else class="cheers d-none d-md-block">
-            <h2>Пиши.</h2>
-            <h2>Участвуй.</h2>
-            <h2>Зарабатывай!</h2>
-      </div>
-      <div class="form-container">
-          <div class="switchButton" @click="authToggle = !authToggle">
-              <span :class="{ switchButton_active: !authToggle }">Новый участник</span>
-              <span :class="{ switchButton_active: authToggle }">Уже сетератор</span>
-          </div>
-          <authForm-component 
+<div class="container account account_background">
+    <div 
+        v-if="authToggle" 
+        class="cheers d-none d-md-block">
+            <h2 class="cheers__title">Пиши.</h2>
+            <h2 class="cheers__title">и зарабатывай!</h2>
+    </div>
+    <div 
+        v-else 
+        class="cheers d-none d-md-block">
+            <h2 class="cheers__title">Пиши.</h2>
+            <h2 class="cheers__title">Участвуй.</h2>
+            <h2 class="cheers__title">Зарабатывай!</h2>
+    </div>
+    <div class="form-container">
+        <button class="switchButton" @click="switchAction">
+            <span :class="{ switchButton_active: !authToggle }">Новый участник</span>
+            <span :class="{ switchButton_active: authToggle }">Уже сетератор</span>
+        </button>
+        <authForm-component 
             v-if="authToggle"
             @login-change="login = $event"
             @password-change="password = $event"
             @signin-click="signIn"
-          />
-          <regForm-component 
+        />
+        <regForm-component 
             v-else
             @login-change="login = $event"
             @password-change="password = $event"
             @signup-click="signUp"
-          />
-          <div 
+        />
+        <div 
             class="alert alert-warning" 
             v-if="error"
-            >
-              {{ errorText }}
-          </div>
-          <p class="auth-agreement">Регистрируясь, Вы соглашаетесь с условиями <a href="/Home/Privacy">Пользовательского соглашения</a>.</p>
-      </div>
-  </div>
+        >
+            {{ errorText }}
+        </div>
+        <p class="auth-agreement">Регистрируясь, Вы соглашаетесь с условиями <a href="/Home/Privacy">Пользовательского соглашения</a>.</p>
+    </div>
+</div>
 </template>
 
 <script>
@@ -54,44 +58,54 @@ export default {
         }
     },
     methods: {
+        switchAction: function() {
+            this.authToggle = !this.authToggle;
+            this.error = false;
+            this.errorText = '';
+
+        },
         signIn: async function(e) {
-            let sign = {
-                Username: e.login,
-                Password: e.password
-            };
-            let response = await fetch('/api/Login', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "text/json; charset=utf-8"
-                }, 
-                body: JSON.stringify(sign)
-            });
-            let body = await response.json();
-            if (await body.status == 0) {
-                document.location.href = '/';
-            } else {
-                this.error = true;
-                this.errorText = await body.message;
+            if (e.login != '' && e.password != '') {
+                let sign = {
+                    Username: e.login,
+                    Password: e.password
+                };
+                let response = await fetch('/api/Login', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "text/json; charset=utf-8"
+                    }, 
+                    body: JSON.stringify(sign)
+                });
+                let body = await response.json();
+                if (await body.status == 0) {
+                    document.location.href = '/';
+                } else {
+                    this.error = true;
+                    this.errorText = await body.message;
+                }
             }
         },
         signUp: async function(e) {
-            let sign = {
-                Username: e.login,
-                Password: e.password
-            };
-            let response = await fetch('/api/Register', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "text/json; charset=utf-8"
-                }, 
-                body: JSON.stringify(sign)
-            });
-            let body = await response.json();
-            if (await body.status == 0) {
-                document.location.href = '/';
-            } else {
-                this.error = true;
-                this.errorText = await body.message;
+            if (e.login != '' && e.password != '') {
+                let sign = {
+                    Username: e.login,
+                    Password: e.password
+                };
+                let response = await fetch('/api/Register', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "text/json; charset=utf-8"
+                    }, 
+                    body: JSON.stringify(sign)
+                });
+                let body = await response.json();
+                if (await body.status == 0) {
+                    document.location.href = '/';
+                } else {
+                    this.error = true;
+                    this.errorText = await body.message;
+                }
             }
         }
     }
@@ -106,14 +120,17 @@ export default {
 
 .account {
     padding: 0;
-    background: linear-gradient( 90deg, rgba(255,255,255,0.50196) 0%, rgb(255,255,255) 100%), url('/img/Account/bg_login.jpg');
-    background-repeat: no-repeat;
-    background-position-x: center;
     margin-top: 100px;
     margin-bottom: 120px;
     display: grid;
     grid-template-columns: 7fr 4fr;
     gap: 40px;
+}
+
+.account_background {
+    background: linear-gradient( 90deg, rgba(255,255,255,0.50196) 0%, rgb(255,255,255) 100%), url('/img/Account/bg_login.jpg');
+    background-repeat: no-repeat;
+    background-position-x: center;
 }
 
 .cheers {
@@ -122,18 +139,18 @@ export default {
     white-space: nowrap;
 }
 
-.cheers h2 {
-    font-family: 'Merriweather', serif;
+.cheers__title {
+    font-family: var(--font-serif);
     font-weight: 600;
     font-size: 40pt;
     text-align: right;
 }
 
-.cheers h2:nth-child(2) {
-    color: rgb(255, 82, 25);
+.cheers__title:nth-child(2) {
+    color: var(--main-color);
 }
 
-.cheers h2:nth-child(3) {
+.cheers__title:nth-child(3) {
     color: rgb(204, 66, 20);
 }
 
@@ -147,27 +164,28 @@ export default {
 
 .switchButton {
     color: rgb(132, 132, 132);
+    border: none;
     font-size: 13pt;
-    text-align: center;
+    margin: auto;
     white-space: nowrap;
     display: grid;
     grid-gap: 30px;
     grid-template-columns: 1fr 1fr;
 }
 
-.switchButton:hover {
-    cursor: pointer;
+.switchButton:focus {
+    outline: none;
 }
 
 .switchButton_active {
-    color: rgb(255, 82, 25);
-    box-shadow: 0px 2px 0px 0px rgba(255, 82, 25, 1);
+    color: var(--main-color);
+    box-shadow: 0px 2px 0px 0px var(--main-color);
 }
 
 .auth-agreement {
     margin-top: 30px;
     text-align: center;
-    font-size: 10pt;
+    font-size: 0.7rem;
 }
 
 .auth-agreement a {
@@ -175,7 +193,7 @@ export default {
 }
 
 @media only screen and (max-width: 992px) {
-    .cheers h2 {
+    .cheers__title {
         font-size: 26pt;
     }
 }
