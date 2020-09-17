@@ -27,23 +27,23 @@ props: {
 }
 
 .privacyItem__header {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18pt;
+    font-family: var(--font-sans-serif);
+    font-size: 1.1rem;
     font-weight: 600;
-    color: rgb(255, 82, 25) !important;
+    color: rgb(0, 0, 0);
 
     text-decoration: none;
 
 }
 
 .privacyItem__header:hover {
-    color: rgb(204, 66, 20) !important;
+    color: var(--second-color) !important;
     cursor: pointer;
 }
 
 .privacyItem__description {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12pt;
+    font-family: var(--font-sans-serif);
+    font-size: .8rem;
     color: rgb(0, 0, 0);
 
     padding: 20px 0;
