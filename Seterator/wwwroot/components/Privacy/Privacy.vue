@@ -136,8 +136,8 @@ export default {
 
 <style>
 .privacy__header {
-    font-family: 'Merriweather', serif;
-    font-size: 24pt;
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
     font-weight: 600;
 
     padding-bottom: 30px;
