@@ -6,69 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="icon" type="image/x-icon" href="~/img/icons/favicon.png" />
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-              crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
-    </environment>
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/old.css" />
+    
     <!-- ВК комментарии -->
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?162"></script>
     <script type="text/javascript">VK.init({ apiId: 7196510, onlyWidgets: true });</script>
     <!-------------------->
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/Account.css" />
-    <link rel="stylesheet" href="~/css/Profile.css" />
-    <link rel="stylesheet" href="~/css/Competition.css" />
-    <link rel="stylesheet" href="~/css/Application.css" />
-    <link rel="stylesheet" href="~/css/Poem_details.css" />
-    <link rel="stylesheet" href="~/css/Assessment.css" />
-    <!-- BEM Blocks  -->
-    <link rel="stylesheet" href="~/css/Blocks/AccountInfo.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Index.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionConditions.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionDetails.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CompetitionPrizes.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Banner.css" />
-    <link rel="stylesheet" href="~/css/Blocks/FlexRow.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Form.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ImgSvg.css" />
-    <link rel="stylesheet" href="~/css/Blocks/CreateCompetition.css" />
-    <link rel="stylesheet" href="~/css/Blocks/PersonalInfo.css" />
-    <link rel="stylesheet" href="~/css/Blocks/SocialIcons.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ImgText.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Avatar.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Jury.css" />
-    <link rel="stylesheet" href="~/css/Blocks/UserItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Btn.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Profile.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ProfileItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/Participants.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ParticipantItem.css" />
-    <link rel="stylesheet" href="~/css/Blocks/ParticipantBecome.css" />
-    <link rel="stylesheet" href="~/css/Blocks/RowItems.css" />
-    <link rel="stylesheet" href="~/css/Blocks/DevelopBanner.css" />
+
 </head>
 <body>
     <div id="el"></div>
     <header>
         <div id="header-component"></div>
+        
         <div class="container">
-                <hr />
+            <hr />
             <div class="developBanner">
                 <h1>ПРОЕКТ В РАЗРАБОТКЕ</h1>
-                <a href="https://saner99.tb.ru/seterator" target="_blank" class="developBanner__link"><div class="btn btn_color_orange">Узнайте больше</div></a>
+                <a 
+                    class="developBanner__link"
+                    href="https://saner99.tb.ru/seterator" 
+                    target="_blank" 
+                >
+                    <div class="btn btn_color_orange">Узнайте больше</div>
+                </a>
                 <h3>Данный сайт демонстрационный</h3>
             </div>
-                <hr />
+            <hr />
         </div>
+        
     </header>
+
     <div>
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -77,29 +50,10 @@
     </div>
 
     <div id="footer-component"></div>
-    <!-- Версия vue для разработки -->
-    <script src="~/lib/vue/vue.js"></script>
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
-        </script>
-    </environment>
+
     <script src="~/dist/Layout.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/svgInliner.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    <script src="~/js/test.js"></script>
 </body>
 </html>

@@ -56,17 +56,17 @@
 
 <style scoped>
 footer {
-    background: rgb(17, 17, 17);
+    background: var(--seterator-color-black);
     margin: 0;
     padding: 40px 0 30px 0;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 a {
-    color: white;
+    color: rgb(255, 255, 255);
 }
 a:hover {
-    color: rgb(255, 82, 25);
+    color: var(--main-color);
 }
 
 .footer__logo {
@@ -135,7 +135,7 @@ hr {
     fill: white;
 }
 .social-icon:hover {
-    fill: rgb(255, 82, 25);
+    fill: var(--main-color);
     cursor: pointer;
 }
 </style>
