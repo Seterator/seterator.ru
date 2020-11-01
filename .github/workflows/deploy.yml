@@ -33,7 +33,7 @@ jobs:
       with:
         name: app-package
     - name: rsync deployments
-      uses: oncletom/rsync-deployments@master
+      uses: oncletom/rsync-deployments@patch-1
       with:
         RSYNC_OPTIONS: -avzr --delete
         USER_AND_HOST: github-deployer@45.151.144.11
