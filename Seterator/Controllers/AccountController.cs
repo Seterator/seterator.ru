@@ -1,7 +1,12 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Session;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Seterator.Models;
 using Seterator.Services;
+using static Seterator.Services.SessionExtensions;
 
 namespace Seterator.Controllers
 {
@@ -47,8 +52,12 @@ namespace Seterator.Controllers
             var canLogin = account.TryLogin(model.Login, model.Password);
             if (canLogin)
             {
+<<<<<<< HEAD
                 var roles = await account.GetUserClaims(model.Login);
                 await auth.Authenticate(model.Login, roles);
+=======
+                await auth.Authenticate(model.Login, Enumerable.Empty<string>());
+>>>>>>> master
                 return RedirectToAction("Index", "Home");
             }
             else
