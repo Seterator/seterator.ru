@@ -76,25 +76,6 @@ namespace Seterator.Services
             {
                 throw new Exception("Пользователь не авторизован");
             }
-            claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, login));
-            foreach (var role in roles)
-            {
-                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role));
-            }
-            ClaimsIdentity id = 
-                new ClaimsIdentity(claims: claims,
-                                   authenticationType: "ApplicationCookie",
-                                   nameType: ClaimsIdentity.DefaultNameClaimType,
-                                   roleType: ClaimsIdentity.DefaultRoleClaimType);
-            await httpContext
-                .SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                             new ClaimsPrincipal(id));
-        }
-
-        public async Task Logout()
-        {
-            await httpContext
-                .SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         }
     }
 }
