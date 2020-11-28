@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Seterator.Models;
 
 namespace Seterator.Services
@@ -35,6 +35,36 @@ namespace Seterator.Services
             var passwordHash = hasher.Hash(password);
             var credentialsCorrect = CheckCredentials(login, passwordHash);
             return credentialsCorrect;
+        }
+
+        /// <summary>
+        /// Возвращает перечень ролей, доступных пользователю с данным логином.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<List<string>> GetUserClaims(string username)
+        {
+            var roles = await database.Roles.AsNoTracking()
+                .Include(x => x.User)
+                .Where(x => x.User.Login == username)
+                .Select(x => x.UserRole.ToString())
+                .ToListAsync();
+            return roles;
+        }
+
+        /// <summary>
+        /// Возвращает перечень ролей, доступных пользователю с данным GUID.
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
+        public async Task<List<string>> GetUserRoles(Guid userGuid)
+        {
+            var roles = await database.Roles.AsNoTracking()
+                .Include(x => x.User)
+                .Where(x => x.User.Guid == userGuid)
+                .Select(x => x.UserRole.ToString())
+                .ToListAsync();
+            return roles;
         }
 
         /// <summary>

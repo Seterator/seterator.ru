@@ -63,9 +63,8 @@ namespace Seterator
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDistributedMemoryCache();
+            services.AddDomainServices();
             services.AddSession();
-            services.AddPrimitiveMemoryCache();
-            services.AddFoulLanguageFilter("*");
             services.AddDbContext<DatabaseContext>(dbContext =>
             {
                 dbContext.UseMySql(ConnectionString);
@@ -81,8 +80,8 @@ namespace Seterator
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .AddMvcOptions(options => options.EnableEndpointRouting = false);
-
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -93,7 +92,7 @@ namespace Seterator
             app.UseCookiePolicy();
             app.UseSession();
             app.UseAuthentication();
-            app.UseMiddleware<SessionRestore>();
+            app.UseAuthorization();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

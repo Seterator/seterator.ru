@@ -8,6 +8,8 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using Seterator.Models;
 
+#pragma warning disable CS8618
+
 namespace Seterator
 {
     public class DatabaseContext : DbContext
@@ -60,9 +62,6 @@ namespace Seterator
                 .HasOne(x => x.Competition)
                 .WithMany(x => x.Jury)
                 .HasForeignKey(x => x.CompetitionGuid);
-
-            
-
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

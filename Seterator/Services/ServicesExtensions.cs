@@ -6,17 +6,17 @@ namespace Seterator.Services
     public static class ServicesExtensions
     {
         /// <summary>
-        /// Добавляет сервис фильтрации нецензурной брани.
+        /// Добавляет в коллекцию сервисов все сервисы связанные с бизнес-логикой приложения.
         /// </summary>
-        /// <param name="replaceChar">Символ, на который следует заменять символы нецензурных слов.</param>
-        public static IServiceCollection AddFoulLanguageFilter(this IServiceCollection services, string replaceChar)
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddDomainServices(this IServiceCollection services)
         {
-            return services.AddSingleton(x => new FoulLanguageFilter(replaceChar));
-        }
-
-        public static IServiceCollection AddPrimitiveMemoryCache(this IServiceCollection services)
-        {
-            return services.AddSingleton<IMemoryCache>(new MemoryCache());
+            return services
+                .AddHashService()
+                .AddAuthService()
+                .AddAccountService()
+                .AddCurrentUserService();
         }
 
         public static IServiceCollection AddHashService(this IServiceCollection services)
@@ -31,6 +31,11 @@ namespace Seterator.Services
         public static IServiceCollection AddAccountService(this IServiceCollection services)
         {
             return services.AddScoped<AccountService>();
+        }
+
+        public static IServiceCollection AddCurrentUserService(this IServiceCollection services)
+        {
+            return services.AddScoped<CurrentUserService>();
         }
     }
 }

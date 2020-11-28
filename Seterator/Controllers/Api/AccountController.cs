@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Reflection.Emit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -17,82 +18,87 @@ using Seterator.Services;
 
 namespace Seterator.Controllers.Api
 {
-    // [Route("api/[controller]")]
-    // [ApiController]
-    // public class AccountController : ControllerBase
-    // {
-    //     AccountService account;
-    //     private static readonly byte[] salt = new byte[]
-    //     {
-    //         0xad, 0x34, 0xff, 0x45, 0xf2, 0x12, 0x34, 0xfa,
-    //         0xad, 0x34, 0xff, 0x45, 0xf2, 0x12, 0x34, 0xfa
-    //     };
-    //     public AccountController(AccountService account)
-    //     {
-    //         this.account = account;
-    //     }
-    //     // POST: api/Account
-    //     [HttpPost]
-    //     public LoginResult Post([FromBody] Login data)
-    //     {
-    //         switch (data.Method)
-    //         {
-    //             case "login":
-    //             {
-    //                 var canLogin = account.TryLogin(data.Login, data.Password);
-    //                 if (canLogin)
-    //                 {
-    //                     Authenticate(user);
-                        
-    //                 }
-    //             }
-    //             case "register":
-    //             {
-    //                 return Register(data);
-    //             }
+    [Route("api/[action]")]
+    [ApiController]
+    public class AccountController : ControllerBase
+    {
+        private readonly AccountService account;
+        private readonly AuthService auth;
 
-    //             default:
-    //                 return new Models.Api.LoginResult() { Result = "reject", Message = "Ошибка в запросе" };
-    //         }
-    //     }
-        
-    //     private LoginResult Register(Models.Api.Login data)
-    //     {
-    //         var user = database.Users.FirstOrDefault(u => u.Login == data.Login);
-    //         var passwordHash = Utils.HashService.Default.Hash(data.Password);
-    //         if (user == null)
-    //         {
-    //             var newUser = new Models.User()
-    //             {
-    //                 Login = data.Login,
-    //                 PasswordHash = passwordHash
-    //         };
-    //             database.Users.Add(newUser);
-    //             database.SaveChanges();
-    //             Task.Run(async () => await Authenticate(newUser));
-    //             return new LoginResult() { Result = "accept", Message = "Регистрация завершена успешно" };
-    //         }
-    //         else
-    //         {
-    //             return new LoginResult() { Result = "reject", Message = "Ошибка в запросе" };
-    //         }
-    //     }
-        
-    //     private async Task Authenticate(User user)
-    //     {
-    //         var claims = new List<Claim>();
-    //         claims.Add(new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login));
-    //         foreach (var role in user.Roles)
-    //         {
-    //             claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, role.UserRole.ToString()));
-    //         }
-    //         var id = new ClaimsIdentity(claims: claims,
-    //                                                authenticationType: "ApplicationCookie",
-    //                                                nameType: ClaimsIdentity.DefaultNameClaimType,
-    //                                                roleType: ClaimsIdentity.DefaultRoleClaimType);
-    //         await HttpContext
-    //             .SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-    //                          new ClaimsPrincipal(id));
-    //     }
-    // }
+        public AccountController(AccountService account, AuthService auth)
+        {
+            this.account = account;
+            this.auth = auth;
+        }
+
+        [HttpPost]
+        public async Task<AccountActionResult> Login([FromBody] Login model)
+        {
+            var canLogin = account.TryLogin(model.Username, model.Password);
+            if (canLogin)
+            {
+                var roles = await account.GetUserClaims(model.Username);
+                await auth.Authenticate(model.Username, roles);
+                return new AccountActionResult()
+                {
+                    Status = 0,
+                    Message = "Авторизация выполнена"
+                };
+            }
+            else
+            {
+                return new AccountActionResult()
+                {
+                    Status = 1,
+                    Message = "Авторизация не выполнена"
+                };
+            }
+        }
+
+        [HttpPost]
+        public async Task<AccountActionResult> Register([FromBody] Register model)
+        {
+            var loginAvailable = account.IsLoginAvailable(model.Username);
+            if (loginAvailable)
+            {
+                await account.Register(model.Username, model.Password);
+                await auth.Authenticate(model.Username, Enumerable.Empty<string>());
+                return new AccountActionResult()
+                {
+                    Status = 0,
+                    Message = "Регистрация и вход выполнены"
+                };
+            }
+            else
+            {
+                return new AccountActionResult()
+                {
+                    Status = 1,
+                    Message = "Пользователь с таким именем уже существует"
+                };                
+            }
+        }
+
+        [HttpPost]
+        public async Task<AccountActionResult> Logout()
+        {
+            try
+            {
+                await auth.Logout();
+                return new AccountActionResult()
+                {
+                    Status = 0,
+                    Message = "Выход из учётной записи выполнен"
+                };
+            }
+            catch
+            {
+                return new AccountActionResult()
+                {
+                    Status = 1,
+                    Message = "Ошибка при попытке выхода из учётной записи."
+                };
+            }
+        }
+    }
 }
