@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace Seterator.Services
         /// <summary>
         /// Возвращает истину, если существует пользователь с указанным логином и хешем пароля.
         /// </summary>
-        public bool CheckCredentials(string login, IReadOnlyCollection<byte> passwordHash)
+        public bool CheckCredentials(string login, ImmutableArray<byte> passwordHash)
         {
             var userExists = database.Users.Any(
                 user => user.Login == login && user.PasswordHash == passwordHash);

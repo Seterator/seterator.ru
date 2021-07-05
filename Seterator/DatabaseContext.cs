@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using Seterator.Models;
+using Seterator.Converters;
+using Newtonsoft.Json;
+
+#pragma warning disable CS8618
 
 namespace Seterator
 {
@@ -32,13 +36,21 @@ namespace Seterator
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             Contract.Assert(modelBuilder != null);
+
+            modelBuilder.Entity<User>()
+                .Property(u => u.PasswordHash)
+                .HasConversion(ImmutableArrayConverter.Instance);
             
             modelBuilder.Entity<User>()
-                .Property("PasswordHash")
-                .HasConversion(new ValueConverter<IReadOnlyCollection<byte>, byte[]>(
-                    m => m.ToArray(),
-                    p => p as IReadOnlyCollection<byte>
-                ));
+                .Property(u => u.UserUrls)
+                .HasConversion(
+                    (v) => JsonConvert.SerializeObject(v), 
+                    (v) => JsonConvert.DeserializeObject<List<string>>(v)
+                 );
+
+            modelBuilder.Entity<UserDocument>()
+                .Property(x => x.Data)
+                .HasConversion(ImmutableArrayConverter.Instance);
 
             modelBuilder.Entity<CompetitionRelCategory>()
                 .HasKey(x => new { x.CategoryGuid, x.CompetitionGuid });
@@ -60,9 +72,6 @@ namespace Seterator
                 .HasOne(x => x.Competition)
                 .WithMany(x => x.Jury)
                 .HasForeignKey(x => x.CompetitionGuid);
-
-            
-
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
