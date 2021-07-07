@@ -10,7 +10,7 @@
                         <b-col cols="6" sm="6" md="4" class="f-column">
                             <div class="list-header">Навигация</div>
                             <div><a href="/">Главная</a></div>
-                            <div><a class="disable" href="#">О нас</a></div>
+                            <div><a href="/Home/About">О нас</a></div>
                         </b-col>
                         <b-col cols="6" sm="6" md="4" class="f-column">
                             <div class="list-header">Пользователь</div>

@@ -7,6 +7,7 @@ module.exports = {
         Layout: './wwwroot/js/Pages/Layout/Layout.js',
         Home: './wwwroot/js/Pages/Home/Index.js',
         HomePrivacy: './wwwroot/js/Pages/Home/Privacy.js',
+        HomeAbout: './wwwroot/js/Pages/Home/About.js',
         Account: './wwwroot/js/Pages/Account/Index.js',
         CompetitionCreate: './wwwroot/js/Pages/Competition/Create.js',
         CompetitionDetails: './wwwroot/js/Pages/Competition/Details.js',
